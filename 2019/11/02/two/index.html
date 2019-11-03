@@ -18,7 +18,7 @@
 <meta property="og:description" content="打开Git Bash 先下载live2d1$ npm install --save hexo-helper-live2d  下载模型1live2d-widget-model-z16  更多模型12345678910111213141516171819202122live2d-widget-model-chitoselive2d-widget-model-epsilon2_1live2d-widge">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;two&#x2F;%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png">
-<meta property="og:updated_time" content="2019-11-03T06:38:07.571Z">
+<meta property="og:updated_time" content="2019-11-03T07:09:07.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;02&#x2F;two&#x2F;%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png">
   
@@ -95,8 +95,7 @@
 
 <h2 id="在根目录-config-yml配置下添加以下参数"><a href="#在根目录-config-yml配置下添加以下参数" class="headerlink" title="在根目录_config.yml配置下添加以下参数"></a>在根目录_config.yml配置下添加以下参数</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  scriptFrom: <span class="built_in">local</span>  <span class="comment">#默认</span></span><br><span class="line">  pluginRootPath: live2dw/ <span class="comment">#插件在站点上是根目录</span></span><br><span class="line">  pluginJsPath: lib/   <span class="comment">#脚本文件相对于插件根目录路径</span></span><br><span class="line">  pluginModelPath: assets/  <span class="comment">#模型文件相对于与插件根目录路径</span></span><br><span class="line">  tagMode: <span class="literal">false</span>  <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  debug: <span class="literal">false</span>  <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  model:</span><br><span class="line">    use:  live2d-widget-model-z16 <span class="comment">#live2d-widget-model-shizuku 要修改的 </span></span><br><span class="line">  display:</span><br><span class="line">    position: right    <span class="comment">#在屏幕上显示的位置</span></span><br><span class="line">    width: 150     <span class="comment">#宽度</span></span><br><span class="line">    height: 300    <span class="comment">#高度</span></span><br><span class="line">  mobile:  <span class="comment">#是否用于移动端</span></span><br><span class="line">    show: <span class="literal">true</span>  <span class="comment">#手机是否显示</span></span><br></pre></td></tr></table></figure></div>
 
-<p>##会换装的板娘</p>
-<p>More info: <a href="https://github.com/pangao1990/pangao1990.github.io/tree/master/live2d" target="_blank" rel="noopener">GitHub源码地址</a></p>
+<h2 id="会换装的板娘"><a href="#会换装的板娘" class="headerlink" title="会换装的板娘"></a>会换装的板娘</h2><p>More info: <a href="https://github.com/pangao1990/pangao1990.github.io/tree/master/live2d" target="_blank" rel="noopener">GitHub源码地址</a></p>
 <p>解压到本地博客目录的 themes/…/source 下，修改文件夹名为 live2d-widget，修改项目中的 autoload.js 文件<br>将const live2d_path = “<a href="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;" target="_blank" rel="noopener">https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;</a>; 改为</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const live2d_path = &quot;/live2d-widget/&quot;;</span><br></pre></td></tr></table></figure></div>
 
@@ -106,7 +105,8 @@
 <p>在F:\blog\themes\hexo-theme-antiquity\layout\layout.ejs下添加代码</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot;&gt;</span><br></pre></td></tr></table></figure></div>
 
-<p><img src="%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" alt=""></p>
+<p><img src="/2019/11/02/two/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" alt></p>
+<p>想修改看板娘大小、位置、格式、文本内容等，可查看并修改 waifu-tips.js 、 waifu-tips.json 和 waifu.css。</p>
 
       
     </div>
