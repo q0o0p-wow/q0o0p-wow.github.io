@@ -54,6 +54,41 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-three" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/03/three/">Java</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/11/03/three/" class="article-date">
+  <time datetime="2019-11-03T05:59:32.256Z" itemprop="datePublished">2019-11-03</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-two" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -87,6 +122,20 @@
 <h3 id="更多模型"><a href="#更多模型" class="headerlink" title="更多模型"></a>更多模型</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="在根目录-config-yml配置下添加以下参数"><a href="#在根目录-config-yml配置下添加以下参数" class="headerlink" title="在根目录_config.yml配置下添加以下参数"></a>在根目录_config.yml配置下添加以下参数</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  scriptFrom: <span class="built_in">local</span>  <span class="comment">#默认</span></span><br><span class="line">  pluginRootPath: live2dw/ <span class="comment">#插件在站点上是根目录</span></span><br><span class="line">  pluginJsPath: lib/   <span class="comment">#脚本文件相对于插件根目录路径</span></span><br><span class="line">  pluginModelPath: assets/  <span class="comment">#模型文件相对于与插件根目录路径</span></span><br><span class="line">  tagMode: <span class="literal">false</span>  <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  debug: <span class="literal">false</span>  <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  model:</span><br><span class="line">    use:  live2d-widget-model-z16 <span class="comment">#live2d-widget-model-shizuku 要修改的 </span></span><br><span class="line">  display:</span><br><span class="line">    position: right    <span class="comment">#在屏幕上显示的位置</span></span><br><span class="line">    width: 150     <span class="comment">#宽度</span></span><br><span class="line">    height: 300    <span class="comment">#高度</span></span><br><span class="line">  mobile:  <span class="comment">#是否用于移动端</span></span><br><span class="line">    show: <span class="literal">true</span>  <span class="comment">#手机是否显示</span></span><br></pre></td></tr></table></figure></div>
+
+<p>##会换装的板娘</p>
+<p>More info: <a href="https://github.com/pangao1990/pangao1990.github.io/tree/master/live2d" target="_blank" rel="noopener">GitHub源码地址</a></p>
+<p>解压到本地博客目录的 themes/…/source 下，修改文件夹名为 live2d-widget，修改项目中的 autoload.js 文件<br>将const live2d_path = “<a href="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;" target="_blank" rel="noopener">https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;</a>; 改为</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const live2d_path = &quot;/live2d-widget/&quot;;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+<p>在F:\blog\themes\hexo-theme-antiquity\layout\layout.ejs下添加代码</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot;&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p><img src="%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" alt=""></p>
+
       
     </div>
     
@@ -134,6 +183,14 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
 
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install https://... -- save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -- save  //例如插入图片的要安装的插件</span><br></pre></td></tr></table></figure></div>
+
+
+<p>###在GitHub上下载</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/yiluyanxia/hexo-theme-antiquity.git  //例如下载主题</span><br></pre></td></tr></table></figure></div>
+
+
+<p>###</p>
 
       
     </div>
@@ -188,6 +245,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/11/03/three/">Java</a>
+          </li>
         
           <li>
             <a href="/2019/11/02/two/">Live2D添加板娘</a>
