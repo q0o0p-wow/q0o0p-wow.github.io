@@ -5,21 +5,22 @@
   
 
   
-  <title>CTF-oneday | Hexo</title>
+  <title>XCTF-web-oneday | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="baidu-site-verification" content="[object Object]" />
   
-  <meta name="description" content="该题目可以用F12查看源代码 URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）下方有个被注释的一串字符串，找到flag将注释取消，改为：1cyberpeace&amp;#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&amp;#125; 提交">
+  <meta name="description" content="第一题  该题目可以用F12查看源代码 URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）下方有个被注释的一串字符串，找到flag将注释取消，改为：1cyberpeace&amp;#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&amp;#125; 提交  第二题get_post: X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？ GET传值主">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CTF-oneday">
+<meta property="og:title" content="XCTF-web-oneday">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ctf-one&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="该题目可以用F12查看源代码 URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）下方有个被注释的一串字符串，找到flag将注释取消，改为：1cyberpeace&amp;#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&amp;#125; 提交">
+<meta property="og:description" content="第一题  该题目可以用F12查看源代码 URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）下方有个被注释的一串字符串，找到flag将注释取消，改为：1cyberpeace&amp;#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&amp;#125; 提交  第二题get_post: X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？ GET传值主">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ctf-one&#x2F;1.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ctf-one&#x2F;2.png">
-<meta property="og:updated_time" content="2019-11-04T06:12:29.402Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ctf-one&#x2F;3.png">
+<meta property="og:updated_time" content="2019-11-04T09:57:20.426Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;ctf-one&#x2F;1.png">
   
@@ -64,7 +65,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      CTF-oneday
+      XCTF-web-oneday
     </h1>
   
 
@@ -87,12 +88,27 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <p><img src="/2019/11/04/ctf-one/1.png" alt></p>
+        <h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><img src="/2019/11/04/ctf-one/1.png" alt></p>
 <ol>
 <li>该题目可以用F12查看源代码</li>
 <li>URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）<br>下方有个被注释的一串字符串，找到flag<br>将注释取消，改为：<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="HTML"><figure class="iseeu highlight /html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cyberpeace&#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&#125;</span><br></pre></td></tr></table></figure></div>
 提交<br><img src="/2019/11/04/ctf-one/2.png" alt></li>
 </ol>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>get_post: X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？<br><img src="/2019/11/04/ctf-one/3.png" alt></p>
+<p>GET传值主要在url后面加个问号然后再传参，然后post一般在火狐浏览器用hackbar传值<br>HTTP协议中共定义了八种方法来表明对Request-URI指定的资源的不同操作方式，具体介绍如下：</p>
+<p>·GET：向特定的资源发出请求。</p>
+<p>·POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的创建和/或已有资源的修改。</p>
+<p>·OPTIONS：返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。</p>
+<p>·HEAD：向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。</p>
+<p>·PUT：向指定资源位置上传其最新内容。</p>
+<p>·DELETE：请求服务器删除Request-URI所标识的资源。</p>
+<p>·TRACE：回显服务器收到的请求，主要用于测试或诊断。</p>
+<p>·CONNECT：HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</p>
+<h3 id="数据提交到服务器一般有两种方式，GET和POST。"><a href="#数据提交到服务器一般有两种方式，GET和POST。" class="headerlink" title="数据提交到服务器一般有两种方式，GET和POST。"></a>数据提交到服务器一般有两种方式，GET和POST。</h3><p>GET的优点:<br>1.执行效率比POST高。<br>2.可以通过url传递数据，查找数据的时候就会体现到它的好处。</p>
+<p>GET的缺点:<br>1.安全性很低，因为上传的数据都会显示在url上，所以一般用在上传无关紧要的数据上。<br>2.上传的数据量较小，一般不能超过4K.这也是因为url的长度而被限制的。</p>
+<p>POST优点:<br>1.安全性高，但是也不是很高，如果想要高安全性的话就用https传输协议。<br>2.上传的数据量比GET大得多。“理论上讲，POST是没有大小限制的，HTTP协议规范也没有进行大小限制，说“POST数据量存在 80K/100K的大小限制”是不准确的，POST数据是没有限制的，起限制作用的是服务器的处理程序的处理能力。”</p>
+<p>POST缺点:<br>1.执行效率比GET低，但是现在的计算机都很强大，这些几乎可以忽略不计，所以建议一般都使用POST方式。<br>2.不可以通过url传递数据，有时候可能会不方便.</p>
+<p>GET一般用于获取/查询资源信息，而POST一般用于更新资源信息。</p>
 
       
     </div>
@@ -106,15 +122,6 @@
     
 <nav id="article-nav">
   <div class="article-nav-block">
-    
-      <a href="/2019/11/04/ctfone/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption"></strong>
-        <div class="article-nav-title">
-          
-            ctfone
-          
-        </div>
-      </a>
     
   </div>
   <div class="article-nav-block">
@@ -190,11 +197,7 @@ gitment.render('gitmentContainer')
       <ul>
         
           <li>
-            <a href="/2019/11/04/ctfone/">ctfone</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/04/ctf-one/">CTF-oneday</a>
+            <a href="/2019/11/04/ctf-one/">XCTF-web-oneday</a>
           </li>
         
           <li>
@@ -207,6 +210,10 @@ gitment.render('gitmentContainer')
         
           <li>
             <a href="/2019/11/02/two/">Live2D添加板娘</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/31/one/">hexo的简单使用</a>
           </li>
         
       </ul>
