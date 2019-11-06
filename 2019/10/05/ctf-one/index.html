@@ -30,7 +30,8 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;05&#x2F;ctf-one&#x2F;14.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;05&#x2F;ctf-one&#x2F;15.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;05&#x2F;ctf-one&#x2F;16.png">
-<meta property="og:updated_time" content="2019-11-05T15:56:58.727Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;05&#x2F;ctf-one&#x2F;17.png">
+<meta property="og:updated_time" content="2019-11-06T01:22:20.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;05&#x2F;ctf-one&#x2F;1.png">
   
@@ -169,6 +170,16 @@
 <p>Referer:<a href="https://www.google.com（这一步是伪造Referer）" target="_blank" rel="noopener">https://www.google.com（这一步是伪造Referer）</a></p>
 <p>也可以直接在Host: 111.198.29.45:40025下面写入：<br>X-Forwarded-For:123.123.123.123<br>Referer:<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a></p>
 <p><img src="/2019/10/05/ctf-one/15.png" alt><br><img src="/2019/10/05/ctf-one/16.png" alt></p>
+<hr>
+<h2 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h2><p>weak_auth-小宁写了一个登陆验证页面，随手就设了一个密码。</p>
+<h3 id="相关介绍：-3"><a href="#相关介绍：-3" class="headerlink" title="相关介绍："></a>相关介绍：</h3><p>Intruder是一个定制的高度可配置工具，可以对Web应用程序进行自动化攻击。<br>原理：Intruder在原始请求数据的基础上，通过修改各种请求参数获取不同的请求应答。在每一次请求中，Intruder通常会携带一个或多个有效攻击载荷（Payload），在不同的位置进行攻击重放，通过应答数据的比对分析获得需要的特征数据。</p>
+<p>github上密码字典：<br><a href="https://github.com/rootphantomer/Blasting_dictionary" target="_blank" rel="noopener">https://github.com/rootphantomer/Blasting_dictionary</a></p>
+<hr>
+<p>F12可以看到：<br><img src="/2019/10/05/ctf-one/17.png" alt><br>找到Positions，清楚标记Clear，指针指向password=后面，添加标记Add，如下图所示，将密码放在两个 $pass$ 之间。<br>找到Payloads，加载Load Payload Options，将下载好的字典添加进去。<br>选择左上角startAttack开始爆破。</p>
+<p>登陆以后可以看到:<br>cyberpeace{e255ee279841e7f1eb8f44a420e01870}</p>
+<hr>
+<h2 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h2><p>webshel-小宁百度了php一句话,觉着很有意思,并且把它放在index.php里。</p>
+<p>看到一句话木马，而且题目描述提示一句话木马放在index.php中。用菜刀连接。<br>用菜刀连接:<br><a href="http://111.198.29.45:58974/index.php" target="_blank" rel="noopener">http://111.198.29.45:58974/index.php</a></p>
 <hr>
 <p>参考：<a href="https://www.cnblogs.com/kubbycatty/archive/2019/06/27/11100171.html" target="_blank" rel="noopener">https://www.cnblogs.com/kubbycatty/archive/2019/06/27/11100171.html</a><br>      <a href="https://blog.csdn.net/qq_43081170/article/details/94717446" target="_blank" rel="noopener">https://blog.csdn.net/qq_43081170/article/details/94717446</a></p>
 
