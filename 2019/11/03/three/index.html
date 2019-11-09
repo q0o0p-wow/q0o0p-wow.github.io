@@ -5,17 +5,19 @@
   
 
   
-  <title>Java | Hexo</title>
+  <title>Linux 基础篇(ubuntu19.04) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="baidu-site-verification" content="[object Object]" />
   
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Java">
+  <meta name="description" content="换yum 12sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources_init.list  &#x2F;&#x2F;备份原来的源sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list  &#x2F;&#x2F;更换源   阿里源： 123456789101112131415deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial maindeb-src h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 基础篇(ubuntu19.04)">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;03&#x2F;three&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="换yum 12sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources_init.list  &#x2F;&#x2F;备份原来的源sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list  &#x2F;&#x2F;更换源   阿里源： 123456789101112131415deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial maindeb-src h">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-03T06:41:23.833Z">
+<meta property="og:updated_time" content="2019-11-09T09:10:51.064Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -59,7 +61,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      Java
+      Linux 基础篇(ubuntu19.04)
     </h1>
   
 
@@ -82,7 +84,24 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        
+        <hr>
+<p>换yum</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources_init.list  //备份原来的源</span><br><span class="line">sudo gedit /etc/apt/sources.list  //更换源</span><br></pre></td></tr></table></figure></div>
+
+
+<p>阿里源：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<p>网易源：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></div>
+
+<hr>
+<h2 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update    //  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install //   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade //  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure></div>
+
+
+
+
       
     </div>
     
@@ -95,6 +114,15 @@
     
 <nav id="article-nav">
   <div class="article-nav-block">
+    
+      <a href="/2019/11/06/five/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            Ubuntu
+          
+        </div>
+      </a>
     
   </div>
   <div class="article-nav-block">
@@ -170,7 +198,15 @@ gitment.render('gitmentContainer')
       <ul>
         
           <li>
-            <a href="/2019/11/03/three/">Java</a>
+            <a href="/2019/11/09/six/">IntelliJ IDEA 快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/06/five/">Ubuntu</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/03/three/">Linux 基础篇(ubuntu19.04)</a>
           </li>
         
           <li>
@@ -179,14 +215,6 @@ gitment.render('gitmentContainer')
         
           <li>
             <a href="/2019/10/31/one/">hexo的简单使用</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/05/ctf-one/">XCTF-web-oneday</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/02/four/">CTF</a>
           </li>
         
       </ul>
