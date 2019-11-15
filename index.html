@@ -54,6 +54,155 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-eight" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/15/eight/">eight</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/11/15/eight/" class="article-date">
+  <time datetime="2019-11-15T02:13:59.000Z" itemprop="datePublished">2019-11-15</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <p>转发： <a href="https://mp.weixin.qq.com/s/8vt1HsqV5b1H0xMkUK4CiA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8vt1HsqV5b1H0xMkUK4CiA</a></p>
+<p>0x01：常用系统指令</p>
+<p>dir           //查看当前目录和子目录</p>
+<p>tree          以图形模式显示驱动器或路径的目录结构</p>
+<p>mkdir         创建目录</p>
+<p>md           创建文件夹</p>
+<p>rd           删除文件夹</p>
+<p>move          将文件从一个目录转移到另一个目录</p>
+<p>type         显示文本文件内容</p>
+<p>copy          复制文件</p>
+<p>del          删除文件</p>
+<p>quser         查看当前登陆的用户</p>
+<p>rename /ren     重命名文件/文件夹</p>
+<p>ipconfig /all    获取ip地址 所在域    linux：ifconfig -a</p>
+<p>Route print      路由信息</p>
+<p>Arp -a        arp缓存</p>
+<p>Netsh firewall show config  查看防火墙规则</p>
+<p>Netsh firewall show state  </p>
+<p>Netstat -an   获取端口信息</p>
+<p>Whoami        当前用户权限</p>
+<p>Hostname      主机名称</p>
+<p>Set           环境变量</p>
+<p>Query user    查看远程终端在线用户</p>
+<p>Systeminfo    获取操作系统版本、类型、位数等相关信息、安装；</p>
+<p>tasklist \svc</p>
+<p>netstat -an | findstr “LISTENING”</p>
+<p>· -b：      显示包含于常见每个链接或监听端口的可执行组件；</p>
+<p>· -o：      显示与每个连接相关的所属进程ID；</p>
+<p>· -v：       与b一起使用时将显示包含于为所有可执行组件创建连接或者监听端口的组件；</p>
+<p>Netstat -anb  进程号、端口开放情况、开放端口程序、监听端口组件</p>
+<p>Netsata -ano  tcp/udp协议信息、端口、进程号</p>
+<p>Netstat -anvb 进程号、端口所用协议、调用的可执行组件、第三方进程的系统路径等</p>
+<p>Tasklist /svc          获取运行的进程名称、服务、PID</p>
+<p>Driverquery            查看已安装驱动程序列表</p>
+<p>Net start              查看已经启动的windows服务</p>
+<p>Msinfo32               获取更加详细的信息</p>
+<p>Taskkill               是windows自带的终止进程程序</p>
+<p>TASKKILL [/S system [/U username [/P [password]]]]{ [/FI filter] [/PID processid | /IM imagename] } [/T] [/F]</p>
+<p>例如：taskkill /pid 452 /f        taskkill /im 360tray /f</p>
+<p>用户管理命令：</p>
+<p>Net user hack 123 /add  添加hack用户 密码为123</p>
+<p>whoami             查询账号所属权限</p>
+<p>whoami /all          查看sid值密码策略</p>
+<p>net account         查看本地密码策略</p>
+<p>net account /domain    查看域</p>
+<p>netstat -an          网络连接查询</p>
+<p>route print         路由打印</p>
+<p>net user            查询本机用户列表</p>
+<p>net session          查看当前会话</p>
+<p>Net start           获取服务信息利用第三方漏洞提权、关闭杀毒软件、防火墙、以及关闭某些防护进程</p>
+<p>Net stop servicesname   停止服务命</p>
+<p>Net start servicename   开启服务命令</p>
+<p>net share           查看SMB指向的</p>
+<p>net view            查询同一域内机器列表</p>
+<p>net view /domain      查询域列表</p>
+<p>nltest /dclist:bk     查询域控主机名 nltest /dclist:域名</p>
+<p>nltest /domain_trusts   列出域之间的信任关系</p>
+<p>net view /domain:Secwing  查看Secwing域中的列表</p>
+<p>net time /domain       判断主域，主域都做时间列表</p>
+<p>net config workstation   当前登录域</p>
+<p>net group “enterprise admins” /domain  企业管理组</p>
+<p>net user /domain <a href="mailto:admin@126.com" target="_blank" rel="noopener">admin@126.com</a> test 修改域用户密码(需要域管理员密码)</p>
+<p>net user /domain       查询域用户</p>
+<p>net group /domain       查询域里面的工作组</p>
+<p>net group “domain admins” /domain  查询域管理员用户组</p>
+<p>net localgroup administrators /domain  //登录本机的域管理员</p>
+<p>net group “domain controllers” /domain  查看域控制器</p>
+<p>mstsc /admin               远程桌面登录到console会话解决hash无法抓取问题</p>
+<p>dsquery computer domainroot -limit 65535 &amp;&amp; net group “domain computers” /domain   列出该域内所有机器名</p>
+<p>dsquery user domainroot -limit 65535 &amp;&amp; net user /domain  列出该域内所有用户名</p>
+<p>dsqery subnet             列出该域内网段划分</p>
+<p>dsqery group &amp;&amp; net group /domain  //列出该域内分组</p>
+<p>dsquery ou                列出该域内组织单位</p>
+<p>dsquery server &amp;&amp; net time /domain    列出该域内域控制器</p>
+<p>net localgroup administrators  //查看本机管理员</p>
+<p>Net localgroup adminnistrators hack /add   添加hack为管理员权限</p>
+<p>Net localgroup adminnistrators    查看当前系统管理员</p>
+<p>Net localgroup “remote desktop users” hack /add   加入远程桌面用户组</p>
+<p>Net user hack     查看指定用户的信息</p>
+<p>Net user guest /active:yes   激活guest用户</p>
+<p>Net user guest 123</p>
+<p>0x02：远程桌面开启指令</p>
+<p>windows系统开启查询远程桌面（mstsc/rdesktop）</p>
+<p>（1）XP/Win2k3/Win7/Win2k8/Win8.1/Win10/2012/2016（0：ON、1：OFF）：</p>
+<pre><code>REG ADD &quot;HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server&quot; /v fDenyTSConnections /t REG_DWORD /d 0 /f                                      </code></pre><p>（2）Win2k3/Win7/Win2k8/Win8.1/Win10/2012/2016：（0：ON、1：OFF）：</p>
+<pre><code>wmic RDTOGGLE WHERE ServerName=&apos;%COMPUTERNAME%&apos; call SetAllowTSConnections 1         </code></pre><p>（3）Winserver2008/2012/Win2k3/win7：</p>
+<pre><code>wmic /namespace:\\root\cimv2\terminalservices path win32_terminalservicesetting where (__CLASS !=&quot;&quot;) call setallowtsconnections 1                                   </code></pre><p>（4）Winserver2008/2012/：</p>
+<pre><code>wmic /namespace:\\root\cimv2\terminalservices path win32_tsgeneralsetting where (TerminalName =&apos;RDP-Tcp&apos;) call setuserauthenticationrequired 1                   </code></pre><p>（5）XP/Win2k3/Win7/Win2k8/Win8.1/Win10/2012/2016（Metasploit）：</p>
+<pre><code>meterpreter&gt; run getgui -e</code></pre><p>以下脚本或模块可以开启3389远程桌面端口、创建管理员账户密码、禁用远程桌面(TCP-In)防火墙入站规则。</p>
+<pre><code>/usr/share/metasploit-framework/scripts/meterpreter/getgui.rb
+
+/usr/share/metasploit-framework/modules/post/windows/manage/enable_rdp.rb</code></pre><p>0x03：常用端口及服务<br>数据库类端口：</p>
+<p>MSSQL：       1433</p>
+<p>Oracle：      1521</p>
+<p>MYSQL：       3306</p>
+<p>PostgreSQL:   5432</p>
+<p>特殊服务类：</p>
+<p>SSL(心脏滴血)：443</p>
+<p>MS08067、MS110568、MS17010：445</p>
+<p>Rsync(未授权)：873</p>
+<p>CouchDB：      5984</p>
+<p>redis(未授权)：6379</p>
+<p>WebLogic(弱口令、反序列化)：7001/7002</p>
+<p>memcache（未授权）：11211</p>
+<p>Mongodb(未授权)：27017/27018</p>
+<p>SAP(命令执行)：50000</p>
+<p>hadoop(未授权)：50070、50030</p>
+<p>远程连接端口：</p>
+<p>ftp：   21</p>
+<p>ssh：   22</p>
+<p>telnet: 23</p>
+<p>SMB(弱口令):445</p>
+<p>路由(zebra)：2601/2604</p>
+<p>远程桌面：3389 (0708)</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-seven" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -568,6 +717,10 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
       <ul>
         
           <li>
+            <a href="/2019/11/15/eight/">eight</a>
+          </li>
+        
+          <li>
             <a href="/2019/11/12/seven/">seven</a>
           </li>
         
@@ -581,10 +734,6 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
         
           <li>
             <a href="/2019/11/03/three/">Linux 基础篇(ubuntu19.04)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/02/two/">Live2D添加板娘</a>
           </li>
         
       </ul>
