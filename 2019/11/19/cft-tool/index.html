@@ -5,19 +5,19 @@
   
 
   
-  <title>Ubuntu | Hexo</title>
+  <title>cft-tool | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="baidu-site-verification" content="[object Object]" />
   
-  <meta name="description" content="1234apt-get update &#x2F;&#x2F;更新软件库 apt-get upgrade &#x2F;&#x2F;升级软件apt-get install ubuntu-desktop &#x2F;&#x2F;安装Ubuntu桌面系统   sudo vi &#x2F;usr&#x2F;share&#x2F;lightdm&#x2F;lightdm.conf.d&#x2F;50-ubuntu.conf     &#x2F;&#x2F;打开50-ubuntu.conf  在末尾添加      greeter-sh">
+  <meta name="description" content="nmap https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_36119192&#x2F;article&#x2F;details&#x2F;82079150">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;06&#x2F;five&#x2F;index.html">
+<meta property="og:title" content="cft-tool">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;cft-tool&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1234apt-get update &#x2F;&#x2F;更新软件库 apt-get upgrade &#x2F;&#x2F;升级软件apt-get install ubuntu-desktop &#x2F;&#x2F;安装Ubuntu桌面系统   sudo vi &#x2F;usr&#x2F;share&#x2F;lightdm&#x2F;lightdm.conf.d&#x2F;50-ubuntu.conf     &#x2F;&#x2F;打开50-ubuntu.conf  在末尾添加      greeter-sh">
+<meta property="og:description" content="nmap https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_36119192&#x2F;article&#x2F;details&#x2F;82079150">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-12T10:55:12.217Z">
+<meta property="og:updated_time" content="2019-11-19T09:55:18.661Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -55,21 +55,21 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-right">
-        <section id="main"><article id="post-five" class="article global-container article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-cft-tool" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu
+      cft-tool
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/06/five/" class="article-date">
-  <time datetime="2019-11-06T12:40:02.505Z" itemprop="datePublished">2019-11-06</time>
+    <a href="/2019/11/19/cft-tool/" class="article-date">
+  <time datetime="2019-11-19T08:17:06.000Z" itemprop="datePublished">2019-11-19</time>
 </a>
     
     
@@ -84,25 +84,8 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-         <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-get update //更新软件库 </span><br><span class="line">apt-get upgrade //升级软件</span><br><span class="line"></span><br><span class="line">apt-get install ubuntu-desktop //安装Ubuntu桌面系统</span><br></pre></td></tr></table></figure></div>
-
-
-<pre><code>sudo vi /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf     //打开50-ubuntu.conf
-
-在末尾添加
-
-    greeter-show-manual-login=true      //允许切换用户登陆
-
-    allow-guest=false    //禁用Guest   </code></pre><p>完整代码</p>
-<pre><code>[Seat:*]
-user-session=ubuntu
-greeter-show-manual-login=true
-allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使用Esc键切换到末行模式,然后输入:wq退出编辑)发现root用户登陆后还是有警告</p>
-<p>修改/root/.profile文件 (图形界面下修改请勾选显示隐藏文件)</p>
-<p>将mesg n 替换为 tty -s &amp;&amp; mesg n</p>
-<p>完整代码</p>
-<p> ~/.profile: executed by Bourne-compatible login shells.<br>if [ “$BASH” ]; then<br>if [ -f ~/.bashrc ]; then<br>. ~/.bashrc<br>fi<br>fi<br>tty -s &amp;&amp; mesg n || true</p>
-<p>保存后重启即可完美在桌面环境登陆root</p>
+        <p>nmap</p>
+<p><a href="https://blog.csdn.net/qq_36119192/article/details/82079150" target="_blank" rel="noopener">https://blog.csdn.net/qq_36119192/article/details/82079150</a></p>
 
       
     </div>
@@ -117,11 +100,11 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <nav id="article-nav">
   <div class="article-nav-block">
     
-      <a href="/2019/11/09/java/" id="article-nav-newer" class="article-nav-link-wrap">
+      <a href="/2019/11/19/ctf-two/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption"></strong>
         <div class="article-nav-title">
           
-            IntelliJ IDEA 快捷键
+            ctf-two
           
         </div>
       </a>
@@ -129,8 +112,8 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
   </div>
   <div class="article-nav-block">
     
-      <a href="/2019/11/03/three/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Linux 基础篇(ubuntu19.04)</div>
+      <a href="/2019/11/15/eight/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Windows 常用命令</div>
         <strong class="article-nav-caption"></strong>
       </a>
     
