@@ -55,20 +55,20 @@
         <section id="main">
 
   
-    <article id="post-one" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hexo-one" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/31/one/">hexo的简单使用</a>
+      <a class="article-title" href="/2019/10/31/hexo-one/">hexo的简单使用</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/10/31/one/" class="article-date">
+    <a href="/2019/10/31/hexo-one/" class="article-date">
   <time datetime="2019-10-31T12:13:40.600Z" itemprop="datePublished">2019-10-31</time>
 </a>
     
@@ -95,7 +95,7 @@
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install https://... -- save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -- save  //例如插入图片的要安装的插件</span><br></pre></td></tr></table></figure></div>
 <p>设置站点配置_config.yml:将post_asset_folder: false改为post_asset_folder: true</p>
-<p><img src="/2019/10/31/one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" alt></p>
+<p><img src="/2019/10/31/hexo-one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" alt></p>
 <p>安装完成后，再运行hexo n “title”  source/_posts文件夹内除了title.md文件还有一个同名的文件夹</p>
 <p>在title.md中引入图片时，先把图片复制到title这个文件夹中，然后只需要在title.md中按照markdown的格式引入图片：</p>
 <p>! [ 你想输入的替代文字 ] ( title/图片名.jpg )</p>
@@ -148,6 +148,53 @@
 <p>pdf-菜猫给了菜狗一张图，说图下面什么都没有</p>
 <p>将图片拖走。。。<br><img src="/2019/10/19/ctf-two/4.png" alt></p>
 <p><img src="/2019/10/19/ctf-two/5.png" alt><br>得到答案。。。。</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-ctf-misc" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/19/ctf-misc/">ctf-misc</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/10/19/ctf-misc/" class="article-date">
+  <time datetime="2019-10-19T09:40:25.000Z" itemprop="datePublished">2019-10-19</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <p>如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。<br>与佛论禅”网站，一个编码/解码网站<br>佛曰：……<br><img src="/2019/10/19/ctf-misc/1.png" alt><br>尝试使用Rot13这个明文的形式,但解密之后还是乱码<br><img src="/2019/10/19/ctf-misc/2.png" alt></p>
+<p>然后将得到的结果再进行base64解密，得到flag</p>
+<p><img src="/2019/10/19/ctf-misc/3.png" alt></p>
+<hr>
+<p>pdf-菜猫给了菜狗一张图，说图下面什么都没有</p>
+<p>将图片拖走。。。<br><img src="/2019/10/19/ctf-misc/4.png" alt></p>
+<p><img src="/2019/10/19/ctf-misc/5.png" alt><br>得到答案。。。。</p>
+<hr>
+<p>功夫再高也怕菜刀</p>
+<hr>
+<p>对小白的详细补充<br>foremost的<a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">下载</a>及使用<br>foremost是一个文件分离和还原的工具</p>
+<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt</p>
 
       
     </div>
@@ -277,20 +324,20 @@
 </article>
 
   
-    <article id="post-four" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ctftools" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/02/four/">CTF</a>
+      <a class="article-title" href="/2019/10/02/ctftools/">CTF</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/10/02/four/" class="article-date">
+    <a href="/2019/10/02/ctftools/" class="article-date">
   <time datetime="2019-10-02T06:01:14.000Z" itemprop="datePublished">2019-10-02</time>
 </a>
     
@@ -374,19 +421,19 @@
           </li>
         
           <li>
-            <a href="/2019/11/15/eight/">Windows 常用命令</a>
+            <a href="/2019/11/15/windows/">Windows 常用命令</a>
           </li>
         
           <li>
-            <a href="/2019/11/12/seven/">burpsuite的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/09/six/">IntelliJ IDEA 快捷键</a>
+            <a href="/2019/11/12/burpsuite/">burpsuite的使用</a>
           </li>
         
           <li>
             <a href="/2019/11/09/java/">IntelliJ IDEA 快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/IntelliJ%20IDEA/">IntelliJ IDEA 快捷键</a>
           </li>
         
       </ul>

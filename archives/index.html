@@ -82,16 +82,19 @@
       
         <p>nmap</p>
 <p><a href="https://blog.csdn.net/qq_36119192/article/details/82079150" target="_blank" rel="noopener">https://blog.csdn.net/qq_36119192/article/details/82079150</a></p>
-<p>文件分离和还原工具<br>foremost–&gt;是一个控制台程序，用于文件分离和还原<br>根据页眉，页脚和内部数据结构恢复文件，可以处理图像文件（例如由dd，Safeback，Encase等生成的图像文件）这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。<br>或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。</p>
+<hr>
+<p>foremost–&gt;文件分离和还原工具<br>是一个控制台程序，用于文件分离和还原<br>根据页眉，页脚和内部数据结构恢复文件，可以处理图像文件（例如由dd，Safeback，Encase等生成的图像文件）这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。<br>或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。</p>
 <p>在数字取证中和CTF中常用来恢复、分离文件。它默认支持19种类型文件(jpg, gif, png, bmp, avi, exe, mpg, mp4, wav, riff, wmv, mov, pdf, ole, doc, zip, rar, html, cpp 等文件)的扫描识别恢复，还可以通过(通过配置它的配置文件foremost.conf)增加新的支持类型。</p>
+<p>windows下载地址 –&gt; <a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">https://github.com/raddyfiy/foremost</a><br>可以选择自己源码编译为exe，也可以直接用大佬们编译完的（在binary里面）<br><img src="/2019/11/19/cft-tool/1.png" alt><br>将foremost.conf 和 foermost.exe 单独分离出来放入一个新文件夹中<br><img src="/2019/11/19/cft-tool/2.png" alt><br>使用时将要分离的文件放入该文件夹下<br><img src="/2019/11/19/cft-tool/3.png" alt><br>分离完成的后文件–&gt;如果没有指定路径，则放入output里面.</p>
+<p>Linux下对于压缩包形式：</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf foremost-xx.tar.gz</span><br><span class="line">$ cd foremost-xx</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></div>
 
+<p>直接安装（根据自己的Linux版本）</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install foremost  //Ubuntu安装foremost</span><br><span class="line">$ foremost -h  //检查是否安装成功</span><br><span class="line">$ foremost [-v|-V|-h|-T|-Q|-q|-a|-w-d] [-t &lt;type&gt;] [-s &lt;blocks&gt;] [-k &lt;size&gt;] </span><br><span class="line">    [-b &lt;size&gt;] [-c &lt;file&gt;] [-o &lt;dir&gt;] [-i &lt;file] </span><br><span class="line">    //命令及作用</span><br><span class="line"></span><br><span class="line">-V  - 显示版权信息并退出  </span><br><span class="line">-t  - 指定文件类型.  (-t jpeg,pdf ...) </span><br><span class="line">-d  -打开间接块检测 (针对UNIX文件系统) </span><br><span class="line">-i  - 指定输入文件 (默认为标准输入) </span><br><span class="line">-a  - 写入所有的文件头部, 不执行错误检测(损坏文件) </span><br><span class="line">-w  - 向磁盘写入审计文件，不写入任何检测到的文件</span><br><span class="line">-o  - 设置输出目录 (默认为为输出)</span><br><span class="line">-c  - 设置配置文件 (默认为 foremost.conf)</span><br><span class="line">-q  - 启用快速模式. 在512字节边界执行搜索.</span><br><span class="line">-Q  - 启用安静模式. 禁用输出消息. </span><br><span class="line">-v  - 详细模式. 向屏幕上记录所有消息。</span><br></pre></td></tr></table></figure></div>
 
-
-
+<p>注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。</p>
 <hr>
-<h2 id="注：-未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost-conf。"><a href="#注：-未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost-conf。" class="headerlink" title="注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。"></a>注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。</h2><p>参考：<a href="https://blog.csdn.net/john_david_/article/details/87273152" target="_blank" rel="noopener">https://blog.csdn.net/john_david_/article/details/87273152</a></p>
+<p>参考：<a href="https://blog.csdn.net/john_david_/article/details/87273152" target="_blank" rel="noopener">https://blog.csdn.net/john_david_/article/details/87273152</a></p>
 
       
     </div>
@@ -102,20 +105,20 @@
 </article>
 
   
-    <article id="post-eight" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-windows" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/15/eight/">Windows 常用命令</a>
+      <a class="article-title" href="/2019/11/15/windows/">Windows 常用命令</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/15/eight/" class="article-date">
+    <a href="/2019/11/15/windows/" class="article-date">
   <time datetime="2019-11-15T02:13:59.000Z" itemprop="datePublished">2019-11-15</time>
 </a>
     
@@ -251,20 +254,20 @@
 </article>
 
   
-    <article id="post-seven" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-burpsuite" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/12/seven/">burpsuite的使用</a>
+      <a class="article-title" href="/2019/11/12/burpsuite/">burpsuite的使用</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/12/seven/" class="article-date">
+    <a href="/2019/11/12/burpsuite/" class="article-date">
   <time datetime="2019-11-12T12:32:48.000Z" itemprop="datePublished">2019-11-12</time>
 </a>
     
@@ -276,54 +279,10 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p><img src="/2019/11/12/seven/1.png" alt></p>
+        <h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p><img src="/2019/11/12/burpsuite/1.png" alt></p>
 <hr>
 <p>扩展：<br>http请求方式：<br>HTTP1.0定义了三种方法：GET ,OPST, HEAD<br>HTTP1.1新增加了五种： OPTIONS ,PUT, DELETE.TRACE,CONNECT</p>
 <p>GET 请求指定的页面信息，并返回实体主体。<br>HEAD 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头<br>POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。<br>PUT 从客户端向服务器传送的数据取代指定的文档的内容。<br>DELETE 请求服务器删除指定的页面。<br>CONNECT HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>OPTIONS 允许客户端查看服务器的性能。<br>TRACE 回显服务器收到的请求，主要用于测试或诊断。</p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-six" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/09/six/">IntelliJ IDEA 快捷键</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/11/09/six/" class="article-date">
-  <time datetime="2019-11-09T12:55:32.000Z" itemprop="datePublished">2019-11-09</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <p>IDea：<br>Alt+回车 导入包,自动修正<br>Ctrl+N  查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
-<p>Shift+F6  重构-重命名<br>Ctrl+Shift+先上键<br>Ctrl+X 删除行<br>Ctrl+D 复制行<br>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）<br>Ctrl+J  自动代码<br>Ctrl+E 最近打开的文件<br>Ctrl+H 显示类结构图<br>Ctrl+Q 显示注释文档<br>Alt+F1 查找代码所在位置<br>Alt+1 快速打开或隐藏工程面板<br>Ctrl+Alt+ left/right 返回至上次浏览的位置<br>Alt+ left/right 切换代码视图<br>Alt+ Up/Down 在方法间快速移动定位<br>Ctrl+Shift+Up/Down 代码向上/下移动。<br>F2 或Shift+F2 高亮错误或警告快速定位</p>
-<p>代码标签输入完成后，按Tab，生成代码。<br>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。<br>Ctrl+W 选中代码，连续按会有其他效果<br>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。<br>Ctrl+Up/Down 光标跳转到第一行或最后一行下<br>Ctrl+B 快速打开光标处的类或方法</p>
-<p>最常用快捷键<br>1.Ctrl＋E，可以显示最近编辑的文件列表<br>2.Shift＋Click可以关闭文件<br>3.Ctrl＋[或]可以跳到大括号的开头结尾<br>4.Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方<br>5.Ctrl＋F12，可以显示当前文件的结构<br>6.Ctrl＋F7可以查询当前元素在当前文件中的引用，然后按F3可以选择<br>7.Ctrl＋N，可以快速打开类<br>8.Ctrl＋Shift＋N，可以快速打开文件<br>9.Alt＋Q可以看到当前方法的声明<br>10.Ctrl＋W可以选择单词继而语句继而行继而函数<br>11.Alt＋F1可以将正在编辑的元素在各个面板中定位<br>12.Ctrl＋P，可以显示参数信息<br>13.Ctrl＋Shift＋Insert可以选择剪贴板内容并插入<br>14.Alt＋Insert可以生成构造器/Getter/Setter等<br>15.Ctrl＋Alt＋V 可以引入变量。例如把括号内的SQL赋成一个变量<br>16.Ctrl＋Alt＋T可以把代码包在一块内，例如try/catch<br>17.Alt＋Up and Alt＋Down可在方法间快速移动</p>
-<p>下面的不是很有用<br>18.在一些地方按Alt＋Enter可以得到一些Intention Action，例如将”==”改为”equals()”<br>19.Ctrl＋Shift＋Alt＋N可以快速打开符号<br>20.Ctrl＋Shift＋Space在很多时候都能够给出Smart提示<br>21.Alt＋F3可以快速寻找<br>22.Ctrl＋/和Ctrl＋Shift＋/可以注释代码<br>23.Ctrl＋Alt＋B可以跳转到抽象方法的实现<br>24.Ctrl＋O可以选择父类的方法进行重写<br>25.Ctrl＋Q可以看JavaDoc<br>26.Ctrl＋Alt＋Space是类名自动完成<br>27.快速打开类/文件/符号时，可以使用通配符，也可以使用缩写<br>28.Live Templates! Ctrl＋J<br>29.Ctrl＋Shift＋F7可以高亮当前元素在当前文件中的使用<br>30.Ctrl＋Alt＋Up /Ctrl＋Alt＋Down可以快速跳转搜索结果</p>
-<h3 id="特别的"><a href="#特别的" class="headerlink" title="特别的"></a>特别的</h3><p>array.fori</p>
-<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>alt+inster<br><img src="/2019/11/09/six/1.png" alt><br><img src="/2019/11/09/six/2.png" alt></p>
-<p>方法重载：<br>alt+enter<br>！<a href="3.png"></a><br>！<a href="4.png"></a></p>
 
       
     </div>
@@ -377,20 +336,64 @@
 </article>
 
   
-    <article id="post-five" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-IntelliJ IDEA" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/06/five/">Ubuntu</a>
+      <a class="article-title" href="/2019/11/09/IntelliJ%20IDEA/">IntelliJ IDEA 快捷键</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/06/five/" class="article-date">
+    <a href="/2019/11/09/IntelliJ%20IDEA/" class="article-date">
+  <time datetime="2019-11-09T12:55:32.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <p>IDea：<br>Alt+回车 导入包,自动修正<br>Ctrl+N  查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
+<p>Shift+F6  重构-重命名<br>Ctrl+Shift+先上键<br>Ctrl+X 删除行<br>Ctrl+D 复制行<br>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）<br>Ctrl+J  自动代码<br>Ctrl+E 最近打开的文件<br>Ctrl+H 显示类结构图<br>Ctrl+Q 显示注释文档<br>Alt+F1 查找代码所在位置<br>Alt+1 快速打开或隐藏工程面板<br>Ctrl+Alt+ left/right 返回至上次浏览的位置<br>Alt+ left/right 切换代码视图<br>Alt+ Up/Down 在方法间快速移动定位<br>Ctrl+Shift+Up/Down 代码向上/下移动。<br>F2 或Shift+F2 高亮错误或警告快速定位</p>
+<p>代码标签输入完成后，按Tab，生成代码。<br>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。<br>Ctrl+W 选中代码，连续按会有其他效果<br>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。<br>Ctrl+Up/Down 光标跳转到第一行或最后一行下<br>Ctrl+B 快速打开光标处的类或方法</p>
+<p>最常用快捷键<br>1.Ctrl＋E，可以显示最近编辑的文件列表<br>2.Shift＋Click可以关闭文件<br>3.Ctrl＋[或]可以跳到大括号的开头结尾<br>4.Ctrl＋Shift＋Backspace可以跳转到上次编辑的地方<br>5.Ctrl＋F12，可以显示当前文件的结构<br>6.Ctrl＋F7可以查询当前元素在当前文件中的引用，然后按F3可以选择<br>7.Ctrl＋N，可以快速打开类<br>8.Ctrl＋Shift＋N，可以快速打开文件<br>9.Alt＋Q可以看到当前方法的声明<br>10.Ctrl＋W可以选择单词继而语句继而行继而函数<br>11.Alt＋F1可以将正在编辑的元素在各个面板中定位<br>12.Ctrl＋P，可以显示参数信息<br>13.Ctrl＋Shift＋Insert可以选择剪贴板内容并插入<br>14.Alt＋Insert可以生成构造器/Getter/Setter等<br>15.Ctrl＋Alt＋V 可以引入变量。例如把括号内的SQL赋成一个变量<br>16.Ctrl＋Alt＋T可以把代码包在一块内，例如try/catch<br>17.Alt＋Up and Alt＋Down可在方法间快速移动</p>
+<p>下面的不是很有用<br>18.在一些地方按Alt＋Enter可以得到一些Intention Action，例如将”==”改为”equals()”<br>19.Ctrl＋Shift＋Alt＋N可以快速打开符号<br>20.Ctrl＋Shift＋Space在很多时候都能够给出Smart提示<br>21.Alt＋F3可以快速寻找<br>22.Ctrl＋/和Ctrl＋Shift＋/可以注释代码<br>23.Ctrl＋Alt＋B可以跳转到抽象方法的实现<br>24.Ctrl＋O可以选择父类的方法进行重写<br>25.Ctrl＋Q可以看JavaDoc<br>26.Ctrl＋Alt＋Space是类名自动完成<br>27.快速打开类/文件/符号时，可以使用通配符，也可以使用缩写<br>28.Live Templates! Ctrl＋J<br>29.Ctrl＋Shift＋F7可以高亮当前元素在当前文件中的使用<br>30.Ctrl＋Alt＋Up /Ctrl＋Alt＋Down可以快速跳转搜索结果</p>
+<h3 id="特别的"><a href="#特别的" class="headerlink" title="特别的"></a>特别的</h3><p>array.fori</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>alt+inster<br><img src="/2019/11/09/IntelliJ%20IDEA/1.png" alt><br><img src="/2019/11/09/IntelliJ%20IDEA/2.png" alt></p>
+<p>方法重载：<br>alt+enter<br>！<a href="3.png"></a><br>！<a href="4.png"></a></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-ubuntu" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/06/ubuntu/">Ubuntu</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/11/06/ubuntu/" class="article-date">
   <time datetime="2019-11-06T12:40:02.505Z" itemprop="datePublished">2019-11-06</time>
 </a>
     
@@ -431,20 +434,20 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 </article>
 
   
-    <article id="post-three" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-linux" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/03/three/">Linux 基础篇(ubuntu19.04)</a>
+      <a class="article-title" href="/2019/11/03/linux/">Linux 基础篇(ubuntu19.04)</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/03/three/" class="article-date">
+    <a href="/2019/11/03/linux/" class="article-date">
   <time datetime="2019-11-03T05:59:32.256Z" itemprop="datePublished">2019-11-03</time>
 </a>
     
@@ -489,20 +492,20 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 </article>
 
   
-    <article id="post-two" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-live2D-two" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/02/two/">Live2D添加板娘</a>
+      <a class="article-title" href="/2019/11/02/live2D-two/">Live2D添加板娘</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/11/02/two/" class="article-date">
+    <a href="/2019/11/02/live2D-two/" class="article-date">
   <time datetime="2019-11-02T12:52:44.478Z" itemprop="datePublished">2019-11-02</time>
 </a>
     
@@ -532,7 +535,7 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <p>在F:\blog\themes\hexo-theme-antiquity\layout\layout.ejs下添加代码</p>
 <div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot;&gt;</span><br></pre></td></tr></table></figure></div>
 
-<p><img src="/2019/11/02/two/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" alt></p>
+<p><img src="/2019/11/02/live2D-two/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" alt></p>
 <p>想修改看板娘大小、位置、格式、文本内容等，可查看并修改 waifu-tips.js 、 waifu-tips.json 和 waifu.css。</p>
 <p>More info: <a href="https://blog.csdn.net/u011236348/article/details/88169549" target="_blank" rel="noopener">参考</a></p>
 
@@ -545,20 +548,20 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 </article>
 
   
-    <article id="post-one" class="article global-container article-type-post" itemscope itemprop="blogPost">
+    <article id="post-hexo-one" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/31/one/">hexo的简单使用</a>
+      <a class="article-title" href="/2019/10/31/hexo-one/">hexo的简单使用</a>
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/10/31/one/" class="article-date">
+    <a href="/2019/10/31/hexo-one/" class="article-date">
   <time datetime="2019-10-31T12:13:40.600Z" itemprop="datePublished">2019-10-31</time>
 </a>
     
@@ -585,7 +588,7 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="BASH"><figure class="iseeu highlight /bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install https://... -- save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -- save  //例如插入图片的要安装的插件</span><br></pre></td></tr></table></figure></div>
 <p>设置站点配置_config.yml:将post_asset_folder: false改为post_asset_folder: true</p>
-<p><img src="/2019/10/31/one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" alt></p>
+<p><img src="/2019/10/31/hexo-one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" alt></p>
 <p>安装完成后，再运行hexo n “title”  source/_posts文件夹内除了title.md文件还有一个同名的文件夹</p>
 <p>在title.md中引入图片时，先把图片复制到title这个文件夹中，然后只需要在title.md中按照markdown的格式引入图片：</p>
 <p>! [ 你想输入的替代文字 ] ( title/图片名.jpg )</p>
@@ -702,19 +705,19 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
           </li>
         
           <li>
-            <a href="/2019/11/15/eight/">Windows 常用命令</a>
+            <a href="/2019/11/15/windows/">Windows 常用命令</a>
           </li>
         
           <li>
-            <a href="/2019/11/12/seven/">burpsuite的使用</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/09/six/">IntelliJ IDEA 快捷键</a>
+            <a href="/2019/11/12/burpsuite/">burpsuite的使用</a>
           </li>
         
           <li>
             <a href="/2019/11/09/java/">IntelliJ IDEA 快捷键</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/IntelliJ%20IDEA/">IntelliJ IDEA 快捷键</a>
           </li>
         
       </ul>
