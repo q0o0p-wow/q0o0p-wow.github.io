@@ -5,14 +5,14 @@
   
 
   
-  <title>ctf-misc | Hexo</title>
+  <title>攻防世界-misc | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="baidu-site-verification" content="[object Object]" />
   
   <meta name="description" content="如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。与佛论禅”网站，一个编码&#x2F;解码网站佛曰：……尝试使用Rot13这个明文的形式,但解密之后还是乱码 然后将得到的结果再进行base64解密，得到flag   pdf-菜猫给了菜狗一张图，说图下面什么都没有 将图片拖走。。。 得到答案。。。。  功夫再高也怕菜刀  对小白的详细补充foremost是一个文件分离和还原的工具foremost的下载及使用h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf-misc">
+<meta property="og:title" content="攻防世界-misc">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。与佛论禅”网站，一个编码&#x2F;解码网站佛曰：……尝试使用Rot13这个明文的形式,但解密之后还是乱码 然后将得到的结果再进行base64解密，得到flag   pdf-菜猫给了菜狗一张图，说图下面什么都没有 将图片拖走。。。 得到答案。。。。  功夫再高也怕菜刀  对小白的详细补充foremost是一个文件分离和还原的工具foremost的下载及使用h">
@@ -23,7 +23,13 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;4.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;5.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;7.png">
-<meta property="og:updated_time" content="2019-11-22T02:43:29.632Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;8.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;9.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;10.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;11.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;12.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;13.png">
+<meta property="og:updated_time" content="2019-11-22T06:39:04.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;19&#x2F;ctf-misc&#x2F;1.png">
   
@@ -68,7 +74,7 @@
       
   
     <h1 class="article-title" itemprop="name">
-      ctf-misc
+      攻防世界-misc
     </h1>
   
 
@@ -103,7 +109,8 @@
 <hr>
 <p>对小白的详细补充<br>foremost是一个文件分离和还原的工具<br>foremost的<a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">下载</a>及使用<br><a href="http://q0o0p.top/2019/11/19/cft-tool/" target="_blank" rel="noopener">http://q0o0p.top/2019/11/19/cft-tool/</a></p>
 <hr>
-<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag</p>
+<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img src="/2019/10/19/ctf-misc/8.png" alt><br><img src="/2019/10/19/ctf-misc/9.png" alt><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img src="/2019/10/19/ctf-misc/10.png" alt><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img src="/2019/10/19/ctf-misc/11.png" alt><br><img src="/2019/10/19/ctf-misc/12.png" alt><br>打开该图片得到密码<br><img src="/2019/10/19/ctf-misc/13.png" alt><br>然后根据密码打开压缩包，得到flag。。。</p>
+<hr>
 
       
     </div>

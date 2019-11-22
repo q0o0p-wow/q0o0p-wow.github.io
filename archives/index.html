@@ -96,6 +96,7 @@
 <h2 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h2><p><a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">官网下载地址</a></p>
 <p><a href="https://blog.csdn.net/Zhou_ZiZi/article/details/84987259" target="_blank" rel="noopener">1. burpsuite和Wireshark的原理及区别</a><br><a href="https://blog.csdn.net/qq78069460/article/details/79153895" target="_blank" rel="noopener">2. Wiresharkd的详细分析</a></p>
 <hr>
+<p>HxD Hex Editor<br>专门用于文件十六进制显示和编辑的软件<br>免费的，且功能强其功能比Notepad++的插件强<br><a href="https://mh-nexus.de/en/downloads.php?product=HxD20" target="_blank" rel="noopener">https://mh-nexus.de/en/downloads.php?product=HxD20</a></p>
 <p>参考：<a href="https://blog.csdn.net/john_david_/article/details/87273152" target="_blank" rel="noopener">https://blog.csdn.net/john_david_/article/details/87273152</a></p>
 
       
@@ -574,7 +575,7 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
       
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/ctf-misc/">ctf-misc</a>
+      <a class="article-title" href="/2019/10/19/ctf-misc/">攻防世界-misc</a>
     </h1>
   
 
@@ -605,7 +606,8 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <hr>
 <p>对小白的详细补充<br>foremost是一个文件分离和还原的工具<br>foremost的<a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">下载</a>及使用<br><a href="http://q0o0p.top/2019/11/19/cft-tool/" target="_blank" rel="noopener">http://q0o0p.top/2019/11/19/cft-tool/</a></p>
 <hr>
-<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag</p>
+<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img src="/2019/10/19/ctf-misc/8.png" alt><br><img src="/2019/10/19/ctf-misc/9.png" alt><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img src="/2019/10/19/ctf-misc/10.png" alt><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img src="/2019/10/19/ctf-misc/11.png" alt><br><img src="/2019/10/19/ctf-misc/12.png" alt><br>打开该图片得到密码<br><img src="/2019/10/19/ctf-misc/13.png" alt><br>然后根据密码打开压缩包，得到flag。。。</p>
+<hr>
 
       
     </div>
