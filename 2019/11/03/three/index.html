@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="换yum 12sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources_init.list  &#x2F;&#x2F;备份原来的源sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list  &#x2F;&#x2F;更换源   阿里源： 123456789101112131415deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; xenial maindeb-src h">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-09T09:10:51.064Z">
+<meta property="og:updated_time" content="2019-11-21T12:38:53.916Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -100,7 +100,13 @@
 <h2 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update    //  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install //   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade //  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure></div>
 
 
-
+<h2 id="查找文件所在位置"><a href="#查找文件所在位置" class="headerlink" title="查找文件所在位置"></a>查找文件所在位置</h2><p>　　1.whereis 文件名</p>
+<p>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
+<p>　　2.find / -name 文件名</p>
+<p>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用</p>
+<p>　　#find / -name php.ini</p>
+<p>　　3.locate 文件名</p>
+<p>　　强力推荐的方法,最快,最好的方法.</p>
 
       
     </div>

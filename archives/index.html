@@ -82,6 +82,16 @@
       
         <p>nmap</p>
 <p><a href="https://blog.csdn.net/qq_36119192/article/details/82079150" target="_blank" rel="noopener">https://blog.csdn.net/qq_36119192/article/details/82079150</a></p>
+<p>文件分离和还原工具<br>foremost–&gt;是一个控制台程序，用于文件分离和还原<br>根据页眉，页脚和内部数据结构恢复文件，可以处理图像文件（例如由dd，Safeback，Encase等生成的图像文件）这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。<br>或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。</p>
+<p>在数字取证中和CTF中常用来恢复、分离文件。它默认支持19种类型文件(jpg, gif, png, bmp, avi, exe, mpg, mp4, wav, riff, wmv, mov, pdf, ole, doc, zip, rar, html, cpp 等文件)的扫描识别恢复，还可以通过(通过配置它的配置文件foremost.conf)增加新的支持类型。</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ tar zxvf foremost-xx.tar.gz</span><br><span class="line">$ cd foremost-xx</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install foremost  //Ubuntu安装foremost</span><br><span class="line">$ foremost -h  //检查是否安装成功</span><br><span class="line">$ foremost [-v|-V|-h|-T|-Q|-q|-a|-w-d] [-t &lt;type&gt;] [-s &lt;blocks&gt;] [-k &lt;size&gt;] </span><br><span class="line">    [-b &lt;size&gt;] [-c &lt;file&gt;] [-o &lt;dir&gt;] [-i &lt;file] </span><br><span class="line">    //命令及作用</span><br><span class="line"></span><br><span class="line">-V  - 显示版权信息并退出  </span><br><span class="line">-t  - 指定文件类型.  (-t jpeg,pdf ...) </span><br><span class="line">-d  -打开间接块检测 (针对UNIX文件系统) </span><br><span class="line">-i  - 指定输入文件 (默认为标准输入) </span><br><span class="line">-a  - 写入所有的文件头部, 不执行错误检测(损坏文件) </span><br><span class="line">-w  - 向磁盘写入审计文件，不写入任何检测到的文件</span><br><span class="line">-o  - 设置输出目录 (默认为为输出)</span><br><span class="line">-c  - 设置配置文件 (默认为 foremost.conf)</span><br><span class="line">-q  - 启用快速模式. 在512字节边界执行搜索.</span><br><span class="line">-Q  - 启用安静模式. 禁用输出消息. </span><br><span class="line">-v  - 详细模式. 向屏幕上记录所有消息。</span><br></pre></td></tr></table></figure></div>
+
+
+
+<hr>
+<h2 id="注：-未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost-conf。"><a href="#注：-未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost-conf。" class="headerlink" title="注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。"></a>注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。</h2><p>参考：<a href="https://blog.csdn.net/john_david_/article/details/87273152" target="_blank" rel="noopener">https://blog.csdn.net/john_david_/article/details/87273152</a></p>
 
       
     </div>
@@ -462,7 +472,13 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <h2 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update    //  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install //   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade //  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure></div>
 
 
-
+<h2 id="查找文件所在位置"><a href="#查找文件所在位置" class="headerlink" title="查找文件所在位置"></a>查找文件所在位置</h2><p>　　1.whereis 文件名</p>
+<p>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
+<p>　　2.find / -name 文件名</p>
+<p>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用</p>
+<p>　　#find / -name php.ini</p>
+<p>　　3.locate 文件名</p>
+<p>　　强力推荐的方法,最快,最好的方法.</p>
 
       
     </div>
