@@ -159,7 +159,7 @@
   </entry>
   <entry>
     <title>IntelliJ IDEA 快捷键</title>
-    <url>/2019/11/09/IntelliJ-IDEA/</url>
+    <url>/2019/11/09/IntelliJ%20IDEA/</url>
     <content><![CDATA[<p>IDea：<br>Alt+回车 导入包,自动修正<br>Ctrl+N  查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
 <p>Shift+F6  重构-重命名<br>Ctrl+Shift+先上键<br>Ctrl+X 删除行<br>Ctrl+D 复制行<br>Ctrl+/ 或 Ctrl+Shift+/  注释（// 或者/<em>…</em>/ ）<br>Ctrl+J  自动代码<br>Ctrl+E 最近打开的文件<br>Ctrl+H 显示类结构图<br>Ctrl+Q 显示注释文档<br>Alt+F1 查找代码所在位置<br>Alt+1 快速打开或隐藏工程面板<br>Ctrl+Alt+ left/right 返回至上次浏览的位置<br>Alt+ left/right 切换代码视图<br>Alt+ Up/Down 在方法间快速移动定位<br>Ctrl+Shift+Up/Down 代码向上/下移动。<br>F2 或Shift+F2 高亮错误或警告快速定位</p>
 <p>代码标签输入完成后，按Tab，生成代码。<br>选中文本，按Ctrl+Shift+F7 ，高亮显示所有该文本，按Esc高亮消失。<br>Ctrl+W 选中代码，连续按会有其他效果<br>选中文本，按Alt+F3 ，逐个往下查找相同文本，并高亮显示。<br>Ctrl+Up/Down 光标跳转到第一行或最后一行下<br>Ctrl+B 快速打开光标处的类或方法</p>
@@ -167,7 +167,7 @@
 <p>下面的不是很有用<br>18.在一些地方按Alt＋Enter可以得到一些Intention Action，例如将”==”改为”equals()”<br>19.Ctrl＋Shift＋Alt＋N可以快速打开符号<br>20.Ctrl＋Shift＋Space在很多时候都能够给出Smart提示<br>21.Alt＋F3可以快速寻找<br>22.Ctrl＋/和Ctrl＋Shift＋/可以注释代码<br>23.Ctrl＋Alt＋B可以跳转到抽象方法的实现<br>24.Ctrl＋O可以选择父类的方法进行重写<br>25.Ctrl＋Q可以看JavaDoc<br>26.Ctrl＋Alt＋Space是类名自动完成<br>27.快速打开类/文件/符号时，可以使用通配符，也可以使用缩写<br>28.Live Templates! Ctrl＋J<br>29.Ctrl＋Shift＋F7可以高亮当前元素在当前文件中的使用<br>30.Ctrl＋Alt＋Up /Ctrl＋Alt＋Down可以快速跳转搜索结果</p>
 <h3 id="特别的"><a href="#特别的" class="headerlink" title="特别的"></a>特别的</h3><p>array.fori</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>alt+inster<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ-IDEA/1.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ-IDEA/2.png" class="lazyload"></p>
+<p>alt+inster<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ%20IDEA/1.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ%20IDEA/2.png" class="lazyload"></p>
 <p>方法重载：<br>alt+enter<br>！<a href="3.png"></a><br>！<a href="4.png"></a></p>
 ]]></content>
   </entry>
