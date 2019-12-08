@@ -158,6 +158,45 @@
 ]]></content>
   </entry>
   <entry>
+    <title>git的使用</title>
+    <url>/2019/11/12/git/</url>
+    <content><![CDATA[<p>##1.绑定用户<br>打开git-bash.exe（直接在桌面上点击右键，或者点击开始按钮找到Git Bash）<br>运行gitBash.gif</p>
+<p>在打开的GIt Bash中输入以下命令（用户和邮箱为你github注册的账号和邮箱）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;q0o0p-wow&quot;</span><br><span class="line">$ git config --global user.email &quot;2825966877@qq.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>##2.设置SSH key<br>先检查是否已生成密钥cd ~/.ssh，如果返回的ls有3个文件,则密钥已经生成。<br>如果没有密钥，执行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;2825966877@qq.com&quot;</span><br></pre></td></tr></table></figure>
+<p><img alt data-src="/11/12/git/1.png" class="lazyload"></p>
+<p>生成过程中一路按3次回车键就好了。第二次回车为设置密码（默认路径，默认没有密码登录）<br>生成成功后，去对应目录C:\Users\ASUS\ssh里面找公钥<br>  id_rsa 是私钥<br>  id_rsa.pub是公钥<br>只需复制公钥即可。<br>接下来为github账号配置ssh key<br>切换到github，在右上角找到settings，然后打开SSH keys菜单， 点击Add SSH key新增密钥，填上标题（最好跟本地仓库保持一致）。</p>
+<p>设置sshkey.gif<br>接着将id_rsa.pub文件中key粘贴到此，最后Add key生成密钥。</p>
+<p>##3.建立本地仓库<br>cd 切换路径，打开blog（你的文件夹名）文件夹，执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git add   //将所有文件添加到仓库</span><br><span class="line">git commit -m &quot;提交文件&quot;  //双引号内是提交注释</span><br></pre></td></tr></table></figure>
+<p>初始化成功后你会发现项目里多了一个隐藏文件夹.git</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ls -ah  //可用此命令查看</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-关联github仓库"><a href="#4-关联github仓库" class="headerlink" title="4.关联github仓库"></a>4.关联github仓库</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin https://github.com/q0o0p-wow/blog.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h1><p>假如我们现在在dev分支上，刚开发完项目，执行了下列命令：<br>git  add .<br>git  commit -m ‘提交的备注信息’<br>git  push -u origin dev<br>想将dev分支合并到master分支，操作如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git  checkout master //切换到master分支上</span><br><span class="line">$ git pull origin master //如果是自己一个开发就没有必要了，为了保险期间还是pull</span><br><span class="line">git  merge dev</span><br></pre></td></tr></table></figure>
+<p>（如果是多人开发的话 需要把远程master上的代码pull下来）</p>
+<p>3、然后我们把dev分支的代码合并到master上</p>
+<hr>
+<h1 id="分支的管理"><a href="#分支的管理" class="headerlink" title="分支的管理"></a>分支的管理</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git branch  //如果不加任何参数运行它，会得到当前所有分支的一个列表</span><br><span class="line">$ git branch -r //查看远程分支</span><br><span class="line">$ git checkout -b master origin/master //把远程分支master 拉取到本地</span><br><span class="line">$ git checkout 分支名称  //切换分支</span><br><span class="line">$ history  //查看历史</span><br><span class="line">$ git status //查看要提交的条件</span><br><span class="line">$ git add . //全部提交</span><br><span class="line">$ git commit -m &apos;注释&apos;//提交注释</span><br><span class="line">$ git push origin  本地分支名 ： 远程分支名  //上传本地当前分支代码到远程分支</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+<p>参考：<a href="https://blog.csdn.net/weixin_41883384/article/details/80805580" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41883384/article/details/80805580</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>IntelliJ IDEA 快捷键</title>
     <url>/2019/11/09/IntelliJ%20IDEA/</url>
     <content><![CDATA[<p>IDea：<br>Alt+回车 导入包,自动修正<br>Ctrl+N  查找类<br>Ctrl+Shift+N 查找文件<br>Ctrl+Alt+L  格式化代码<br>Ctrl+Alt+O 优化导入的类和包<br>Alt+Insert 生成代码(如get,set方法,构造函数等)<br>Ctrl+E或者Alt+Shift+C  最近更改的代码<br>Ctrl+R 替换文本<br>Ctrl+F 查找文本<br>Ctrl+Shift+Space 自动补全代码<br>Ctrl+空格 代码提示<br>Ctrl+Alt+Space 类名或接口名提示<br>Ctrl+P 方法参数提示<br>Ctrl+Shift+Alt+N 查找类中的方法或变量<br>Alt+Shift+C 对比最近修改的代码</p>
