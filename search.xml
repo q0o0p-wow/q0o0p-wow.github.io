@@ -166,7 +166,7 @@
 
 <p>##2.设置SSH key<br>先检查是否已生成密钥cd ~/.ssh，如果返回的ls有3个文件,则密钥已经生成。<br>如果没有密钥，执行如下命令：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;2825966877@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/git/1.png" class="lazyload"></p>
+<p><img alt data-src="/11/12/git/1.png" class="lazyload"></p>
 <p>生成过程中一路按3次回车键就好了。第二次回车为设置密码（默认路径，默认没有密码登录）<br>生成成功后，去对应目录C:\Users\ASUS\ssh里面找公钥<br>  id_rsa 是私钥<br>  id_rsa.pub是公钥<br>只需复制公钥即可。<br>接下来为github账号配置ssh key<br>切换到github，在右上角找到settings，然后打开SSH keys菜单， 点击Add SSH key新增密钥，填上标题（最好跟本地仓库保持一致）。</p>
 <p>设置sshkey.gif<br>接着将id_rsa.pub文件中key粘贴到此，最后Add key生成密钥。</p>
 <p>##3.建立本地仓库<br>cd 切换路径，打开blog（你的文件夹名）文件夹，执行命令：</p>
@@ -183,18 +183,18 @@
 <p>删除文件：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rm -r --cached 目标文件夹 </span><br><span class="line">git commit -m &apos;删除说明&apos;</span><br><span class="line">git push -u origin master //重新提交</span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="git分支的管理"><a href="#git分支的管理" class="headerlink" title="git分支的管理"></a>git分支的管理</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git branch  //如果不加任何参数运行它，会得到当前所有分支的一个列表</span><br><span class="line">$ git branch -r //查看远程分支</span><br><span class="line">$ git branch -a  //查看所有远程分支</span><br><span class="line">$ git checkout -b master origin/master //把远程分支master 拉取到本地</span><br><span class="line">$ git checkout 分支名称  //切换分支</span><br><span class="line">$ git merge &lt;name&gt; //合并某分支到当前分支</span><br><span class="line"></span><br><span class="line">$ history  //查看历史</span><br><span class="line">$ git status //查看要提交的条件</span><br><span class="line">$ git add . //全部提交</span><br><span class="line">$ git commit -m &apos;注释&apos;//提交注释</span><br><span class="line">$ git push origin  本地分支名 ： 远程分支名  //上传本地当前分支代码到远程分支</span><br><span class="line"></span><br><span class="line">$ git remote update origin --prune //更新远程分支列表</span><br><span class="line"></span><br><span class="line">$ git push origin --delete 远程分支名称  //删除远程分支</span><br><span class="line">$ git branch -d  本地分支名称  //删除本地分支</span><br></pre></td></tr></table></figure>
+<h1 id="git分支的管理"><a href="#git分支的管理" class="headerlink" title="git分支的管理"></a>git分支的管理</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git branch  //如果不加任何参数运行它，会得到当前所有分支的一个列表</span><br><span class="line">$ git branch -r //查看远程分支</span><br><span class="line">$ git checkout -b master origin/master //把远程分支master 拉取到本地</span><br><span class="line">$ git checkout 分支名称  //切换分支</span><br><span class="line">$ history  //查看历史</span><br><span class="line">$ git status //查看要提交的条件</span><br><span class="line">$ git add . //全部提交</span><br><span class="line">$ git commit -m &apos;注释&apos;//提交注释</span><br><span class="line">$ git push origin  本地分支名 ： 远程分支名  //上传本地当前分支代码到远程分支</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="远程链接"><a href="#远程链接" class="headerlink" title="远程链接"></a>远程链接</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote -v  //查看远程连接</span><br><span class="line"></span><br><span class="line">git remote rm origin  //删除远程连接</span><br><span class="line"></span><br><span class="line">git remote add origin git@github.com:yourName/repositoryname.git  //添加远程链接</span><br></pre></td></tr></table></figure>
+<p>#git 仓库管理</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote -v //远程仓库路径查询</span><br><span class="line"></span><br><span class="line">git remote add origin &lt;你的项目地址&gt; //添加远程仓库，注:项目地址形式为https://gitee.com/xxx/xxx.git或者 git@gitee.com:xxx/xxx.git</span><br><span class="line"></span><br><span class="line">git remote rm origin  //删除指定的远程</span><br></pre></td></tr></table></figure>
 
 
 
 
 
 
-
-<p>参考：<a href="https://blog.csdn.net/weixin_41883384/article/details/80805580" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41883384/article/details/80805580</a><br><a href="https://www.cnblogs.com/zeo-to-one/p/8367801.html" target="_blank" rel="noopener">https://www.cnblogs.com/zeo-to-one/p/8367801.html</a></p>
+<p>参考：<a href="https://blog.csdn.net/weixin_41883384/article/details/80805580" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41883384/article/details/80805580</a></p>
 ]]></content>
   </entry>
   <entry>
