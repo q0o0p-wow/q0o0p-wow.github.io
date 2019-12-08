@@ -74,7 +74,7 @@ function activateLightMode(){
 
 <p>##2.设置SSH key<br>先检查是否已生成密钥cd ~/.ssh，如果返回的ls有3个文件,则密钥已经生成。<br>如果没有密钥，执行如下命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;2825966877@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p><img alt data-src="/11/12/git/1.png" class="lazyload"></p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/git/1.png" class="lazyload"></p>
 <p>生成过程中一路按3次回车键就好了。第二次回车为设置密码（默认路径，默认没有密码登录）<br>生成成功后，去对应目录C:\Users\ASUS\ssh里面找公钥<br>  id_rsa 是私钥<br>  id_rsa.pub是公钥<br>只需复制公钥即可。<br>接下来为github账号配置ssh key<br>切换到github，在右上角找到settings，然后打开SSH keys菜单， 点击Add SSH key新增密钥，填上标题（最好跟本地仓库保持一致）。</p>
 <p>设置sshkey.gif<br>接着将id_rsa.pub文件中key粘贴到此，最后Add key生成密钥。</p>
 <p>##3.建立本地仓库<br>cd 切换路径，打开blog（你的文件夹名）文件夹，执行命令：</p>
