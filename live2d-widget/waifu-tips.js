@@ -72,19 +72,7 @@ function loadWidget(waifuPath, apiPath) {
 		var SiteIndexUrl = location.port ? `${location.protocol}//${location.hostname}:${location.port}/` : `${location.protocol}//${location.hostname}/`, text; //自动获取主页
 		if (location.href == SiteIndexUrl) { //如果是主页
 			var now = new Date().getHours();
-			if (now > 5 && now <= 7) text = "早上好！一日之计在于晨，美好的一天就要开始了。";
-			else if (now > 7 && now <= 11) text = "上午好！工作顺利嘛，不要久坐，多起来走动走动哦！";
-			else if (now > 11 && now <= 14) text = "中午了，工作了一个上午，现在是午餐时间！";
-			else if (now > 14 && now <= 17) text = "午后很容易犯困呢，今天的运动目标完成了吗？";
-			else if (now > 17 && now <= 19) text = "傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红～";
-			else if (now > 19 && now <= 21) text = "晚上好，今天过得怎么样？";
-			else if (now > 21 && now <= 23) text = ["已经这么晚了呀，早点休息吧，晚安～", "深夜时要爱护眼睛呀！"];
-			else text = "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？";
-		} else if (document.referrer !== "") {
-			var referrer = document.createElement("a");
-			referrer.href = document.referrer;
-			var domain = referrer.hostname.split(".")[1];
-			if (location.hostname == referrer.hostname) text = `欢迎阅读<span style="color:#0099cc;">『${document.title.split(" - ")[0]}』</span>`;
+			if (now > 5 && now <= 7) text="早上好！一日之计在于晨，美好的一天就要开始了。" ; else if (now> 7 && now <= 11) text="上午好！工作顺利嘛，不要久坐，多起来走动走动哦！" ; else if (now> 11 && now <= 14) text="中午了，工作了一个上午，现在是午餐时间！" ; else if (now> 14 && now <= 17) text="午后很容易犯困呢，今天的运动目标完成了吗？" ; else if (now> 17 && now <= 19) text="傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红～" ; else if (now> 19 && now <= 21) text="晚上好，今天过得怎么样？" ; else if (now> 21 && now <= 23) text="["已经这么晚了呀，早点休息吧，晚安～"," "深夜时要爱护眼睛呀！"]; else ; } if (document.referrer !="=" "") { var referrer="document.createElement("a");" referrer.href="document.referrer;" domain="referrer.hostname.split(".")[1];" (location.hostname="=" referrer.hostname) style="color:#0099cc;">『${document.title.split(" - ")[0]}』`;
 			else if (domain == "baidu") text = `Hello！来自 百度搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">${referrer.search.split("&wd=")[1].split("&")[0]}</span> 找到的我吗？`;
 			else if (domain == "so") text = `Hello！来自 360搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">${referrer.search.split("&q=")[1].split("&")[0]}</span> 找到的我吗？`;
 			else if (domain == "google") text = `Hello！来自 谷歌搜索 的朋友<br>欢迎阅读<span style="color:#0099cc;">『${document.title.split(" - ")[0]}』</span>`;
@@ -130,15 +118,7 @@ function loadWidget(waifuPath, apiPath) {
 
 	function showMessage(text, timeout, priority) {
 		if (!text) return;
-		if (!sessionStorage.getItem("waifu-text") || sessionStorage.getItem("waifu-text") <= priority) {
-			if (messageTimer) {
-				clearTimeout(messageTimer);
-				messageTimer = null;
-			}
-			if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length)];
-			sessionStorage.setItem("waifu-text", priority);
-			$("#waifu-tips").stop().html(text).fadeTo(200, 1);
-			messageTimer = setTimeout(() => {
+		if (!sessionStorage.getItem("waifu-text") || sessionStorage.getItem("waifu-text") <= priority) { if (messagetimer) cleartimeout(messagetimer); messagetimer="null;" } (array.isarray(text)) text="text[Math.floor(Math.random()" * text.length)]; sessionstorage.setitem("waifu-text", priority); $("#waifu-tips").stop().html(text).fadeto(200, 1); => {
 				sessionStorage.removeItem("waifu-text");
 				$("#waifu-tips").fadeTo(1000, 0);
 			}, timeout);
@@ -173,59 +153,9 @@ function loadWidget(waifuPath, apiPath) {
 				var now = new Date(),
 					after = tips.date.split("-")[0],
 					before = tips.date.split("-")[1] || after;
-				if ((after.split("/")[0] <= now.getMonth() + 1 && now.getMonth() + 1 <= before.split("/")[0]) && (after.split("/")[1] <= now.getDate() && now.getDate() <= before.split("/")[1])) {
-					var text = Array.isArray(tips.text) ? tips.text[Math.floor(Math.random() * tips.text.length)] : tips.text;
-					text = text.replace("{year}", now.getFullYear());
-					//showMessage(text, 7000, true);
-					messageArray.push(text);
-				}
-			});
-		});
-	}
-	initModel();
-
-	function loadModel(modelId, modelTexturesId) {
-		localStorage.setItem("modelId", modelId);
-		if (modelTexturesId === undefined) modelTexturesId = 0;
-		localStorage.setItem("modelTexturesId", modelTexturesId);
-		loadlive2d("live2d", `${apiPath}/get/?id=${modelId}-${modelTexturesId}`, console.log(`Live2D 模型 ${modelId}-${modelTexturesId} 加载完成`));
-	}
-
-	function loadRandModel() {
-		var modelId = localStorage.getItem("modelId"),
-			modelTexturesId = localStorage.getItem("modelTexturesId");
-			//可选 "rand"(随机), "switch"(顺序)
-		$.ajax({
-			cache: false,
-			url: `${apiPath}/rand_textures/?id=${modelId}-${modelTexturesId}`,
-			dataType: "json",
-			success: function(result) {
-				if (result.textures["id"] == 1 && (modelTexturesId == 1 || modelTexturesId == 0)) showMessage("我还没有其他衣服呢！", 4000, 10);
-				else showMessage("我的新衣服好看嘛？", 4000, 10);
-				loadModel(modelId, result.textures["id"]);
-			}
-		});
-	}
-
-	function loadOtherModel() {
-		var modelId = localStorage.getItem("modelId");
-		$.ajax({
-			cache: false,
-			url: `${apiPath}/switch/?id=${modelId}`,
-			dataType: "json",
-			success: function(result) {
-				loadModel(result.model["id"]);
-				showMessage(result.model["message"], 4000, 10);
-			}
-		});
-	}
-}
-
-function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
-	if (screen.width <= 768) return;
-	$("body").append(`<div id="waifu-toggle" style="margin-left: -100px;">
+				if ((after.split("/")[0] <= 1 now.getmonth() + && <="before.split("/")[0])" (after.split(" ")[1] now.getdate() { var text="Array.isArray(tips.text)" ? tips.text[math.floor(math.random() * tips.text.length)] : tips.text; now.getfullyear()); showmessage(text, 7000, true); messagearray.push(text); } }); initmodel(); function loadmodel(modelid, modeltexturesid) localstorage.setitem("modelid", modelid); if (modeltexturesid="==" undefined) modeltexturesid="0;" localstorage.setitem("modeltexturesid", modeltexturesid); loadlive2d("live2d", `${apipath} get ?id="${modelId}-${modelTexturesId}`," console.log(`live2d 模型 ${modelid}-${modeltexturesid} 加载完成`)); loadrandmodel() modelid="localStorage.getItem("modelId")," 可选 "rand"(随机), "switch"(顺序) $.ajax({ cache: false, url: rand_textures datatype: "json", success: function(result) (result.textures["id"]="=" || 0)) showmessage("我还没有其他衣服呢！", 4000, 10); else showmessage("我的新衣服好看嘛？", result.textures["id"]); loadothermodel() switch loadmodel(result.model["id"]); showmessage(result.model["message"], initwidget(waifupath="/waifu-tips.json" , apipath ) (screen.width return; $("body").append(`<div id="waifu-toggle" style="margin-left: -100px;">
 			<span>看板娘</span>
-		</div>`);
+		`);
 	$("#waifu-toggle").hover(() => {
 		$("#waifu-toggle").animate({ "margin-left": -30 }, 500);
 	}, () => {
@@ -242,9 +172,4 @@ function initWidget(waifuPath = "/waifu-tips.json", apiPath = "") {
 			$("#waifu").show().animate({ bottom: 0 }, 3000);
 		}
 	});
-	if (localStorage.getItem("waifu-display") && new Date().getTime() - localStorage.getItem("waifu-display") <= 86400000) {
-		$("#waifu-toggle").attr("first-time", true).css({ "margin-left": -50 });
-	} else {
-		loadWidget(waifuPath, apiPath);
-	}
-}
+	if (localStorage.getItem("waifu-display") && new Date().getTime() - localStorage.getItem("waifu-display") </=></=></=></=></=></=></=></=></=>
