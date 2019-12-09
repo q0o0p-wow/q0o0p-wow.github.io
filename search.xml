@@ -1,6 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Ubuntu</title>
+    <url>/2019/12/08/ubuntu/</url>
+    <content><![CDATA[ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update //更新软件库 </span><br><span class="line">apt-get upgrade //升级软件</span><br><span class="line"></span><br><span class="line">apt-get install ubuntu-desktop //安装Ubuntu桌面系统</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>sudo vi /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf     //打开50-ubuntu.conf
+
+在末尾添加
+
+    greeter-show-manual-login=true      //允许切换用户登陆
+
+    allow-guest=false    //禁用Guest   </code></pre><p>完整代码</p>
+<pre><code>[Seat:*]
+user-session=ubuntu
+greeter-show-manual-login=true
+allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使用Esc键切换到末行模式,然后输入:wq退出编辑)发现root用户登陆后还是有警告</p>
+<p>修改/root/.profile文件 (图形界面下修改请勾选显示隐藏文件)</p>
+<p>将mesg n 替换为 tty -s &amp;&amp; mesg n</p>
+<p>完整代码</p>
+<p> ~/.profile: executed by Bourne-compatible login shells.<br>if [ “$BASH” ]; then<br>if [ -f ~/.bashrc ]; then<br>. ~/.bashrc<br>fi<br>fi<br>tty -s &amp;&amp; mesg n || true</p>
+<p>保存后重启即可完美在桌面环境登陆root</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux 基础篇(ubuntu19.04)</title>
+    <url>/2019/12/08/linux/</url>
+    <content><![CDATA[<hr>
+<p>换yum</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources_init.list  //备份原来的源</span><br><span class="line">sudo gedit /etc/apt/sources.list  //更换源</span><br></pre></td></tr></table></figure>
+
+
+<p>阿里源：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>网易源：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update    //  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install //   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade //  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="查找文件所在位置"><a href="#查找文件所在位置" class="headerlink" title="查找文件所在位置"></a>查找文件所在位置</h2><p>　　1.whereis 文件名</p>
+<p>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
+<p>　　2.find / -name 文件名</p>
+<p>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用</p>
+<p>　　#find / -name php.ini</p>
+<p>　　3.locate 文件名</p>
+<p>　　强力推荐的方法,最快,最好的方法.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Live2D添加板娘</title>
+    <url>/2019/12/08/live2D-two/</url>
+    <content><![CDATA[<p>打开Git Bash</p>
+<h2 id="先下载live2d"><a href="#先下载live2d" class="headerlink" title="先下载live2d"></a>先下载live2d</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+
+<h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure>
+
+<h3 id="更多模型"><a href="#更多模型" class="headerlink" title="更多模型"></a>更多模型</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure>
+
+<h2 id="在根目录-config-yml配置下添加以下参数"><a href="#在根目录-config-yml配置下添加以下参数" class="headerlink" title="在根目录_config.yml配置下添加以下参数"></a>在根目录_config.yml配置下添加以下参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  scriptFrom: <span class="built_in">local</span>  <span class="comment">#默认</span></span><br><span class="line">  pluginRootPath: live2dw/ <span class="comment">#插件在站点上是根目录</span></span><br><span class="line">  pluginJsPath: lib/   <span class="comment">#脚本文件相对于插件根目录路径</span></span><br><span class="line">  pluginModelPath: assets/  <span class="comment">#模型文件相对于与插件根目录路径</span></span><br><span class="line">  tagMode: <span class="literal">false</span>  <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  debug: <span class="literal">false</span>  <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  model:</span><br><span class="line">    use:  live2d-widget-model-z16 <span class="comment">#live2d-widget-model-shizuku 要修改的 </span></span><br><span class="line">  display:</span><br><span class="line">    position: right    <span class="comment">#在屏幕上显示的位置</span></span><br><span class="line">    width: 150     <span class="comment">#宽度</span></span><br><span class="line">    height: 300    <span class="comment">#高度</span></span><br><span class="line">  mobile:  <span class="comment">#是否用于移动端</span></span><br><span class="line">    show: <span class="literal">true</span>  <span class="comment">#手机是否显示</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="会换装的板娘"><a href="#会换装的板娘" class="headerlink" title="会换装的板娘"></a>会换装的板娘</h2><p>More info: <a href="https://github.com/pangao1990/pangao1990.github.io/tree/master/live2d">GitHub源码地址</a></p>
+<p>解压到本地博客目录的 themes/…/source 下，修改文件夹名为 live2d-widget，修改项目中的 autoload.js 文件<br>将const live2d_path = “<a href="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;" target="_blank" rel="noopener">https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;</a>; 改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const live2d_path = &quot;/live2d-widget/&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<p>该项目需要 jQuery 和 font-awesome 支持。例如在 <head> 中加入：</head></p>
+<p>在F:\blog\themes\hexo-theme-antiquity\layout\layout.ejs下添加代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/12/08/live2D-two/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" class="lazyload"></p>
+<p>想修改看板娘大小、位置、格式、文本内容等，可查看并修改 waifu-tips.js 、 waifu-tips.json 和 waifu.css。</p>
+<p>More info: <a href="https://blog.csdn.net/u011236348/article/details/88169549" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo的简单使用</title>
+    <url>/2019/12/08/hexo-one/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> . If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a>  <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s  //hexo server简写</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://... -- save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -- save  //例如插入图片的要安装的插件</span><br></pre></td></tr></table></figure>
+<p>设置站点配置_config.yml:将post_asset_folder: false改为post_asset_folder: true</p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/12/08/hexo-one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" class="lazyload"></p>
+<p>安装完成后，再运行hexo n “title”  source/_posts文件夹内除了title.md文件还有一个同名的文件夹</p>
+<p>在title.md中引入图片时，先把图片复制到title这个文件夹中，然后只需要在title.md中按照markdown的格式引入图片：</p>
+<p>! [ 你想输入的替代文字 ] ( title/图片名.jpg )</p>
+<p>最后</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g -d同步到github</span><br></pre></td></tr></table></figure>
+
+<h3 id="在GitHub上下载"><a href="#在GitHub上下载" class="headerlink" title="在GitHub上下载"></a>在GitHub上下载</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/yiluyanxia/hexo-theme-antiquity.git  //例如下载主题</span><br></pre></td></tr></table></figure>
+
+
+<p>###</p>
+]]></content>
+  </entry>
+  <entry>
     <title>steganography</title>
     <url>/2019/11/28/steganography/</url>
     <content><![CDATA[<p>隐写工具介绍及总结:  <a href="https://www.jianshu.com/p/b61e4ff0b0d5" target="_blank" rel="noopener">https://www.jianshu.com/p/b61e4ff0b0d5</a></p>
@@ -13,7 +122,7 @@
 <hr>
 <h2 id="foremost–-gt-文件分离和还原工具"><a href="#foremost–-gt-文件分离和还原工具" class="headerlink" title="foremost–&gt;文件分离和还原工具"></a>foremost–&gt;文件分离和还原工具</h2><p>是一个控制台程序，用于文件分离和还原<br>根据页眉，页脚和内部数据结构恢复文件，可以处理图像文件（例如由dd，Safeback，Encase等生成的图像文件）这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。<br>或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。</p>
 <p>在数字取证中和CTF中常用来恢复、分离文件。它默认支持19种类型文件(jpg, gif, png, bmp, avi, exe, mpg, mp4, wav, riff, wmv, mov, pdf, ole, doc, zip, rar, html, cpp 等文件)的扫描识别恢复，还可以通过(通过配置它的配置文件foremost.conf)增加新的支持类型。</p>
-<p>windows下载地址 –&gt; <a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">https://github.com/raddyfiy/foremost</a><br>可以选择自己源码编译为exe，也可以直接用大佬们编译完的（在binary里面）<br><img alt data-src="/2019/11/19/cft-tool/1.png" class="lazyload"><br>将foremost.conf 和 foermost.exe 单独分离出来放入一个新文件夹中<br><img alt data-src="/2019/11/19/cft-tool/2.png" class="lazyload"><br>使用时将要分离的文件放入该文件夹下<br><img alt data-src="/2019/11/19/cft-tool/3.png" class="lazyload"><br>分离完成的后文件–&gt;如果没有指定路径，则放入output里面.</p>
+<p>windows下载地址 –&gt; <a href="https://github.com/raddyfiy/foremost">https://github.com/raddyfiy/foremost</a><br>可以选择自己源码编译为exe，也可以直接用大佬们编译完的（在binary里面）<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/1.png" class="lazyload"><br>将foremost.conf 和 foermost.exe 单独分离出来放入一个新文件夹中<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/2.png" class="lazyload"><br>使用时将要分离的文件放入该文件夹下<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/3.png" class="lazyload"><br>分离完成的后文件–&gt;如果没有指定路径，则放入output里面.</p>
 <p>Linux下对于压缩包形式：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ tar zxvf foremost-xx.tar.gz</span><br><span class="line">$ cd foremost-xx</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure>
 
@@ -151,7 +260,7 @@
   <entry>
     <title>burpsuite的使用</title>
     <url>/2019/11/12/burpsuite/</url>
-    <content><![CDATA[<h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p><img alt data-src="/2019/11/12/burpsuite/1.png" class="lazyload"></p>
+    <content><![CDATA[<h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/1.png" class="lazyload"></p>
 <hr>
 <p>扩展：<br>http请求方式：<br>HTTP1.0定义了三种方法：GET ,OPST, HEAD<br>HTTP1.1新增加了五种： OPTIONS ,PUT, DELETE.TRACE,CONNECT</p>
 <p>GET 请求指定的页面信息，并返回实体主体。<br>HEAD 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头<br>POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。<br>PUT 从客户端向服务器传送的数据取代指定的文档的内容。<br>DELETE 请求服务器删除指定的页面。<br>CONNECT HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>OPTIONS 允许客户端查看服务器的性能。<br>TRACE 回显服务器收到的请求，主要用于测试或诊断。</p>
@@ -166,7 +275,7 @@
 
 <p>##2.设置SSH key<br>先检查是否已生成密钥cd ~/.ssh，如果返回的ls有3个文件,则密钥已经生成。<br>如果没有密钥，执行如下命令：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;2825966877@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p><img alt data-src="/2019/11/12/git/1.png" class="lazyload"></p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/git/1.png" class="lazyload"></p>
 <p>生成过程中一路按3次回车键就好了。第二次回车为设置密码（默认路径，默认没有密码登录）<br>生成成功后，去对应目录C:\Users\ASUS\ssh里面找公钥<br>  id_rsa 是私钥<br>  id_rsa.pub是公钥<br>只需复制公钥即可。<br>接下来为github账号配置ssh key<br>切换到github，在右上角找到settings，然后打开SSH keys菜单， 点击Add SSH key新增密钥，填上标题（最好跟本地仓库保持一致）。</p>
 <p>设置sshkey.gif<br>接着将id_rsa.pub文件中key粘贴到此，最后Add key生成密钥。</p>
 <p>##3.建立本地仓库<br>cd 切换路径，打开blog（你的文件夹名）文件夹，执行命令：</p>
@@ -207,149 +316,40 @@
 <p>下面的不是很有用<br>18.在一些地方按Alt＋Enter可以得到一些Intention Action，例如将”==”改为”equals()”<br>19.Ctrl＋Shift＋Alt＋N可以快速打开符号<br>20.Ctrl＋Shift＋Space在很多时候都能够给出Smart提示<br>21.Alt＋F3可以快速寻找<br>22.Ctrl＋/和Ctrl＋Shift＋/可以注释代码<br>23.Ctrl＋Alt＋B可以跳转到抽象方法的实现<br>24.Ctrl＋O可以选择父类的方法进行重写<br>25.Ctrl＋Q可以看JavaDoc<br>26.Ctrl＋Alt＋Space是类名自动完成<br>27.快速打开类/文件/符号时，可以使用通配符，也可以使用缩写<br>28.Live Templates! Ctrl＋J<br>29.Ctrl＋Shift＋F7可以高亮当前元素在当前文件中的使用<br>30.Ctrl＋Alt＋Up /Ctrl＋Alt＋Down可以快速跳转搜索结果</p>
 <h3 id="特别的"><a href="#特别的" class="headerlink" title="特别的"></a>特别的</h3><p>array.fori</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>alt+inster<br><img alt data-src="/2019/11/09/IntelliJ%20IDEA/1.png" class="lazyload"><br><img alt data-src="/2019/11/09/IntelliJ%20IDEA/2.png" class="lazyload"></p>
+<p>alt+inster<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ%20IDEA/1.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/09/IntelliJ%20IDEA/2.png" class="lazyload"></p>
 <p>方法重载：<br>alt+enter<br>！<a href="3.png"></a><br>！<a href="4.png"></a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Ubuntu</title>
-    <url>/2019/11/06/ubuntu/</url>
-    <content><![CDATA[ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get update //更新软件库 </span><br><span class="line">apt-get upgrade //升级软件</span><br><span class="line"></span><br><span class="line">apt-get install ubuntu-desktop //安装Ubuntu桌面系统</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>sudo vi /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf     //打开50-ubuntu.conf
-
-在末尾添加
-
-    greeter-show-manual-login=true      //允许切换用户登陆
-
-    allow-guest=false    //禁用Guest   </code></pre><p>完整代码</p>
-<pre><code>[Seat:*]
-user-session=ubuntu
-greeter-show-manual-login=true
-allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使用Esc键切换到末行模式,然后输入:wq退出编辑)发现root用户登陆后还是有警告</p>
-<p>修改/root/.profile文件 (图形界面下修改请勾选显示隐藏文件)</p>
-<p>将mesg n 替换为 tty -s &amp;&amp; mesg n</p>
-<p>完整代码</p>
-<p> ~/.profile: executed by Bourne-compatible login shells.<br>if [ “$BASH” ]; then<br>if [ -f ~/.bashrc ]; then<br>. ~/.bashrc<br>fi<br>fi<br>tty -s &amp;&amp; mesg n || true</p>
-<p>保存后重启即可完美在桌面环境登陆root</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Linux 基础篇(ubuntu19.04)</title>
-    <url>/2019/11/03/linux/</url>
-    <content><![CDATA[<hr>
-<p>换yum</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources_init.list  //备份原来的源</span><br><span class="line">sudo gedit /etc/apt/sources.list  //更换源</span><br></pre></td></tr></table></figure>
-
-
-<p>阿里源：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>网易源：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ wily-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update    //  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install //   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade //  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="查找文件所在位置"><a href="#查找文件所在位置" class="headerlink" title="查找文件所在位置"></a>查找文件所在位置</h2><p>　　1.whereis 文件名</p>
-<p>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
-<p>　　2.find / -name 文件名</p>
-<p>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用</p>
-<p>　　#find / -name php.ini</p>
-<p>　　3.locate 文件名</p>
-<p>　　强力推荐的方法,最快,最好的方法.</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Live2D添加板娘</title>
-    <url>/2019/11/02/live2D-two/</url>
-    <content><![CDATA[<p>打开Git Bash</p>
-<h2 id="先下载live2d"><a href="#先下载live2d" class="headerlink" title="先下载live2d"></a>先下载live2d</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
-
-<h2 id="下载模型"><a href="#下载模型" class="headerlink" title="下载模型"></a>下载模型</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure>
-
-<h3 id="更多模型"><a href="#更多模型" class="headerlink" title="更多模型"></a>更多模型</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d-widget-model-chitose</span><br><span class="line">live2d-widget-model-epsilon2_1</span><br><span class="line">live2d-widget-model-gf</span><br><span class="line">live2d-widget-model-haru/01 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haru/02 (use npm install --save live2d-widget-model-haru)</span><br><span class="line">live2d-widget-model-haruto</span><br><span class="line">live2d-widget-model-hibiki</span><br><span class="line">live2d-widget-model-hijiki</span><br><span class="line">live2d-widget-model-izumi</span><br><span class="line">live2d-widget-model-koharu</span><br><span class="line">live2d-widget-model-miku</span><br><span class="line">live2d-widget-model-ni-j</span><br><span class="line">live2d-widget-model-nico</span><br><span class="line">live2d-widget-model-nietzsche</span><br><span class="line">live2d-widget-model-nipsilon</span><br><span class="line">live2d-widget-model-nito</span><br><span class="line">live2d-widget-model-shizuku</span><br><span class="line">live2d-widget-model-tororo</span><br><span class="line">live2d-widget-model-tsumiki</span><br><span class="line">live2d-widget-model-unitychan</span><br><span class="line">live2d-widget-model-wanko</span><br><span class="line">live2d-widget-model-z16</span><br></pre></td></tr></table></figure>
-
-<h2 id="在根目录-config-yml配置下添加以下参数"><a href="#在根目录-config-yml配置下添加以下参数" class="headerlink" title="在根目录_config.yml配置下添加以下参数"></a>在根目录_config.yml配置下添加以下参数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  scriptFrom: <span class="built_in">local</span>  <span class="comment">#默认</span></span><br><span class="line">  pluginRootPath: live2dw/ <span class="comment">#插件在站点上是根目录</span></span><br><span class="line">  pluginJsPath: lib/   <span class="comment">#脚本文件相对于插件根目录路径</span></span><br><span class="line">  pluginModelPath: assets/  <span class="comment">#模型文件相对于与插件根目录路径</span></span><br><span class="line">  tagMode: <span class="literal">false</span>  <span class="comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span></span><br><span class="line">  debug: <span class="literal">false</span>  <span class="comment"># 调试, 是否在控制台输出日志</span></span><br><span class="line">  model:</span><br><span class="line">    use:  live2d-widget-model-z16 <span class="comment">#live2d-widget-model-shizuku 要修改的 </span></span><br><span class="line">  display:</span><br><span class="line">    position: right    <span class="comment">#在屏幕上显示的位置</span></span><br><span class="line">    width: 150     <span class="comment">#宽度</span></span><br><span class="line">    height: 300    <span class="comment">#高度</span></span><br><span class="line">  mobile:  <span class="comment">#是否用于移动端</span></span><br><span class="line">    show: <span class="literal">true</span>  <span class="comment">#手机是否显示</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="会换装的板娘"><a href="#会换装的板娘" class="headerlink" title="会换装的板娘"></a>会换装的板娘</h2><p>More info: <a href="https://github.com/pangao1990/pangao1990.github.io/tree/master/live2d">GitHub源码地址</a></p>
-<p>解压到本地博客目录的 themes/…/source 下，修改文件夹名为 live2d-widget，修改项目中的 autoload.js 文件<br>将const live2d_path = “<a href="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;" target="_blank" rel="noopener">https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget/&quot;</a>; 改为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const live2d_path = &quot;/live2d-widget/&quot;;</span><br></pre></td></tr></table></figure>
-
-
-<p>该项目需要 jQuery 和 font-awesome 支持。例如在 <head> 中加入：</head></p>
-<p>在F:\blog\themes\hexo-theme-antiquity\layout\layout.ejs下添加代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;/live2d-widget/autoload.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/02/live2D-two/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%802.png" class="lazyload"></p>
-<p>想修改看板娘大小、位置、格式、文本内容等，可查看并修改 waifu-tips.js 、 waifu-tips.json 和 waifu.css。</p>
-<p>More info: <a href="https://blog.csdn.net/u011236348/article/details/88169549" target="_blank" rel="noopener">参考</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hexo的简单使用</title>
-    <url>/2019/10/31/hexo-one/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> . If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a>  <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s  //hexo server简写</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install https://... -- save</span><br><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image -- save  //例如插入图片的要安装的插件</span><br></pre></td></tr></table></figure>
-<p>设置站点配置_config.yml:将post_asset_folder: false改为post_asset_folder: true</p>
-<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/31/hexo-one/%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%9C%B0%E5%9D%801.png" class="lazyload"></p>
-<p>安装完成后，再运行hexo n “title”  source/_posts文件夹内除了title.md文件还有一个同名的文件夹</p>
-<p>在title.md中引入图片时，先把图片复制到title这个文件夹中，然后只需要在title.md中按照markdown的格式引入图片：</p>
-<p>! [ 你想输入的替代文字 ] ( title/图片名.jpg )</p>
-<p>最后</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo g -d同步到github</span><br></pre></td></tr></table></figure>
-
-<h3 id="在GitHub上下载"><a href="#在GitHub上下载" class="headerlink" title="在GitHub上下载"></a>在GitHub上下载</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/yiluyanxia/hexo-theme-antiquity.git  //例如下载主题</span><br></pre></td></tr></table></figure>
-
-
-<p>###</p>
 ]]></content>
   </entry>
   <entry>
     <title>攻防世界-misc</title>
     <url>/2019/10/19/ctf-misc/</url>
-    <content><![CDATA[<p>如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。<br>与佛论禅”网站，一个编码/解码网站<br>佛曰：……<br><img alt data-src="/2019/10/19/ctf-misc/1.png" class="lazyload"><br>尝试使用Rot13这个明文的形式,但解密之后还是乱码<br><img alt data-src="/2019/10/19/ctf-misc/2.png" class="lazyload"></p>
+    <content><![CDATA[<p>如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。<br>与佛论禅”网站，一个编码/解码网站<br>佛曰：……<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/1.png" class="lazyload"><br>尝试使用Rot13这个明文的形式,但解密之后还是乱码<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/2.png" class="lazyload"></p>
 <p>然后将得到的结果再进行base64解密，得到flag</p>
-<p><img alt data-src="/2019/10/19/ctf-misc/3.png" class="lazyload"></p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/3.png" class="lazyload"></p>
 <hr>
 <p>pdf-菜猫给了菜狗一张图，说图下面什么都没有</p>
-<p>将图片拖走。。。<br><img alt data-src="/2019/10/19/ctf-misc/4.png" class="lazyload"></p>
-<p><img alt data-src="/2019/10/19/ctf-misc/5.png" class="lazyload"><br>得到答案。。。。</p>
+<p>将图片拖走。。。<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/4.png" class="lazyload"></p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/5.png" class="lazyload"><br>得到答案。。。。</p>
 <hr>
 <p>功夫再高也怕菜刀</p>
 <hr>
-<p>对小白的详细补充<br>foremost是一个文件分离和还原的工具<br>foremost的<a href="https://github.com/raddyfiy/foremost" target="_blank" rel="noopener">下载</a>及使用<br><a href="http://q0o0p.top/2019/11/19/cft-tool/" target="_blank" rel="noopener">http://q0o0p.top/2019/11/19/cft-tool/</a></p>
+<p>对小白的详细补充<br>foremost是一个文件分离和还原的工具<br>foremost的<a href="https://github.com/raddyfiy/foremost">下载</a>及使用<br><a href="http://q0o0p.top/2019/11/19/cft-tool/" target="_blank" rel="noopener">http://q0o0p.top/2019/11/19/cft-tool/</a></p>
 <hr>
-<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img alt data-src="/2019/10/19/ctf-misc/7.png" class="lazyload"><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img alt data-src="/2019/10/19/ctf-misc/8.png" class="lazyload"><br><img alt data-src="/2019/10/19/ctf-misc/9.png" class="lazyload"><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img alt data-src="/2019/10/19/ctf-misc/10.png" class="lazyload"><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img alt data-src="/2019/10/19/ctf-misc/11.png" class="lazyload"><br><img alt data-src="/2019/10/19/ctf-misc/12.png" class="lazyload"><br>打开该图片得到密码<br><img alt data-src="/2019/10/19/ctf-misc/13.png" class="lazyload"><br>然后根据密码打开压缩包，得到flag。。。</p>
+<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/7.png" class="lazyload"><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/8.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/9.png" class="lazyload"><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/10.png" class="lazyload"><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/11.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/12.png" class="lazyload"><br>打开该图片得到密码<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/13.png" class="lazyload"><br>然后根据密码打开压缩包，得到flag。。。</p>
 <hr>
 ]]></content>
   </entry>
   <entry>
     <title>攻防世界-web-oneday</title>
     <url>/2019/10/05/ctf-one/</url>
-    <content><![CDATA[<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><img alt data-src="/2019/10/05/ctf-one/1.png" class="lazyload"></p>
+    <content><![CDATA[<h2 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h2><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/1.png" class="lazyload"></p>
 <ol>
 <li>该题目可以用F12查看源代码</li>
 <li>URL地址栏加view-source:  或 Ctrl+u（查看源码快捷键）<br>下方有个被注释的一串字符串，找到flag<br>将注释取消，改为：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;d0d694dd09d7ee5ab0ae4af3d4e7373a&#125;</span><br></pre></td></tr></table></figure>
-提交<br><img alt data-src="/2019/10/05/ctf-one/2.png" class="lazyload"></li>
+提交<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/2.png" class="lazyload"></li>
 </ol>
-<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>get_post: X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？<br><img alt data-src="/2019/10/05/ctf-one/3.png" class="lazyload"><br>打开以后<br><img alt data-src="/2019/10/05/ctf-one/4.png" class="lazyload"></p>
-<h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><h3 id="chrome使用postman插件"><a href="#chrome使用postman插件" class="headerlink" title="chrome使用postman插件"></a>chrome使用postman插件</h3><h3 id="火狐插件hackbar（提交post请求）"><a href="#火狐插件hackbar（提交post请求）" class="headerlink" title="火狐插件hackbar（提交post请求）"></a>火狐插件hackbar（提交post请求）</h3><p>F12先点击Load URL然后直接在<a href="http://111.198.29.45:39706/后加" target="_blank" rel="noopener">http://111.198.29.45:39706/后加</a> ?a=1<br>然后在勾选Post data 在点击Execute<br><img alt data-src="/2019/10/05/ctf-one/5.png" class="lazyload"></p>
+<h2 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h2><p>get_post: X老师告诉小宁同学HTTP通常使用两种请求方法，你知道是哪两种吗？<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/3.png" class="lazyload"><br>打开以后<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/4.png" class="lazyload"></p>
+<h3 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h3><h3 id="chrome使用postman插件"><a href="#chrome使用postman插件" class="headerlink" title="chrome使用postman插件"></a>chrome使用postman插件</h3><h3 id="火狐插件hackbar（提交post请求）"><a href="#火狐插件hackbar（提交post请求）" class="headerlink" title="火狐插件hackbar（提交post请求）"></a>火狐插件hackbar（提交post请求）</h3><p>F12先点击Load URL然后直接在<a href="http://111.198.29.45:39706/后加" target="_blank" rel="noopener">http://111.198.29.45:39706/后加</a> ?a=1<br>然后在勾选Post data 在点击Execute<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/5.png" class="lazyload"></p>
 <h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><p>GET传值主要在url后面加个问号然后再传参，然后post一般在火狐浏览器用hackbar传值<br>HTTP协议中共定义了八种方法来表明对Request-URI指定的资源的不同操作方式，具体介绍如下：</p>
 <p>·GET：向特定的资源发出请求。</p>
 <p>·POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的创建和/或已有资源的修改。</p>
@@ -369,7 +369,7 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <p>f1ag_1s_h3re.php这个页面不允许被爬取<br>查看一下f1ag_1s_h3re.php页面得到正确答案</p>
 <p>扫目录也可以扫到:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python python3 dirsearch.py -u http://10.10.10.175:32793/ -e *</span><br></pre></td></tr></table></figure>
-<p>这里我们将下载好的<a href="https://github.com/maurosoria/dirsearch" target="_blank" rel="noopener">dirsearch</a>脚本解压后，打开dirsearch.py文件，运行一下，提示需要输入命令：</p>
+<p>这里我们将下载好的<a href="https://github.com/maurosoria/dirsearch">dirsearch</a>脚本解压后，打开dirsearch.py文件，运行一下，提示需要输入命令：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-u http://10.10.10.175:32793/ -e *</span><br></pre></td></tr></table></figure>
 
 <p>在.\reports\111.198.29.45\目录下找到刚输出的文件：<br>打开即可看到扫出的目录和文件。即可看到存在robots.txt文件。<br>HTML访问robots.txt发现f1ag_1s_h3re.php<br>访问robots.txt发现f1ag_1s_h3re.php</p>
@@ -389,8 +389,8 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <h3 id="相关介绍：-1"><a href="#相关介绍：-1" class="headerlink" title="相关介绍："></a>相关介绍：</h3><p>Cookie 在网络系统中几乎无处不在，当我们浏览以前访问过的网站时，网页中可能会出现 ：你好 XXX，这会让我们感觉很亲切，就好像吃了一个小甜品一样。这其实是通过访问主机中的一个文件来实现的，这个文件就是 Cookie。在 Internet 中，Cookie 实际上是指小量信息，是由Web服务器创建的，将信息存储在用户计算机上的文件。一般网络用户习惯用其复数形式 Cookies，指某些网站为了辨别用户身份、进行Session 跟踪而存储在用户本地终端上的数据，而这些数据通常会经过加密处理。</p>
 <hr>
 <p>F12 -&gt; 存储-&gt; Cookie-&gt; look here-&gt; look here：cookie.php<br>在URL后加上”/cookie.php”即<a href="http://111.198.29.45:47420/cookie.php" target="_blank" rel="noopener">http://111.198.29.45:47420/cookie.php</a></p>
-<p> <img alt data-src="/2019/10/05/ctf-one/9.png" class="lazyload"></p>
-<p> 控制台-&gt; 消息头-&gt; 找到flag<br> <img alt data-src="/2019/10/05/ctf-one/10.png" class="lazyload"></p>
+<p> <img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/9.png" class="lazyload"></p>
+<p> 控制台-&gt; 消息头-&gt; 找到flag<br> <img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/10.png" class="lazyload"></p>
 <hr>
 <h2 id="第六题"><a href="#第六题" class="headerlink" title="第六题"></a>第六题</h2><p>disabled_button-X老师今天上课讲了前端知识，然后给了大家一个不能按的按钮，小宁惊奇地发现这个按钮按不下去，到底怎么才能按下去呢？</p>
 <hr>
@@ -398,10 +398,10 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <p>也可以手动POST相关数据，以下为部分源代码：</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span> <span class="attr">method</span>=<span class="string">"post"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">disabled</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span> <span class="attr">style</span>=<span class="string">"height:50px;width:200px;"</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"flag"</span> <span class="attr">name</span>=<span class="string">"auth"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="于是构造POST请求：auth-flag"><a href="#于是构造POST请求：auth-flag" class="headerlink" title="于是构造POST请求：auth=flag"></a>于是构造POST请求：auth=flag</h2><p>F12，将标签input中的disabled（不可用）属性删除，x掉调试框，点击按钮，即可得到flag。<br><img alt data-src="/2019/10/05/ctf-one/11.png" class="lazyload"><br><img alt data-src="/2019/10/05/ctf-one/12.png" class="lazyload"></p>
+<h2 id="于是构造POST请求：auth-flag"><a href="#于是构造POST请求：auth-flag" class="headerlink" title="于是构造POST请求：auth=flag"></a>于是构造POST请求：auth=flag</h2><p>F12，将标签input中的disabled（不可用）属性删除，x掉调试框，点击按钮，即可得到flag。<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/11.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/12.png" class="lazyload"></p>
 <hr>
 <h2 id="第七题"><a href="#第七题" class="headerlink" title="第七题"></a>第七题</h2><p>simple——js-小宁发现了一个网页，但却一直输不对密码。(Flag格式为 Cyberpeace{xxxxxxxxx} )</p>
-<p>F12，找index文件，阅读js代码。（或者ctrl+u :view-source命令）<br><img alt data-src="/2019/10/05/ctf-one/13.png" class="lazyload"></p>
+<p>F12，找index文件，阅读js代码。（或者ctrl+u :view-source命令）<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/13.png" class="lazyload"></p>
 <p>会发现dechiffre返回值与参数pass_enc没有任何关联，返回值是固定的，即不论输入什么都是一样得输出。<br>所以猜测密码在string这一行里。<br>利用python/java代码来求出flag：先将16进制数输出，再将数字（ascii码）转换为对应的字符。</p>
 <hr>
 <h2 id="第八题"><a href="#第八题" class="headerlink" title="第八题"></a>第八题</h2><p>xff_referer-X老师告诉小宁其实xff和referer是可以伪造的。</p>
@@ -409,20 +409,20 @@ allow-guest=false</code></pre><p>保存重启(在VI模式下编辑完成后使�
 <p>xff 是http的拓展头部，作用是使Web服务器获取访问用户的IP真实地址（可伪造）。由于很多用户通过代理服务器进行访问，服务器只能获取代理服务器的IP地址，而xff的作用在于记录用户的真实IP，以及代理服务器的IP。</p>
 <p>格式为：X-Forwarded-For: 本机IP, 代理1IP, 代理2IP, 代理2IP</p>
 <hr>
-<p>在Proxy的History里找到目标网页，右键选择发送到repeater。在repeater里查看目标地址内容，添加：X-Forwarded-For:123.123.123.123（这一步是伪造XFF———&gt;go–&gt;收到提示）。<br>或者直接在Proxy的’Intercept is on’里面加上：  X-Forwarded-For:123.123.123.123。<br><img alt data-src="/2019/10/05/ctf-one/14.png" class="lazyload"></p>
+<p>在Proxy的History里找到目标网页，右键选择发送到repeater。在repeater里查看目标地址内容，添加：X-Forwarded-For:123.123.123.123（这一步是伪造XFF———&gt;go–&gt;收到提示）。<br>或者直接在Proxy的’Intercept is on’里面加上：  X-Forwarded-For:123.123.123.123。<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/14.png" class="lazyload"></p>
 <p>Referer:<a href="https://www.google.com（这一步是伪造Referer）" target="_blank" rel="noopener">https://www.google.com（这一步是伪造Referer）</a></p>
 <p>也可以直接在Host: 111.198.29.45:40025下面写入：<br>X-Forwarded-For:123.123.123.123<br>Referer:<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a></p>
-<p><img alt data-src="/2019/10/05/ctf-one/15.png" class="lazyload"><br><img alt data-src="/2019/10/05/ctf-one/16.png" class="lazyload"></p>
+<p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/15.png" class="lazyload"><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/16.png" class="lazyload"></p>
 <hr>
 <h2 id="第九题"><a href="#第九题" class="headerlink" title="第九题"></a>第九题</h2><p>weak_auth-小宁写了一个登陆验证页面，随手就设了一个密码。</p>
 <h3 id="相关介绍：-3"><a href="#相关介绍：-3" class="headerlink" title="相关介绍："></a>相关介绍：</h3><p>Intruder是一个定制的高度可配置工具，可以对Web应用程序进行自动化攻击。<br>原理：Intruder在原始请求数据的基础上，通过修改各种请求参数获取不同的请求应答。在每一次请求中，Intruder通常会携带一个或多个有效攻击载荷（Payload），在不同的位置进行攻击重放，通过应答数据的比对分析获得需要的特征数据。</p>
-<p>github上密码字典：<br><a href="https://github.com/rootphantomer/Blasting_dictionary" target="_blank" rel="noopener">https://github.com/rootphantomer/Blasting_dictionary</a></p>
+<p>github上密码字典：<br><a href="https://github.com/rootphantomer/Blasting_dictionary">https://github.com/rootphantomer/Blasting_dictionary</a></p>
 <hr>
-<p>F12可以看到：<br><img alt data-src="/2019/10/05/ctf-one/17.png" class="lazyload"><br>找到Positions，清楚标记Clear，指针指向password=后面，添加标记Add，如下图所示，将密码放在两个 $pass$ 之间。<br>找到Payloads，加载Load Payload Options，将下载好的字典添加进去。<br>选择左上角startAttack开始爆破。</p>
+<p>F12可以看到：<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/05/ctf-one/17.png" class="lazyload"><br>找到Positions，清楚标记Clear，指针指向password=后面，添加标记Add，如下图所示，将密码放在两个 $pass$ 之间。<br>找到Payloads，加载Load Payload Options，将下载好的字典添加进去。<br>选择左上角startAttack开始爆破。</p>
 <p>登陆以后可以看到:<br>cyberpeace{e255ee279841e7f1eb8f44a420e01870}</p>
 <hr>
 <h2 id="第十题"><a href="#第十题" class="headerlink" title="第十题"></a>第十题</h2><p>webshel-小宁百度了php一句话,觉着很有意思,并且把它放在index.php里。</p>
-<p>看到一句话木马，而且题目描述提示一句话木马放在index.php中。<br>蚂剑（<a href="https://github.com/AntSwordProject/antSword/releases）" target="_blank" rel="noopener">https://github.com/AntSwordProject/antSword/releases）</a></p>
+<p>看到一句话木马，而且题目描述提示一句话木马放在index.php中。<br>蚂剑（<a href="https://github.com/AntSwordProject/antSword/releases）">https://github.com/AntSwordProject/antSword/releases）</a></p>
 <p>用菜刀连接:<br><a href="http://111.198.29.45:58974/index.php" target="_blank" rel="noopener">http://111.198.29.45:58974/index.php</a></p>
 <hr>
 <p>参考：<a href="https://www.cnblogs.com/kubbycatty/archive/2019/06/27/11100171.html" target="_blank" rel="noopener">https://www.cnblogs.com/kubbycatty/archive/2019/06/27/11100171.html</a><br>      <a href="https://blog.csdn.net/qq_43081170/article/details/94717446" target="_blank" rel="noopener">https://blog.csdn.net/qq_43081170/article/details/94717446</a></p>
