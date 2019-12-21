@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Java-SortAlgorithm---Java十大排序算法</title>
+    <title>SortAlgorithm</title>
     <url>/2019/12/12/SortAlgorithm/</url>
-    <content><![CDATA[<hr>
+    <content><![CDATA[<meta name="referrer" content="no-referrer">
+---
+title: Java-SortAlgorithm---Java十大排序算法
+date: 2019-12-12 21:25:10
+tags:
+---
+
+<hr>
 <p>名词定义：<br>稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面；<br>不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；<br>内排序：所有排序操作都在内存中完成；<br>外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；<br>时间复杂度： 一个算法执行所耗费的时间。<br>空间复杂度：运行完一个程序所需内存的大小。</p>
 <hr>
 <h1 id="一、基本排序算法"><a href="#一、基本排序算法" class="headerlink" title="一、基本排序算法"></a>一、基本排序算法</h1><h2 id="1-选择排序-（Selection-Sort）"><a href="#1-选择排序-（Selection-Sort）" class="headerlink" title="1. 选择排序 （Selection Sort）"></a>1. 选择排序 （Selection Sort）</h2><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2019/12/12/SortAlgorithm/xzpx.png" class="lazyload"></p>
