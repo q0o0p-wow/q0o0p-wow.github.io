@@ -2399,16 +2399,6 @@ blockquote footer cite:before {
   background-size: cover;
   position: relative;
 }
-#footer:before {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: block;
-  content: '';
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-}
 #footer-wrap {
   padding: 2rem 1rem;
   color: #eee;
