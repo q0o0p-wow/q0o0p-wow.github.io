@@ -45,7 +45,7 @@
   <entry>
     <title>foremost</title>
     <url>/2020/01/28/foremost/</url>
-    <content><![CDATA[<h2 id="1-将所要解密的文件放入foremost所在的目录"><a href="#1-将所要解密的文件放入foremost所在的目录" class="headerlink" title="1.将所要解密的文件放入foremost所在的目录"></a>1.将所要解密的文件放入foremost所在的目录</h2><p>将图片放入该目录下<br>[图片上传失败(1.png)]<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/01/28/foremost/1.png" class="lazyload"></p>
+    <content><![CDATA[<h2 id="1-将所要解密的文件放入foremost所在的目录"><a href="#1-将所要解密的文件放入foremost所在的目录" class="headerlink" title="1.将所要解密的文件放入foremost所在的目录"></a>1.将所要解密的文件放入foremost所在的目录</h2><p>将图片放入该目录下<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/01/28/foremost/1.png" class="lazyload"></p>
 <h2 id="2-cmd进入foremost所在目录，cd-文件夹路径"><a href="#2-cmd进入foremost所在目录，cd-文件夹路径" class="headerlink" title="2.cmd进入foremost所在目录，cd 文件夹路径"></a>2.cmd进入foremost所在目录，cd 文件夹路径</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">foremost 待分离的文件名</span><br></pre></td></tr></table></figure>
 <p>自动创建一个output文件夹，里面放分离出的文件<br>并且保证该文件夹为空</p>
 <p>得到分离的文件<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/01/28/foremost/2.png" class="lazyload"></p>
