@@ -18,12 +18,29 @@
 <p>##pexels.com——高清图片下载<br>包含详细的图片信息</p>
 <hr>
 <p>##addog.vip——百宝箱<br>涵盖各种网站的连接</p>
+<p>##UHD PIXEL——4k壁纸网站<br>wall.alphacoders.com——壁纸网站</p>
 ]]></content>
   </entry>
   <entry>
-    <title>JTIDS</title>
-    <url>/2020/02/14/JTIDS/</url>
-    <content><![CDATA[]]></content>
+    <title>MISC总结</title>
+    <url>/2020/02/14/Misc/</url>
+    <content><![CDATA[<h3 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h3><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" class="lazyload"></p>
+<h3 id="base64解码"><a href="#base64解码" class="headerlink" title="base64解码"></a>base64解码</h3><p>base64使用 a-zA-Z0-9+/ 等64个字符来替换掉所有字符，同时使用 = 来替换掉空格</p>
+<h3 id="linux："><a href="#linux：" class="headerlink" title="linux："></a>linux：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">strings &lt;要查找找的文件名称&gt;|grep flag  //常用查找命令</span><br><span class="line">base64 -d flag.txt   //base64解码</span><br></pre></td></tr></table></figure>
+<p>在使用mount挂在命令时，ubuntu比kali好用（个人建议）</p>
+<h3 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h3><p>用十六进制软件打开<br><code>压缩源文件数据区： 50 4B 03 04：头文件标记（0x04034b50）</code><br><code>14 00：解压文件所需 pkware 版本</code><br><code>00 00：全局方式位标记（有无加密）</code><br><code>08 00：压缩方式</code><br><code>5A 7E：最后修改文件时间</code><br><code>F7 46：最后修改文件日期</code><br><code>16 B5 80 14：CRC-32校验（1480B516）</code><br><code>19 00 00 00：压缩后尺寸（25）</code><br><code>17 00 00 00：未压缩尺寸（23）</code><br><code>07 00：文件名长度</code><br><code>00 00：扩展记录长度</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">压缩源文件目录区：50 4B 01 02：目录中文件文件头标记</span><br><span class="line">3F 00：压缩使用的 pkware 版本</span><br><span class="line">14 00：解压文件所需 pkware 版本</span><br><span class="line">00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）</span><br><span class="line">08 00：压缩方式</span><br><span class="line">5A 7E：最后修改文件时间</span><br><span class="line">F7 46：最后修改文件日期</span><br><span class="line">16 B5 80 14：CRC-32校验（1480B516）</span><br><span class="line">19 00 00 00：压缩后尺寸（25）</span><br><span class="line">17 00 00 00：未压缩尺寸（23）</span><br><span class="line">07 00：文件名长度</span><br><span class="line">24 00：扩展字段长度</span><br><span class="line">00 00：文件注释长度</span><br><span class="line">00 00：磁盘开始号</span><br><span class="line">00 00：内部文件属性</span><br><span class="line">20 00 00 00：外部文件属性</span><br><span class="line">00 00 00 00：局部头部偏移量</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">压缩源文件目录结束标志 ：50 4B 05 06：目录结束标记</span><br><span class="line">00 00：当前磁盘编号</span><br><span class="line">00 00：目录区开始磁盘编号</span><br><span class="line">01 00：本磁盘上纪录总数</span><br><span class="line">01 00：目录区中纪录总数</span><br><span class="line">59 00 00 00：目录区尺寸大小</span><br><span class="line">3E 00 00 00：目录区对第一张磁盘的偏移量</span><br><span class="line">00 00 1A：ZIP 文件注释长度</span><br><span class="line"></span><br><span class="line">识别真假加密</span><br><span class="line">无加密</span><br><span class="line">压缩源文件数据区的全局加密应当为00 00</span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为00 00</span><br><span class="line">假加密</span><br><span class="line">压缩源文件数据区的全局加密应当为00 00</span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为09 00</span><br><span class="line">真加密</span><br><span class="line">压缩源文件数据区的全局加密应当为09 00</span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为09 00</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://blog.csdn.net/weixin_41687289/article/details/82695801" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41687289/article/details/82695801</a><br><a href="https://blog.csdn.net/qq_41420747/article/details/89672502" target="_blank" rel="noopener">https://blog.csdn.net/qq_41420747/article/details/89672502</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>MISC总结</title>
+    <url>/2020/02/14/web/</url>
+    <content><![CDATA[<h3 id="index-php"><a href="#index-php" class="headerlink" title="index.php"></a>index.php</h3><p>注意查看url<br>将url改为 index.php，会自动跳转到1.php，<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/1.png" class="lazyload"></p>
+]]></content>
   </entry>
   <entry>
     <title>formost</title>
