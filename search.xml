@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python</title>
+    <url>/2020/03/09/Python/</url>
+    <content><![CDATA[<p>python基础知识总结的感觉还行，python会用就OK，就懒得总结了<br><a href="https://www.cnblogs.com/liuhuacai/category/1431456.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuhuacai/category/1431456.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Windows-Tools</title>
+    <url>/2020/03/05/windows-tools/</url>
+    <content><![CDATA[<p>一个有意思的windows工具<br>cygwin：Windows中也能用linux命令了！<br>官网：<a href="https://www.cygwin.com/" target="_blank" rel="noopener">https://www.cygwin.com/</a><br>安装方法：<br><a href="https://www.cnblogs.com/feipeng8848/p/8555648.html" target="_blank" rel="noopener">https://www.cnblogs.com/feipeng8848/p/8555648.html</a><br>ssh的GitHub连接地址:<br><a href="https://github.com/PowerShell/Win32-OpenSSH/releases">https://github.com/PowerShell/Win32-OpenSSH/releases</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Termux的正确使用</title>
+    <url>/2020/03/05/termux/</url>
+    <content><![CDATA[<p>平板就能连接电脑搭建博客，WordPress，hexo。。。<br>大半夜写博客的我，美滋滋<br>O(∩<em>∩)O哈哈~</em>)<br>设置默认编辑器<br>export EDITOR=nano 或<br>export EDITOR=vim (若未安装vim,先安装：pkg install vim)<br>编辑源文件<br>apt edit-sources<br>将原来的<a href="https://termux.net官方源替换为" target="_blank" rel="noopener">https://termux.net官方源替换为</a><br><a href="http://mirrors.tuna.tsinghua.edu.cn/termux" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/termux</a></p>
+<p>感觉termux用法写的还不错<br><a href="https://www.sqlsec.com/2018/05/termux.html#toc-heading-79" target="_blank" rel="noopener">https://www.sqlsec.com/2018/05/termux.html#toc-heading-79</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>WeChatGenius</title>
     <url>/2020/02/29/WeChatGenius/</url>
     <content><![CDATA[<p>2020年居然有29号！<br>这么特别的一天，能不玩点有趣的东西怎么对得起这么特别的一天呢？<br>于是，今天我找了一个微信聊天机器人，好好玩玩<br>废话不多说，上GitHub源码。。。<br><a href="https://github.com/dalu2048/WeChatGenius">https://github.com/dalu2048/WeChatGenius</a><br>当然我也是第一次玩，emmm…..<br>慢慢摸索中。。。<br>下载EdXpose框架最新版：<a href="https://github.com/ElderDrivers/EdXposed">https://github.com/ElderDrivers/EdXposed</a><br>支持android 9以上</p>
+<p>adb shell官网:  <a href="https://adbshell.com/downloads" target="_blank" rel="noopener">https://adbshell.com/downloads</a><br>Android studio中也自带adb插件<br>adb 的基本使用：<br><a href="https://blog.csdn.net/a6596250/article/details/102122677?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">https://blog.csdn.net/a6596250/article/details/102122677?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a><br>OPPO 多点几次版本号–&gt;其他设置里出现开发者选项<br>OPPO全系列线刷包下载<br>百度网盘链接: <a href="https://pan.baidu.com/s/1Z_rBwXo46K2ZdDYdrluoyw" target="_blank" rel="noopener">https://pan.baidu.com/s/1Z_rBwXo46K2ZdDYdrluoyw</a> 提取码: b87t<br>OPPO高速下载：<a href="http://m.rom168.com/oppo.html" target="_blank" rel="noopener">http://m.rom168.com/oppo.html</a><br>VIVO全系列线刷包下载<br>百度网盘链接: <a href="https://pan.baidu.com/s/1kC9pRpUOtVed0ntPJ1rtIQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1kC9pRpUOtVed0ntPJ1rtIQ</a> 提取码: h2b3<br>小米全系列线刷包下载<br>链接: <a href="https://pan.baidu.com/s/1IpM405sznZVWK6XL5TUYNg" target="_blank" rel="noopener">https://pan.baidu.com/s/1IpM405sznZVWK6XL5TUYNg</a> 提取码:jqb5<br>小米红米高速下载: <a href="http://m.rom168.com/xiaomi.html" target="_blank" rel="noopener">http://m.rom168.com/xiaomi.html</a><br>各品牌全系列线刷包下载<br>链接: <a href="https://pan.baidu.com/s/1br1Ixn8fqAHznMGYSAvRAg" target="_blank" rel="noopener">https://pan.baidu.com/s/1br1Ixn8fqAHznMGYSAvRAg</a> 提取码: usf</p>
 <hr>
-<p>Magisk v20.3，2020年1月10日更新，目前最新版<br>GitHub下载地址:<br><a href="https://github.com/topjohnwu/Magisk/releases">https://github.com/topjohnwu/Magisk/releases</a><br>新手详细安装步骤<br><a href="https://topjohnwu.github.io/Magisk/install.html#huawei" target="_blank" rel="noopener">https://topjohnwu.github.io/Magisk/install.html#huawei</a></p>
+<p>Magisk v20.3，2020年1月10日更新，目前最新版<br>EdXposed安装方法：<br><a href="https://www.jianshu.com/p/0f4cc2896a09" target="_blank" rel="noopener">https://www.jianshu.com/p/0f4cc2896a09</a><br>简洁：<br><a href="https://www.jianshu.com/p/e4485cbaf3cd" target="_blank" rel="noopener">https://www.jianshu.com/p/e4485cbaf3cd</a><br>GitHub下载地址:<br><a href="https://github.com/topjohnwu/Magisk/releases">https://github.com/topjohnwu/Magisk/releases</a><br>新手详细安装步骤<br><a href="https://blog.coderstory.cn/guide-install-edxposed/" target="_blank" rel="noopener">https://blog.coderstory.cn/guide-install-edxposed/</a><br>官方版，比较简洁：<a href="https://topjohnwu.github.io/Magisk/install.html#huawei" target="_blank" rel="noopener">https://topjohnwu.github.io/Magisk/install.html#huawei</a></p>
+<p>Android获取root步骤：<br><a href="https://www.jianshu.com/p/bd7e4c664151" target="_blank" rel="noopener">https://www.jianshu.com/p/bd7e4c664151</a></p>
+<p><a href="https://pro-teammt.ru/online-firmware-database-ru/?firmware_model=SCM-W09&amp;firmware_page=0" target="_blank" rel="noopener">https://pro-teammt.ru/online-firmware-database-ru/?firmware_model=SCM-W09&amp;firmware_page=0</a></p>
+<p>解锁bootloader不代表root，root是最高权限<br>包名：VMOS<br>中文名：虚拟大师<br>VMOS(虚拟大师）是一款以Virtual Machine（简称VM，即虚拟机）技术为主的APP（安卓应用）软件。通过VM技术，把开源的安卓系统（支持任意版本），无需root权限，以普通应用安装的形式运行到任意版本的linux或安卓系统上。即通过一个应用运行一个完整的安卓系统，且不受宿主系统（手机上安卓系统）的限制。类似于PC上的VMWare，OS in OS。</p>
 <hr>
 <p>TaiChi:<br><a href="https://github.com/taichi-framework/TaiChi/releases">https://github.com/taichi-framework/TaiChi/releases</a></p>
 ]]></content>
