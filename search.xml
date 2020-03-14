@@ -114,6 +114,9 @@
     <title>MISC总结</title>
     <url>/2020/02/14/Misc/</url>
     <content><![CDATA[<h3 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h3><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" class="lazyload"></p>
+
+
+
 <h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>base64使用 a-zA-Z0-9+/ 等64个字符来替换掉所有字符，同时使用 = 来替换掉空格,<br>6bit编为1个字符，而1个字节是8bit</p>
 <h5 id="base64可能会出现3种情况："><a href="#base64可能会出现3种情况：" class="headerlink" title="base64可能会出现3种情况："></a>base64可能会出现3种情况：</h5><p><code>1. 刚好能编完（例如3个字节的字符串base64加密后有4个字符）</code><br><code>2.剩余2bit（例如2个字节的字符串base64加密后第3个字符只编码了4bit，此时使用=补充6bit）</code><br><code>3. 剩余4bit（例如1个字节的字符串base64加密后第2个字符只编码了2bit，此时使用==补充12bit），由于第3/2个字符只编码了4/2bit，所以只有前面被编码的bit是有效的，而后面的bit则在正常情况下默认填0，因此可以将想隐写的数据隐藏在后面的bit中，即：1个=可以隐藏2个bit</code></p>
 <p>将这些bit读出来，拼在一起转换为字符串即可获得flag</p>
