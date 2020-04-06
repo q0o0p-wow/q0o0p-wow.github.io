@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>爬虫入坑 | q0o0p</title><meta name="description" content="爬虫入坑"><meta name="keywords" content=""><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="爬虫入坑"><meta name="twitter:description" content="爬虫入坑"><meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/bgg.jpg"><meta property="og:type" content="article"><meta property="og:title" content="爬虫入坑"><meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/"><meta property="og:site_name" content="q0o0p"><meta property="og:description" content="爬虫入坑"><meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/bgg.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="../../../../https:/cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.css"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/"><link rel="prev" title="爬虫入坑" href="../../../../https:/github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/html/"><link rel="next" title="SQL Server基础命令" href="../../../../https:/github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/10/SQL-server/"><link rel="stylesheet" href="../../../../https:/fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false,
+  ClickShowText: undefined,
+  medium_zoom: 'true',
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"Press","message_next":"to bookmark this page"},"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Light Mode Activated Manually","night_to_day":"Dark Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"}
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><div id="header"> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="../../../../index.html">q0o0p</a></span><i class="fa fa-bars fa-fw toggle-menu pull_right close" aria-hidden="true"></i><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw film"></i><span> Movie</span></a></li></ul></div></div></span><span class="pull_right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lazyload avatar_img" src="../../../../img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">30</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw film"></i><span> Movie</span></a></li></ul></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/bgg.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">爬虫入坑</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2020-03-23<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2020-04-05</time><div class="post-meta-wordcount"><i class="fa fa-eye post-meta__icon" aria-hidden="true">       </i><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>网页特征：<br>url连接地址；<br>协议http、https；<br>使用HTML代码 ;</p>
+<p>网页抓包流程:<br>1、 请求网址得到网页源代码<br>2、 在源代码中解析，获取数据<br>3、 如果网站中包含链接，则继续执行1~2步骤</p>
+<p>.  :除换行外的任意字符</p>
+<ul>
+<li>:前面的字符可以出现任意次<br>() :打印出来的东西<br>?  :出现1次或0次</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">src</td>
+<td align="left">资源路径</td>
+</tr>
+<tr>
+<td align="left">class</td>
+<td align="left">标签的类</td>
+</tr>
+<tr>
+<td align="left">href</td>
+<td align="left">链接地址</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">显示的文本</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">标签的唯一标识</td>
+</tr>
+</tbody></table>
+<hr>
+<p>get请求：<br>网址直接在地址栏里面，其中大部分请求都是get请求</p>
+<p>post请求：<br>请求的时候会隐藏参数一般用于登录、注册或者填写内容提交</p>
+<hr>
+<p>状态码：<br>1** 正在请求<br>2** 请求成功<br>3** 网站的跳转或重定向<br>4** 请求资源不存在<br>5** 服务器内部错误，</p>
+<hr>
+<h4 id="str转bytes叫encode，bytes转str叫decode"><a href="#str转bytes叫encode，bytes转str叫decode" class="headerlink" title="str转bytes叫encode，bytes转str叫decode"></a>str转bytes叫encode，bytes转str叫decode</h4><p>字符串就是unicode字符数组</p>
+<hr>
+<p>进入python环境下下载</p>
+<h5 id="request模块："><a href="#request模块：" class="headerlink" title="request模块："></a>request模块：</h5><p>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/1.png" alt><br>response = requests.get(url,headers = ,params= ,stream=Bool)<br>|属性| 介绍 |<br>|:-|:-|<br>|headers|请求消息的时候附加的消息头|<br>|User-Agent|用户表示|<br>|Referer|来源页|<br>|params|请求附带参数（也可以通过？的方式，直接拼接在url后面）|<br>|stream|是否使用流进行传输，乳如果开启的话，在请求页面的时候，只得到返回消息头，内容部分一部分一部分截下来（用于大文件）|<br>|proxies|设置代理|<br>|timeout|设置超时的时间|<br>|verify|是否强制验证证书|<br>测试ip代理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://httpbin.org/get"</span></span><br><span class="line">proxies=&#123;</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'138.197.169.148:8080'</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(url,proxies=proxies)</span><br><span class="line">print(r.text)</span><br><span class="line">result = r.json()</span><br><span class="line">print(result)</span><br><span class="line">print(type(result))</span><br><span class="line">print(result[<span class="string">'origin'</span>]) <span class="comment">#本机ip</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="response（返回值）模块"><a href="#response（返回值）模块" class="headerlink" title="response（返回值）模块"></a>response（返回值）模块</h5><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">status</td>
+<td align="left">code 返回的状态码</td>
+</tr>
+<tr>
+<td align="left">encoding</td>
+<td align="left">网页的编码</td>
+</tr>
+<tr>
+<td align="left">text</td>
+<td align="left">返回网页的源代码，可以自动解析（可能出现乱码）</td>
+</tr>
+<tr>
+<td align="left">content</td>
+<td align="left">返回内容的字节码，可以使用decode()解析中文</td>
+</tr>
+<tr>
+<td align="left">json()</td>
+<td align="left">把json字符串变成python的数据类型（不同编程语言之间的数据交互）</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment">#json—&gt;python json.loads()  </span></span><br><span class="line"><span class="comment">#python—&gt; json json.dumps()</span></span><br><span class="line">json_str =<span class="string">'''&#123;"name":"dog","age":19&#125;'''</span></span><br><span class="line">print(json_str)</span><br><span class="line">json_python = json.loads(json_str)<span class="comment">#字符串——&gt;字典</span></span><br><span class="line">json_str1 = json.dumps(json_python)</span><br><span class="line">print(type(json_python))</span><br><span class="line">print(type(json_str1))</span><br><span class="line">print(type(json_str))</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">requests.get(url)  <span class="comment">#发起请求</span></span><br><span class="line">print(response.status_code)  <span class="comment">#返回状态码 200  print (response)#&lt;Response [200]&gt;</span></span><br><span class="line">print(response.text)  <span class="comment">#返回网页源代码,可能会乱码</span></span><br><span class="line">print(response.content)  <span class="comment">#源代码的二进制字节码</span></span><br></pre></td></tr></table></figure>
+
+<p>网页中查找charset——&gt;查看编码 或 print(response.encoding)</p>
+<p>用utf-8 解析二进制编码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(response.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>http://httpbin.org/get</code> 用于测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">'http://httpbin.org/get'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"</span></span><br><span class="line">&#125;</span><br><span class="line">response =requests.get(url,headers = headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/2.png" alt></p>
+<p>伪装成浏览器访问，User-Agent 用户代理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>parmas参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url =<span class="string">"https://q0o0p.top/"</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">12</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url,params=params)</span><br><span class="line">print(response.text) <span class="comment">#相当于https://q0o0p.top/?id=12</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="爪巴视频"><a href="#爪巴视频" class="headerlink" title="爪巴视频"></a>爪巴视频</h3><p>处理视频使用流(stream)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">url =<span class="string">"  "</span>   <span class="comment">#</span></span><br><span class="line">response = requests.get(url,stream = <span class="literal">True</span>)  <span class="comment">#使用流</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./data/xxx.mp4'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> file:  <span class="comment">#保存到当前目录下的data文件夹,'wb'格式</span></span><br><span class="line">    <span class="comment">#for j in response.iter_content(1024*10):  #一小段一小段的读取</span></span><br><span class="line">        <span class="comment">#file.write(j)</span></span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+<h3 id="爪巴图片"><a href="#爪巴图片" class="headerlink" title="爪巴图片"></a>爪巴图片</h3><ol>
+<li>没有反爬虫的(有些图片url缺少http——&gt;简单反爬虫)<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">'http://i1.hdslb.com/bfs/archive/cd72ee2b75ad5827cc48c554c800d4dbb9d355b6.jpg'</span></span><br><span class="line">response = requests.get(url,headers=headers)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./img/1.jpg'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> file:  <span class="comment">#'w':写，'b'：二进制</span></span><br><span class="line"></span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="爪巴HTML"><a href="#爪巴HTML" class="headerlink" title="爪巴HTML"></a>爪巴HTML</h3><p>注意有时候要加 <code>encoding=&quot;utf-8&quot;</code><br>不加会报错UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\xa0’ in position 50189: illegal multibyte sequence</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">'https://www.bilibili.com/video/BV1VW411f7UV/?spm_id_from=333.788.videocard.9'</span></span><br><span class="line">response = requests.get(url,headers= headers)</span><br><span class="line">html = response.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./img/index.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(html)</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="../../../../https:/github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="null">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async></script></div></div><div class="post-reward"><a class="reward-button"><i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="../html/"><img class="prev_cover" src="/img/bgg.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Previous Post</div><div class="prev_info"><span>爬虫入坑</span></div></a></div><div class="next-post pull_right"><a href="../../10/SQL-server/"><img class="next_cover" src="/img/bgg.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>SQL Server基础命令</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> Comment</span></div><div id="disqus_thread"></div><script>var unused = null;
+var disqus_config = function () {
+  this.page.url = 'https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/';
+  this.page.identifier = '2020/03/23/web_crawler/';
+  this.page.title = '爬虫入坑';
+}
+var d = document, s = d.createElement('script');
+s.src = "https://" + '' +".disqus.com/embed.js";
+s.setAttribute('data-timestamp', '' + +new Date());
+(d.head || d.body).appendChild(s);</script></div></div></div><footer id="footer" style="background-image: url(/img/bgg.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2020 By q0o0p</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="darkmode fa fa-sun-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="Scroll to comment"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="../../../../https:/cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="../../../../js/third-party/canvas-nest.js"></script><script async src="../../../../busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="../../../../js/third-party/click_heart.js"></script></body></html><script src="/live2d-widget/autoload.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">

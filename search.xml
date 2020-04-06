@@ -1,17 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>常见的加密算法及Python解码</title>
+    <url>/2020/04/06/encryption-algorithm/</url>
+    <content><![CDATA[<h3 id="Base64加密方式-可逆"><a href="#Base64加密方式-可逆" class="headerlink" title="Base64加密方式(可逆)"></a>Base64加密方式(可逆)</h3><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>字符包括字母A-Z/a-z/数组0-9/ 加号’+’斜杠’/’ 这样共有62个字符</p>
+<h5 id="前端加密-解密代码："><a href="#前端加密-解密代码：" class="headerlink" title="前端加密/解密代码："></a>前端加密/解密代码：</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/base64.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> str = b.encode(<span class="string">"admin:admin"</span>);       <span class="comment">//加密</span></span><br><span class="line"><span class="keyword">var</span> str1 = b.decode(str);       <span class="comment">//解密</span></span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br><span class="line"><span class="built_in">console</span>.log(str1);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="md5加密"><a href="#md5加密" class="headerlink" title="md5加密"></a>md5加密</h3><p>共有6中加密方法:hex_md5(s), b64_md5(s), str_md5(s), hex_hmac_md5(key, data), b64_hmac_md5(key, data), str_hmac_md5(key, data)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/md5.js"</span> type=<span class="string">"text/javascript"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> pwd = hex_md5(<span class="string">"Victor"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(pwd);</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h3 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/jsencrypt.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"密码"</span>;</span><br><span class="line"><span class="comment">// 公钥</span></span><br><span class="line"><span class="keyword">var</span> publicKey = <span class="string">"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfp4T5UK76SfSvn1wr4+PyStkHWONLVITZp5JLkFkHpiERchwShET+WVlLsbbgyt7Yt/boMoxr+XTD2NXd1gPvq11OU3dNYLE5hL2j8BCBw8EswkCbP+GgYdGF3FRw4eGURA4fcSO44IKuWtmtSyw7y1OMqzMUb6PROXrMFbrntQIDAQAB"</span>;</span><br><span class="line"><span class="comment">// 私钥</span></span><br><span class="line"><span class="keyword">var</span> privateKey = <span class="string">"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJ+nhPlQrvpJ9K+fXCvj4/JK2QdY40tUhNmnkkuQWQemIRFyHBKERP5ZWUuxtuDK3ti39ugyjGv5dMPY1d3WA++rXU5Td01gsTmEvaPwEIHDwSzCQJs/4aBh0YXcVHDh4ZREDh9xI7jggq5a2a1LLDvLU4yrMxRvo9E5eswVuue1AgMBAAECgYBBGEtmX9hIIplKdf5dwtgw9QWSMlLSZw6Xs/Q5LQyvyrOW6mC5yAZdck6vRzFabDz6Pd/FAr8wUxChvapNfbIyhCsyAuqjVWV/aGDhaauQvwm3MrZ33jnMxI1z9UXPHTzWrYOltv/cKVqvDTKzEokDoTzEVLQClaYcEVMwhRrpYQJBANR48h9o1s7y0sAOoVBo5ktGZhb6gHtwNJ4Yw7Aey2bAWjgU4PevUq985+jBWhdAj81dZ0lMwARBIcYzyo0RLMkCQQDAXIup+fViw0BD+gl36kOo5RkTgz3aoALJsDBLGWi2J9QY9i0UZO9LsjNlYlTldKRzJWkhjdAdxuZe+8Mr8tWNAkB39HB92yqrW9wwIhJg21hpVy17+6FeD1MljsWsQTaEpERLNT5tl8YO3W3wsniyd/i38OvHLlWaEUuIIuVQD0pBAkAFXk/ThZNQl0xi2UaMXzBWNVaW0dHXGSIayN0AK4xdkQz9SVmGuS5oeWevy6e84513TTL66b9GJXfmbLZMsrE9AkAXuppwZW4I/xWZ2RaIsKqyyYYJUPbZ9HT3iO6FSUVPskzaOIPgU9sir+UcvJfWgXDWQ2F/4uUogB2ZS45YcFM8"</span>;</span><br><span class="line"><span class="comment">// 加密</span></span><br><span class="line"><span class="keyword">var</span> encrypt = <span class="keyword">new</span> JSEncrypt();</span><br><span class="line">encrypt.setPublicKey(publicKey);</span><br><span class="line"><span class="keyword">var</span> encryptStr = encrypt.encrypt(str);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"加密后："</span> + encryptStr);</span><br><span class="line"><span class="comment">// 解密</span></span><br><span class="line"><span class="keyword">var</span> decrypt = <span class="keyword">new</span> JSEncrypt();</span><br><span class="line">decrypt.setPrivateKey(privateKey);</span><br><span class="line"><span class="keyword">var</span> decryptStr = decrypt.decrypt(encryptStr);</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">"解密后："</span> + decryptStr);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h3 id="sha1加密"><a href="#sha1加密" class="headerlink" title="sha1加密"></a>sha1加密</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/sha1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> sha = hex_sha1(<span class="string">'mima123465'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sha);</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
     <title>爬虫入坑</title>
     <url>/2020/03/23/html/</url>
     <content><![CDATA[<p>网页特征： url连接地址；协议http、https；使用HTML代码</p>
 <p>网页抓包流程:<br>1、 请求网址得到网页源代码<br>2、 在源代码中解析，获取数据<br>3、 如果网站中包含链接，则继续执行1~2步骤</p>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">src</td>
+<td align="left">资源路径</td>
+</tr>
+<tr>
+<td align="left">class</td>
+<td align="left">标签的类</td>
+</tr>
+<tr>
+<td align="left">href</td>
+<td align="left">链接地址</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">显示的文本</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">标签的唯一标识</td>
+</tr>
+</tbody></table>
+<hr>
 <p>get请求：<br>网址直接在地址栏里面，其中大部分请求都是get请求</p>
 <p>post请求：<br>请求的时候会隐藏参数一般用于登录、注册或者填写内容提交</p>
 <hr>
 <p>状态码：<br>1** 正在请求<br>2** 请求成功<br>3** 网站的跳转或重定向<br>4** 请求资源不存在<br>5** 服务器内部错误，</p>
+<hr>
 <p>进入python环境下下载</p>
 <p>request模块：<br>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/html/1.png" alt></p>
-<img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/html/03/23/html/1.png" class title="This is an image">
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">requests.get(url)  #发起请求</span><br><span class="line">print(response.status_code)  #返回状态码 200  print (response)#&lt;Response [200]&gt;</span><br><span class="line">print(response.text)  #返回网页源代码,可能会乱码</span><br><span class="line">print(response.content)  #源代码的二进制字节码</span><br></pre></td></tr></table></figure>
 
 <p>网页中查找charset——&gt;查看编码 或 print(response.encoding)</p>
@@ -26,6 +75,132 @@
 
 <p>parmas参数</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D;&quot;https:&#x2F;&#x2F;q0o0p.top&#x2F;&quot;</span><br><span class="line">params &#x3D; &#123;</span><br><span class="line">    &quot;id&quot;:12</span><br><span class="line">&#125;</span><br><span class="line">response &#x3D; requests.get(url,params&#x3D;params)</span><br><span class="line">print(response.text) #相当于https:&#x2F;&#x2F;q0o0p.top&#x2F;?id&#x3D;12</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="爪巴视频"><a href="#爪巴视频" class="headerlink" title="爪巴视频"></a>爪巴视频</h3><p>处理视频使用流(stream)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D;&quot;  &quot;   #</span><br><span class="line">response &#x3D; requests.get(url,stream &#x3D; True)  #使用流</span><br><span class="line">with open(&#39;.&#x2F;data&#x2F;xxx.mp4&#39;,&#39;wb&#39;) as file:  #保存到当前目录下的data文件夹,&#39;wb&#39;格式</span><br><span class="line">    #for j in response.iter_content(1024*10):  #一小段一小段的读取</span><br><span class="line">        #file.write(j)</span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+<h3 id="爪巴图片"><a href="#爪巴图片" class="headerlink" title="爪巴图片"></a>爪巴图片</h3><ol>
+<li>没有反爬虫的(有些图片url缺少http——&gt;简单反爬虫)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;i1.hdslb.com&#x2F;bfs&#x2F;archive&#x2F;cd72ee2b75ad5827cc48c554c800d4dbb9d355b6.jpg&#39;</span><br><span class="line">response &#x3D; requests.get(url,headers&#x3D;headers)</span><br><span class="line">with open(&#39;.&#x2F;img&#x2F;1.jpg&#39;,&#39;wb&#39;) as file:  #&#39;w&#39;:写，&#39;b&#39;：二进制</span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="爪巴HTML"><a href="#爪巴HTML" class="headerlink" title="爪巴HTML"></a>爪巴HTML</h3><p>注意有时候要加 <code>encoding=&quot;utf-8&quot;</code><br>不加会报错UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\xa0’ in position 50189: illegal multibyte sequence</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1VW411f7UV&#x2F;?spm_id_from&#x3D;333.788.videocard.9&#39;</span><br><span class="line">response &#x3D; requests.get(url,headers&#x3D; headers)</span><br><span class="line">html &#x3D; response.content.decode(&#39;utf-8&#39;)</span><br><span class="line">with open(&#39;.&#x2F;img&#x2F;index.html&#39;,&#39;w&#39;,encoding&#x3D;&quot;utf-8&quot;) as file:</span><br><span class="line">    file.write(html)</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>爬虫入坑</title>
+    <url>/2020/03/23/web_crawler/</url>
+    <content><![CDATA[<p>网页特征：<br>url连接地址；<br>协议http、https；<br>使用HTML代码 ;</p>
+<p>网页抓包流程:<br>1、 请求网址得到网页源代码<br>2、 在源代码中解析，获取数据<br>3、 如果网站中包含链接，则继续执行1~2步骤</p>
+<p>.  :除换行外的任意字符</p>
+<ul>
+<li>:前面的字符可以出现任意次<br>() :打印出来的东西<br>?  :出现1次或0次</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">src</td>
+<td align="left">资源路径</td>
+</tr>
+<tr>
+<td align="left">class</td>
+<td align="left">标签的类</td>
+</tr>
+<tr>
+<td align="left">href</td>
+<td align="left">链接地址</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">显示的文本</td>
+</tr>
+<tr>
+<td align="left">id</td>
+<td align="left">标签的唯一标识</td>
+</tr>
+</tbody></table>
+<hr>
+<p>get请求：<br>网址直接在地址栏里面，其中大部分请求都是get请求</p>
+<p>post请求：<br>请求的时候会隐藏参数一般用于登录、注册或者填写内容提交</p>
+<hr>
+<p>状态码：<br>1** 正在请求<br>2** 请求成功<br>3** 网站的跳转或重定向<br>4** 请求资源不存在<br>5** 服务器内部错误，</p>
+<hr>
+<h4 id="str转bytes叫encode，bytes转str叫decode"><a href="#str转bytes叫encode，bytes转str叫decode" class="headerlink" title="str转bytes叫encode，bytes转str叫decode"></a>str转bytes叫encode，bytes转str叫decode</h4><p>字符串就是unicode字符数组</p>
+<hr>
+<p>进入python环境下下载</p>
+<h5 id="request模块："><a href="#request模块：" class="headerlink" title="request模块："></a>request模块：</h5><p>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/1.png" alt><br>response = requests.get(url,headers = ,params= ,stream=Bool)<br>|属性| 介绍 |<br>|:-|:-|<br>|headers|请求消息的时候附加的消息头|<br>|User-Agent|用户表示|<br>|Referer|来源页|<br>|params|请求附带参数（也可以通过？的方式，直接拼接在url后面）|<br>|stream|是否使用流进行传输，乳如果开启的话，在请求页面的时候，只得到返回消息头，内容部分一部分一部分截下来（用于大文件）|<br>|proxies|设置代理|<br>|timeout|设置超时的时间|<br>|verify|是否强制验证证书|<br>测试ip代理：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://httpbin.org/get"</span></span><br><span class="line">proxies=&#123;</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'138.197.169.148:8080'</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(url,proxies=proxies)</span><br><span class="line">print(r.text)</span><br><span class="line">result = r.json()</span><br><span class="line">print(result)</span><br><span class="line">print(type(result))</span><br><span class="line">print(result[<span class="string">'origin'</span>]) <span class="comment">#本机ip</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="response（返回值）模块"><a href="#response（返回值）模块" class="headerlink" title="response（返回值）模块"></a>response（返回值）模块</h5><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">status</td>
+<td align="left">code 返回的状态码</td>
+</tr>
+<tr>
+<td align="left">encoding</td>
+<td align="left">网页的编码</td>
+</tr>
+<tr>
+<td align="left">text</td>
+<td align="left">返回网页的源代码，可以自动解析（可能出现乱码）</td>
+</tr>
+<tr>
+<td align="left">content</td>
+<td align="left">返回内容的字节码，可以使用decode()解析中文</td>
+</tr>
+<tr>
+<td align="left">json()</td>
+<td align="left">把json字符串变成python的数据类型（不同编程语言之间的数据交互）</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment">#json—&gt;python json.loads()  </span></span><br><span class="line"><span class="comment">#python—&gt; json json.dumps()</span></span><br><span class="line">json_str =<span class="string">'''&#123;"name":"dog","age":19&#125;'''</span></span><br><span class="line">print(json_str)</span><br><span class="line">json_python = json.loads(json_str)<span class="comment">#字符串——&gt;字典</span></span><br><span class="line">json_str1 = json.dumps(json_python)</span><br><span class="line">print(type(json_python))</span><br><span class="line">print(type(json_str1))</span><br><span class="line">print(type(json_str))</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">requests.get(url)  <span class="comment">#发起请求</span></span><br><span class="line">print(response.status_code)  <span class="comment">#返回状态码 200  print (response)#&lt;Response [200]&gt;</span></span><br><span class="line">print(response.text)  <span class="comment">#返回网页源代码,可能会乱码</span></span><br><span class="line">print(response.content)  <span class="comment">#源代码的二进制字节码</span></span><br></pre></td></tr></table></figure>
+
+<p>网页中查找charset——&gt;查看编码 或 print(response.encoding)</p>
+<p>用utf-8 解析二进制编码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">print(response.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>http://httpbin.org/get</code> 用于测试</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url = <span class="string">'http://httpbin.org/get'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"</span></span><br><span class="line">&#125;</span><br><span class="line">response =requests.get(url,headers = headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/2.png" alt></p>
+<p>伪装成浏览器访问，User-Agent 用户代理</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>parmas参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url =<span class="string">"https://q0o0p.top/"</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">12</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url,params=params)</span><br><span class="line">print(response.text) <span class="comment">#相当于https://q0o0p.top/?id=12</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="爪巴视频"><a href="#爪巴视频" class="headerlink" title="爪巴视频"></a>爪巴视频</h3><p>处理视频使用流(stream)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url =<span class="string">"  "</span>   <span class="comment">#</span></span><br><span class="line">response = requests.get(url,stream = <span class="literal">True</span>)  <span class="comment">#使用流</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./data/xxx.mp4'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> file:  <span class="comment">#保存到当前目录下的data文件夹,'wb'格式</span></span><br><span class="line">    <span class="comment">#for j in response.iter_content(1024*10):  #一小段一小段的读取</span></span><br><span class="line">        <span class="comment">#file.write(j)</span></span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+<h3 id="爪巴图片"><a href="#爪巴图片" class="headerlink" title="爪巴图片"></a>爪巴图片</h3><ol>
+<li>没有反爬虫的(有些图片url缺少http——&gt;简单反爬虫)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url = <span class="string">'http://i1.hdslb.com/bfs/archive/cd72ee2b75ad5827cc48c554c800d4dbb9d355b6.jpg'</span></span><br><span class="line">response = requests.get(url,headers=headers)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./img/1.jpg'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> file:  <span class="comment">#'w':写，'b'：二进制</span></span><br><span class="line"></span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="爪巴HTML"><a href="#爪巴HTML" class="headerlink" title="爪巴HTML"></a>爪巴HTML</h3><p>注意有时候要加 <code>encoding=&quot;utf-8&quot;</code><br>不加会报错UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\xa0’ in position 50189: illegal multibyte sequence</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url = <span class="string">'https://www.bilibili.com/video/BV1VW411f7UV/?spm_id_from=333.788.videocard.9'</span></span><br><span class="line">response = requests.get(url,headers= headers)</span><br><span class="line">html = response.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'./img/index.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(html)</span><br></pre></td></tr></table></figure>
+
+<hr>
 ]]></content>
   </entry>
   <entry>
@@ -36,21 +211,47 @@
 <p>创建一个表：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create table userinfo01</span><br><span class="line">(ID int primary key not NULL,</span><br><span class="line">name varchar(20) not null,</span><br><span class="line">age int null)</span><br></pre></td></tr></table></figure>
 <p>修改表结构：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table 表</span><br><span class="line"></span><br><span class="line">alter table tableName alter column columnName varchar(4000)  &#x2F;&#x2F;修改类型</span><br><span class="line">alter constraint 主键名 primary key(字段名)  &#x2F;&#x2F;设置主键（主码）</span><br><span class="line">alter constraint 主键名 Foreign Key（属性名）&lt;!-- references course(con) --&gt;&#x2F;&#x2F;定义外码</span><br><span class="line">alter table tableName drop column columnName   &#x2F;&#x2F;删除列</span><br><span class="line"></span><br><span class="line">EXEC  sp_rename &#39;tableName.column1&#39; , &#39;column2&#39;  &#x2F;&#x2F;把表名为tableName的column1列名修改为column2 </span><br><span class="line"></span><br><span class="line">exec sp_rename &#39;表名.字段名&#39;,&#39;更改后的字段名称&#39;,&#39;column&#39;  &#x2F;&#x2F;更改字段名</span><br><span class="line"></span><br><span class="line">alter table 表 add 字段名 字段类型 default null  &#x2F;&#x2F;添加字段名</span><br><span class="line"></span><br><span class="line">drop table table_name[,...n]  &#x2F;&#x2F;删除表</span><br><span class="line">group by having 条件  &#x2F;&#x2F;选列</span><br><span class="line"></span><br><span class="line">select  count(distinct Rno) BorrowSum &#x2F;&#x2F;去除重复值</span><br><span class="line">Rsex enum(&#39;男&#39;,&#39;女&#39;) not null </span><br><span class="line">alter table B表 add constraint 外键名 foreign key(B表中的外键字段)  references A表(A表主键）</span><br><span class="line">或者在创建表的时候定义：</span><br><span class="line">B表外键字段 数据类型 constraint 外键名 foreign key  references A表(主键) NOT NULL,</span><br></pre></td></tr></table></figure>
-
-<p>填表：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">insert into Student values(201815121,&#39;張三&#39;,&#39;男&#39;,20,&#39;CS&#39;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alter table 表</span><br><span class="line">alter table tableName alter column columnName varchar(4000)  &#x2F;&#x2F;修改类型</span><br><span class="line"></span><br><span class="line">alter constraint 主键名 primary key(字段名)  &#x2F;&#x2F;设置主键（主码）</span><br><span class="line"></span><br><span class="line">alter constraint 主键名 Foreign Key（属性名）&lt;!-- references course(con) --&gt;&#x2F;&#x2F;定义外码</span><br><span class="line">alter table tableName drop column columnName   &#x2F;&#x2F;删除列</span><br><span class="line"></span><br><span class="line">EXEC  sp_rename &#39;tableName.column1&#39; , &#39;column2&#39;  &#x2F;&#x2F;把表名为tableName的column1列名修改为column2 </span><br><span class="line"></span><br><span class="line">exec sp_rename &#39;表名.字段名&#39;,&#39;更改后的字段名称&#39;,&#39;column&#39;  &#x2F;&#x2F;更改字段名</span><br><span class="line"></span><br><span class="line">alter table 表 add 字段名 字段类型 default null  &#x2F;&#x2F;添加字段名</span><br><span class="line"></span><br><span class="line">drop table table_name[,...n]  &#x2F;&#x2F;删除表</span><br><span class="line">group by having 条件  &#x2F;&#x2F;选列</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rsex enum(&#39;男&#39;,&#39;女&#39;) not null </span><br><span class="line">alter table B表 add constraint 外键名 foreign key(B表中的外键字段)  references A表(A表主键）</span><br><span class="line">或者在创建表的时候定义：</span><br><span class="line">B表外键字段 数据类型 constraint 外键名 foreign key  references A表(主键) NOT NULL,</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="填表："><a href="#填表：" class="headerlink" title="填表："></a>填表：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">insert into Student values(201815121,&#39;張三&#39;,&#39;男&#39;,20,&#39;CS&#39;);</span><br></pre></td></tr></table></figure>
 
 <p>日期型更改默认值：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">update BR   set  BRborrow&#x3D;null</span><br></pre></td></tr></table></figure>
 
 <p>如果datetime要改int型<br>datetime——&gt;date——&gt;char——&gt;int</p>
-]]></content>
+<hr>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>嵌套查询比连接查询效率更高，尽量用嵌套查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select  count(distinct Rno) BorrowSum &#x2F;&#x2F;去除重复值</span><br><span class="line"></span><br><span class="line">where Sno in(select Sno,from Student ,where Sname&#x3D;&#39;&#39;)</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
-    <title>Python</title>
+    <title>Python有趣的模块库</title>
     <url>/2020/03/09/Python/</url>
-    <content><![CDATA[<p>python基础知识总结的感觉还行，python会用就OK，就懒得总结了<br><a href="https://www.cnblogs.com/liuhuacai/category/1431456.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuhuacai/category/1431456.html</a></p>
+    <content><![CDATA[<p>python基础知识总结的感觉还行，python会用就OK，就懒得总结了<br><a href="https://www.cnblogs.com/liuhuacai/category/1431456.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuhuacai/category/1431456.html</a><br>基础递归：<br><a href="https://www.cnblogs.com/schut/p/10625111.html" target="_blank" rel="noopener">https://www.cnblogs.com/schut/p/10625111.html</a></p>
+<hr>
+<h3 id="pip解决下载速度慢问题"><a href="#pip解决下载速度慢问题" class="headerlink" title="pip解决下载速度慢问题"></a>pip解决下载速度慢问题</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple XXX(包名)</span><br></pre></td></tr></table></figure>
+<p>国内源（新版ubuntu要求使用https源，要注意。）：<br>清华：<a href="https://pypi.tuna.tsinghua.edu.cn/simple（比较常用，亲测速度很快）" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple（比较常用，亲测速度很快）</a><br>阿里云：<a href="http://mirrors.aliyun.com/pypi/simple/" target="_blank" rel="noopener">http://mirrors.aliyun.com/pypi/simple/</a><br>中国科技大学 <a href="https://pypi.mirrors.ustc.edu.cn/simple/" target="_blank" rel="noopener">https://pypi.mirrors.ustc.edu.cn/simple/</a><br>华中理工大学：<a href="http://pypi.hustunique.com/" target="_blank" rel="noopener">http://pypi.hustunique.com/</a><br>山东理工大学：<a href="http://pypi.sdutlinux.org/" target="_blank" rel="noopener">http://pypi.sdutlinux.org/</a><br>豆瓣：<a href="http://pypi.douban.com/simple/" target="_blank" rel="noopener">http://pypi.douban.com/simple/</a></p>
+<hr>
+<h2 id="有趣的模块库"><a href="#有趣的模块库" class="headerlink" title="有趣的模块库"></a>有趣的模块库</h2><h3 id="Selenium"><a href="#Selenium" class="headerlink" title="Selenium"></a>Selenium</h3><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><p>一个用于Web应用程序测试的工具。测试直接运行在浏览器中，就像真正的用户在操作一样。支持的浏览器包括IE（7, 8, 9, 10, 11），Firefox，Safari，Chrome，Opera等。</p>
+<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><p>(1) pip安装selenium模块库：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">win: pip install --upgrade selenium</span><br><span class="line">liunx: pip3 install --upgrade selenium</span><br></pre></td></tr></table></figure>
+
+<p>(2) 安装ChromeDriver(selenium使用Chrome)<br>ChromeDriver: <a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">http://npm.taobao.org/mirrors/chromedriver/</a><br>或 <a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="noopener">http://chromedriver.storage.googleapis.com/index.html</a><br>Firefox：<a href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a></p>
+<p>(3) 将解压后的文件放入合适的位置.<br>win: 将解压后的文件放入配置了环境变量的文件夹, 如python的文件夹.<br>linux: 将解压后的文件移动到/usr/loacl/bin目录中.</p>
+<p>chrome有界面运行：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> werdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">driver = webdriver.Chrome()     <span class="comment"># 创建Chrome对象.</span></span><br><span class="line"><span class="comment"># 操作这个对象.</span></span><br><span class="line">driver.get(<span class="string">'https://www.baidu.com'</span>)     <span class="comment"># get方式访问百度.</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">driver.quit()   <span class="comment"># 使用完, 记得关闭浏览器, 不然chromedriver.exe进程为一直在内存中.</span></span><br></pre></td></tr></table></figure>
+<p>chrome无界面运行：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">    根据chrome浏览器2017年发布的新特性,</span></span><br><span class="line"><span class="string">    需要unix版本的chrome版本高于57,</span></span><br><span class="line"><span class="string">    windows版本的chrome版本高于58,</span></span><br><span class="line"><span class="string">    才能使用无界面运行.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">chrome_opt = Options()      <span class="comment"># 创建参数设置对象.</span></span><br><span class="line">chrome_opt.add_argument(<span class="string">'--headless'</span>)   <span class="comment"># 无界面化.</span></span><br><span class="line">chrome_opt.add_argument(<span class="string">'--disable-gpu'</span>)    <span class="comment"># 配合上面的无界面化.</span></span><br><span class="line">chrome_opt.add_argument(<span class="string">'--window-size=1366,768'</span>)   <span class="comment"># 设置窗口大小, 窗口大小会有影响.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Chrome对象并传入设置信息.</span></span><br><span class="line">driver = webdriver.Chrome(chrome_options=chrome_opt)        </span><br><span class="line"><span class="comment"># 操作这个对象.</span></span><br><span class="line">driver.get(<span class="string">'https://www.baidu.com'</span>)     <span class="comment"># get方式访问百度.</span></span><br><span class="line">time.sleep(<span class="number">2</span>)</span><br><span class="line">print(driver.page_source)       <span class="comment"># 打印加载的page code, 证明(prove) program is right.</span></span><br><span class="line">driver.quit()   <span class="comment"># 使用完, 记得关闭浏览器, 不然chromedriver.exe进程为一直在内存中.</span></span><br></pre></td></tr></table></figure>
+
+<p>Selenium WebDriver API 官方参考：<a href="http://seleniumhq.github.io/selenium/docs/api/py/" target="_blank" rel="noopener">http://seleniumhq.github.io/selenium/docs/api/py/</a><br>具体API文档地址：<a href="https://seleniumhq.github.io/selenium/docs/api/py/api.html" target="_blank" rel="noopener">https://seleniumhq.github.io/selenium/docs/api/py/api.html</a></p>
+<hr>
+<h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2</span><br><span class="line">pip install --upgrad weditor</span><br><span class="line">&#x2F;&#x2F;或者：</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;openatx&#x2F;uiautomator2</span><br><span class="line">pip install pillow</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">start adbd  &#x2F;&#x2F;启动adb</span><br><span class="line">adb devices&#x2F;&#x2F;查看电脑是否连接到手机</span><br><span class="line">python -m weditor&#x2F;&#x2F;启动weditor</span><br></pre></td></tr></table></figure>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/1.png" alt></p>
+<hr>
+<p>参考链接:</p>
+<p>Selenium: <a href="https://blog.csdn.net/One_of_them/article/details/82560880" target="_blank" rel="noopener">https://blog.csdn.net/One_of_them/article/details/82560880</a><br>超详细版：<a href="https://blog.csdn.net/lintyleo/article/details/79361182?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">https://blog.csdn.net/lintyleo/article/details/79361182?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2</a></p>
+<p>uiautomator2:<br><a href="https://testerhome.com/topics/12521" target="_blank" rel="noopener">https://testerhome.com/topics/12521</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -101,18 +302,53 @@
     <title>Applet of WeChat(微信小程序常见问题)</title>
     <url>/2020/02/29/applet/</url>
     <content><![CDATA[<p>微信小程序官网：<br><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE</a></p>
+<p>微信公众号开发：<br><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Configuring_user_notes.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/User_Management/Configuring_user_notes.html</a></p>
 <hr>
 <h3 id="1-app-json文件解析错误"><a href="#1-app-json文件解析错误" class="headerlink" title="1. app.json文件解析错误"></a>1. app.json文件解析错误</h3><p>1.png</p>
 <hr>
-<h2 id="js-脚本文件"><a href="#js-脚本文件" class="headerlink" title=".js 脚本文件"></a>.js 脚本文件</h2><h2 id="json-配置文件"><a href="#json-配置文件" class="headerlink" title=".json 配置文件"></a>.json 配置文件</h2><h2 id="wmxl视图文件"><a href="#wmxl视图文件" class="headerlink" title=".wmxl视图文件"></a>.wmxl视图文件</h2><p><text> </text> 表示文本，只能包含存文本，其他会被忽略（例如：链接）<br>bindtap：设置事件处理函数<br>hidden:控制元素是否隐藏（”true” or “false”）<br>data-:自定义的组件（data-user-name=”user”），事件触发的时候封装在事件对象中传递给对应的事件处理函数进行处理</p>
-<p><image></image> 表示图片<br>src:””  :指定属性，加载和显示网页上任意一张图片</p>
+<h2 id="js-脚本文件"><a href="#js-脚本文件" class="headerlink" title=".js 脚本文件"></a>.js 脚本文件</h2><p>console.log()    //函数中打印日志记录</p>
+<hr>
+<h2 id="json-配置文件"><a href="#json-配置文件" class="headerlink" title=".json 配置文件"></a>.json 配置文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;disableScroll&quot;: false   &#x2F;&#x2F;不允许滑块滑动</span><br><span class="line">&quot;enablePullDownRefresh&quot;: true &#x2F;&#x2F;下拉刷新</span><br></pre></td></tr></table></figure>
+
+<h2 id="wmxl视图文件"><a href="#wmxl视图文件" class="headerlink" title=".wmxl视图文件"></a>.wmxl视图文件</h2><p><text> </text> 表示文本，只能包含存文本，其他会被忽略（例如：链接）<br>bindtap：设置事件处理函数<br>hidden:控制元素是否隐藏（”true” or “false”）<br>data-:自定义的组件（data-user-name=”user”），事件触发的时候封装在事件对象中传递给对应的事件处理函数进行处理</p>
+<p><image></image> 表示图片<br>src:””  :指定属性，加载和显示网页上任意一张图片<br>mode:”” :图片裁剪，缩放模式<br>|:-|:-|<br>|aspectFit|保持图片宽高比例完全缩放，长边完全显示  |<br>|aspectFill|保持图片宽高比例完全缩放，短边完全显示，长边被截取|</p>
 <div></div> 容器元素，在wmxl中类似的用<view> </view>（封装）
 
 <p>height: 100vh;  //页面视口的100%<br>display: block  //分块<br>text-align: center;//居中</p>
 <p>iphone6 : px:rpx =1:2<br>open-type=”redirect”(不可返回的)  “navigate”（可返回的）</p>
-<h2 id="wxss-样式表文件"><a href="#wxss-样式表文件" class="headerlink" title=".wxss 样式表文件"></a>.wxss 样式表文件</h2><p> flex-direction: column;  /<em>从上往下</em>/<br>  justify-content: space-around; /<em>垂直方向上均匀分布</em>/<br>  align-items: center; //居中</p>
 <hr>
-]]></content>
+<h2 id="wxss-样式表文件"><a href="#wxss-样式表文件" class="headerlink" title=".wxss 样式表文件"></a>.wxss 样式表文件</h2><p> flex-direction: column;  /<em>从上往下</em>/<br>  justify-content: space-around; /<em>垂直方向上均匀分布</em>/<br>  align-items: center; //居中<br>  font-size: 100rpx;  //字体大小<br>  height: 100vh;  //宽度vw<br>  animation: wave 10s linear infinite;//动画标签<br>设置两水波运动的效果</p>
+<pre><code>  .containter{
+  background: rgb(149, 247, 242); //背景颜色
+  height: 100vh;  //高度
+}
+.wave{
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  opacity: 0.725;
+  height: 260rpx;
+  width: 2250rpx;
+  animation: wave 10s linear infinite;  
+}
+
+.wave-bg{
+  z-index: 1;
+  animation: wave-bg 10.25s linear infinite;
+}
+@keyframes wave{
+  from{transform: translate3d(125rpx,0,0)}
+  to{transform: translate3d(1125rpx,0,0)}
+}
+
+@keyframes wave-bg{
+  from{transform: translate3d(375rpx,0,0)}
+  to{transform: translate3d(1375rpx,0,0)}
+
+}
+
+---</code></pre>]]></content>
   </entry>
   <entry>
     <title>DirBuster</title>
@@ -151,9 +387,7 @@
   <entry>
     <title>MISC总结</title>
     <url>/2020/02/14/Misc/</url>
-    <content><![CDATA[<h3 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h3><p><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" class="lazyload"></p>
-
-
+    <content><![CDATA[<h3 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h3><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" alt></p>
 <h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>base64使用 a-zA-Z0-9+/ 等64个字符来替换掉所有字符，同时使用 = 来替换掉空格,<br>6bit编为1个字符，而1个字节是8bit</p>
 <h5 id="base64可能会出现3种情况："><a href="#base64可能会出现3种情况：" class="headerlink" title="base64可能会出现3种情况："></a>base64可能会出现3种情况：</h5><p><code>1. 刚好能编完（例如3个字节的字符串base64加密后有4个字符）</code><br><code>2.剩余2bit（例如2个字节的字符串base64加密后第3个字符只编码了4bit，此时使用=补充6bit）</code><br><code>3. 剩余4bit（例如1个字节的字符串base64加密后第2个字符只编码了2bit，此时使用==补充12bit），由于第3/2个字符只编码了4/2bit，所以只有前面被编码的bit是有效的，而后面的bit则在正常情况下默认填0，因此可以将想隐写的数据隐藏在后面的bit中，即：1个=可以隐藏2个bit</code></p>
 <p>将这些bit读出来，拼在一起转换为字符串即可获得flag</p>
@@ -181,17 +415,22 @@
 <p>看雪（<a href="https://bbs.pediy.com/）" target="_blank" rel="noopener">https://bbs.pediy.com/）</a><br>安全客（<a href="https://www.anquanke.com）" target="_blank" rel="noopener">https://www.anquanke.com）</a><br>freebuf（<a href="https://www.freebuf.com/）" target="_blank" rel="noopener">https://www.freebuf.com/）</a><br>安全牛（<a href="https://www.aqniu.com/）" target="_blank" rel="noopener">https://www.aqniu.com/）</a><br>安全内参（<a href="https://www.secrss.com/）" target="_blank" rel="noopener">https://www.secrss.com/）</a><br>绿盟（<a href="http://www.nsfocus.com.cn/）" target="_blank" rel="noopener">http://www.nsfocus.com.cn/）</a><br>先知社区（<a href="https://xz.aliyun.com/）" target="_blank" rel="noopener">https://xz.aliyun.com/）</a></p>
 <hr>
 <p><a href="https://blog.csdn.net/Eastmount/article/details/97784774" target="_blank" rel="noopener">https://blog.csdn.net/Eastmount/article/details/97784774</a></p>
-<h3 id="1-index-php"><a href="#1-index-php" class="headerlink" title="1. index.php"></a>1. index.php</h3><p>注意查看url<br>将url改为 index.php，会自动跳转到1.php，<br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/1.png" class="lazyload"></p>
+<h3 id="1-index-php"><a href="#1-index-php" class="headerlink" title="1. index.php"></a>1. index.php</h3><p>注意查看url<br>将url改为 index.php，会自动跳转到1.php，<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/1.png" alt></p>
+
+<img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/02/14/web/1.png" class>
+
 <hr>
 <p>###2. 利用PHP伪协议读取源码：<br>index.php?page=php://filter/convert.base64-encode/resource=index.php</p>
 <hr>
 <h3 id="扫目录"><a href="#扫目录" class="headerlink" title="扫目录"></a>扫目录</h3><p>后台扫目录工具</p>
 <ol>
 <li>windows可以用国产的御剑</li>
-<li>kali中扫目录工具<a href="DirBuster.md">Dirbuster</a><br><img alt data-src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/2.png" class="lazyload"></li>
+<li>kali中扫目录工具<a href="DirBuster.md">Dirbuster</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/2.png" alt></li>
 <li>dirmap [介绍：] (_<a href="https://www.freebuf.com/sectool/200890.html" target="_blank" rel="noopener">https://www.freebuf.com/sectool/200890.html</a>)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;H4ckForJob&#x2F;dirmap.git &amp;&amp; cd dirmap &amp;&amp; python3 -m pip install -r requirement.txt  &#x2F;&#x2F;环境准备</span><br><span class="line"></span><br><span class="line">python3 dirmap.py -iU https:&#x2F;&#x2F;target.com -lcf &#x2F;&#x2F;单个目标</span><br><span class="line"></span><br><span class="line">python3 dirmap.py -iF urls.txt -lcf  &#x2F;&#x2F;多个目标</span><br></pre></td></tr></table></figure>
 结果将自动保存在项目根目录下的output文件夹中，每一个目标生成一个txt，命名格式为目标域名.txt。</li>
 </ol>
+<hr>
+<p>关于Python：<br>Python API：<br><a href="https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro" target="_blank" rel="noopener">https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro</a>__</p>
 ]]></content>
   </entry>
   <entry>
