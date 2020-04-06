@@ -3,91 +3,38 @@
   <entry>
     <title>常见的加密算法及Python解码</title>
     <url>/2020/04/06/encryption-algorithm/</url>
-    <content><![CDATA[<h3 id="Base64加密方式-可逆"><a href="#Base64加密方式-可逆" class="headerlink" title="Base64加密方式(可逆)"></a>Base64加密方式(可逆)</h3><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>字符包括字母A-Z/a-z/数组0-9/ 加号’+’斜杠’/’ 这样共有62个字符</p>
+    <content><![CDATA[<h3 id="Base64加密方式-可逆"><a href="#Base64加密方式-可逆" class="headerlink" title="Base64加密方式(可逆)"></a>Base64加密方式(可逆)</h3><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>字符包括字母A-Z/a-z/数组0-9/ 加号’+’斜杠’/’ 这样共有62个字符<br>Base64要求把每三个8Bit的字节转换为四个6Bit的字节（3<em>8 = 4</em>6 = 24），然后把6Bit再添两位高位0，组成四个8Bit的字节，也就是说，转换后的字符串理论上将要比原来的长1/3。</p>
+<p>Base64编码遵循以下规则：<br>①.把3个字符变成4个字符。<br>②每76个字符加一个换行符。<br>③.最后的结束符也要处理。 </p>
+<h5 id="原理示例："><a href="#原理示例：" class="headerlink" title="原理示例："></a>原理示例：</h5><p>3<em>8 = 4</em>6<br>内存一个字节占8位<br>转前：                       s        1        3<br>先转ASCII:                  115      49        51<br>再转二进制：               01110011 00110001 00110011<br>3*8共24位——&gt;6位一组分4组：   011100   110011   000100   110011<br>每组高位补两个0：          00011100 00110011 00000100 00110011<br>得到四个整数值：              28       51       4         51<br>对照ASCII转换：               c        z        E         z<br>（计算机以字节为最小单位（1 byte= 8 位），每6位不到8位，高位补0）</p>
 <h5 id="前端加密-解密代码："><a href="#前端加密-解密代码：" class="headerlink" title="前端加密/解密代码："></a>前端加密/解密代码：</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/base64.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> str = b.encode(<span class="string">"admin:admin"</span>);       <span class="comment">//加密</span></span><br><span class="line"><span class="keyword">var</span> str1 = b.decode(str);       <span class="comment">//解密</span></span><br><span class="line"><span class="built_in">console</span>.log(str);</span><br><span class="line"><span class="built_in">console</span>.log(str1);</span><br></pre></td></tr></table></figure>
+
+
 <hr>
-<h3 id="md5加密"><a href="#md5加密" class="headerlink" title="md5加密"></a>md5加密</h3><p>共有6中加密方法:hex_md5(s), b64_md5(s), str_md5(s), hex_hmac_md5(key, data), b64_hmac_md5(key, data), str_hmac_md5(key, data)</p>
+<h3 id="Rot13加密"><a href="#Rot13加密" class="headerlink" title="Rot13加密"></a>Rot13加密</h3><h5 id="特点"><a href="#特点" class="headerlink" title="特点:"></a>特点:</h5><p>一种简易的替换式密码。两个连续的ROT13应用函式会回复原始文字（对等加密）<br>对任何字元x：ROT13(ROT13(x))=ROT26(x)=x。</p>
+<p>A换成N、B换成O、依此类推到M换成Z，然后串行反转：N换成A、O换成B、最后Z换成M（如图所示）。只有这些出现在英文字母里的字符受影响；数字、符号、空白字符以及所有其他字符都不变。替换后的字母大小写保持不变。</p>
+<p>方法一：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">a = input(<span class="string">'请输入：'</span>)   <span class="comment">#rot13解密（rot13二次加密以后得到源码）</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_rot13</span><span class="params">()</span>:</span></span><br><span class="line">    lookup_tuple = &#123;<span class="string">'A'</span>:<span class="string">'N'</span>,<span class="string">'B'</span>:<span class="string">'O'</span>,<span class="string">'C'</span>:<span class="string">'P'</span>,<span class="string">'D'</span>:<span class="string">'Q'</span>,<span class="string">'E'</span>:<span class="string">'R'</span>,<span class="string">'F'</span>:<span class="string">'S'</span>,<span class="string">'G'</span>:<span class="string">'T'</span>,<span class="string">'H'</span>:<span class="string">'U'</span>,<span class="string">'I'</span>:<span class="string">'V'</span>,<span class="string">'J'</span>:<span class="string">'W'</span>,<span class="string">'K'</span>:<span class="string">'X'</span>,<span class="string">'L'</span>:<span class="string">'Y'</span>,<span class="string">'M'</span>:<span class="string">'Z'</span>,<span class="string">'N'</span>:<span class="string">'A'</span>,<span class="string">'O'</span>:<span class="string">'B'</span>,<span class="string">'P'</span>:<span class="string">'C'</span>,<span class="string">'Q'</span>:<span class="string">'D'</span>,<span class="string">'R'</span>:<span class="string">'E'</span>,<span class="string">'S'</span>:<span class="string">'F'</span>,<span class="string">'T'</span>:<span class="string">'G'</span>,<span class="string">'U'</span>:<span class="string">'H'</span>,<span class="string">'V'</span>:<span class="string">'I'</span>,<span class="string">'W'</span>:<span class="string">'J'</span>,<span class="string">'X'</span>:<span class="string">'K'</span>,<span class="string">'Y'</span>:<span class="string">'L'</span>,<span class="string">'Z'</span>:<span class="string">'M'</span>,<span class="string">'a'</span>:<span class="string">'n'</span>,<span class="string">'b'</span>:<span class="string">'o'</span>,<span class="string">'c'</span>:<span class="string">'p'</span>,<span class="string">'d'</span>:<span class="string">'q'</span>,<span class="string">'e'</span>:<span class="string">'r'</span>,<span class="string">'f'</span>:<span class="string">'s'</span>,<span class="string">'g'</span>:<span class="string">'t'</span>,<span class="string">'h'</span>:<span class="string">'u'</span>,<span class="string">'i'</span>:<span class="string">'v'</span>,<span class="string">'j'</span>:<span class="string">'w'</span>,<span class="string">'k'</span>:<span class="string">'x'</span>,<span class="string">'l'</span>:<span class="string">'y'</span>,<span class="string">'m'</span>:<span class="string">'z'</span>,<span class="string">'n'</span>:<span class="string">'a'</span>,<span class="string">'o'</span>:<span class="string">'b'</span>,<span class="string">'p'</span>:<span class="string">'c'</span>,<span class="string">'q'</span>:<span class="string">'d'</span>,<span class="string">'r'</span>:<span class="string">'e'</span>,<span class="string">'s'</span>:<span class="string">'f'</span>,<span class="string">'t'</span>:<span class="string">'g'</span>,<span class="string">'u'</span>:<span class="string">'h'</span>,<span class="string">'v'</span>:<span class="string">'i'</span>,<span class="string">'w'</span>:<span class="string">'j'</span>,<span class="string">'x'</span>:<span class="string">'k'</span>,<span class="string">'y'</span>:<span class="string">'l'</span>,<span class="string">'z'</span>:<span class="string">'m'</span>&#125;</span><br><span class="line">    c = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> lookup_tuple:</span><br><span class="line">            b = i</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            b = lookup_tuple[i]</span><br><span class="line">        c = c + b</span><br><span class="line">    print(c)</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt_rot13</span><span class="params">()</span>:</span></span><br><span class="line">    src=input(<span class="string">"输入加密字符串:"</span>)</span><br><span class="line">    result = <span class="string">""</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> src:</span><br><span class="line">        <span class="keyword">if</span>(x.isalpha()):</span><br><span class="line">            <span class="keyword">if</span>(x.isupper()):</span><br><span class="line">                x = ord(x)+<span class="number">13</span></span><br><span class="line">                <span class="keyword">if</span>(x&gt;<span class="number">90</span>):</span><br><span class="line">                    x=x<span class="number">-26</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x = ord(x)+<span class="number">13</span></span><br><span class="line">                <span class="keyword">if</span>(x&gt;<span class="number">122</span>):</span><br><span class="line">                    x=x<span class="number">-26</span></span><br><span class="line">            result = result + chr(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result = result + x</span><br><span class="line">    print(result)</span><br><span class="line">encrypt_rot13()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import string</span><br><span class="line">result&#x3D;[]</span><br><span class="line">upperCase&#x3D;string.ascii_uppercase</span><br><span class="line">lowerCase&#x3D;string.ascii_lowercase</span><br><span class="line">upperDict&#x3D;&#123;&#125;</span><br><span class="line">lowerDict&#x3D;&#123;&#125;</span><br><span class="line">inputStr&#x3D;input(&quot;请输入你要加密或解密的字符串&quot;)</span><br><span class="line">while True:</span><br><span class="line">    print(&quot;请确认%s是否为你想要输入的字符串,如果正确请输入y,否则输入n&quot;%(inputStr))</span><br><span class="line">    flag&#x3D;input(&quot;请输入你的确认结果&quot;)</span><br><span class="line">    if (flag&#x3D;&#x3D;&#39;n&#39;) or (flag&#x3D;&#x3D;&#39;N&#39;):</span><br><span class="line">        inputStr&#x3D;input(&quot;请重新输入你要加密或解密的字符串&quot;)</span><br><span class="line">    else:</span><br><span class="line">        print(&quot;确认方式不合理&quot;)</span><br><span class="line">        break</span><br><span class="line">for i in range(0,len(upperCase)):</span><br><span class="line">    if i&lt;13:</span><br><span class="line">        upperDict[upperCase[i]]&#x3D;upperCase[i+13]</span><br><span class="line">    else:</span><br><span class="line">        upperDict[upperCase[i]]&#x3D;upperCase[i-13]</span><br><span class="line">for i in range(0,len(lowerCase)):</span><br><span class="line">    if i&lt;13:</span><br><span class="line">        lowerDict[lowerCase[i]]&#x3D;lowerCase[i+13]</span><br><span class="line">    else:</span><br><span class="line">        lowerDict[lowerCase[i]]&#x3D;lowerCase[i-13]</span><br><span class="line">for ch in inputStr:</span><br><span class="line">    if ch in lowerDict:</span><br><span class="line">        result.append(lowerDict[ch])</span><br><span class="line">    elif ch in upperDict:</span><br><span class="line">        result.append(upperDict[ch])</span><br><span class="line">    else:</span><br><span class="line">        result.append(ch)</span><br><span class="line">result&#x3D;&#39;&#39;.join(result)</span><br><span class="line">print(&quot;最终加密结果为%s&quot;%(result))</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="md5加密"><a href="#md5加密" class="headerlink" title="md5加密"></a>md5加密</h3><h5 id="特点：-1"><a href="#特点：-1" class="headerlink" title="特点："></a>特点：</h5><p>1、压缩性：任意长度的数据，算出的MD5值长度都是固定的。<br>2、容易计算：从原数据计算出MD5值很容易。<br>3、抗修改性：对原数据进行任何改动，哪怕只修改1个字节，所得到的MD5值都有很大区别。<br>4、强抗碰撞：已知原数据和其MD5值，想找到一个具有相同MD5值的数据（即伪造数据）是非常困难的。</p>
+<p>共有6中加密方法:hex_md5(s), b64_md5(s), str_md5(s), hex_hmac_md5(key, data), b64_hmac_md5(key, data), str_hmac_md5(key, data)</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/md5.js"</span> type=<span class="string">"text/javascript"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> pwd = hex_md5(<span class="string">"Victor"</span>);</span><br><span class="line"><span class="built_in">console</span>.log(pwd);</span><br></pre></td></tr></table></figure>
 
-
-
+<p>MD5解密网站：<a href="http://www.cmd5.com" target="_blank" rel="noopener">http://www.cmd5.com</a></p>
 <hr>
 <h3 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/jsencrypt.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"密码"</span>;</span><br><span class="line"><span class="comment">// 公钥</span></span><br><span class="line"><span class="keyword">var</span> publicKey = <span class="string">"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCfp4T5UK76SfSvn1wr4+PyStkHWONLVITZp5JLkFkHpiERchwShET+WVlLsbbgyt7Yt/boMoxr+XTD2NXd1gPvq11OU3dNYLE5hL2j8BCBw8EswkCbP+GgYdGF3FRw4eGURA4fcSO44IKuWtmtSyw7y1OMqzMUb6PROXrMFbrntQIDAQAB"</span>;</span><br><span class="line"><span class="comment">// 私钥</span></span><br><span class="line"><span class="keyword">var</span> privateKey = <span class="string">"MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJ+nhPlQrvpJ9K+fXCvj4/JK2QdY40tUhNmnkkuQWQemIRFyHBKERP5ZWUuxtuDK3ti39ugyjGv5dMPY1d3WA++rXU5Td01gsTmEvaPwEIHDwSzCQJs/4aBh0YXcVHDh4ZREDh9xI7jggq5a2a1LLDvLU4yrMxRvo9E5eswVuue1AgMBAAECgYBBGEtmX9hIIplKdf5dwtgw9QWSMlLSZw6Xs/Q5LQyvyrOW6mC5yAZdck6vRzFabDz6Pd/FAr8wUxChvapNfbIyhCsyAuqjVWV/aGDhaauQvwm3MrZ33jnMxI1z9UXPHTzWrYOltv/cKVqvDTKzEokDoTzEVLQClaYcEVMwhRrpYQJBANR48h9o1s7y0sAOoVBo5ktGZhb6gHtwNJ4Yw7Aey2bAWjgU4PevUq985+jBWhdAj81dZ0lMwARBIcYzyo0RLMkCQQDAXIup+fViw0BD+gl36kOo5RkTgz3aoALJsDBLGWi2J9QY9i0UZO9LsjNlYlTldKRzJWkhjdAdxuZe+8Mr8tWNAkB39HB92yqrW9wwIhJg21hpVy17+6FeD1MljsWsQTaEpERLNT5tl8YO3W3wsniyd/i38OvHLlWaEUuIIuVQD0pBAkAFXk/ThZNQl0xi2UaMXzBWNVaW0dHXGSIayN0AK4xdkQz9SVmGuS5oeWevy6e84513TTL66b9GJXfmbLZMsrE9AkAXuppwZW4I/xWZ2RaIsKqyyYYJUPbZ9HT3iO6FSUVPskzaOIPgU9sir+UcvJfWgXDWQ2F/4uUogB2ZS45YcFM8"</span>;</span><br><span class="line"><span class="comment">// 加密</span></span><br><span class="line"><span class="keyword">var</span> encrypt = <span class="keyword">new</span> JSEncrypt();</span><br><span class="line">encrypt.setPublicKey(publicKey);</span><br><span class="line"><span class="keyword">var</span> encryptStr = encrypt.encrypt(str);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"加密后："</span> + encryptStr);</span><br><span class="line"><span class="comment">// 解密</span></span><br><span class="line"><span class="keyword">var</span> decrypt = <span class="keyword">new</span> JSEncrypt();</span><br><span class="line">decrypt.setPrivateKey(privateKey);</span><br><span class="line"><span class="keyword">var</span> decryptStr = decrypt.decrypt(encryptStr);</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">"解密后："</span> + decryptStr);</span><br></pre></td></tr></table></figure>
 
 
 <hr>
 <h3 id="sha1加密"><a href="#sha1加密" class="headerlink" title="sha1加密"></a>sha1加密</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;script src=<span class="string">"js/sha1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="keyword">var</span> sha = hex_sha1(<span class="string">'mima123465'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(sha);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>参考：<br>base64:<br><a href="https://blog.csdn.net/pengjunlee/article/details/91127222?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3" target="_blank" rel="noopener">https://blog.csdn.net/pengjunlee/article/details/91127222?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>爬虫入坑</title>
-    <url>/2020/03/23/html/</url>
-    <content><![CDATA[<p>网页特征： url连接地址；协议http、https；使用HTML代码</p>
-<p>网页抓包流程:<br>1、 请求网址得到网页源代码<br>2、 在源代码中解析，获取数据<br>3、 如果网站中包含链接，则继续执行1~2步骤</p>
-<hr>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">src</td>
-<td align="left">资源路径</td>
-</tr>
-<tr>
-<td align="left">class</td>
-<td align="left">标签的类</td>
-</tr>
-<tr>
-<td align="left">href</td>
-<td align="left">链接地址</td>
-</tr>
-<tr>
-<td align="left">title</td>
-<td align="left">显示的文本</td>
-</tr>
-<tr>
-<td align="left">id</td>
-<td align="left">标签的唯一标识</td>
-</tr>
-</tbody></table>
-<hr>
-<p>get请求：<br>网址直接在地址栏里面，其中大部分请求都是get请求</p>
-<p>post请求：<br>请求的时候会隐藏参数一般用于登录、注册或者填写内容提交</p>
-<hr>
-<p>状态码：<br>1** 正在请求<br>2** 请求成功<br>3** 网站的跳转或重定向<br>4** 请求资源不存在<br>5** 服务器内部错误，</p>
-<hr>
-<p>进入python环境下下载</p>
-<p>request模块：<br>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/html/1.png" alt></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">requests.get(url)  #发起请求</span><br><span class="line">print(response.status_code)  #返回状态码 200  print (response)#&lt;Response [200]&gt;</span><br><span class="line">print(response.text)  #返回网页源代码,可能会乱码</span><br><span class="line">print(response.content)  #源代码的二进制字节码</span><br></pre></td></tr></table></figure>
-
-<p>网页中查找charset——&gt;查看编码 或 print(response.encoding)</p>
-<p>用utf-8 解析二进制编码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">print(response.content.decode(&#39;utf-8&#39;))</span><br></pre></td></tr></table></figure>
-
-<p><code>http://httpbin.org/get</code> 用于测试</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;httpbin.org&#x2F;get&#39;</span><br><span class="line">headers &#x3D; &#123;</span><br><span class="line">    &quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0&quot;</span><br><span class="line">&#125;</span><br><span class="line">response &#x3D;requests.get(url,headers &#x3D; headers)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/html/2.png" alt></p>
-<p>伪装成浏览器访问，User-Agent 用户代理</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">headers &#x3D; &#123;</span><br><span class="line">    &quot;User-Agent&quot;:&quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko&#x2F;20100101 Firefox&#x2F;70.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>parmas参数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D;&quot;https:&#x2F;&#x2F;q0o0p.top&#x2F;&quot;</span><br><span class="line">params &#x3D; &#123;</span><br><span class="line">    &quot;id&quot;:12</span><br><span class="line">&#125;</span><br><span class="line">response &#x3D; requests.get(url,params&#x3D;params)</span><br><span class="line">print(response.text) #相当于https:&#x2F;&#x2F;q0o0p.top&#x2F;?id&#x3D;12</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="爪巴视频"><a href="#爪巴视频" class="headerlink" title="爪巴视频"></a>爪巴视频</h3><p>处理视频使用流(stream)</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D;&quot;  &quot;   #</span><br><span class="line">response &#x3D; requests.get(url,stream &#x3D; True)  #使用流</span><br><span class="line">with open(&#39;.&#x2F;data&#x2F;xxx.mp4&#39;,&#39;wb&#39;) as file:  #保存到当前目录下的data文件夹,&#39;wb&#39;格式</span><br><span class="line">    #for j in response.iter_content(1024*10):  #一小段一小段的读取</span><br><span class="line">        #file.write(j)</span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
-
-<h3 id="爪巴图片"><a href="#爪巴图片" class="headerlink" title="爪巴图片"></a>爪巴图片</h3><ol>
-<li>没有反爬虫的(有些图片url缺少http——&gt;简单反爬虫)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;i1.hdslb.com&#x2F;bfs&#x2F;archive&#x2F;cd72ee2b75ad5827cc48c554c800d4dbb9d355b6.jpg&#39;</span><br><span class="line">response &#x3D; requests.get(url,headers&#x3D;headers)</span><br><span class="line">with open(&#39;.&#x2F;img&#x2F;1.jpg&#39;,&#39;wb&#39;) as file:  #&#39;w&#39;:写，&#39;b&#39;：二进制</span><br><span class="line">    file.write(response.content)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<h3 id="爪巴HTML"><a href="#爪巴HTML" class="headerlink" title="爪巴HTML"></a>爪巴HTML</h3><p>注意有时候要加 <code>encoding=&quot;utf-8&quot;</code><br>不加会报错UnicodeEncodeError: ‘gbk’ codec can’t encode character ‘\xa0’ in position 50189: illegal multibyte sequence</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1VW411f7UV&#x2F;?spm_id_from&#x3D;333.788.videocard.9&#39;</span><br><span class="line">response &#x3D; requests.get(url,headers&#x3D; headers)</span><br><span class="line">html &#x3D; response.content.decode(&#39;utf-8&#39;)</span><br><span class="line">with open(&#39;.&#x2F;img&#x2F;index.html&#39;,&#39;w&#39;,encoding&#x3D;&quot;utf-8&quot;) as file:</span><br><span class="line">    file.write(html)</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>爬虫入坑</title>
@@ -244,10 +191,10 @@
 
 <p>Selenium WebDriver API 官方参考：<a href="http://seleniumhq.github.io/selenium/docs/api/py/" target="_blank" rel="noopener">http://seleniumhq.github.io/selenium/docs/api/py/</a><br>具体API文档地址：<a href="https://seleniumhq.github.io/selenium/docs/api/py/api.html" target="_blank" rel="noopener">https://seleniumhq.github.io/selenium/docs/api/py/api.html</a></p>
 <hr>
-<h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2</span><br><span class="line">pip install --upgrad weditor</span><br><span class="line">&#x2F;&#x2F;或者：</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;openatx&#x2F;uiautomator2</span><br><span class="line">pip install pillow</span><br></pre></td></tr></table></figure>
+<h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2 &#x2F;&#x2F;或者：(git clone https:&#x2F;&#x2F;github.com&#x2F;openatx&#x2F;uiautomator2 ||pip install pillow)</span><br><span class="line">pip install --upgrad weditor  &#x2F;&#x2F;可视化UI查看器</span><br><span class="line">pip install opencv-python  &#x2F;&#x2F;简单图像处理（根据自己的情况选择是否安装此模块）</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">start adbd  &#x2F;&#x2F;启动adb</span><br><span class="line">adb devices&#x2F;&#x2F;查看电脑是否连接到手机</span><br><span class="line">python -m weditor&#x2F;&#x2F;启动weditor</span><br></pre></td></tr></table></figure>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/1.png" alt></p>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/1.png" alt><br>手机会自动安装：<br>ATX</p>
 <hr>
 <p>参考链接:</p>
 <p>Selenium: <a href="https://blog.csdn.net/One_of_them/article/details/82560880" target="_blank" rel="noopener">https://blog.csdn.net/One_of_them/article/details/82560880</a><br>超详细版：<a href="https://blog.csdn.net/lintyleo/article/details/79361182?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2" target="_blank" rel="noopener">https://blog.csdn.net/lintyleo/article/details/79361182?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2</a></p>
@@ -430,7 +377,8 @@
 结果将自动保存在项目根目录下的output文件夹中，每一个目标生成一个txt，命名格式为目标域名.txt。</li>
 </ol>
 <hr>
-<p>关于Python：<br>Python API：<br><a href="https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro" target="_blank" rel="noopener">https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro</a>__</p>
+<h4 id="flask注入（Python）"><a href="#flask注入（Python）" class="headerlink" title="flask注入（Python）"></a>flask注入（Python）</h4><p><a href="https://www.freebuf.com/column/187845.html" target="_blank" rel="noopener">https://www.freebuf.com/column/187845.html</a><br><a href="https://www.freebuf.com/articles/web/98928.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/98928.html</a><br><a href="https://www.kingkk.com/2018/06/Flask-Jinja2-SSTI-python-%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/" target="_blank" rel="noopener">https://www.kingkk.com/2018/06/Flask-Jinja2-SSTI-python-%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/</a><br>Python API：<br><a href="https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro" target="_blank" rel="noopener">https://docs.python.org/release/2.6.4/library/stdtypes.html#class.__mro</a>__</p>
+<hr>
 ]]></content>
   </entry>
   <entry>
