@@ -47,7 +47,7 @@
   <entry>
     <title>爬虫入坑</title>
     <url>/2020/03/23/web_crawler/</url>
-    <content><![CDATA[<p>网页特征：<br>url连接地址；<br>协议http、https；<br>使用HTML代码 ;</p>
+    <content><![CDATA[<p>网页特征：<br>url连接地址；<br>协议http、https；<br>使用HTML代码 ；</p>
 <p>网页抓包流程:<br>1、 请求网址得到网页源代码<br>2、 在源代码中解析，获取数据<br>3、 如果网站中包含链接，则继续执行1~2步骤</p>
 <p>.  :除换行外的任意字符</p>
 <ul>
@@ -91,7 +91,8 @@
 <h4 id="str转bytes叫encode，bytes转str叫decode"><a href="#str转bytes叫encode，bytes转str叫decode" class="headerlink" title="str转bytes叫encode，bytes转str叫decode"></a>str转bytes叫encode，bytes转str叫decode</h4><p>字符串就是unicode字符数组</p>
 <hr>
 <p>进入python环境下下载</p>
-<h5 id="request模块："><a href="#request模块：" class="headerlink" title="request模块："></a>request模块：</h5><p>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/1.png" alt><br>response = requests.get(url,headers = ,params= ,stream=Bool)<br>|属性| 介绍 |<br>|:-|:-|<br>|headers|请求消息的时候附加的消息头|<br>|User-Agent|用户表示|<br>|Referer|来源页|<br>|params|请求附带参数（也可以通过？的方式，直接拼接在url后面）|<br>|stream|是否使用流进行传输，乳如果开启的话，在请求页面的时候，只得到返回消息头，内容部分一部分一部分截下来（用于大文件）|<br>|proxies|设置代理|<br>|timeout|设置超时的时间|<br>|verify|是否强制验证证书|<br>测试ip代理：</p>
+<h5 id="request模块："><a href="#request模块：" class="headerlink" title="request模块："></a>request模块：</h5><p>E:\Python-path&gt;pip install request -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/1.png" alt><br>response = requests.get(url,headers = ,params= ,stream=Bool)<br>|属性| 介绍 |<br>|:-|:-|<br>|headers|请求消息的时候附加的消息头|<br>|User-Agent|用户表示|<br>|Referer|来源页|<br>|params|请求附带参数（也可以通过？的方式，直接拼接在url后面）|<br>|stream|是否使用流进行传输，乳如果开启的话，在请求页面的时候，只得到返回消息头，内容部分一部分一部分截下来（用于大文件）|<br>|proxies|设置代理|<br>|timeout|设置超时的时间|<br>|verify|是否强制验证证书|</p>
+<p>测试ip代理：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">"http://httpbin.org/get"</span></span><br><span class="line">proxies=&#123;</span><br><span class="line">    <span class="string">'https'</span>:<span class="string">'138.197.169.148:8080'</span></span><br><span class="line">&#125;</span><br><span class="line">r = requests.get(url,proxies=proxies)</span><br><span class="line">print(r.text)</span><br><span class="line">result = r.json()</span><br><span class="line">print(result)</span><br><span class="line">print(type(result))</span><br><span class="line">print(result[<span class="string">'origin'</span>]) <span class="comment">#本机ip</span></span><br></pre></td></tr></table></figure>
 
 <h5 id="response（返回值）模块"><a href="#response（返回值）模块" class="headerlink" title="response（返回值）模块"></a>response（返回值）模块</h5><table>
@@ -125,7 +126,6 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment">#json—&gt;python json.loads()  </span></span><br><span class="line"><span class="comment">#python—&gt; json json.dumps()</span></span><br><span class="line">json_str =<span class="string">'''&#123;"name":"dog","age":19&#125;'''</span></span><br><span class="line">print(json_str)</span><br><span class="line">json_python = json.loads(json_str)<span class="comment">#字符串——&gt;字典</span></span><br><span class="line">json_str1 = json.dumps(json_python)</span><br><span class="line">print(type(json_python))</span><br><span class="line">print(type(json_str1))</span><br><span class="line">print(type(json_str))</span><br></pre></td></tr></table></figure>
 
 
-
 <hr>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">requests.get(url)  <span class="comment">#发起请求</span></span><br><span class="line">print(response.status_code)  <span class="comment">#返回状态码 200  print (response)#&lt;Response [200]&gt;</span></span><br><span class="line">print(response.text)  <span class="comment">#返回网页源代码,可能会乱码</span></span><br><span class="line">print(response.content)  <span class="comment">#源代码的二进制字节码</span></span><br></pre></td></tr></table></figure>
 
@@ -140,7 +140,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>:<span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>伪装用户登录：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url &#x3D; &#39;http:&#x2F;&#x2F;httpbin.org&#x2F;post&#39;</span><br><span class="line">data &#x3D;&#123;</span><br><span class="line">    &#39;username&#39;:&#39;123&#39;,</span><br><span class="line">    &#39;Lain&#39;:&#39;123&#39;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#resp&#x3D; requests.post(url,data&#x3D;data)   &#x2F;&#x2F;放在form里面</span><br><span class="line"></span><br><span class="line">print(resp.text)</span><br></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="code"><pre><span class="line">url = <span class="string">'http://httpbin.org/post'</span></span><br><span class="line"><span class="built_in">data</span> =&#123;</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'123'</span>,</span><br><span class="line">    <span class="string">'Lain'</span>:<span class="string">'123'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#resp= requests.post(url,<span class="built_in">data</span>=<span class="built_in">data</span>)   <span class="comment">//放在form里面</span></span><br><span class="line"></span><br><span class="line">print(resp.text)</span><br></pre></td></tr></table></figure>
 <p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/3.png" alt></p>
 <p>parmas参数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">url =<span class="string">"https://q0o0p.top/"</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">"id"</span>:<span class="number">12</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url,params=params)</span><br><span class="line">print(response.text) <span class="comment">#相当于https://q0o0p.top/?id=12</span></span><br></pre></td></tr></table></figure>
