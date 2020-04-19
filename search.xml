@@ -217,7 +217,7 @@
 <h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2 //或者：(git <span class="built_in">clone</span> https://github.com/openatx/uiautomator2 ||pip install pillow)</span><br><span class="line">pip install --upgrad weditor  //可视化UI查看器</span><br><span class="line">pip install opencv-python  //简单图像处理（根据自己的情况选择是否安装此模块）</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start adb  //启动adb</span><br><span class="line">adb devices//查看电脑是否连接到手机</span><br><span class="line">python -m weditor//启动weditor</span><br></pre></td></tr></table></figure>
-<p><img src="https://q0o0p.top/2020/03/09/Python/1.png" alt><br>手机会自动安装：<br>ATX</p>
+<p><img src="https://q0o0p.top/2020/03/09/Python/1.png" alt><br>url(./1.png)<br>手机会自动安装：<br>ATX</p>
 <hr>
 <h2 id="python图片中的文字识别"><a href="#python图片中的文字识别" class="headerlink" title="python图片中的文字识别"></a>python图片中的文字识别</h2><h3 id="Tesseract-OCR"><a href="#Tesseract-OCR" class="headerlink" title="Tesseract-OCR"></a>Tesseract-OCR</h3><p><a href="https://github.com/tesseract-ocr/tesseract">https://github.com/tesseract-ocr/tesseract</a><br>一款由HP实验室开发由Google维护的开源OCR（Optical Character Recognition , 光学字符识别）引擎，特点是开源，免费，支持多语言，多平台。</p>
 <p>PIL是python平台事实上的图像处理标准库，但PIL仅支持到python2.7，加上年久失修，于是在PIL的基础上创建了兼容的版本pillow,支持最新的python3.X。<br>最后autopy3 手动安装</p>
