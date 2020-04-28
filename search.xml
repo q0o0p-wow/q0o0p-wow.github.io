@@ -307,10 +307,16 @@
 </li>
 <li><p>termux运行adb</p>
 <figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">adb <span class="keyword">start</span>-<span class="keyword">server</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 </li>
 </ul>
 <hr>
-<p><a href="https://www.52pojie.cn/thread-1124467-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1124467-1-1.html</a></p>
+<p>参考：<br><a href="https://www.52pojie.cn/thread-1124467-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1124467-1-1.html</a><br>termux攻击电脑：<br><a href="http://www.nctry.com/1764.html" target="_blank" rel="noopener">http://www.nctry.com/1764.html</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -340,7 +346,7 @@
 <hr>
 <h2 id="js-脚本文件"><a href="#js-脚本文件" class="headerlink" title=".js 脚本文件"></a>.js 脚本文件</h2><p>console.log()    //函数中打印日志记录</p>
 <hr>
-<h2 id="json-配置文件"><a href="#json-配置文件" class="headerlink" title=".json 配置文件"></a>.json 配置文件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;disableScroll&quot;: false   &#x2F;&#x2F;不允许滑块滑动</span><br><span class="line">&quot;enablePullDownRefresh&quot;: true &#x2F;&#x2F;下拉刷新</span><br></pre></td></tr></table></figure>
+<h2 id="json-配置文件"><a href="#json-配置文件" class="headerlink" title=".json 配置文件"></a>.json 配置文件</h2><figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="string">"disableScroll"</span>: <span class="literal">false</span>   <span class="comment">//不允许滑块滑动</span></span><br><span class="line"><span class="string">"enablePullDownRefresh"</span>: <span class="literal">true</span> <span class="comment">//下拉刷新</span></span><br></pre></td></tr></table></figure>
 <p>color-table chrome插件</p>
 <h2 id="wmxl视图文件"><a href="#wmxl视图文件" class="headerlink" title=".wmxl视图文件"></a>.wmxl视图文件</h2><p><text> </text> 表示文本，只能包含存文本，其他会被忽略（例如：链接）<br>==：判断内容<br>=== ：判断内容和类型<br>bindtap：设置事件处理函数<br>hidden:控制元素是否隐藏（”true” or “false”）<br>data-:自定义的组件（data-user-name=”user”），事件触发的时候封装在事件对象中传递给对应的事件处理函数进行处理</p>
 <p><image></image> 表示图片<br>src:””  :指定属性，加载和显示网页上任意一张图片<br>mode:”” :图片裁剪，缩放模式<br>|:-|:-|<br>|aspectFit|保持图片宽高比例完全缩放，长边完全显示  |<br>|aspectFill|保持图片宽高比例完全缩放，短边完全显示，长边被截取|</p>
@@ -355,8 +361,16 @@
 <h2 id="wxss-样式表文件"><a href="#wxss-样式表文件" class="headerlink" title=".wxss 样式表文件"></a>.wxss 样式表文件</h2><p> flex-direction: column;  /<em>从上往下</em>/<br>  justify-content: space-around; /<em>垂直方向上均匀分布</em>/<br>  align-items: center; //居中<br>  font-size: 100rpx;  //字体大小<br>  height: 100vh;  //宽度vw<br>  animation: wave 10s linear infinite;//动画标签<br>设置两水波运动的效果</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  .containter&#123;</span><br><span class="line">  background: rgb(<span class="number">149</span>, <span class="number">247</span>, <span class="number">242</span>); <span class="comment">//背景颜色</span></span><br><span class="line">  height: <span class="number">100</span>vh;  <span class="comment">//高度</span></span><br><span class="line">&#125;</span><br><span class="line">.wave&#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  z-index: <span class="number">3</span>;</span><br><span class="line">  right: <span class="number">0</span>;</span><br><span class="line">  bottom: <span class="number">0</span>;</span><br><span class="line">  opacity: <span class="number">0.725</span>;</span><br><span class="line">  height: <span class="number">260</span>rpx;</span><br><span class="line">  width: <span class="number">2250</span>rpx;</span><br><span class="line">  animation: wave <span class="number">10</span>s linear infinite;  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.wave-bg&#123;</span><br><span class="line">  z-index: <span class="number">1</span>;</span><br><span class="line">  animation: wave-bg <span class="number">10.25</span>s linear infinite;</span><br><span class="line">&#125;</span><br><span class="line">@keyframes wave&#123;</span><br><span class="line">  <span class="keyword">from</span>&#123;<span class="attr">transform</span>: translate3d(<span class="number">125</span>rpx,<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line">  to&#123;<span class="attr">transform</span>: translate3d(<span class="number">1125</span>rpx,<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@keyframes wave-bg&#123;</span><br><span class="line">  <span class="keyword">from</span>&#123;<span class="attr">transform</span>: translate3d(<span class="number">375</span>rpx,<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line">  to&#123;<span class="attr">transform</span>: translate3d(<span class="number">1375</span>rpx,<span class="number">0</span>,<span class="number">0</span>)&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
 <hr>
-<p>实现搜索关键词高亮：<br><a href="https://www.xueyidian.cn/webqd/471.html" target="_blank" rel="noopener">https://www.xueyidian.cn/webqd/471.html</a></p>
+<p>接口<br><a href="https://wk.92e.win/wkapi.php?q=" target="_blank" rel="noopener">https://wk.92e.win/wkapi.php?q=</a><br><a href="https://www.98api.cn/api/tiku.php" target="_blank" rel="noopener">https://www.98api.cn/api/tiku.php</a><br><a href="https://wangke.vvhan.com/" target="_blank" rel="noopener">https://wangke.vvhan.com/</a><br><a href="http://free.han8.net/?ti=题目" target="_blank" rel="noopener">http://free.han8.net/?ti=题目</a><br><a href="http://wk.tteam.tk/" target="_blank" rel="noopener">http://wk.tteam.tk/</a><br><a href="http://www.mgxfd.club:2020/?fromGroup=1048080170&amp;prefix=wkct&amp;msg=" target="_blank" rel="noopener">http://www.mgxfd.club:2020/?fromGroup=1048080170&amp;prefix=wkct&amp;msg=</a></p>
+<p>慢慢琢磨：<br><a href="https://github.com/linstasn/chaoxing-MOOC-beta">https://github.com/linstasn/chaoxing-MOOC-beta</a><br><a href="https://github.com/Fckay/wangke">https://github.com/Fckay/wangke</a></p>
+<p><a href="https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=718089&amp;specialtype=reward" target="_blank" rel="noopener">https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=718089&amp;specialtype=reward</a></p>
+<hr>
+<p>实现搜索关键词高亮：<br><a href="https://www.xueyidian.cn/webqd/471.html" target="_blank" rel="noopener">https://www.xueyidian.cn/webqd/471.html</a><br>微信公众号：<br><a href="https://blog.csdn.net/qq_28506819/article/details/77827899" target="_blank" rel="noopener">https://blog.csdn.net/qq_28506819/article/details/77827899</a></p>
 </i-input></i-input>]]></content>
   </entry>
   <entry>
