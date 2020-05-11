@@ -72,7 +72,7 @@ function activateLightMode(){
 <h2 id="rev01"><a href="#rev01" class="headerlink" title="rev01"></a>rev01</h2><p>得到一个 rev01.zip 压缩包,里面有一个apk文件<br>进入:I:\Android\Android tools\apk tool 路径下,用apktool进行解压<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/1.png" alt></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d [-s] -f F:\题目\rev01\app-release.apk -o I:\Android\Androidtools\<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <p>apktool解压后查看xml文件不会出现乱码</p>
-<p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/2.png" alt><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/3.png" alt></p>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/2.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/3.png" alt></p>
 <p>感觉xml文件里没有要找的信息<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/4.png" alt><br>想查看里面的class文件用dex2jar 解压dex文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat F:\题目\app-release\classes.dex</span><br></pre></td></tr></table></figure>
 
