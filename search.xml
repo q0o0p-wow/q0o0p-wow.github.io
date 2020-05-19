@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Python-Tools</title>
+    <title>自制Python小工具</title>
     <url>/2020/05/16/Python-tools/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>自制Python小工具</p>
+<p>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyinstaller</p>
+<p>打包.exe文件</p>
+<p>如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令：</p>
+<p>pyinstaller.exe -F -icon=F:\testTools F:/code/python-tools/test.py</p>
+<p>如果带-icon参数打包运行时报错，那么可以在你想保存的文件路劲下直接运行如下命令：</p>
+<p>pyinstaller.exe -F F:/code/python-tools/test.py</p>
+<p>1.程序设置自定义图标：pyinstaller -F -i ico_path  py_path </p>
+<p>首先需要下载一张正常的ico，不能用直接修改后缀的。</p>
+<p>下载图片：　　  <a href="https://www.easyicon.net" target="_blank" rel="noopener">https://www.easyicon.net</a></p>
+<p>图片改为ico:　　<a href="http://www.ico.la/" target="_blank" rel="noopener">http://www.ico.la/</a></p>
+<p>输入命令 pyinstaller -F -i “demo.ico” “main.py”</p>
+<p>2.报错提示：</p>
+<p>pyinstaller -F -i “demo.ico” “main.py” 命令格式一定是先图标路径，再程序路径。</p>
+<p>路径最好为英文，没有中文字符；脚本名称里没有特殊字符如 .</p>
+<p>使用utf8编码</p>
+<p>图标文件必须是正常格式，不能直接更改后缀。</p>
+<p>tuble index out of range —》pyinstaller版本尚未支持python的版本</p>
+<p>3.窗口程序</p>
+<p>使用 pyinstaller -F -w  -i ico_path  py_path ，这样脚本不会弹出命令窗，前提是用了GUI库. </p>
+]]></content>
   </entry>
   <entry>
     <title>Android逆向题</title>
