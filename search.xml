@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python-Tools</title>
+    <url>/2020/05/16/Python-tools/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>Android逆向题</title>
     <url>/2020/05/10/Android-Reverse/</url>
-    <content><![CDATA[<p>看了一道网鼎杯Android逆向……得出一个结论(我就是一个five)</p>
+    <content><![CDATA[<h2 id="需要使用的工具"><a href="#需要使用的工具" class="headerlink" title="需要使用的工具"></a>需要使用的工具</h2><p>apkHelper:<br><a href="https://github.com/PeterBuerer/apkHelper">https://github.com/PeterBuerer/apkHelper</a></p>
+<p>获取软件包名称和版本信息<br>$ apkHelper summary /path/to/the/file.apk</p>
+<p>签署apk<br>$ apkHelper sign –keystore /path/to/file.keystore –keypass [keypass] –storepass [storepass] [theApk] [keystoreAlias]</p>
+<p>Zipalign apk<br>$ apkHelper zipalign [theUnalignedApk] [nameForAlignedApk]<br>如果未提供[nameForAlignedApk]，则对齐的apk将另存为[theUnalignedApk] -zipaligned.apk。</p>
+<p>例如，myApp.apk将被命名为myApp-zipaligned.apk。</p>
+<p>看了一道网鼎杯Android逆向……得出一个结论(我就是一个five)</p>
 <h2 id="rev01"><a href="#rev01" class="headerlink" title="rev01"></a>rev01</h2><p>得到一个 rev01.zip 压缩包,里面有一个apk文件<br>进入:I:\Android\Android tools\apk tool 路径下,用apktool进行解压<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/1.png" alt></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apktool d [-s] -f F:\题目\rev01\app-release.apk -o I:\Android\Androidtools\<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <p>apktool解压后查看xml文件不会出现乱码</p>
@@ -1199,6 +1209,35 @@ POST：
 <p>mvn source:jar<br>或<br>mvn source:jar-no-fork</p>
 <p>archetype:generate 表示创建个项目<br>-DgroupId 项目包名: com.how2java<br>-DartifactId 项目名称: j2se<br>-DarchetypeArtifactId 项目类型: maven-archetype-quickstart<br>-DinteractiveMode:false 表示前面参数都给了，就不用一个一个地输入了</p>
 <hr>
+]]></content>
+  </entry>
+  <entry>
+    <title>Vue+SpringBoot</title>
+    <url>/2019/04/18/vue/</url>
+    <content><![CDATA[<p>##vue</p>
+<h3 id="0x01-vue相关的基础命令"><a href="#0x01-vue相关的基础命令" class="headerlink" title="0x01 vue相关的基础命令"></a>0x01 vue相关的基础命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v //查看node版本</span><br><span class="line">npm -v //查看npm版本</span><br><span class="line"><span class="built_in">where</span> node //查看node安装位置</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)</span><br><span class="line">npm install vue -g  //安装Vue-cli</span><br><span class="line">vue init webpack vue01 //构建项目并配置相关项 </span><br><span class="line">vue ui //使用ui界面选择</span><br><span class="line">npm install //下载项目依赖包</span><br><span class="line">npm run dev //本地启动</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件夹下的相关配置"><a href="#文件夹下的相关配置" class="headerlink" title="文件夹下的相关配置"></a>文件夹下的相关配置</h3><p>src/router/index.js  –&gt;配置到本地路由<br>src/App.vue  –&gt;全局配置</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Topic <span class="keyword">from</span> <span class="string">'../views/Topic.vue'</span></span><br><span class="line"><span class="keyword">import</span> Reader <span class="keyword">from</span> <span class="string">'../views/Reader.vue'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,    <span class="comment">//&lt;router-link to="/"</span></span><br><span class="line">      name: <span class="string">'Topic'</span>,</span><br><span class="line">      component: Topic</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">      path: <span class="string">'/reader'</span>,</span><br><span class="line">      component: Reader</span><br><span class="line">    &#125;]</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"q0o0p"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/topic"</span>&gt;</span>Topic<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/reader"</span>&gt;</span>Reader<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/logo.png"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>跨域的问题及服务器端的操作<br>说在前面的： Vue项目在开发的时候，是处于本地环境，访问服务器数据，由于域名的不一样，所以会出现跨域问题，而AJAX在跨域访问的时候是有限制的，所以会出现跨域问题。但是，生产时候，将Vue项目打包文件和服务器webAPI一起发布的在同一个地方的时候，将不会出现跨域问题。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由接口代理配置</span></span><br><span class="line">proxyTable: &#123;</span><br><span class="line">  <span class="string">'/api'</span>: &#123;</span><br><span class="line">    target: <span class="string">'https://localhost:8082'</span>,</span><br><span class="line">    changeOrigin: <span class="keyword">true</span>,</span><br><span class="line">    pathRewrite: &#123;</span><br><span class="line">      <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h3 id="element-ui插件"><a href="#element-ui插件" class="headerlink" title="element-ui插件"></a>element-ui插件</h3><p><a href="https://element.eleme.cn/2.0/#/zh-CN/component/container" target="_blank" rel="noopener">https://element.eleme.cn/2.0/#/zh-CN/component/container</a><br>安装element-ui</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install element-ui -S</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看node_modules中是否有 element-ui的文件夹<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/04/18/vue/2.png" alt></li>
+<li>main.js 中导入element-ui组件<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> ElementUI from <span class="string">'element-ui'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-ui/lib/theme-chalk/index.css'</span></span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Element UI主要标签:<br>●el-container: 构建整个页面框架。<br>●el-aside: 构建左侧菜单。<br>●el-menu: 左侧菜单内容,常用属性.<br>    :default-openeds:默认展开的菜单，通过菜单的index值来关联。<br>    :default-active:默认选中的菜单，通过菜单的index值来关联。<br>●el-submenu: 可展开的菜单，常用属性:<br>index:菜单的下标，文本类型，不能是数值类型。<br>●template: 对应el-submenu的菜单名。<br>●i:设置菜单图标，通过class属性实则。<br>    。el-icon-messae<br>    。el-icon-menu<br>    。el-icon-setting<br>●el-menu-item: 菜单的子节点，不可再展开，常用属性: index:菜单的下标，文本类型，不能是数值类型。</p>
+<h3 id="vue-router-动态构建菜单"><a href="#vue-router-动态构建菜单" class="headerlink" title="vue router 动态构建菜单"></a>vue router 动态构建菜单</h3><p>vue add axios</p>
+<hr>
+<h2 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h2><h3 id="创建springboot项目"><a href="#创建springboot项目" class="headerlink" title="创建springboot项目"></a>创建springboot项目</h3><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/04/18/vue/1.png" alt></p>
+<h3 id="使用yml连接数据库"><a href="#使用yml连接数据库" class="headerlink" title="使用yml连接数据库"></a>使用yml连接数据库</h3><p>将properties文件删除<br>(可以忽略:根据实际情况,执行一下  maven -X clean install)</p>
+<p><code>正常的情况是先加载yml，接下来加载properties文件。如果相同的配置存在于两个文件中。最后会使用properties中的配置。最后读取的优先集最高。</code><br><code>yml文件的好处，天然的树状结构，同的前缀只需要写一次,实质上跟properties是差不多的。</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/q0o0p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    # url: jdbc:mysql:///test?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false</span><br><span class="line">  </span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa: </span><br><span class="line">    show-sql: true  #打印sql</span><br><span class="line">    properties:</span><br><span class="line">      hibernate: </span><br><span class="line">        format-sql: true  #格式化sql,自动换行</span><br><span class="line">server: </span><br><span class="line">  part: <span class="number">8181</span></span><br></pre></td></tr></table></figure>
+<h3 id="JPA-自定义实现动态表名映射"><a href="#JPA-自定义实现动态表名映射" class="headerlink" title="JPA 自定义实现动态表名映射"></a>JPA 自定义实现动态表名映射</h3><p>注意命名规则,实体类和表名实现动态映射</p>
 ]]></content>
   </entry>
   <entry>
