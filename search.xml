@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Simulation-Handwritten</title>
+    <url>/2020/06/29/Simulation-Handwritten/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Chrome插件--右键实现存储功能</title>
+    <url>/2020/06/29/Chrome-plugin/</url>
+    <content><![CDATA[<p>最近课设和大作业一天一个真是,忙得不可开交…<br>(事实是—最近又懒了,最后一天效率MAX—–QAQ)<br>在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….<br>特别是有些网页,太狗了,复制还要用到F12<br>唉!对于像我这样的人,还是希望能有更方便的用法<br>然后就有了这个标题~~<br>(最近刚研究了一下WPS的word宏手写体,在家手抄几十页的报告…不存在的,O(∩_∩)O)<br>手写,查资料可以懒,但敲代码不能懒!<br>下面进入正题….</p>
+<hr>
+<h2 id="制作简易的右键插件"><a href="#制作简易的右键插件" class="headerlink" title="制作简易的右键插件"></a>制作简易的右键插件</h2><ul>
+<li>需要准备的文件<br>任意路径下创建一个文件夹,名字自拟<br>chrome插件至少包含json,js两个文件：</li>
+</ul>
+<p>1.manifest.json<br>manifest.json就是一个配置文件，配置了插件的名称，插件所需引用的js脚本文件等等。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123; </span><br><span class="line"><span class="attr">"name"</span>: <span class="string">"q0o0p"</span>, </span><br><span class="line"><span class="attr">"description"</span>: <span class="string">"翻译"</span>, </span><br><span class="line"><span class="attr">"version"</span>: <span class="string">"0.1"</span>, </span><br><span class="line"><span class="attr">"permissions"</span>: [<span class="string">"contextMenus"</span>, <span class="string">"tabs"</span>], </span><br><span class="line"><span class="attr">"icons"</span>: </span><br><span class="line">&#123; </span><br><span class="line">   "16": "sicon.png",  //当前路径中的图标           </span><br><span class="line">   "48": "sicon.png",            </span><br><span class="line">   "128": "sicon.png" </span><br><span class="line">&#125;,</span><br><span class="line">"background": &#123; </span><br><span class="line">"scripts": ["menu.js"]  //所调用的js文件</span><br><span class="line">&#125;, </span><br><span class="line">"manifest_version": 2  //必需是2,否则不能使用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.xxx.js<br>xxx.js就是需要的脚本，点击菜单时需要的功能就在这个文件里写。<br>试了一个最简单的有道翻译</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">chrome.contextMenus.create(&#123;</span><br><span class="line">    title: <span class="string">'q0o0p-翻译：%s'</span>, <span class="comment">// %s表示选中的文字</span></span><br><span class="line">    contexts: [<span class="string">'selection'</span>], <span class="comment">// 只有当选中文字时才会出现此右键菜单</span></span><br><span class="line">    onclick: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 注意不能使用location.href，因为location是属于background的window对象</span></span><br><span class="line">        chrome.tabs.create(&#123;<span class="attr">url</span>: <span class="string">'http://www.youdao.com/w/'</span> + <span class="built_in">encodeURI</span>(params.selectionText)&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>3.xxx.png<br>找到喜欢的图片做log,这里使用的图标是以前抠过图的透明底图片</p>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/2.png" alt></p>
+<ul>
+<li>找到Chrome插件,添加自己的插件</li>
+</ul>
+<p>打开Chrome右上角的”…”找到”更多工具”-&gt;”扩展程序”，加载已解压文件，选择你创建的哪个文件包，即可。</p>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/1.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/3.png" alt></p>
+<ul>
+<li>更新插件<br>更新插件只需刷新即可<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/4.png" alt></li>
+</ul>
+<hr>
+<p>附上已安装的第三方插件路径:<br>C:\Users\ASUS\AppData\Local\Google\Chrome\User Data\Default\Extensions</p>
+<p>详细插件参考:<br><a href="https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html#%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95" target="_blank" rel="noopener">https://www.cnblogs.com/liuxianan/p/chrome-plugin-develop.html#%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95</a></p>
+<p><a href="http://open.chrome.360.cn/extension_dev/contextMenus.html" target="_blank" rel="noopener">http://open.chrome.360.cn/extension_dev/contextMenus.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>EFCode</title>
+    <url>/2020/06/22/ef-code/</url>
+    <content><![CDATA[<p>创建Demo.APP设为启动项目<br>dotnet new sln -o Demo<br>The template “Solution File” was created successfully.</p>
+<p>dotnet new classlib -o Demo.Model<br>The template “Class library” was created successfully.</p>
+<p>添加依赖，添加Demo.Domain项目依赖<br>dotnet add . reference ../Demo.Domain<br>dotnet add package Microsoft.EntityFrameworkCore.SqlServer</p>
+<p>迁移命令<br>Add-Migration Initial<br>生成一个迁移脚本<br>script-migration<br>更新数据库<br>Update-Database -verbose</p>
+<p>迁移命令<br>Add-Migration update1<br>更新数据库<br>Update-Database </p>
+<p>连接数据库<br>Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=Demo;Database=Demo;Trusted_Connection=True;server=127.0.0.1;uid=sa;pwd=126800.;</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnConfiguring</span>(<span class="params">DbContextOptionsBuilder optionsBuilder</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    optionsBuilder.UseSqlServer(<span class="string">"Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=Demo;Database=Demo;Trusted_Connection=True;server=127.0.0.1;uid=sa;pwd=126800.;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SqlException: 当 IDENTITY_INSERT 设置为 OFF 时，不能为表 ‘Students’ 中的标识列插入显式值。<br>set identity_insert notice ON</p>
+<p>在Program.cs中添加数据</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> context = <span class="keyword">new</span> DemContext();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">var</span> serieA = <span class="keyword">new</span> Student</span><br><span class="line">           &#123;</span><br><span class="line">               <span class="comment">/*s_id = 1,*/</span></span><br><span class="line">               s_name = <span class="string">"wow"</span>,</span><br><span class="line">               s_age = <span class="number">21</span>,</span><br><span class="line">               s_dept = <span class="string">"CS"</span>,</span><br><span class="line">               s_sex = <span class="string">"女"</span></span><br><span class="line">           &#125;;</span><br><span class="line">         <span class="comment">/*  var serieB = new Student</span></span><br><span class="line"><span class="comment">           &#123;</span></span><br><span class="line"><span class="comment">               /*s_id = 1,*/</span></span><br><span class="line">               s_name = <span class="string">"wow"</span>,</span><br><span class="line">               s_age = <span class="number">21</span>,</span><br><span class="line">               s_dept = <span class="string">"CS"</span>,</span><br><span class="line">               s_sex = <span class="string">"女"</span></span><br><span class="line">           &#125;; */</span><br><span class="line">           <span class="keyword">var</span> serieB = <span class="keyword">new</span> Enrollment</span><br><span class="line">           &#123;</span><br><span class="line">              ...</span><br><span class="line">               Student = serieA</span><br><span class="line">           &#125;;</span><br><span class="line"></span><br><span class="line">           context.AddRange(serieA, serieB);</span><br><span class="line">           <span class="comment">//context.Students.AddRange(new List&lt;Student&gt; &#123; serieA,serieB&#125;);</span></span><br><span class="line">           <span class="keyword">var</span> count = context.SaveChanges();</span><br><span class="line"></span><br><span class="line">           Console.WriteLine(count);</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
     <title>Java Web(mybatis-Plus)</title>
     <url>/2020/05/18/mybatis-plus/</url>
     <content><![CDATA[<p>MyBatis Plus API:<br><a href="https://mp.baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">https://mp.baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE</a><br>mybatis plus maven包:<br><a href="https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter" target="_blank" rel="noopener">https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter</a><br><a href="https://mvnrepository.com/artifact/com.baomidou/mybatis-plus" target="_blank" rel="noopener">https://mvnrepository.com/artifact/com.baomidou/mybatis-plus</a></p>
@@ -46,7 +96,6 @@
 <p>AUTO: 数据库自增,开发者不需要赋值(从最大id自增,手动赋值没用)<br>INPUT: 如果开发者没有手动赋值,id值会按照最大值自增<br>ASSIGN_UUID: 主键的类型必须是String类,自动生成UUID 进行赋值<br>默认生成随机数(雪花算法)</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@TableId</span>(type = IdType.NONE)  <span class="comment">//相当于@TableId</span></span><br><span class="line">    <span class="keyword">private</span> Integer user_id;</span><br><span class="line"><span class="meta">@TableId</span>(type = IdType.AUTO)</span><br><span class="line">    <span class="keyword">private</span> Integer user_id;</span><br><span class="line"><span class="meta">@TableId</span>(type = IdType.INPUT) </span><br><span class="line">    <span class="keyword">private</span> Integer user_id;</span><br></pre></td></tr></table></figure>
 
-
 <ul>
 <li>@TableField<br>映射非主键字段<br>select: 是否查询该字段<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@TableField</span>(value = <span class="string">"user_name"</span>,select = <span class="keyword">false</span>)</span><br><span class="line">    <span class="keyword">private</span> String user_name;</span><br></pre></td></tr></table></figure>
 
@@ -58,15 +107,19 @@
 <p>fill: 是否自动填充,将对象 存入数据库的时候,由MyBatis Plus自动给某些字段赋值.</p>
 <ol>
 <li>选择有create_time ,update_time字段的表<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@TableField</span>(fill = FieldFill.INSERT)</span><br><span class="line"><span class="keyword">private</span> Date userCreateTime;</span><br><span class="line"><span class="meta">@TableField</span>(fill = FieldFill.INSERT_UPDATE)</span><br><span class="line"><span class="keyword">private</span> Date userUpdateTime;</span><br></pre></td></tr></table></figure></li>
-<li>创建自动填充的处理器<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> top.q0o0p.mybatisplus.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.reflection.MetaObject;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title">MetaObjectHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userCreateTime"</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userUpdateTime"</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userUpdateTime"</span>,<span class="keyword">new</span> Date(),metaObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>创建自动填充的处理器<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> top.q0o0p.mybatisplus.handler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.reflection.MetaObject;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title">MetaObjectHandler</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userCreateTime"</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userUpdateTime"</span>, <span class="keyword">new</span> Date(), metaObject);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateFill</span><span class="params">(MetaObject metaObject)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setFieldValByName(<span class="string">"userUpdateTime"</span>,<span class="keyword">new</span> Date(),metaObject);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
-<li>@EnumValue</li>
+<li><p>@Version<br>标记乐观锁,通过version保证数据的安全性,修改数据时以version 作为条件,条件成立时修改成功</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Version</span> </span><br><span class="line"><span class="keyword">private</span> Ingeter version;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@EnumValue</p>
+</li>
 </ul>
 <ol>
 <li>通过枚举注解,将数据库字段映射成枚举类型成员变量<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> top.q0o0p.mybatisplus.enums;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.EnumValue;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> StatusEnum &#123;</span><br><span class="line">    WORK(<span class="number">1</span>,<span class="string">"上班状态"</span>),</span><br><span class="line">    REST(<span class="number">0</span>,<span class="string">"休息"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@EnumValue</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    StatusEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//entity--&gt;User.class</span></span><br><span class="line">    <span class="keyword">private</span> StatusEnum status;</span><br><span class="line"><span class="comment">//application.yml</span></span><br><span class="line">    type-enums-<span class="keyword">package</span>: </span><br><span class="line">        top.q0o0p.mybatisplus.enums</span><br></pre></td></tr></table></figure></li>
-<li>通过接口的方式</li>
+<li>通过接口的方式<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> top.q0o0p.mybatisplus.enums;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.enums.IEnum;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> SexEnum implements IEnum&lt;Integer&gt; &#123;</span><br><span class="line">    female(<span class="number">1</span>,<span class="string">"女"</span>),</span><br><span class="line">    male(<span class="number">0</span>,<span class="string">"男"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    SexEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">        <span class="keyword">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//User.class</span></span><br><span class="line">    <span class="keyword">private</span> SexEnum user_sex;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <ul>
 <li>@TableLogic<br>映射逻辑删除</li>
@@ -78,61 +131,80 @@
 
 </li>
 </ol>
-<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><hr>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">select</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//        mapper.selectList(null); //不添加任何条件直接查询</span></span><br><span class="line">        QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line">        wrapper.eq(<span class="string">"user_name"</span>, <span class="string">"hhhhh"</span>);  <span class="comment">//单个条件查询</span></span><br><span class="line">        System.out.println(mapper.selectList(wrapper));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>多条件查询</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"user_name"</span>, <span class="string">"tralate"</span>);</span><br><span class="line">map.put(<span class="string">"user_create_time"</span>, <span class="string">"2020-05-16 20:19:28"</span>);</span><br><span class="line">wrapper.allEq((map));</span><br></pre></td></tr></table></figure>
-<p>(user_id &lt; ?)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">wrapper.lt(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&lt;1234</span></span><br><span class="line">wrapper.gt(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&gt;1234</span></span><br><span class="line">wrapper.ge(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&gt;=1234</span></span><br><span class="line">wrapper.ne(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id!=1234</span></span><br><span class="line">wrapper.like(<span class="string">"user_id"</span>, <span class="string">"23"</span>); <span class="comment">//模糊查询%23%</span></span><br><span class="line">wrapper.likeLeft(<span class="string">"user_id"</span>, <span class="string">"23"</span>); <span class="comment">//模糊查询%23</span></span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="自定义SQL、多表关联"><a href="#自定义SQL、多表关联" class="headerlink" title="自定义SQL、多表关联"></a>自定义SQL、多表关联</h3><h3 id="MyBatisPlus-自动生成"><a href="#MyBatisPlus-自动生成" class="headerlink" title="MyBatisPlus 自动生成"></a>MyBatisPlus 自动生成</h3>]]></content>
-  </entry>
-  <entry>
-    <title>自制Python小工具</title>
-    <url>/2020/05/16/Python-tools/</url>
-    <content><![CDATA[<p>自制Python小工具</p>
-<p>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyinstaller</p>
-<p>打包.exe文件</p>
-<p>如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令：</p>
-<p>pyinstaller.exe -F -icon=F:\testTools F:/code/python-tools/test.py</p>
-<p>如果带-icon参数打包运行时报错，那么可以在你想保存的文件路劲下直接运行如下命令：</p>
-<p>pyinstaller.exe -F F:/code/python-tools/test.py</p>
-<p>1.程序设置自定义图标：pyinstaller -F -i ico_path  py_path </p>
-<p>首先需要下载一张正常的ico，不能用直接修改后缀的。</p>
-<p>下载图片：　　  <a href="https://www.easyicon.net" target="_blank" rel="noopener">https://www.easyicon.net</a></p>
-<p>图片改为ico:　　<a href="http://www.ico.la/" target="_blank" rel="noopener">http://www.ico.la/</a></p>
-<p>输入命令 pyinstaller -F -i “demo.ico” “main.py”</p>
-<p>2.报错提示：</p>
-<p>pyinstaller -F -i “demo.ico” “main.py” 命令格式一定是先图标路径，再程序路径。</p>
-<p>路径最好为英文，没有中文字符；脚本名称里没有特殊字符如 .</p>
-<p>使用utf8编码</p>
-<p>图标文件必须是正常格式，不能直接更改后缀。</p>
-<p>tuble index out of range —》pyinstaller版本尚未支持python的版本</p>
-<p>3.窗口程序</p>
-<p>使用 pyinstaller -F -w  -i ico_path  py_path ，这样脚本不会弹出命令窗，前提是用了GUI库. </p>
+<h3 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">save</span><span class="params">()</span></span>&#123;</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(<span class="string">"t"</span>);</span><br><span class="line">        user.setPassword(<span class="string">"qwer"</span>);</span><br><span class="line">        mapper.insert(user);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mapper.deleteById(<span class="number">1234</span>);</span><br><span class="line"></span><br><span class="line">        mapper.deleteBatchIds(Arrays.asList(<span class="number">1234</span>, <span class="number">1236</span>));</span><br><span class="line">        <span class="comment">//根据条件删除</span></span><br><span class="line">        QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line">        wrapper.eq(<span class="string">"user_name"</span>, <span class="string">"qw"</span>);</span><br><span class="line">        mapper.delete(wrapper);</span><br><span class="line"></span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"user_name"</span>, <span class="string">"t"</span>); <span class="comment">//等值判断</span></span><br><span class="line">        mapper.deleteByMap(map);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        User user = mapper.selectById(<span class="number">1238</span>);</span><br><span class="line">        user.setName(<span class="string">"hhhhh"</span>);</span><br><span class="line">        mapper.updateById(user);</span><br><span class="line"></span><br><span class="line">        User user = mapper.selectById(<span class="number">1237</span>);</span><br><span class="line">        user.setName(<span class="string">"o_o"</span>);</span><br><span class="line">        QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line">        wrapper.eq(<span class="string">"user_sex"</span>, <span class="number">0</span>);</span><br><span class="line">        mapper.update(user, wrapper);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">select</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//        mapper.selectList(null); //不添加任何条件直接查询</span></span><br><span class="line"></span><br><span class="line">        QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line">        wrapper.eq(<span class="string">"user_name"</span>, <span class="string">"hhhhh"</span>);  <span class="comment">//单个条件查询</span></span><br><span class="line">        System.out.println(mapper.selectList(wrapper));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>多条件查询</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">        QueryWrapper wrapper = <span class="keyword">new</span> QueryWrapper();</span><br><span class="line"><span class="comment">//map只能做等值判断,逻辑判断需要使用warpper</span></span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"user_name"</span>, <span class="string">"tralate"</span>);</span><br><span class="line">        map.put(<span class="string">"user_create_time"</span>, <span class="string">"2020-05-16 20:19:28"</span>);</span><br><span class="line">        wrapper.allEq(map);</span><br><span class="line"></span><br><span class="line">        System.out.println(mapper.selectList(wrapper));</span><br></pre></td></tr></table></figure>
+<p>(user_id &lt; ?)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">wrapper.eq(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id=1234</span></span><br><span class="line">wrapper.lt(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&lt;1234</span></span><br><span class="line">wrapper.gt(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&gt;1234</span></span><br><span class="line">wrapper.ge(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id&gt;=1234</span></span><br><span class="line">wrapper.ne(<span class="string">"user_id"</span>, <span class="number">1234</span>);  <span class="comment">//id!=1234</span></span><br><span class="line">wrapper.like(<span class="string">"user_id"</span>, <span class="string">"23"</span>); <span class="comment">//模糊查询%23%</span></span><br><span class="line">wrapper.likeLeft(<span class="string">"user_id"</span>, <span class="string">"23"</span>); <span class="comment">//模糊查询%23</span></span><br><span class="line">wrapper.inSql(<span class="string">"user_id"</span>, <span class="string">"select user_id from user where user_id&gt;1234"</span>);</span><br><span class="line">wrapper.inSql(<span class="string">"user_name"</span>, <span class="string">"select user_name from user where user_name='tralate'"</span>); <span class="comment">//sql语句查询</span></span><br><span class="line"></span><br><span class="line">wrapper.orderByAsc(<span class="string">"user_sex"</span>); <span class="comment">//升序排序</span></span><br><span class="line">wrapper.having(<span class="string">"user_id&gt;1234"</span>);  <span class="comment">//条件</span></span><br><span class="line"></span><br><span class="line">System.out.println(mapper.selectCount(wrapper));<span class="comment">//总数</span></span><br><span class="line"></span><br><span class="line">mapper.selectMaps(wrapper).forEach(System.out::println);<span class="comment">//将查询结果封装到map中</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(mapper.selectById(<span class="number">1234</span>)); <span class="comment">//id-1234</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//分页查询</span></span><br><span class="line">Page&lt;User&gt; page = <span class="keyword">new</span> Page&lt;&gt;(<span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">Page&lt;User&gt; result = mapper.selectPage(page,<span class="keyword">null</span>);</span><br><span class="line">System.out.println(result.getTotal());</span><br><span class="line">System.out.println(result.getSize());</span><br><span class="line">result.getRecords().forEach(System.out::println);</span><br><span class="line"></span><br><span class="line"> <span class="comment">//map集合封装的分页信息</span></span><br><span class="line">Page&lt;Map&lt;String, Object&gt;&gt; page = <span class="keyword">new</span> Page&lt;&gt;(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">mapper.selectMapsPage(page,<span class="keyword">null</span>).getRecords().forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="自定义SQL、多表关联"><a href="#自定义SQL、多表关联" class="headerlink" title="自定义SQL、多表关联"></a>自定义SQL、多表关联</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> top.q0o0p.mybatisplus.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Words</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer words_id;</span><br><span class="line">    <span class="keyword">private</span> String words_name;</span><br><span class="line">    <span class="keyword">private</span> String words_translate;</span><br><span class="line">    <span class="keyword">private</span> Integer user_id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">product</span><span class="params">()</span></span>&#123;</span><br><span class="line">      mapper.productList(<span class="string">"tralate"</span>).forEach(System.out::println);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="MyBatisPlus-自动生成"><a href="#MyBatisPlus-自动生成" class="headerlink" title="MyBatisPlus 自动生成"></a>MyBatisPlus 自动生成</h3><p>根据数据表自动生成实体类,Mapper, Service,  ServiceImpl, Controller</p>
+<ol>
+<li><p>pom.xml 导入MyBatis Plus Generator依赖</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-plus-generator&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.1.tmp&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.velocity&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;velocity&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.7&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>Velocity(默认),Freemarker, Beetl</p>
+</li>
+<li><p>启动类</p>
+</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
     <title>Android逆向题</title>
     <url>/2020/05/10/Android-Reverse/</url>
     <content><![CDATA[<h2 id="需要使用的工具"><a href="#需要使用的工具" class="headerlink" title="需要使用的工具"></a>需要使用的工具</h2><p>apkHelper:<br><a href="https://github.com/PeterBuerer/apkHelper">https://github.com/PeterBuerer/apkHelper</a></p>
-<p>获取软件包名称和版本信息<br>$ apkHelper summary /path/to/the/file.apk</p>
-<p>签署apk<br>$ apkHelper sign –keystore /path/to/file.keystore –keypass [keypass] –storepass [storepass] [theApk] [keystoreAlias]</p>
-<p>Zipalign apk<br>$ apkHelper zipalign [theUnalignedApk] [nameForAlignedApk]<br>如果未提供[nameForAlignedApk]，则对齐的apk将另存为[theUnalignedApk] -zipaligned.apk。</p>
+<p>获取软件包名称和版本信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apkHelper summary /path/to/the/file.apk</span><br></pre></td></tr></table></figure>
+<p>签署apk</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apkHelper sign --keystore /path/to/file.keystore --keypass [keypass] --storepass [storepass] [theApk] [keystoreAlias]</span><br></pre></td></tr></table></figure>
+<p>Zipalign apk</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apkHelper zipalign [theUnalignedApk] [nameForAlignedApk]</span><br></pre></td></tr></table></figure>
+<p>如果未提供[nameForAlignedApk]，则对齐的apk将另存为[theUnalignedApk] -zipaligned.apk。</p>
 <p>例如，myApp.apk将被命名为myApp-zipaligned.apk。</p>
+<hr>
+<h2 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h2><p> 反编译工具apktool 可以将classes.dex文件反编译成一堆的smali文件。</p>
+<h3 id="smali文件"><a href="#smali文件" class="headerlink" title="smali文件"></a>smali文件</h3><p>smali语法类似于汇编语言的语法， 涉及寄存器的直接操作， 可以直接阅读， 但羞涩难懂， 尤其是在代码混淆之后</p>
+<h4 id="smail文件打开方法"><a href="#smail文件打开方法" class="headerlink" title="smail文件打开方法"></a>smail文件打开方法</h4><p>有两种方法<br>1、 打开Sublime Text添加插件<br>Preferences -&gt; Browse Packages然后将会打开Finder显示Sublime Text的Packages目录，你可以在这里新建一个文件夹，命名为Smali，然后将下载的<a href="https://github.com/ShaneWilton/sublime-smali/archive/master.zip">smali.tmlanguage</a>文件复杂到新建的Smali文件夹中，重启Sublime Text，再次打开smali文件的时候，已经可以高亮显示了。</p>
+<p>2、 在studio中搜索Smalidea进行插件下载（要翻墙）<br>smali反编译和导入<br>调试的步骤大概如下：</p>
+<ul>
+<li>通过apktool工具反编译目标Apk获取smali文件</li>
+<li>修改xml中android:debuggable=”true”。</li>
+<li>导入smali文件至Android studio ,在相应位置打好断点后，启动调试进程。</li>
+</ul>
+<hr>
+<h2 id="dex2jar"><a href="#dex2jar" class="headerlink" title="dex2jar"></a>dex2jar</h2><p>有人做了一个专门的工具 dex2jar 将classes.dex 转化为jar 文件， 通过 jd-gui 阅读。<br>但dex2jar 并不健全， 反编译出的java文件大部分都有编译错误。可以简单的阅读和分析， 但若是涉及到很细致的内容， 则还是需要依赖smali。</p>
+<hr>
+<h2 id="1-easyjni"><a href="#1-easyjni" class="headerlink" title="1-easyjni"></a>1-easyjni</h2><p>先检查MainActivity<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/11.png" alt></p>
+<hr>
 <p>看了一道网鼎杯Android逆向……得出一个结论(我就是一个five)</p>
 <h2 id="rev01"><a href="#rev01" class="headerlink" title="rev01"></a>rev01</h2><p>得到一个 rev01.zip 压缩包,里面有一个apk文件<br>进入:I:\Android\Android tools\apk tool 路径下,用apktool进行解压<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/1.png" alt></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apktool d [-s] -f F:\题目\rev01\app-release.apk -o I:\Android\Androidtools\<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 <p>apktool解压后查看xml文件不会出现乱码</p>
 <p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/2.png" alt><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/3.png" alt></p>
-<p>感觉xml文件里没有要找的信息<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/4.png" alt><br>想查看里面的class文件用dex2jar 解压dex文件</p>
+<p>感觉xml文件里没有要找的信息<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/4.png" alt></p>
+<p>想查看里面的class文件用dex2jar 解压dex文件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">d2j-dex2jar.bat F:\题目\app-release\classes.dex</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/5.png" alt></p>
 <p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/6.png" alt></p>
 <p>使用jd-gui-1.6.6.jar 查看 classes.dex里面的class文件<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/7.png" alt></p>
-<p>在里面找到MaintActivity.class文件<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/8.png" alt></p>
-<p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/9.png" alt><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/10.png" alt></p>
+<p>在里面找到MaintActivity.class文件<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/8.png" alt><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/9.png" alt><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/10.png" alt></p>
+<hr>
+<p><a href="https://www.jianshu.com/p/9843e80f5ac5" target="_blank" rel="noopener">https://www.jianshu.com/p/9843e80f5ac5</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -142,7 +214,11 @@
 
 <ul>
 <li>adb同一wifi下连接<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect 192.168.1.210:5666</span><br></pre></td></tr></table></figure>
-常用命令：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  pull  sdcard/XXX   pc路径    //手机复制到电脑  </span><br><span class="line">adb push pc路径  sdcard/xxx  //电脑复制到手机</span><br><span class="line"></span><br><span class="line">adb install -r（replace）apk路径    //覆盖安装</span><br><span class="line">adb install -d (downgrade) apk路径     // 降级安装</span><br><span class="line"></span><br><span class="line">adb install -s(sdcard)  apk路径  //安装到sdcard</span><br><span class="line">adb shell uninstall 包名  //卸载apk</span><br><span class="line">adb shell uninstall -k 包名 //保留数据卸载</span><br><span class="line"></span><br><span class="line">adb shell screencap -p  保存路径  //截屏</span><br><span class="line">adb shell screenrecord  保存路径  //录屏</span><br><span class="line"></span><br><span class="line">adb shell rm 文件路径   //删除文件</span><br><span class="line">adb shell touch sdcard/1.txt   //创建文件</span><br><span class="line">adb shell mkdir -m 777 sdcard/q0o0p   //创建文件夹，并赋予读写能力</span><br><span class="line">adb shell rename 原始 更改后   //重命名</span><br></pre></td></tr></table></figure></li>
+常用命令：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  pull  sdcard/XXX   pc路径    //手机复制到电脑  </span><br><span class="line">adb push pc路径  sdcard/xxx  //电脑复制到手机</span><br><span class="line"></span><br><span class="line">adb install -r（replace）apk路径    //覆盖安装</span><br><span class="line">adb install -d (downgrade) apk路径     // 降级安装</span><br><span class="line"></span><br><span class="line">adb install -s(sdcard)  apk路径  //安装到sdcard</span><br><span class="line">adb shell uninstall 包名  //卸载apk</span><br><span class="line">adb shell uninstall -k 包名 //保留数据卸载</span><br><span class="line"></span><br><span class="line">adb shell screencap -p  保存路径  //截屏(保存到手机)</span><br><span class="line">adb pull 保存路径 //截屏(保存到电脑)</span><br><span class="line">adb shell screenrecord  保存路径  //录屏</span><br><span class="line"></span><br><span class="line">adb shell rm 文件路径   //删除文件</span><br><span class="line">adb shell touch sdcard/1.txt   //创建文件</span><br><span class="line">adb shell mkdir -m 777 sdcard/q0o0p   //创建文件夹，并赋予读写能力</span><br><span class="line">adb shell rename 原始 更改后   //重命名</span><br></pre></td></tr></table></figure>
+（1）adb shell screencap -p /sdcard/screen.png</li>
+</ul>
+<p>（2）adb pull /sdcard/screen.png</p>
+<ul>
 <li>apk<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages //列出手机中安装的所有apk的包名 </span><br><span class="line"></span><br><span class="line">adb shell pm list packages mtk  //寻找某个关键词的包名</span><br><span class="line"></span><br><span class="line">adb shell dumpsys window | findstr mCurrentFocus //查看当前正在运行程序的包名和活动名</span><br><span class="line">adb shell pm path 包名 //找到某个app的路径</span><br></pre></td></tr></table></figure>
 
 
@@ -157,9 +233,28 @@
     <url>/2020/04/18/vue/</url>
     <content><![CDATA[<p>##vue</p>
 <h3 id="0x01-vue相关的基础命令"><a href="#0x01-vue相关的基础命令" class="headerlink" title="0x01 vue相关的基础命令"></a>0x01 vue相关的基础命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v //查看node版本</span><br><span class="line">npm -v //查看npm版本</span><br><span class="line"><span class="built_in">where</span> node //查看node安装位置</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)</span><br><span class="line">npm install vue -g  //安装Vue-cli</span><br><span class="line">vue init webpack vue01 //构建项目并配置相关项 </span><br><span class="line">vue ui //使用ui界面选择</span><br><span class="line">npm install //下载项目依赖包</span><br><span class="line">npm run dev //本地启动</span><br></pre></td></tr></table></figure>
+<p>package.json文件中配置–host 0.0.0.0，可以局域网内访问(设置后需要重启)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">"dev"</span>: <span class="string">"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0"</span>,</span><br></pre></td></tr></table></figure>
 
+<p>在创建项目的时候选择预处理器 (Sass/Less/Stylus)。如果当时没有选好，内置的 webpack 仍然会被预配置为可以完成所有的处理。你也可以手动安装相应的 webpack loader：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># Sass</span><br><span class="line">npm install -D sass-loader sass</span><br><span class="line"></span><br><span class="line"># Less</span><br><span class="line">npm install -D less-loader less</span><br><span class="line"><span class="comment">// npm install --save less less-loader</span></span><br><span class="line"></span><br><span class="line"># Stylus</span><br><span class="line">npm install -D stylus-loader stylus</span><br></pre></td></tr></table></figure>
+<p>引用方法</p>
+<p>1、在main.js</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> less from <span class="string">'less'</span></span><br><span class="line">Vue.use(less)</span><br></pre></td></tr></table></figure>
+<p>2、然后创建一个.vue文件我们开始玩耍了；</p>
+<p>注意：独立的vue文件需要引入less</p>
+<p>1</p>
+<style lang="less"></style>
+
+
+<p>开始使用</p>
+<p>1、less中变量的使用；</p>
+<p>在less，允许我们使用以变量的形式来定义，定义方式：@k:v; 使用方式：@k;</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;div class="box"&gt;&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style lang="less"&gt;</span><br><span class="line">@color:red;</span><br><span class="line">@k:100px;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line"><span class="attribute">width</span>:@k;</span><br><span class="line"><span class="attribute">height</span>:@k;</span><br><span class="line"><span class="attribute">background</span>: @color;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/df96d02c5c30" target="_blank" rel="noopener">https://www.jianshu.com/p/df96d02c5c30</a></p>
 <h3 id="文件夹下的相关配置"><a href="#文件夹下的相关配置" class="headerlink" title="文件夹下的相关配置"></a>文件夹下的相关配置</h3><p>src/router/index.js  –&gt;配置到本地路由<br>src/App.vue  –&gt;全局配置</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> Topic <span class="keyword">from</span> <span class="string">'../views/Topic.vue'</span></span><br><span class="line"><span class="keyword">import</span> Reader <span class="keyword">from</span> <span class="string">'../views/Reader.vue'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: <span class="string">'/'</span>,    <span class="comment">//&lt;router-link to="/"</span></span><br><span class="line">      name: <span class="string">'Topic'</span>,</span><br><span class="line">      component: Topic</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">      path: <span class="string">'/reader'</span>,</span><br><span class="line">      component: Reader</span><br><span class="line">    &#125;]</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"q0o0p"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/topic"</span>&gt;</span>Topic<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/reader"</span>&gt;</span>Reader<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"./assets/logo.png"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">router-view</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>跨域的问题及服务器端的操作<br>说在前面的： Vue项目在开发的时候，是处于本地环境，访问服务器数据，由于域名的不一样，所以会出现跨域问题，而AJAX在跨域访问的时候是有限制的，所以会出现跨域问题。但是，生产时候，将Vue项目打包文件和服务器webAPI一起发布的在同一个地方的时候，将不会出现跨域问题。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由接口代理配置</span></span><br><span class="line">proxyTable: &#123;</span><br><span class="line">  <span class="string">'/api'</span>: &#123;</span><br><span class="line">    target: <span class="string">'https://localhost:8082'</span>,</span><br><span class="line">    changeOrigin: <span class="keyword">true</span>,</span><br><span class="line">    pathRewrite: &#123;</span><br><span class="line">      <span class="string">'^/api'</span>: <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
@@ -182,6 +277,14 @@
 <p><code>正常的情况是先加载yml，接下来加载properties文件。如果相同的配置存在于两个文件中。最后会使用properties中的配置。最后读取的优先集最高。</code><br><code>yml文件的好处，天然的树状结构，同的前缀只需要写一次,实质上跟properties是差不多的。</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/q0o0p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    # url: jdbc:mysql:///test?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false</span><br><span class="line">  </span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa: </span><br><span class="line">    show-sql: true  #打印sql</span><br><span class="line">    properties:</span><br><span class="line">      hibernate: </span><br><span class="line">        format-sql: true  #格式化sql,自动换行</span><br><span class="line">server: </span><br><span class="line">  part: <span class="number">8181</span></span><br></pre></td></tr></table></figure>
 <h3 id="JPA-自定义实现动态表名映射"><a href="#JPA-自定义实现动态表名映射" class="headerlink" title="JPA 自定义实现动态表名映射"></a>JPA 自定义实现动态表名映射</h3><p>注意命名规则,实体类和表名实现动态映射</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Vue+SpringBoot</title>
+    <url>/2020/04/18/CarPacking/</url>
+    <content><![CDATA[<p>Spring Boot DevTools<br>Lombok<br>Spring Web<br>Mysql Driver</p>
+<p>报错：<br>template might not exist or might not be accessible by any of the configured Template Resolvers</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">testController</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">      System.out.println(request);</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"hi"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
@@ -358,6 +461,8 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">//一个汉字两个字符</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> SPJ(</span><br><span class="line">SNO <span class="built_in">VARCHAR</span>(<span class="number">10</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">PNO <span class="built_in">VARCHAR</span>(<span class="number">10</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span>,  </span><br><span class="line">JNO <span class="built_in">VARCHAR</span>(<span class="number">10</span>)  <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">QTY <span class="built_in">SMALLINT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">SEX  <span class="keyword">check</span> (sex <span class="keyword">in</span>(<span class="string">''</span>,<span class="string">''</span>))  //<span class="keyword">default</span> <span class="string">'男'</span>全是男</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">unique</span> //唯一</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>创建一个表：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> userinfo01</span><br><span class="line">(<span class="keyword">ID</span> <span class="built_in">int</span> primary <span class="keyword">key</span> <span class="keyword">not</span> <span class="literal">NULL</span>,</span><br><span class="line"><span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">age <span class="built_in">int</span> <span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<p>常见约束:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">CHECK</span> (</span><br><span class="line">        <span class="keyword">LEN</span>(<span class="keyword">RTRIM</span>(<span class="keyword">test</span>)) = <span class="number">11</span> <span class="keyword">AND</span> </span><br><span class="line">        <span class="keyword">PATINDEX</span>(<span class="string">'%[^0-9]%'</span>, <span class="keyword">RTRIM</span>(<span class="keyword">test</span>)) = <span class="number">0</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>修改表结构：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tableName <span class="keyword">alter</span> <span class="keyword">column</span> columnName <span class="built_in">varchar</span>(<span class="number">4000</span>)  //修改类型</span><br><span class="line"></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">constraint</span> 主键名 primary <span class="keyword">key</span>(字段名)  //设置主键（主码）</span><br><span class="line"></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">constraint</span> 主键名 <span class="keyword">Foreign</span> <span class="keyword">Key</span>（属性名）&lt;!<span class="comment">-- references course(con) --&gt;//定义外码</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tableName <span class="keyword">drop</span> <span class="keyword">column</span> columnName   //删除列</span><br><span class="line"></span><br><span class="line">EXEC  sp_rename <span class="string">'tableName.column1'</span> , <span class="string">'column2'</span>  //把表名为tableName的column1列名修改为column2 </span><br><span class="line"></span><br><span class="line">exec sp_rename <span class="string">'表名.字段名'</span>,<span class="string">'更改后的字段名称'</span>,<span class="string">'column'</span>  //更改字段名</span><br><span class="line"></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表 <span class="keyword">add</span> 字段名 字段类型 <span class="keyword">default</span> <span class="literal">null</span>  //添加字段名</span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> table_name[,...n]  //删除表</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">having</span> 条件  //选列</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Rsex enum(<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="keyword">not</span> <span class="literal">null</span> </span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> B表 <span class="keyword">add</span> <span class="keyword">constraint</span> 外键名 <span class="keyword">foreign</span> <span class="keyword">key</span>(B表中的外键字段)  <span class="keyword">references</span> A表(A表主键）</span><br><span class="line">或者在创建表的时候定义：</span><br><span class="line">B表外键字段 数据类型 <span class="keyword">constraint</span> 外键名 <span class="keyword">foreign</span> <span class="keyword">key</span>  <span class="keyword">references</span> A表(主键) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br></pre></td></tr></table></figure>
 <hr>
@@ -411,7 +516,8 @@
 
 <p>Selenium WebDriver API 官方参考：<a href="http://seleniumhq.github.io/selenium/docs/api/py/" target="_blank" rel="noopener">http://seleniumhq.github.io/selenium/docs/api/py/</a><br>具体API文档地址：<a href="https://seleniumhq.github.io/selenium/docs/api/py/api.html" target="_blank" rel="noopener">https://seleniumhq.github.io/selenium/docs/api/py/api.html</a></p>
 <hr>
-<h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2 //或者：(git <span class="built_in">clone</span> https://github.com/openatx/uiautomator2 ||pip install pillow)</span><br><span class="line">pip install --upgrad weditor  //可视化UI查看器</span><br><span class="line">pip install opencv-python  //简单图像处理（根据自己的情况选择是否安装此模块）</span><br></pre></td></tr></table></figure>
+<h3 id="uiautomator2"><a href="#uiautomator2" class="headerlink" title="uiautomator2"></a>uiautomator2</h3><p>模拟手机操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade uiautomator2 //或者：(git <span class="built_in">clone</span> https://github.com/openatx/uiautomator2 ||pip install pillow)</span><br><span class="line">pip install --upgrad weditor  //可视化UI查看器</span><br><span class="line">pip install opencv-python  //简单图像处理（根据自己的情况选择是否安装此模块）</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">start adb  //启动adb</span><br><span class="line">adb devices//查看电脑是否连接到手机</span><br><span class="line">python -m weditor//启动weditor</span><br></pre></td></tr></table></figure>
 <p><img src="https://q0o0p.top/2020/03/09/Python/1.png" alt><br>手机会自动安装：<br>ATX</p>
@@ -429,7 +535,7 @@
 <p>分别是字体坐标，和文字宽高，还有图片序号</p>
 <h5 id="用途："><a href="#用途：" class="headerlink" title="用途："></a>用途：</h5><p><a href="https://blog.csdn.net/qq_38844326/article/details/78578892?depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2&amp;utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2" target="_blank" rel="noopener">https://blog.csdn.net/qq_38844326/article/details/78578892?depth_1-utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2&amp;utm_source=distribute.pc_relevant.none-task-blog-OPENSEARCH-2</a></p>
 <hr>
-<h3 id><a href="#" class="headerlink" title></a></h3><p>百度提供的图像识别接口来实现简单的图片文字提取</p>
+<h3 id="baidu-aip"><a href="#baidu-aip" class="headerlink" title="baidu-aip"></a>baidu-aip</h3><p>百度提供的图像识别接口来实现简单的图片文字提取</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install baidu-aip</span><br></pre></td></tr></table></figure>
 <p>API文档：<br><a href="https://cloud.baidu.com/doc/OCR/s/zk3h7xz52" target="_blank" rel="noopener">https://cloud.baidu.com/doc/OCR/s/zk3h7xz52</a></p>
 <hr>
@@ -447,10 +553,12 @@
   <entry>
     <title>Termux的正确使用</title>
     <url>/2020/03/05/termux/</url>
-    <content><![CDATA[<p>平板就能连接电脑，能搭建博客，WordPress，hexo。。。<br>大半夜写博客的我，美滋滋<br>O(∩<em>∩)O哈哈~</em>)<br>设置默认编辑器<br>export EDITOR=nano 或<br>export EDITOR=vim (若未安装vim,先安装：pkg install vim)<br>编辑源文件<br>apt edit-sources<br>将原来的<a href="https://termux.net官方源替换为" target="_blank" rel="noopener">https://termux.net官方源替换为</a><br><a href="http://mirrors.tuna.tsinghua.edu.cn/termux" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/termux</a></p>
+    <content><![CDATA[<p>平板就能连接电脑，能搭建博客，WordPress，hexo。。。<br>大半夜写博客的我，美滋滋<br>O(∩<em>∩)O哈哈~</em>)</p>
+<hr>
+<h2 id="termux-简单用法"><a href="#termux-简单用法" class="headerlink" title="termux 简单用法"></a>termux 简单用法</h2><p>设置默认编辑器<br>export EDITOR=nano 或<br>export EDITOR=vim (若未安装vim,先安装：pkg install vim)<br>编辑源文件<br>apt edit-sources<br>将原来的<a href="https://termux.net官方源替换为" target="_blank" rel="noopener">https://termux.net官方源替换为</a><br><a href="http://mirrors.tuna.tsinghua.edu.cn/termux" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/termux</a></p>
 <p>termux用法写的还不错<br><a href="https://www.sqlsec.com/2018/05/termux.html#toc-heading-79" target="_blank" rel="noopener">https://www.sqlsec.com/2018/05/termux.html#toc-heading-79</a><br>电脑ssh连接手机上的termux：<br><a href="https://www.jianshu.com/p/2e6c8152a2ba" target="_blank" rel="noopener">https://www.jianshu.com/p/2e6c8152a2ba</a></p>
 <hr>
-<p>当使用ssh命令登录到远程系统时，OpenSSH服务器的sshd守护进行将会发送一个公钥，OpenSSH客户端软件ssh将会提示用户确认是否接收发送的公钥。<br>同时，OpenSSH客户端也会向服务器回传一个密钥，使OpenSSH连接双方的每个系统都拥有对方的密钥，因而能够解密对方经由加密链路发送的加密数据。</p>
+<h2 id="openssh远程连接"><a href="#openssh远程连接" class="headerlink" title="openssh远程连接"></a>openssh远程连接</h2><p>当使用ssh命令登录到远程系统时，OpenSSH服务器的sshd守护进行将会发送一个公钥，OpenSSH客户端软件ssh将会提示用户确认是否接收发送的公钥。<br>同时，OpenSSH客户端也会向服务器回传一个密钥，使OpenSSH连接双方的每个系统都拥有对方的密钥，因而能够解密对方经由加密链路发送的加密数据。</p>
 <p>当主机中开启openssh服务时，那么就对外开放了远程连接的接口</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">openssh服务的服务端：  sshd</span><br><span class="line">openssh服务的客户端：  ssh</span><br></pre></td></tr></table></figure>
 
@@ -467,7 +575,7 @@
 <figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# scp  root@<span class="number">192.168</span><span class="meta">.112</span><span class="meta">.130</span>:/tmp/anaconda-ks.cfg  /root</span><br><span class="line">root@<span class="number">192.168</span><span class="meta">.112</span><span class="meta">.130</span><span class="string">'s password: </span></span><br><span class="line"><span class="string">anaconda-ks.cfg                   100% 1704     1.7KB/s   00:00</span></span><br></pre></td></tr></table></figure>
 
 <hr>
-<ul>
+<h2 id="adb"><a href="#adb" class="headerlink" title="adb"></a>adb</h2><ul>
 <li><p>安装脚本</p>
 <figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">update</span> &amp;&amp; apt install wget &amp;&amp; wget http<span class="variable">s:</span>//github.<span class="keyword">com</span>/MasterDevX/Termux-ADB/raw/master/InstallTools.<span class="keyword">sh</span> &amp;&amp; bash InstallTools.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://q0o0p.top/2020/03/05/termux/1.jpg" alt></p>
@@ -479,6 +587,11 @@
 </li>
 </ul>
 <p>远程连接数据库<br><img src="https://q0o0p.top/2020/03/05/termux/2.png" alt></p>
+<hr>
+<h2 id="nmap正确使用"><a href="#nmap正确使用" class="headerlink" title="nmap正确使用"></a>nmap正确使用</h2><p>探测路由下0-24网段的ip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">namp -sP 192.168.1.0/24  // -sP -script discovery 能获取更多信息</span><br></pre></td></tr></table></figure>
+
+
 <hr>
 <p>参考：<br><a href="https://www.52pojie.cn/thread-1124467-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1124467-1-1.html</a><br>termux攻击电脑：<br><a href="http://www.nctry.com/1764.html" target="_blank" rel="noopener">http://www.nctry.com/1764.html</a></p>
 ]]></content>
@@ -661,6 +774,7 @@
     <url>/2020/02/14/web/</url>
     <content><![CDATA[<p>安全网站及论坛：</p>
 <p>看雪（<a href="https://bbs.pediy.com/）" target="_blank" rel="noopener">https://bbs.pediy.com/）</a><br>安全客（<a href="https://www.anquanke.com）" target="_blank" rel="noopener">https://www.anquanke.com）</a><br>freebuf（<a href="https://www.freebuf.com/）" target="_blank" rel="noopener">https://www.freebuf.com/）</a><br>安全牛（<a href="https://www.aqniu.com/）" target="_blank" rel="noopener">https://www.aqniu.com/）</a><br>安全内参（<a href="https://www.secrss.com/）" target="_blank" rel="noopener">https://www.secrss.com/）</a><br>绿盟（<a href="http://www.nsfocus.com.cn/）" target="_blank" rel="noopener">http://www.nsfocus.com.cn/）</a><br>先知社区（<a href="https://xz.aliyun.com/）" target="_blank" rel="noopener">https://xz.aliyun.com/）</a></p>
+<p><a href="http://itsecgames.com/" target="_blank" rel="noopener">http://itsecgames.com/</a><br><a href="http://damnvulnerableiosapp.com/" target="_blank" rel="noopener">http://damnvulnerableiosapp.com/</a><br><a href="http://www.gameofhacks.com/" target="_blank" rel="noopener">http://www.gameofhacks.com/</a><br><a href="https://defendtheweb.net/dashboard" target="_blank" rel="noopener">https://defendtheweb.net/dashboard</a></p>
 <hr>
 <p><a href="https://blog.csdn.net/Eastmount/article/details/97784774" target="_blank" rel="noopener">https://blog.csdn.net/Eastmount/article/details/97784774</a></p>
 <h3 id="1-index-php"><a href="#1-index-php" class="headerlink" title="1. index.php"></a>1. index.php</h3><p>注意查看url<br>将url改为 index.php，会自动跳转到1.php，<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/web/1.png" alt></p>
@@ -699,6 +813,14 @@
     <title>Steghide</title>
     <url>/2020/01/28/steghide/</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Useful-Website</title>
+    <url>/2020/01/08/useful-website/</url>
+    <content><![CDATA[<p>唉!最近居然养成了深夜水文的习惯…|ू･ω･` )<br>下面放几个有意思的网站(物联网设备漏洞查询平台):<br><a href="https://fofa.so/" target="_blank" rel="noopener">https://fofa.so/</a></p>
+<p><a href="https://www.zoomeye.org/" target="_blank" rel="noopener">https://www.zoomeye.org/</a></p>
+<p><a href="https://www.shodan.io/" target="_blank" rel="noopener">https://www.shodan.io/</a></p>
+]]></content>
   </entry>
   <entry>
     <title>SortAlgorithm</title>
@@ -1369,6 +1491,82 @@ POST：
 <p><a href="https://blog.csdn.net/qq_20084101/article/details/80816045?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4" target="_blank" rel="noopener">https://blog.csdn.net/qq_20084101/article/details/80816045?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-4</a></p>
 <hr>
 <p><a href="http://cve.mitre.org/" target="_blank" rel="noopener">http://cve.mitre.org/</a><br>src提交平台：<br>安全客：<br><a href="https://www.anquanke.com/src" target="_blank" rel="noopener">https://www.anquanke.com/src</a><br>i春秋：<br><a href="https://www.ichunqiu.com/src" target="_blank" rel="noopener">https://www.ichunqiu.com/src</a><br>漏洞银行：<br><a href="https://www.butian.net/" target="_blank" rel="noopener">https://www.butian.net/</a><br>阿里云<br><a href="https://security.alibaba.com/" target="_blank" rel="noopener">https://security.alibaba.com/</a><br>腾讯：<br><a href="https://security.tencent.com/index.php" target="_blank" rel="noopener">https://security.tencent.com/index.php</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>自制Python小工具</title>
+    <url>/2018/09/16/Python-tools/</url>
+    <content><![CDATA[<p>自制Python小工具</p>
+<p>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyinstaller</p>
+<p>打包.exe文件</p>
+<p>如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令：</p>
+<p>pyinstaller.exe -F -icon=F:\testTools F:/code/python-tools/test.py</p>
+<p>如果带-icon参数打包运行时报错，那么可以在你想保存的文件路劲下直接运行如下命令：</p>
+<p>pyinstaller.exe -F F:/code/python-tools/test.py</p>
+<p>1.程序设置自定义图标：pyinstaller -F -i ico_path  py_path </p>
+<p>首先需要下载一张正常的ico，不能用直接修改后缀的。</p>
+<p>下载图片：　　  <a href="https://www.easyicon.net" target="_blank" rel="noopener">https://www.easyicon.net</a></p>
+<p>图片改为ico:　　<a href="http://www.ico.la/" target="_blank" rel="noopener">http://www.ico.la/</a></p>
+<p>输入命令 pyinstaller -F -i “demo.ico” “main.py”</p>
+<p>2.报错提示：</p>
+<p>pyinstaller -F -i “demo.ico” “main.py” 命令格式一定是先图标路径，再程序路径。</p>
+<p>路径最好为英文，没有中文字符；脚本名称里没有特殊字符如 .</p>
+<p>使用utf8编码</p>
+<p>图标文件必须是正常格式，不能直接更改后缀。</p>
+<p>tuble index out of range —》pyinstaller版本尚未支持python的版本</p>
+<p>3.窗口程序</p>
+<p>使用 pyinstaller -F -w  -i ico_path  py_path ，这样脚本不会弹出命令窗，前提是用了GUI库. </p>
+<hr>
+<h2 id="Python开发右键菜单功能"><a href="#Python开发右键菜单功能" class="headerlink" title="Python开发右键菜单功能"></a>Python开发右键菜单功能</h2><p>右键菜单功能使用Pyhton内置的_winreg模块</p>
+<h3 id="右键菜单"><a href="#右键菜单" class="headerlink" title="右键菜单"></a>右键菜单</h3><ul>
+<li>注册表编辑器添加右键菜单的基本原理<br>win + R快捷键打开运行命令输入框，输入 <code>regedit</code> 命令并回车，打开注册表编辑器。<br>目录–&gt;树形结构，树中的每个项目都称为key，也就是注册表的键，其实我们添加右键菜单，本质上就是在某个父键下面新增一个具体执行某种操作的子键。<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/1.png" alt><br>计算机\HKEY_CLASSES_ROOT\Directory\Background\shell,这个就是添加文件夹空白处右键菜单的父键，可以看到当前该父键下已经有三个子键，也就是有三个右键菜单了</li>
+</ul>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/2.png" alt><br>git_shell展开，可以看到还有一个名为command的子键，还可以在注册表编辑器右边看到git_shell这个键的详情，Git Bash Here这个右键菜单，执行git-bash.exe<br>并且自动带上了–cd=%v.这样一个参数。还可以右键点击名称，修改这个键的值</p>
+<p>如果不想使用某个右键菜单，只需把这个右键菜单的键（包括子键）在注册表编辑器中删掉即可</p>
+<ul>
+<li>添加右键菜单打印字符串<br>找到注册表中的shell，在HKEY_CLASSES_ROOT/Directory/Background/shell键上面执行（右键–&gt;新建–&gt;项），并为HelloWorld子键添加一个名为command的子键：</li>
+</ul>
+<p>代码中添加注册表键的command命令时，是以%v代表一个路径参数的，还有其他几种参数可以使用：</p>
+<p>系统默认变量的含义：<br>%1  表示程序操作的文件<br>%2  表示系统默认的打印机<br>%3  表示资料扇区<br>%4  表示操作的Port端口<br>“%v”  程序操作的路径</p>
+<p>删除上面添加的Show file path右键菜单的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> _winreg <span class="keyword">as</span> reg</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete_reg_key</span><span class="params">(root_key,key,menu_name)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    删除一个右键菜单注册表子键</span></span><br><span class="line"><span class="string">    :param root_key:根键</span></span><br><span class="line"><span class="string">    :param key: 父键</span></span><br><span class="line"><span class="string">    :param menu_name: 菜单子键名称</span></span><br><span class="line"><span class="string">    :return: None</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        parent_key = reg.OpenKey(root_key,key)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> msg:</span><br><span class="line">        <span class="keyword">print</span> msg</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> parent_key:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            menu_key = reg.OpenKey(parent_key,menu_name)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> msg:</span><br><span class="line">            <span class="keyword">print</span> msg</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> menu_key:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="comment"># 必须先删除子键的子键，才能删除子键本身</span></span><br><span class="line">                reg.DeleteKey(menu_key,<span class="string">'command'</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> msg:</span><br><span class="line">                <span class="keyword">print</span> msg</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                reg.DeleteKey(parent_key,menu_name)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    menu_name = <span class="string">'Show file path'</span></span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT,<span class="string">r'*\\shell'</span>,menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, <span class="string">r'Directory\\shell'</span>, menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, <span class="string">r'Directory\\Background\\shell'</span>, menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, <span class="string">r'Drive\\shell'</span>, menu_name)</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现”用Chrome浏览器打开文件”的右键菜单"><a href="#实现”用Chrome浏览器打开文件”的右键菜单" class="headerlink" title="实现”用Chrome浏览器打开文件”的右键菜单"></a>实现”用Chrome浏览器打开文件”的右键菜单</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> _winreg <span class="keyword">as</span> reg</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_context_menu</span><span class="params">(menu_name,command,reg_root_key_path,reg_key_path,shortcut_key)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    封装的添加一个右键菜单的方法</span></span><br><span class="line"><span class="string">    :param menu_name: 显示的菜单名称</span></span><br><span class="line"><span class="string">    :param command: 菜单执行的命令</span></span><br><span class="line"><span class="string">    :param reg_root_key_path: 注册表根键路径</span></span><br><span class="line"><span class="string">    :param reg_key_path: 要添加到的注册表父键的路径（相对路径）</span></span><br><span class="line"><span class="string">    :param shortcut_key: 菜单快捷键，如：'S'</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 打开名称父键</span></span><br><span class="line">    key = reg.OpenKey(reg_root_key_path, reg_key_path)</span><br><span class="line">    <span class="comment"># 为key创建一个名称为menu_name的sub_key，并设置sub_key的值为menu_name加上快捷键，数据类型为REG_SZ字符串类型</span></span><br><span class="line">    reg.SetValue(key, menu_name, reg.REG_SZ, menu_name + <span class="string">'(&amp;&#123;0&#125;)'</span>.format(shortcut_key))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打开刚刚创建的名为menu_name的sub_key</span></span><br><span class="line">    sub_key = reg.OpenKey(key, menu_name)</span><br><span class="line">    <span class="comment"># 为sub_key添加名为'command'的子键，并设置其值为command + ' "%v"'，数据类型为REG_SZ字符串类型</span></span><br><span class="line">    reg.SetValue(sub_key, <span class="string">'command'</span>, reg.REG_SZ, command + <span class="string">' "%v"'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 关闭sub_key和key</span></span><br><span class="line">    reg.CloseKey(sub_key)</span><br><span class="line">    reg.CloseKey(key)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_open_with_chrome</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    添加"用谷歌浏览器打开"右键菜单</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 右键菜单名</span></span><br><span class="line">    menu_name = <span class="string">'Open with chrome'</span></span><br><span class="line">    <span class="comment"># Chrome浏览器可执行文件的本地绝对路径</span></span><br><span class="line">    command = <span class="string">r'C:\\Users\\Administrator.PC-20170728DWIF\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe'</span></span><br><span class="line">    <span class="comment"># 注册表根键</span></span><br><span class="line">    reg_root_key_path = reg.HKEY_CLASSES_ROOT</span><br><span class="line">    <span class="comment"># 注册表父键</span></span><br><span class="line">    reg_key_path = <span class="string">r'*\\shell'</span></span><br><span class="line">    <span class="comment"># 快捷键</span></span><br><span class="line">    shortcut_key = <span class="string">'C'</span></span><br><span class="line">    add_context_menu(menu_name, command, reg_root_key_path, reg_key_path, shortcut_key)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    add_open_with_chrome()</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://www.jianshu.com/p/b9ef487d7c87" target="_blank" rel="noopener">https://www.jianshu.com/p/b9ef487d7c87</a></p>
+<hr>
+<h2 id="Chrome-增加-右键菜单项-实现多搜索"><a href="#Chrome-增加-右键菜单项-实现多搜索" class="headerlink" title="Chrome 增加 右键菜单项 实现多搜索"></a>Chrome 增加 右键菜单项 实现多搜索</h2><p>1、随地创建一个文件包并命名</p>
+<p>2、文件包内创建以下文件：</p>
+<p>2.1 ./manifest.json</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;  </span><br><span class="line">  "manifest_version":2, //必需是2</span><br><span class="line">  "name": "BaiduSeachString",  </span><br><span class="line">  "version": "0.1.0",  </span><br><span class="line">  "description": "走百度搜索.", </span><br><span class="line">  "icons": </span><br><span class="line">  &#123; </span><br><span class="line">    "16": "sicon.png",  //当前路径中的图标           </span><br><span class="line">    "48": "sicon.png",            </span><br><span class="line">    "128": "sicon.png" </span><br><span class="line">  &#125;,    </span><br><span class="line">  "background": &#123;</span><br><span class="line">    "scripts": ["BDSCHbackground.js"] //菜单功能</span><br><span class="line">  &#125;,</span><br><span class="line">  "permissions": ["contextMenus"]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.2 ./BDSCHbackground.js</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">chrome.contextMenus.create(&#123;</span><br><span class="line">    title: <span class="string">'使用度娘搜索：%s'</span>, <span class="comment">// %s表示选中的文字</span></span><br><span class="line">    contexts: [<span class="string">'selection'</span>], <span class="comment">// 只有当选中文字时才会出现此右键菜单</span></span><br><span class="line">    onclick: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 注意不能使用location.href，因为location是属于background的window对象</span></span><br><span class="line">        chrome.tabs.create(&#123;<span class="attr">url</span>: <span class="string">'https://www.baidu.com/s?ie=utf-8&amp;wd='</span> + <span class="built_in">encodeURI</span>(params.selectionText)&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>2.3 ./sicon.png<br>随便找个PNG的图片当做log。越小越好。</p>
+<p>3、打开Chrome右上角找到”更多工具-&gt;扩展程序“中，加载已解压文件，选择你创建的哪个文件包，即可。</p>
+<hr>
+<p>python 小游戏<br>pip install pygame -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a><br>python加载动态图<br>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyglet </p>
+<p>引用  初始化  事件处理 窗口刷新</p>
+<p>resources : 图片音乐和音效<br>source文件夹 :<br>    constants.py : 存放游戏中的常量(屏幕宽高,攻击特效,动作)<br>    sound.py : 音乐/音效<br>    setup.py : 启动代码(载入游戏的素材,如初始化,创建屏幕)<br>    tools.py : 工具代码<br>    data文件夹:游戏关卡, 游戏人物资料<br>    components文件夹 : 游戏人物,相关道具<br>        feed : 鱼食<br>        coin : 金币<br>        egg : 关卡结束重点<br>        enemy : 敌人<br>        medicine : 药品<br>        weapon : 武器<br>        player : 玩家<br>        octopus : 章鱼<br>        stuff : 物品<br>        info : 游戏信息(显示分数提示)<br>    states文件夹 : 存放game各个阶段要做的事情<br>        main_menu : 主菜单<br>        load_screen : 载入界面,关卡之间的载入屏幕<br>        level : 关卡</p>
+<hr>
+<p>while True : 无线循环<br>    for event in pygame.event.get()    #取出事件<br>        if event.typw == pygame.QUIT:<br>            sys.exit() #调用函数 退出事件<br>screen = pygame.display.set_mode(size,pygame.RESIZABLE)  //大小可调</p>
+<p>pygame.display.set_mode() //设置屏幕相关信息<br>pygame.display.Info() 生成屏幕相关信息<br>pygame.image.load()  —  从文件加载新图片<br>pygame.image.save()  —  将图像保存到磁盘上<br>pygame.image.get_extended()  —  检测是否支持载入扩展的图像格式<br>pygame.image.tostring()  —  将图像转换为字符串描述<br>pygame.image.fromstring()  —  将字符串描述转换为图像<br>pygame.image.frombuffer()  —  创建一个与字符串描述共享数据的 Surface 对象</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python实现手机版自动答题及拍照(原理及过程)</title>
+    <url>/2018/06/02/py-auto-quest/</url>
+    <content><![CDATA[<p>又错过了六一水博客的时间, 今天水一波—&gt;自动答题<br>(至于为什么水这个…看的人都清楚吧)<br>下面开始正文…</p>
+<h2 id="安装模块库"><a href="#安装模块库" class="headerlink" title="安装模块库"></a>安装模块库</h2><p>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pillow<br>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> requests<br>已有的自动跳过</p>
+<h2 id="下载adb驱动"><a href="#下载adb驱动" class="headerlink" title="下载adb驱动"></a>下载adb驱动</h2><p>Android Studio自带adb ,没有的自行下载<br>手机截屏:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell screencap -p</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>拍照<br>pip install opencv-python -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a><br>pip install itchat -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+<hr>
+<p>微信远程控制电脑:<br>pip install matplotlib -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+<hr>
+<p>未完待续~~</p>
 ]]></content>
   </entry>
 </search>
