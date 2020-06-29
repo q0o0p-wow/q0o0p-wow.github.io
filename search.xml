@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Simulation-Handwritten</title>
-    <url>/2020/06/29/Simulation-Handwritten/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Chrome插件--右键实现存储功能</title>
     <url>/2020/06/29/Chrome-plugin/</url>
     <content><![CDATA[<p>最近课设和大作业一天一个真是,忙得不可开交…<br>(事实是—最近又懒了,最后一天效率MAX—–QAQ)<br>在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….<br>特别是有些网页,太狗了,复制还要用到F12<br>唉!对于像我这样的人,还是希望能有更方便的用法<br>然后就有了这个标题~~<br>(最近刚研究了一下WPS的word宏手写体,在家手抄几十页的报告…不存在的,O(∩_∩)O)<br>手写,查资料可以懒,但敲代码不能懒!<br>下面进入正题….</p>
@@ -20,14 +15,14 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">chrome.contextMenus.create(&#123;</span><br><span class="line">    title: <span class="string">'q0o0p-翻译：%s'</span>, <span class="comment">// %s表示选中的文字</span></span><br><span class="line">    contexts: [<span class="string">'selection'</span>], <span class="comment">// 只有当选中文字时才会出现此右键菜单</span></span><br><span class="line">    onclick: <span class="function"><span class="keyword">function</span>(<span class="params">params</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 注意不能使用location.href，因为location是属于background的window对象</span></span><br><span class="line">        chrome.tabs.create(&#123;<span class="attr">url</span>: <span class="string">'http://www.youdao.com/w/'</span> + <span class="built_in">encodeURI</span>(params.selectionText)&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>3.xxx.png<br>找到喜欢的图片做log,这里使用的图标是以前抠过图的透明底图片</p>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/2.png" alt></p>
+<p><img src="https://q0o0p.top/2020/06/29/Chrome-plugin/2.png" alt></p>
 <ul>
 <li>找到Chrome插件,添加自己的插件</li>
 </ul>
 <p>打开Chrome右上角的”…”找到”更多工具”-&gt;”扩展程序”，加载已解压文件，选择你创建的哪个文件包，即可。</p>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/1.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/3.png" alt></p>
+<p><img src="https://q0o0p.top/2020/06/29/Chrome-plugin/1.png" alt><br><img src="https://q0o0p.top/2020/06/29/Chrome-plugin/3.png" alt></p>
 <ul>
-<li>更新插件<br>更新插件只需刷新即可<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/4.png" alt></li>
+<li>更新插件<br>更新插件只需刷新即可<br><img src="https://q0o0p.top/2020/06/29/Chrome-plugin/4.png" alt></li>
 </ul>
 <hr>
 <p>附上已安装的第三方插件路径:<br>C:\Users\ASUS\AppData\Local\Google\Chrome\User Data\Default\Extensions</p>
@@ -1552,6 +1547,11 @@ POST：
 <p>while True : 无线循环<br>    for event in pygame.event.get()    #取出事件<br>        if event.typw == pygame.QUIT:<br>            sys.exit() #调用函数 退出事件<br>screen = pygame.display.set_mode(size,pygame.RESIZABLE)  //大小可调</p>
 <p>pygame.display.set_mode() //设置屏幕相关信息<br>pygame.display.Info() 生成屏幕相关信息<br>pygame.image.load()  —  从文件加载新图片<br>pygame.image.save()  —  将图像保存到磁盘上<br>pygame.image.get_extended()  —  检测是否支持载入扩展的图像格式<br>pygame.image.tostring()  —  将图像转换为字符串描述<br>pygame.image.fromstring()  —  将字符串描述转换为图像<br>pygame.image.frombuffer()  —  创建一个与字符串描述共享数据的 Surface 对象</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>模拟手写---打印</title>
+    <url>/2018/06/29/Simulation-Handwritten/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Python实现手机版自动答题及拍照(原理及过程)</title>
