@@ -225,6 +225,14 @@
   </entry>
   <entry>
     <title>Vue+SpringBoot</title>
+    <url>/2020/04/18/CarPacking/</url>
+    <content><![CDATA[<p>Spring Boot DevTools<br>Lombok<br>Spring Web<br>Mysql Driver</p>
+<p>报错：<br>template might not exist or might not be accessible by any of the configured Template Resolvers</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">testController</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">      System.out.println(request);</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"hi"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>Vue+SpringBoot</title>
     <url>/2020/04/18/vue/</url>
     <content><![CDATA[<p>##vue</p>
 <h3 id="0x01-vue相关的基础命令"><a href="#0x01-vue相关的基础命令" class="headerlink" title="0x01 vue相关的基础命令"></a>0x01 vue相关的基础命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v //查看node版本</span><br><span class="line">npm -v //查看npm版本</span><br><span class="line"><span class="built_in">where</span> node //查看node安装位置</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)</span><br><span class="line">npm install vue -g  //安装Vue-cli</span><br><span class="line">vue init webpack vue01 //构建项目并配置相关项 </span><br><span class="line">vue ui //使用ui界面选择</span><br><span class="line">npm install //下载项目依赖包</span><br><span class="line">npm run dev //本地启动</span><br></pre></td></tr></table></figure>
@@ -272,14 +280,6 @@
 <p><code>正常的情况是先加载yml，接下来加载properties文件。如果相同的配置存在于两个文件中。最后会使用properties中的配置。最后读取的优先集最高。</code><br><code>yml文件的好处，天然的树状结构，同的前缀只需要写一次,实质上跟properties是差不多的。</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/q0o0p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    # url: jdbc:mysql:///test?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false</span><br><span class="line">  </span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa: </span><br><span class="line">    show-sql: true  #打印sql</span><br><span class="line">    properties:</span><br><span class="line">      hibernate: </span><br><span class="line">        format-sql: true  #格式化sql,自动换行</span><br><span class="line">server: </span><br><span class="line">  part: <span class="number">8181</span></span><br></pre></td></tr></table></figure>
 <h3 id="JPA-自定义实现动态表名映射"><a href="#JPA-自定义实现动态表名映射" class="headerlink" title="JPA 自定义实现动态表名映射"></a>JPA 自定义实现动态表名映射</h3><p>注意命名规则,实体类和表名实现动态映射</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Vue+SpringBoot</title>
-    <url>/2020/04/18/CarPacking/</url>
-    <content><![CDATA[<p>Spring Boot DevTools<br>Lombok<br>Spring Web<br>Mysql Driver</p>
-<p>报错：<br>template might not exist or might not be accessible by any of the configured Template Resolvers</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">  <span class="meta">@ResponseBody</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">testController</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">      System.out.println(request);</span><br><span class="line">       <span class="keyword">return</span> <span class="string">"hi"</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
   </entry>
   <entry>
