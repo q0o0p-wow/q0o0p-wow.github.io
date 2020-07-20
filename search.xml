@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>安装Kali系统之采坑记---固态硬盘安装Kali</title>
+    <url>/2020/07/20/kali-U/</url>
+    <content><![CDATA[<p>需要kali镜像,VMware,DiskGenius<br>kali-linux-2020.2-live-amd64.iso<br>正常安装步骤省略…如有需要可参考文末链接<br>创建步骤完成后修改以下地方<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/1.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/2.png" alt><br>然后开启虚拟机<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/3.png" alt><br>前面默认,部分地方自行修改,分区时选择手动分区<br>最终分区结果如下<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/4.png" alt><br>是否选用网络镜像,选择否<br>结束后打开分区软件DiskGenius<br>在右侧找到系统所在盘中的EFI(大小约100MB左右的FAT32分区),再点击上面的“浏览文件”标签<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/5.png" alt><br>双击EFI文件夹,进入后看到一个名为kali的文件夹，右键重命名为boot<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/6.png" alt><br>双击进入我们刚刚重命名好的boot文件夹，会看到一个名为grubx64.efi的文件，右键重命名为bootx64.efi<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/7.png" alt></p>
+<hr>
+<p>参考:<br><a href="https://blog.csdn.net/yanhanhui1/article/details/103134944" target="_blank" rel="noopener">https://blog.csdn.net/yanhanhui1/article/details/103134944</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Chrome插件--右键实现存储功能</title>
     <url>/2020/06/29/Chrome-plugin/</url>
     <content><![CDATA[<p>最近课设和大作业一天一个真是,忙得不可开交…<br>(事实是—最近又懒了,最后一天效率MAX—–QAQ)<br>在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….<br>特别是有些网页,太狗了,复制还要用到F12<br>唉!对于像我这样的人,还是希望能有更方便的用法<br>然后就有了这个标题~~<br>(最近刚研究了一下WPS的word宏手写体,在家手抄几十页的报告…不存在的,O(∩_∩)O)<br>手写,查资料可以懒,但敲代码不能懒!<br>下面进入正题….</p>
@@ -123,6 +131,7 @@
 <li>数据表添加deleted 字段</li>
 <li>实体类添加注解<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@TableLogic</span>(value = <span class="string">"user_deleted"</span>)</span><br><span class="line"><span class="keyword">private</span> Integer deleted;</span><br></pre></td></tr></table></figure></li>
 <li>application.yml中添加配置<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">global-config:</span><br><span class="line">    db-config:</span><br><span class="line">      logic-not-delete-value: <span class="number">0</span></span><br><span class="line">      logic-delete-value: <span class="number">1</span></span><br></pre></td></tr></table></figure>
+application.yml文件<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/parking?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">  thymeleaf:</span><br><span class="line">    prefix: classpath:/templates/</span><br><span class="line">    suffix: .html</span><br><span class="line">mybatis-plus:</span><br><span class="line">  configuration:</span><br><span class="line">    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl</span><br><span class="line">  type-enums-<span class="keyword">package</span>:</span><br><span class="line">    top.q0o0p.parking_system.enums</span><br><span class="line">  global-config:</span><br><span class="line">    db-config:</span><br><span class="line">      logic-not-delete-value: <span class="number">0</span></span><br><span class="line">      logic-delete-value: <span class="number">1</span></span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8087</span></span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -235,12 +244,14 @@
     <title>Vue+SpringBoot</title>
     <url>/2020/04/18/vue/</url>
     <content><![CDATA[<p>##vue</p>
-<h3 id="0x01-vue相关的基础命令"><a href="#0x01-vue相关的基础命令" class="headerlink" title="0x01 vue相关的基础命令"></a>0x01 vue相关的基础命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v //查看node版本</span><br><span class="line">npm -v //查看npm版本</span><br><span class="line"><span class="built_in">where</span> node //查看node安装位置</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)</span><br><span class="line">npm install vue -g  //安装Vue-cli</span><br><span class="line">vue init webpack vue01 //构建项目并配置相关项 </span><br><span class="line">vue ui //使用ui界面选择</span><br><span class="line">npm install //下载项目依赖包</span><br><span class="line">npm run dev //本地启动</span><br></pre></td></tr></table></figure>
+<h3 id="0x01-vue相关的基础命令"><a href="#0x01-vue相关的基础命令" class="headerlink" title="0x01 vue相关的基础命令"></a>0x01 vue相关的基础命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v //查看node版本</span><br><span class="line">npm -v //查看npm版本</span><br><span class="line"><span class="built_in">where</span> node //查看node安装位置</span><br><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)</span><br><span class="line">npm install vue -g  //安装Vue-cli</span><br><span class="line">vue init webpack vue01 //构建项目并配置相关项 </span><br><span class="line">vue ui //使用ui界面选择</span><br><span class="line">npm install //下载项目依赖包</span><br><span class="line">npm run dev //本地启动(npm run serve)</span><br></pre></td></tr></table></figure>
 <p>package.json文件中配置–host 0.0.0.0，可以局域网内访问(设置后需要重启)</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">"dev"</span>: <span class="string">"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0"</span>,</span><br></pre></td></tr></table></figure>
 
 <p>在创建项目的时候选择预处理器 (Sass/Less/Stylus)。如果当时没有选好，内置的 webpack 仍然会被预配置为可以完成所有的处理。你也可以手动安装相应的 webpack loader：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"># Sass</span><br><span class="line">npm install -D sass-loader sass</span><br><span class="line"></span><br><span class="line"># Less</span><br><span class="line">npm install -D less-loader less</span><br><span class="line"><span class="comment">// npm install --save less less-loader</span></span><br><span class="line"></span><br><span class="line"># Stylus</span><br><span class="line">npm install -D stylus-loader stylus</span><br></pre></td></tr></table></figure>
+<p>使用idea需要安装vue插件</p>
+<hr>
 <p>引用方法</p>
 <p>1、在main.js</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> less from <span class="string">'less'</span></span><br><span class="line">Vue.use(less)</span><br></pre></td></tr></table></figure>
@@ -278,8 +289,27 @@
 <h2 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h2><h3 id="创建springboot项目"><a href="#创建springboot项目" class="headerlink" title="创建springboot项目"></a>创建springboot项目</h3><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/1.png" alt></p>
 <h3 id="使用yml连接数据库"><a href="#使用yml连接数据库" class="headerlink" title="使用yml连接数据库"></a>使用yml连接数据库</h3><p>将properties文件删除<br>(可以忽略:根据实际情况,执行一下  maven -X clean install)</p>
 <p><code>正常的情况是先加载yml，接下来加载properties文件。如果相同的配置存在于两个文件中。最后会使用properties中的配置。最后读取的优先集最高。</code><br><code>yml文件的好处，天然的树状结构，同的前缀只需要写一次,实质上跟properties是差不多的。</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/q0o0p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    # url: jdbc:mysql:///test?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false</span><br><span class="line">  </span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa: </span><br><span class="line">    show-sql: true  #打印sql</span><br><span class="line">    properties:</span><br><span class="line">      hibernate: </span><br><span class="line">        format-sql: true  #格式化sql,自动换行</span><br><span class="line">server: </span><br><span class="line">  part: <span class="number">8181</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//localhost:3306/q0o0p?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true&amp;serverTimezone=UTC</span></span><br><span class="line">    # url: jdbc:mysql://test?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useUnicode=true&amp;useSSL=false</span><br><span class="line">  </span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    driver-class-name: com.mysql.cj.jdbc.Driver</span><br><span class="line">  jpa: </span><br><span class="line">    show-sql: true  #打印sql</span><br><span class="line">    properties:</span><br><span class="line">      hibernate: </span><br><span class="line">        format-sql: true  #格式化sql,自动换行</span><br><span class="line">server: </span><br><span class="line">  part: <span class="number">8181</span></span><br></pre></td></tr></table></figure>
 <h3 id="JPA-自定义实现动态表名映射"><a href="#JPA-自定义实现动态表名映射" class="headerlink" title="JPA 自定义实现动态表名映射"></a>JPA 自定义实现动态表名映射</h3><p>注意命名规则,实体类和表名实现动态映射</p>
+<hr>
+<p>创建项目勾选:<br>Babel<br>Router 路由<br>linter/Formatter<br>使用配置文件<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/3.png" alt></p>
+<p>创建成功以后:<br>插件–&gt;添加插件–&gt;vue-cli-plugin-element<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/4.png" alt></p>
+<p>依赖–&gt;安装依赖–&gt;运行依赖–&gt;axios(或:npm install axios)<br>开发依赖–&gt;less-loader 和 less(或者命令:npm install less less-loader –save)</p>
+<p>运行:<br>npm run build<br>vue-cli-service serve</p>
+<hr>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span><span class="tag">&lt;/<span class="name">template</span>&gt;</span>  //ui结构</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   //行为</span><br><span class="line">&lt;&lt;style&gt;&lt;/style&gt;     //样式</span><br></pre></td></tr></table></figure>
+
+<p>重定向(访问根路径时自动跳转到登录界面)</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">routes: [</span><br><span class="line">    &#123;</span><br><span class="line">      path: '/',</span><br><span class="line">      redirect: '/login'</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: '/login',</span><br><span class="line">      component: Login</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+<p>Login.vue<br><code>.</code>代表类选择器</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css">  <span class="selector-class">.login_container</span></span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>main.js导入css样式<br>import ‘./assets/css/global.css’  /<em>导入全局样式表</em>/</p>
+<p>plugins–&gt;element.js<br>导入element-ui使用的组件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Form,FormItem&#125; <span class="keyword">from</span> <span class="string">'element-ui'</span> <span class="comment">//导入组件</span></span><br><span class="line"><span class="keyword">import</span> &#123;Input&#125; <span class="keyword">from</span> <span class="string">'element-ui'</span> <span class="comment">//导入组件</span></span><br><span class="line">Vue.use(Form)</span><br><span class="line">Vue.use(FormItem)</span><br><span class="line">Vue.use(Input) <span class="comment">//全局可用</span></span><br></pre></td></tr></table></figure>
+
+<p>输入框–&gt;选择图标样式–&gt;选择前置图标<br>element里面没有需要用的用户登录图标,可用使用阿里图标库<br><a href="https://www.iconfont.cn/collections/index?spm=a313x.7781069.1998910419.da2e3581b&amp;type=1" target="_blank" rel="noopener">https://www.iconfont.cn/collections/index?spm=a313x.7781069.1998910419.da2e3581b&amp;type=1</a></p>
+<p>按钮:<br>@click=””  //绑定单击事件</p>
 ]]></content>
   </entry>
   <entry>
