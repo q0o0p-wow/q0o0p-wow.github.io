@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>q0o0p</title><meta name="description"><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="website"><meta property="og:title" content="q0o0p"><meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"><meta property="og:site_name" content="q0o0p"><meta property="og:description"><meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/avatar.png"><meta property="article:published_time" content="2020-08-04T18:34:56.887Z"><meta property="article:modified_time" content="2020-08-04T18:34:56.887Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-08-05 02:34:56'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="../../../../img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">43</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/IuWi8QbHvzjlOPw.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="../../../../index.html">q0o0p</a></span><span class="pull-right menus"><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="site-info"><h1 id="site_title">q0o0p</h1><div id="site_subtitle"><span id="subtitle"></span></div></div><div id="scroll_down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout_page" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="2020/07/24/NFC/" title="了解NFC,走向玩卡之路">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="了解NFC,走向玩卡之路"></a></div><div class="recent-post-info"><a class="article-title" href="2020/07/24/NFC/" title="了解NFC,走向玩卡之路">了解NFC,走向玩卡之路</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-07-23T17:45:51.000Z" title="Created 2020-07-24 01:45:51">2020-07-24</time></span></div><div class="content">由于最近温习了一遍单机游戏,良心发现于是水文一篇,以表示区区还没真正达到无药可救的地步。别问我为什么总是半夜写博客,灵感来了就想水一篇…由于最近感觉出门还要想着带着门禁卡,真nm麻烦…我知道手机nfc这功能挺方便还是穷的缘故…手机没这功能,而且据说此功能对加密卡也没辙..emmm…今天就适当了解一下
+
+0x01NFC介绍NFC—-近场通信(Near Field Communication,NFC)NFC是一种近距离的私密通信方式,强调信息交互,使用短距高频的无线电技术，在13.56MHz频率运行于20厘米距离内。其传输速度有106 Kbit/秒、212 Kbit/秒或者424 Kbit/秒三种。与RFID一样，NFC信息也是通过频谱中无线频率部分的电磁感应耦合方式传递,是一种提供轻松、安全、迅速的通信的无线连接技术。其传输范围比RFID小，但由于NFC采取了独特的信号衰减技术，相对于RFID来说NFC具有距离近、带宽高、能耗低等特点。RFID的传输范围可以达到几米、甚至几十米NFC技术支持多种应用，相互认证和动态加密和一次性钥匙(OTP),包括移动支付与交易、对等式通信及移动中信息访问 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="2020/07/20/kali-U/" title="安装Kali系统之采坑记---固态硬盘安装Kali">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Kali系统之采坑记---固态硬盘安装Kali"></a></div><div class="recent-post-info"><a class="article-title" href="2020/07/20/kali-U/" title="安装Kali系统之采坑记---固态硬盘安装Kali">安装Kali系统之采坑记---固态硬盘安装Kali</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-07-19T17:08:04.000Z" title="Created 2020-07-20 01:08:04">2020-07-20</time></span></div><div class="content">需要kali镜像,VMware,DiskGeniuskali-linux-2020.2-live-amd64.iso正常安装步骤省略…如有需要可参考文末链接创建步骤完成后修改以下地方然后开启虚拟机前面默认,部分地方自行修改,分区时选择手动分区最终分区结果如下是否选用网络镜像,选择否结束后打开分区软件DiskGenius在右侧找到系统所在盘中的EFI(大小约100MB左右的FAT32分区),再点击上面的“浏览文件”标签双击EFI文件夹,进入后看到一个名为kali的文件夹，右键重命名为boot双击进入我们刚刚重命名好的boot文件夹，会看到一个名为grubx64.efi的文件，右键重命名为bootx64.efi
+重启电脑,华硕f2进入BIOSF7进入菜单栏设置–&gt;选择Security–&gt;找到Secure Boot将Secure Boot Control设置为DisabledBoot–&gt;CSM Support–&gt;Disabled保存并退出,进入kali
+
+参考:https://blog.csdn.net/yanhanhui1/article/details/10313 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="2020/06/29/Chrome-plugin/" title="Chrome插件--右键实现存储功能">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Chrome插件--右键实现存储功能"></a></div><div class="recent-post-info"><a class="article-title" href="2020/06/29/Chrome-plugin/" title="Chrome插件--右键实现存储功能">Chrome插件--右键实现存储功能</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-06-29T02:52:56.000Z" title="Created 2020-06-29 10:52:56">2020-06-29</time></span></div><div class="content">最近课设和大作业一天一个真是,忙得不可开交…(事实是—最近又懒了,最后一天效率MAX—–QAQ)在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….特别是有些网页,太狗了,复制还要用到F12唉!对于像我这样的人,还是希望能有更方便的用法然后就有了这个标题~~(最近刚研究了一下WPS的word宏手写体,在家手抄几十页的报告…不存在的,O(∩_∩)O)手写,查资料可以懒,但敲代码不能懒!下面进入正题….
+
+制作简易的右键插件
+需要准备的文件任意路径下创建一个文件夹,名字自拟chrome插件至少包含json,js两个文件：
+
+1.manifest.jsonmanifest.json就是一个配置文件，配置了插件的名称，插件所需引用的js脚本文件等等。
+12345678910111213141516&#123; "name": "q0o0p", "description": "翻译", "version": "0.1", "permissions": ["contextMenus", "tabs"], "icons": &#123;    "16": "sicon.pn ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="2020/06/22/ef-code/" title="EFCode">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="EFCode"></a></div><div class="recent-post-info"><a class="article-title" href="2020/06/22/ef-code/" title="EFCode">EFCode</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-06-22T04:14:45.000Z" title="Created 2020-06-22 12:14:45">2020-06-22</time></span></div><div class="content">创建Demo.APP设为启动项目dotnet new sln -o DemoThe template “Solution File” was created successfully.
+dotnet new classlib -o Demo.ModelThe template “Class library” was created successfully.
+添加依赖，添加Demo.Domain项目依赖dotnet add . reference ../Demo.Domaindotnet add package Microsoft.EntityFrameworkCore.SqlServer
+迁移命令Add-Migration Initial生成一个迁移脚本script-migration更新数据库Update-Database -verbose
+迁移命令Add-Migration update1更新数据库Update-Database 
+连接数据库Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=Demo;Database=Demo ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="2020/05/18/mybatis-plus/" title="Java Web(mybatis-Plus)">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java Web(mybatis-Plus)"></a></div><div class="recent-post-info"><a class="article-title" href="2020/05/18/mybatis-plus/" title="Java Web(mybatis-Plus)">Java Web(mybatis-Plus)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-05-18T04:14:45.000Z" title="Created 2020-05-18 12:14:45">2020-05-18</time></span></div><div class="content">MyBatis Plus API:https://mp.baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AEmybatis plus maven包:https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starterhttps://mvnrepository.com/artifact/com.baomidou/mybatis-plus
+常用注解默认连接数据库的方式: 驼峰式转换,类名的首字母小写映射到表名
+
+@TableName映射到数据库的表名,使用此注解,类名可以和表名不一致123456789101112package top.q0o0p.mybatisplus.entity;import com.baomidou.mybatisplus.annotation.TableName;import lombok.Data;@Data@TableName(value = "user")public class User &#123;    priva ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="2020/05/10/Android-Reverse/" title="Android逆向题">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android逆向题"></a></div><div class="recent-post-info"><a class="article-title" href="2020/05/10/Android-Reverse/" title="Android逆向题">Android逆向题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-05-10T15:23:23.000Z" title="Created 2020-05-10 23:23:23">2020-05-10</time></span></div><div class="content">apk目录介绍
+
+
+文件或目录
+作用
+
+
+
+META-INF/
+描述apk包信息的目录，主要存放了签名信息，配置信息，service注册信息
+
+
+res/
+存放apk资源文件的目录，比如图片、图标、字符串、样式、颜色
+
+
+assets/
+同样是存放apk资源文件的目录，但和res有差异，和我们关系不大
+
+
+resources.arsc
+资源索引，包含不同语言环境中res目录下所有资源的类型、名称与ID所对应的信息
+
+
+lib/
+存放so文件，越来越多的应用由C/C++编写核心代码，以SO文件的形式供上层JAVA代码调用，以保证安全性，这个目录是逆向解密关注的重点
+
+
+classes.dex(一个或数个)
+Android程序运行在Dalvik虚拟机上，而dex就是Dalvik虚拟机的可执行文件, 相当于Windows平台中的exe文件，通过反编译dex，可以获得apk源码（这个说法不很准确，但方便理解）
+
+
+AndroidManifest.xml
+清单文件，包含了App大量的的配置信息，比如包名、应用需要拥有的权限（打电话/录音/网络通信等等）、以及所有的界面和程序组件的信息,无法解压a ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="2020/04/27/adb/" title="Adb的使用">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Adb的使用"></a></div><div class="recent-post-info"><a class="article-title" href="2020/04/27/adb/" title="Adb的使用">Adb的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-04-27T15:46:03.000Z" title="Created 2020-04-27 23:46:03">2020-04-27</time></span></div><div class="content">12start adb  //启动adbadb devices//查看电脑是否连接到手
+
+
+adb同一wifi下连接1adb connect 192.168.1.210:5666
+常用命令：123456789101112131415161718adb  pull  sdcard/XXX   pc路径    //手机复制到电脑  adb push pc路径  sdcard/xxx  //电脑复制到手机adb install -r（replace）apk路径    //覆盖安装adb install -d (downgrade) apk路径     // 降级安装adb install -s(sdcard)  apk路径  //安装到sdcardadb shell uninstall 包名  //卸载apkadb shell uninstall -k 包名 //保留数据卸载adb shell screencap -p  保存路径  //截屏(保存到手机)adb pull 保存路径 //截屏(保存到电脑)adb shell screenrecord  保存路径  //录屏adb shell  ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="2020/04/18/vue/" title="Vue+SpringBoot">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue+SpringBoot"></a></div><div class="recent-post-info"><a class="article-title" href="2020/04/18/vue/" title="Vue+SpringBoot">Vue+SpringBoot</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-04-18T04:14:45.000Z" title="Created 2020-04-18 12:14:45">2020-04-18</time></span></div><div class="content">##vue
+0x01 vue相关的基础命令123456789node -v //查看node版本npm -v //查看npm版本where node //查看node安装位置npm config set registry https://registry.npm.taobao.org //运行慢，配置国内淘宝镜像包(后续包安装命令 npm 即可改为 cnpm)npm install vue -g  //安装Vue-clivue init webpack vue01 //构建项目并配置相关项 vue ui //使用ui界面选择npm install //下载项目依赖包npm run dev //本地启动(npm run serve)
+package.json文件中配置–host 0.0.0.0，可以局域网内访问(设置后需要重启)
+1"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0",
+
+在创建项目的时候选择预处理器 (Sass/Less/Styl ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="2020/04/06/encryption-algorithm/" title="常见的加密算法及Python解码">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="常见的加密算法及Python解码"></a></div><div class="recent-post-info"><a class="article-title" href="2020/04/06/encryption-algorithm/" title="常见的加密算法及Python解码">常见的加密算法及Python解码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-04-05T16:34:12.000Z" title="Created 2020-04-06 00:34:12">2020-04-06</time></span></div><div class="content">Base64加密方式(可逆)特点：字符包括字母A-Z/a-z/数组0-9/ 加号’+’斜杠’/’ 这样共有62个字符Base64要求把每三个8Bit的字节转换为四个6Bit的字节（38 = 46 = 24），然后把6Bit再添两位高位0，组成四个8Bit的字节，也就是说，转换后的字符串理论上将要比原来的长1/3。
+Base64编码遵循以下规则：①.把3个字符变成4个字符。②每76个字符加一个换行符。③.最后的结束符也要处理。 
+原理示例：38 = 46内存一个字节占8位转前：                       s        1        3先转ASCII:                  115      49        51再转二进制：               01110011 00110001 001100113*8共24位——&gt;6位一组分4组：   011100   110011   000100   110011每组高位补两个0：          00011100 00110011 00000100 00110011得到四个整数值：      ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="2020/03/23/web_crawler/" title="爬虫入坑">     <img class="post_bg" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="爬虫入坑"></a></div><div class="recent-post-info"><a class="article-title" href="2020/03/23/web_crawler/" title="爬虫入坑">爬虫入坑</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2020-03-23T06:45:37.000Z" title="Created 2020-03-23 14:45:37">2020-03-23</time></span></div><div class="content">网页特征：url连接地址；协议http、https；使用HTML代码 ；
+网页抓包流程:1、 请求网址得到网页源代码2、 在源代码中解析，获取数据3、 如果网站中包含链接，则继续执行1~2步骤
+.  :除换行外的任意字符
+
+:前面的字符可以出现任意次() :打印出来的东西?  :出现1次或0次
+
+
+
+
+
+属性
+介绍
+
+
+
+src
+资源路径
+
+
+class
+标签的类
+
+
+href
+链接地址
+
+
+title
+显示的文本
+
+
+id
+标签的唯一标识
+
+
+
+get请求：网址直接在地址栏里面，其中大部分请求都是get请求
+post请求：请求的时候会隐藏参数一般用于登录、注册或者填写内容提交
+
+状态码：1** 正在请求2** 请求成功3** 网站的跳转或重定向4** 请求资源不存在5** 服务器内部错误，
+
+str转bytes叫encode，bytes转str叫decode字符串就是unicode字符数组
+
+进入python环境下下载
+request模块：E:\Python-path&gt;pip install request -i https://pypi.tuna.tsinghua.edu.c ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="page/5/">5</a><a class="extend next" rel="next" href="page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="../img/avatar.png" onerror="this.onerror=null;this.src='../img/friend_404.gif'" alt="avatar"/><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href=""><div class="headline">Articles</div><div class="length_num">43</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-recent-item"><div class="aside-recent-post"><a class="aside-post-cover" href="../2020/07/24/NFC/" title="了解NFC,走向玩卡之路"><img class="aside-post-bg" data-lazy-src="../https:/i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='../img/404.jpg'" alt="了解NFC,走向玩卡之路"/></a><div class="aside-post-info"><a class="aside-post-title" href="../2020/07/24/NFC/" title="了解NFC,走向玩卡之路">了解NFC,走向玩卡之路</a><time class="aside-post_meta post-meta-date" datetime="2020-07-23T17:45:51.000Z" title="Created 2020-07-24 01:45:51">2020-07-24</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="../2020/07/20/kali-U/" title="安装Kali系统之采坑记---固态硬盘安装Kali"><img class="aside-post-bg" data-lazy-src="../https:/i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='../img/404.jpg'" alt="安装Kali系统之采坑记---固态硬盘安装Kali"/></a><div class="aside-post-info"><a class="aside-post-title" href="../2020/07/20/kali-U/" title="安装Kali系统之采坑记---固态硬盘安装Kali">安装Kali系统之采坑记---固态硬盘安装Kali</a><time class="aside-post_meta post-meta-date" datetime="2020-07-19T17:08:04.000Z" title="Created 2020-07-20 01:08:04">2020-07-20</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="../2020/06/29/Chrome-plugin/" title="Chrome插件--右键实现存储功能"><img class="aside-post-bg" data-lazy-src="../https:/i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='../img/404.jpg'" alt="Chrome插件--右键实现存储功能"/></a><div class="aside-post-info"><a class="aside-post-title" href="../2020/06/29/Chrome-plugin/" title="Chrome插件--右键实现存储功能">Chrome插件--右键实现存储功能</a><time class="aside-post_meta post-meta-date" datetime="2020-06-29T02:52:56.000Z" title="Created 2020-06-29 10:52:56">2020-06-29</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="../2020/06/22/ef-code/" title="EFCode"><img class="aside-post-bg" data-lazy-src="../https:/i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='../img/404.jpg'" alt="EFCode"/></a><div class="aside-post-info"><a class="aside-post-title" href="../2020/06/22/ef-code/" title="EFCode">EFCode</a><time class="aside-post_meta post-meta-date" datetime="2020-06-22T04:14:45.000Z" title="Created 2020-06-22 12:14:45">2020-06-22</time></div></div><div class="aside-recent-post"><a class="aside-post-cover" href="../2020/05/18/mybatis-plus/" title="Java Web(mybatis-Plus)"><img class="aside-post-bg" data-lazy-src="../https:/i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='../img/404.jpg'" alt="Java Web(mybatis-Plus)"/></a><div class="aside-post-info"><a class="aside-post-title" href="../2020/05/18/mybatis-plus/" title="Java Web(mybatis-Plus)">Java Web(mybatis-Plus)</a><time class="aside-post_meta post-meta-date" datetime="2020-05-18T04:14:45.000Z" title="Created 2020-05-18 12:14:45">2020-05-18</time></div></div></div></div></div><div class="card-widget card-archives"><div class="card-content"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/07/"><span class="card-archive-list-date">July 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/06/"><span class="card-archive-list-date">June 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/05/"><span class="card-archive-list-date">May 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/04/"><span class="card-archive-list-date">April 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/03/"><span class="card-archive-list-date">March 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/02/"><span class="card-archive-list-date">February 2020</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2020/01/"><span class="card-archive-list-date">January 2020</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="2019/12/"><span class="card-archive-list-date">December 2019</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="">
+              <span>More</span><i class="fas fa-angle-right"  ></i></a></li></ul></div></div><div class="card-widget card-webinfo"><div class="card-content"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="webinfo-article-name">Article :</div><div class="webinfo-article-count">43</div></div><div class="webinfo-item">      <div class="webinfo-site-uv-name">UV :</div><div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="webinfo-site-name">PV :</div><div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div></div></div></div></div></div></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By q0o0p</div><div class="framework-info"><span>Framework </span><a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><div class="js-pjax"><script async src="/busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
