@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>NFC</title>
+    <title>Steghide</title>
+    <url>/2020/08/05/steghide/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>了解NFC,走向玩卡之路</title>
     <url>/2020/07/24/NFC/</url>
     <content><![CDATA[<p>由于最近温习了一遍单机游戏,良心发现于是水文一篇,以表示区区还没真正达到无药可救的地步。<br>别问我为什么总是半夜写博客,灵感来了就想水一篇…<br>由于最近感觉出门还要想着带着门禁卡,真nm麻烦…我知道手机nfc这功能挺方便<br>还是穷的缘故…手机没这功能,而且据说此功能对加密卡也没辙..emmm…今天就适当了解一下</p>
 <hr>
@@ -881,8 +886,8 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
   <entry>
     <title>MISC总结</title>
     <url>/2020/02/14/Misc/</url>
-    <content><![CDATA[<h3 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h3><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" alt></p>
-<h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>base64使用 a-zA-Z0-9+/ 等64个字符来替换掉所有字符，同时使用 = 来替换掉空格,<br>6bit编为1个字符，而1个字节是8bit</p>
+    <content><![CDATA[<h2 id="jar反编译（jar反编译工具：jd-gui）"><a href="#jar反编译（jar反编译工具：jd-gui）" class="headerlink" title="jar反编译（jar反编译工具：jd-gui）"></a>jar反编译（jar反编译工具：jd-gui）</h2><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/1.png" alt></p>
+<h2 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h2><p>base64使用 a-zA-Z0-9+/ 等64个字符来替换掉所有字符，同时使用 = 来替换掉空格,<br>6bit编为1个字符，而1个字节是8bit</p>
 <h5 id="base64可能会出现3种情况："><a href="#base64可能会出现3种情况：" class="headerlink" title="base64可能会出现3种情况："></a>base64可能会出现3种情况：</h5><p><code>1. 刚好能编完（例如3个字节的字符串base64加密后有4个字符）</code><br><code>2.剩余2bit（例如2个字节的字符串base64加密后第3个字符只编码了4bit，此时使用=补充6bit）</code><br><code>3. 剩余4bit（例如1个字节的字符串base64加密后第2个字符只编码了2bit，此时使用==补充12bit），由于第3/2个字符只编码了4/2bit，所以只有前面被编码的bit是有效的，而后面的bit则在正常情况下默认填0，因此可以将想隐写的数据隐藏在后面的bit中，即：1个=可以隐藏2个bit</code></p>
 <p>将这些bit读出来，拼在一起转换为字符串即可获得flag</p>
 <figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">import base64</span><br><span class="line"><span class="keyword">a</span>=(<span class="string">""</span>)</span><br><span class="line">mode=(<span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"</span>)       <span class="comment">#mode码表</span></span><br><span class="line">c=(<span class="string">""</span>)</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">"1.txt"</span>,<span class="string">"r"</span>)                   <span class="comment">#读取文件</span></span><br><span class="line"><span class="built_in">line</span> = f.readline()</span><br><span class="line"><span class="keyword">while</span> <span class="built_in">line</span>:</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"="</span> <span class="keyword">in</span> <span class="built_in">line</span>):</span><br><span class="line">        <span class="keyword">a</span>=<span class="built_in">line</span>.<span class="built_in">replace</span>(<span class="string">'='</span>,<span class="string">''</span>)[<span class="number">-2</span>:]     <span class="comment">#去掉‘=’留下最后一个字符</span></span><br><span class="line">        print(<span class="keyword">a</span>,<span class="keyword">end</span>=<span class="string">""</span>)                 <span class="comment">#这里用来检测是否出错了</span></span><br><span class="line">        <span class="built_in">num</span>=(<span class="built_in">line</span>.count(<span class="string">'='</span>))*<span class="number">2</span> </span><br><span class="line">        c=c+(bin(mode.index(<span class="keyword">a</span>[<span class="number">0</span>])).<span class="built_in">replace</span>(<span class="string">"0b"</span>,<span class="string">''</span>)[-(<span class="built_in">num</span>):].zfill(<span class="built_in">num</span>))        <span class="comment">#这里是关键，对其进行查表对号，再进行二进制转换筛选</span></span><br><span class="line">        <span class="built_in">line</span> = f.readline()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">line</span> = f.readline()</span><br><span class="line">        continue</span><br><span class="line">f.<span class="built_in">close</span>()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range (<span class="number">0</span>,<span class="built_in">len</span>(c),<span class="number">8</span>):</span><br><span class="line">    print(chr(int(c[i:i+<span class="number">8</span>],<span class="number">2</span>)),<span class="keyword">end</span>=<span class="string">''</span>)  <span class="comment">#输出</span></span><br></pre></td></tr></table></figure>
@@ -898,8 +903,11 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">压缩源文件目录结束标志 ：<span class="number">50</span> <span class="number">4</span>B <span class="number">05</span> <span class="number">06</span>：目录结束标记</span><br><span class="line"><span class="number">00</span> <span class="number">00</span>：当前磁盘编号</span><br><span class="line"><span class="number">00</span> <span class="number">00</span>：目录区开始磁盘编号</span><br><span class="line"><span class="number">01</span> <span class="number">00</span>：本磁盘上纪录总数</span><br><span class="line"><span class="number">01</span> <span class="number">00</span>：目录区中纪录总数</span><br><span class="line"><span class="number">59</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>：目录区尺寸大小</span><br><span class="line"><span class="number">3</span>E <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>：目录区对第一张磁盘的偏移量</span><br><span class="line"><span class="number">00</span> <span class="number">00</span> <span class="number">1</span>A：ZIP 文件注释长度</span><br><span class="line"></span><br><span class="line">识别真假加密</span><br><span class="line">无加密</span><br><span class="line">压缩源文件数据区的全局加密应当为<span class="number">00</span> <span class="number">00</span></span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为<span class="number">00</span> <span class="number">00</span></span><br><span class="line">假加密</span><br><span class="line">压缩源文件数据区的全局加密应当为<span class="number">00</span> <span class="number">00</span></span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为<span class="number">09</span> <span class="number">00</span></span><br><span class="line">真加密</span><br><span class="line">压缩源文件数据区的全局加密应当为<span class="number">09</span> <span class="number">00</span></span><br><span class="line">且压缩源文件目录区的全局方式位标记应当为<span class="number">09</span> <span class="number">00</span></span><br></pre></td></tr></table></figure>
 
 <p>参考：<a href="https://blog.csdn.net/weixin_41687289/article/details/82695801" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41687289/article/details/82695801</a><br><a href="https://blog.csdn.net/qq_41420747/article/details/89672502" target="_blank" rel="noopener">https://blog.csdn.net/qq_41420747/article/details/89672502</a></p>
+<h2 id="gif文件格式破损"><a href="#gif文件格式破损" class="headerlink" title="gif文件格式破损"></a>gif文件格式破损</h2><p>使用HXD打开gif图片,与其他gif图片对比，会发现头部缺少了GIF8<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/02/14/Misc/2.png" alt></p>
 <hr>
 <p>反汇编工具：<br>Ghidra，IDA，Windbg,Ollydbg,GDB</p>
+<hr>
+<p>gif介绍:<br><a href="https://dev.gameres.com/Program/Visual/Other%20/GIFDoc.htm" target="_blank" rel="noopener">https://dev.gameres.com/Program/Visual/Other%20/GIFDoc.htm</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -941,11 +949,6 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <p>自动创建一个output文件夹，里面放分离出的文件<br>并且保证该文件夹为空</p>
 <p>得到分离的文件<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/01/28/foremost/2.png" alt></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Steghide</title>
-    <url>/2020/01/28/steghide/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Useful-Website</title>
