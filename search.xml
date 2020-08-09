@@ -328,7 +328,7 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 ]]></content>
   </entry>
   <entry>
-    <title>Kali Linux基础篇 + KDE桌面美化</title>
+    <title>Linux基础篇 + 2020 Kali KDE桌面美化</title>
     <url>/2020/05/10/linux/</url>
     <content><![CDATA[<hr>
 <p>换yum</p>
@@ -349,11 +349,10 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <h2 id="安装KDE桌面"><a href="#安装KDE桌面" class="headerlink" title="安装KDE桌面"></a>安装KDE桌面</h2><p>KDE Plasma Desktop （最小化的等离子桌面）<br>安装：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install kali-defaults kali-root-login desktop-base kde-plasma-desktop</span><br></pre></td></tr></table></figure>
 
-<p>中途输入 y 进行安装确认。<br>然后会显示 存在多个显示管理器，确认默认显示管理器为 sddm.<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/1.jpg" alt></p>
+<p>中途输入 y 进行安装确认。<br>然后会显示 存在多个显示管理器，确认默认显示管理器为 sddm.<br><img src="https://q0o0p.top/2020/05/10/linux/1.jpg" alt></p>
 <p>更改默认显示管理器优先级</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config x-session-manager</span><br></pre></td></tr></table></figure>
-<p>选择1,回车<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/2.jpg" alt></p>
-<p>卸载：</p>
+<p>选择1,回车<br><img src="https://q0o0p.top/2020/05/10/linux/2.jpg" alt><br><img src="https://q0o0p.top/2020/05/10/linux/3.png" alt><br>卸载：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get remove kde-plasma-desktop</span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="查找文件所在位置"><a href="#查找文件所在位置" class="headerlink" title="查找文件所在位置"></a>查找文件所在位置</h2><p>　　1.whereis 文件名</p>
@@ -372,7 +371,6 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <p>找到解压后文件夹中的desktop文件，用文字的方式打开,查看“Exec=”后的路径,将文件夹移动到此路径下。</p>
 <p>将desktop文件（启动器）移动到 /usr/share/applications 目录下,即可使用。</p>
 <hr>
-<p>##</p>
 ]]></content>
       <tags>
         <tag>kali</tag>
