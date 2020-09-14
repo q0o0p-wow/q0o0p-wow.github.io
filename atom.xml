@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>q0o0p</title>
+  
+  
+  <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
+  <updated>2020-09-14T13:00:24.677Z</updated>
+  <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
+  
+  <author>
+    <name>q0o0p</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Q0o0p-日记1</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/14/attack/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/14/attack/</id>
+    <published>2020-09-14T12:47:10.000Z</published>
+    <updated>2020-09-14T13:00:24.677Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;whois&quot;&gt;&lt;a href=&quot;#whois&quot; class=&quot;headerlink&quot; title=&quot;whois&quot;&gt;&lt;/a&gt;whois&lt;/h2&gt;&lt;p&gt;查询域名ip，使用tcpip协议443端口&lt;/p&gt;
+&lt;h2 id=&quot;nslookup&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android-Payload</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/</id>
+    <published>2020-08-12T14:58:11.000Z</published>
+    <updated>2020-08-19T07:18:45.852Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;打开终端，安装ufw防火墙，开启5555端口&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/Payload/"/>
+    
+    
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
+    
+    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Payload/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>了解NFC,走向玩卡之路</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/24/NFC/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/24/NFC/</id>
+    <published>2020-07-23T17:45:51.000Z</published>
+    <updated>2020-08-22T07:40:01.813Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;由于最近温习了一遍单机游戏,良心发现于是水文一篇,以表示区区还没真正达到无药可救的地步。&lt;br&gt;别问我为什么总是半夜写博客,灵感来了就想水一篇…&lt;br&gt;由于最近感觉出门还要想着带着门禁卡,真nm麻烦…我知道手机nfc这功能挺方便&lt;br&gt;还是穷的缘故…手机没这功能,而且据说此</summary>
+        
+      
+    
+    
+    
+    
+    <category term="RFID" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/RFID/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装Kali系统之采坑记---固态硬盘安装Kali</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/</id>
+    <published>2020-07-19T17:08:04.000Z</published>
+    <updated>2020-07-26T16:17:20.478Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;需要kali镜像,VMware,DiskGenius&lt;br&gt;kali-linux-2020.2-live-amd64.iso&lt;br&gt;正常安装步骤省略…如有需要可参考文末链接&lt;br&gt;创建步骤完成后修改以下地方&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chrome插件--右键实现存储功能</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/</id>
+    <published>2020-06-29T02:52:56.000Z</published>
+    <updated>2020-06-29T15:05:09.473Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近课设和大作业一天一个真是,忙得不可开交…&lt;br&gt;(事实是—最近又懒了,最后一天效率MAX—–QAQ)&lt;br&gt;在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….&lt;br&gt;特别是有些网页,太狗了,复制还要用到F12&lt;br&gt;唉!对于像我这样的人,还是</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>EFCode</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/22/ef-code/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/22/ef-code/</id>
+    <published>2020-06-22T04:14:45.000Z</published>
+    <updated>2020-06-26T16:52:41.440Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;创建Demo.APP设为启动项目&lt;br&gt;dotnet new sln -o Demo&lt;br&gt;The template “Solution File” was created successfully.&lt;/p&gt;
+&lt;p&gt;dotnet new classlib -o</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web(mybatis-Plus)</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/</id>
+    <published>2020-05-18T04:14:45.000Z</published>
+    <updated>2020-07-05T16:14:02.578Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;MyBatis Plus API:&lt;br&gt;&lt;a href=&quot;https://mp.baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android逆向题</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/</id>
+    <published>2020-05-10T15:23:23.000Z</published>
+    <updated>2020-07-28T20:00:11.108Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;apk目录介绍&quot;&gt;&lt;a href=&quot;#apk目录介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基础篇 + 2020 Kali KDE桌面美化</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/</id>
+    <published>2020-05-10T15:23:23.000Z</published>
+    <updated>2020-09-01T11:38:05.367Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;0x01-linux基础配置&quot;&gt;&lt;a href=&quot;#0x01-linux基础配置&quot; class=&quot;headerlink&quot; title=&quot;0x01 linux基础配置&quot;&gt;&lt;/a&gt;0x01</summary>
+        
+      
+    
+    
+    
+    
+    <category term="kali" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Adb的使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/27/adb/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/27/adb/</id>
+    <published>2020-04-27T15:46:03.000Z</published>
+    <updated>2020-06-02T09:03:51.503Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue+SpringBoot</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/</id>
+    <published>2020-04-18T04:14:45.000Z</published>
+    <updated>2020-07-08T09:06:45.059Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;##vue&lt;/p&gt;
+&lt;h3 id=&quot;0x01-vue相关的基础命令&quot;&gt;&lt;a href=&quot;#0x01-vue相关的基础命令&quot; class=&quot;headerlink&quot; title=&quot;0x01 vue相关的基础命令&quot;&gt;&lt;/a&gt;0x01 vue相关的基础命令&lt;/h3&gt;&lt;figure</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>常见的加密算法及Python解码</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/06/encryption-algorithm/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/06/encryption-algorithm/</id>
+    <published>2020-04-05T16:34:12.000Z</published>
+    <updated>2020-04-15T03:17:27.184Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;Base64加密方式-可逆&quot;&gt;&lt;a href=&quot;#Base64加密方式-可逆&quot; class=&quot;headerlink&quot; title=&quot;Base64加密方式(可逆)&quot;&gt;&lt;/a&gt;Base64加密方式(可逆)&lt;/h3&gt;&lt;h5 id=&quot;特点：&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>爬虫入坑</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/</id>
+    <published>2020-03-23T06:45:37.000Z</published>
+    <updated>2020-04-26T16:29:19.205Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;网页特征：&lt;br&gt;url连接地址；&lt;br&gt;协议http、https；&lt;br&gt;使用HTML代码 ；&lt;/p&gt;
+&lt;p&gt;网页抓包流程:&lt;br&gt;1、 请求网址得到网页源代码&lt;br&gt;2、 在源代码中解析，获取数据&lt;br&gt;3、 如果网站中包含链接，则继续执行1~2步骤&lt;/p&gt;
+&lt;p&gt;.</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL Server基础命令</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/10/SQL-server/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/10/SQL-server/</id>
+    <published>2020-03-10T08:04:57.000Z</published>
+    <updated>2020-05-31T09:49:59.987Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;创建数据库：&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python有趣的模块库</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/</id>
+    <published>2020-03-09T14:33:58.000Z</published>
+    <updated>2020-06-17T13:29:30.070Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;python基础知识总结的感觉还行，python会用就OK，就懒得总结了&lt;br&gt;&lt;a href=&quot;https://www.cnblogs.com/liuhuacai/category/1431456.html&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Windows-Tools</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/windows-tools/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/windows-tools/</id>
+    <published>2020-03-04T16:40:09.000Z</published>
+    <updated>2020-03-04T17:00:21.540Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一个有意思的windows工具&lt;br&gt;cygwin：Windows中也能用linux命令了！&lt;br&gt;官网：&lt;a href=&quot;https://www.cygwin.com/&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Termux的正确使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/termux/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/termux/</id>
+    <published>2020-03-04T16:04:58.000Z</published>
+    <updated>2020-08-16T08:30:14.071Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;平板就能连接电脑，能搭建博客，WordPress，hexo。。。&lt;br&gt;大半夜写博客的我，美滋滋&lt;br&gt;O(∩&lt;em&gt;∩)O哈哈~&lt;/em&gt;)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;termux-简单用法&quot;&gt;&lt;a href=&quot;#termux-简单用法&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WeChatGenius</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/WeChatGenius/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/WeChatGenius/</id>
+    <published>2020-02-29T15:37:45.000Z</published>
+    <updated>2020-03-17T03:03:34.320Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;2020年居然有29号！&lt;br&gt;这么特别的一天，能不玩点有趣的东西怎么对得起这么特别的一天呢？&lt;br&gt;于是，今天我找了一个微信聊天机器人，好好玩玩&lt;br&gt;废话不多说，上GitHub源码。。。&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Applet of WeChat(微信小程序常见问题)</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/applet/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/applet/</id>
+    <published>2020-02-29T09:21:31.000Z</published>
+    <updated>2020-06-02T07:25:31.228Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;微信小程序官网：&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DirBuster</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/27/DirBuster/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/27/DirBuster/</id>
+    <published>2020-02-27T02:02:49.198Z</published>
+    <updated>2020-02-27T02:04:53.421Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;DirBuster是用来探测web服务器上的目录和隐藏文件的。因为DirBuster是采用java编写的，所以运行前要安装上java的环境。&lt;br&gt;来看一下基本的使用：&lt;br&gt;①：TargetURL下输入要探测网站的地址，需要注意的是这个地址要加上协议，看网站是http还是</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
