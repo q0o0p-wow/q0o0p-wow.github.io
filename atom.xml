@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2020-10-10T09:53:23.102Z</updated>
+  <updated>2020-11-08T08:20:31.523Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -17,11 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Badusb</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/</id>
+    <published>2020-11-08T08:20:31.000Z</published>
+    <updated>2020-11-08T08:20:31.523Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hackergame2020</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/06/%C2%96%C2%96hackergame2020/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/06/%C2%96%C2%96hackergame2020/</id>
+    <published>2020-11-06T12:20:34.000Z</published>
+    <updated>2020-11-06T12:29:18.170Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://202.38.93.111:10005/static/js/html_actuator.js&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Html-Css-Js</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/</id>
     <published>2020-10-10T08:04:21.000Z</published>
-    <updated>2020-10-10T09:53:23.102Z</updated>
+    <updated>2020-11-04T04:40:22.634Z</updated>
     
     
       
@@ -46,7 +80,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/21/java-layui/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/21/java-layui/</id>
     <published>2020-09-21T12:18:31.000Z</published>
-    <updated>2020-10-06T13:26:34.479Z</updated>
+    <updated>2020-11-04T04:40:22.509Z</updated>
     
     
       
@@ -206,7 +240,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/</id>
     <published>2020-05-18T04:14:45.000Z</published>
-    <updated>2020-07-05T16:14:02.578Z</updated>
+    <updated>2020-10-24T13:50:12.413Z</updated>
     
     
       
@@ -336,16 +370,14 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/</id>
     <published>2020-03-23T06:45:37.000Z</published>
-    <updated>2020-04-26T16:29:19.205Z</updated>
+    <updated>2020-10-11T19:16:45.354Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;网页特征：&lt;br&gt;url连接地址；&lt;br&gt;协议http、https；&lt;br&gt;使用HTML代码 ；&lt;/p&gt;
-&lt;p&gt;网页抓包流程:&lt;br&gt;1、 请求网址得到网页源代码&lt;br&gt;2、 在源代码中解析，获取数据&lt;br&gt;3、 如果网站中包含链接，则继续执行1~2步骤&lt;/p&gt;
-&lt;p&gt;.</summary>
+    <summary type="html">&lt;h2 id=&quot;爬虫步骤&quot;&gt;&lt;a href=&quot;#爬虫步骤&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -381,7 +413,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/</id>
     <published>2020-03-09T14:33:58.000Z</published>
-    <updated>2020-06-17T13:29:30.070Z</updated>
+    <updated>2020-10-30T15:21:42.535Z</updated>
     
     
       
@@ -410,50 +442,6 @@
         
         
     <summary type="html">&lt;p&gt;一个有意思的windows工具&lt;br&gt;cygwin：Windows中也能用linux命令了！&lt;br&gt;官网：&lt;a href=&quot;https://www.cygwin.com/&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Termux的正确使用</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/termux/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/termux/</id>
-    <published>2020-03-04T16:04:58.000Z</published>
-    <updated>2020-08-16T08:30:14.071Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;平板就能连接电脑，能搭建博客，WordPress，hexo。。。&lt;br&gt;大半夜写博客的我，美滋滋&lt;br&gt;O(∩&lt;em&gt;∩)O哈哈~&lt;/em&gt;)&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;termux-简单用法&quot;&gt;&lt;a href=&quot;#termux-简单用法&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>WeChatGenius</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/WeChatGenius/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/29/WeChatGenius/</id>
-    <published>2020-02-29T15:37:45.000Z</published>
-    <updated>2020-03-17T03:03:34.320Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;2020年居然有29号！&lt;br&gt;这么特别的一天，能不玩点有趣的东西怎么对得起这么特别的一天呢？&lt;br&gt;于是，今天我找了一个微信聊天机器人，好好玩玩&lt;br&gt;废话不多说，上GitHub源码。。。&lt;br&gt;&lt;a</summary>
         
       
     
