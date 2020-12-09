@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2020-11-08T08:20:31.523Z</updated>
+  <updated>2020-12-07T02:32:23.904Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -17,11 +17,145 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Badusb</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/</id>
-    <published>2020-11-08T08:20:31.000Z</published>
-    <updated>2020-11-08T08:20:31.523Z</updated>
+    <title>攻防世界Web进阶题</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/</id>
+    <published>2020-12-05T10:47:48.000Z</published>
+    <updated>2020-12-07T02:32:23.904Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;cat&quot;&gt;&lt;a href=&quot;#cat&quot; class=&quot;headerlink&quot; title=&quot;cat&quot;&gt;&lt;/a&gt;cat&lt;/h1&gt;&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CTF" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CTF/"/>
+    
+    <category term="web" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Data-Structure</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/27/data-structure/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/27/data-structure/</id>
+    <published>2020-11-27T14:23:36.000Z</published>
+    <updated>2020-11-30T14:33:42.991Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;时间复杂度&quot;&gt;&lt;a href=&quot;#时间复杂度&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android-Study</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/</id>
+    <published>2020-11-25T11:39:04.000Z</published>
+    <updated>2020-12-02T04:38:59.254Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;0x01-生命周期&quot;&gt;&lt;a href=&quot;#0x01-生命周期&quot; class=&quot;headerlink&quot; title=&quot;0x01 生命周期&quot;&gt;&lt;/a&gt;0x01 生命周期&lt;/h2&gt;&lt;p&gt;Activity launched&lt;br&gt;onCreate():</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CEV漏洞复现</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/</id>
+    <published>2020-11-23T11:58:48.000Z</published>
+    <updated>2020-11-23T12:16:50.421Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;CVE-2020-0796-SMBv3漏洞复现与提权”永恒之黑”&quot;&gt;&lt;a href=&quot;#CVE-2020-0796-SMBv3漏洞复现与提权”永恒之黑”&quot; class=&quot;headerlink&quot; title=&quot;CVE-2020-0796 -</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Sql注入</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/</id>
+    <published>2020-11-23T11:04:03.000Z</published>
+    <updated>2020-12-02T04:39:00.405Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;搭建sqli-lab靶场&quot;&gt;&lt;a href=&quot;#搭建sqli-lab靶场&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>代码审计</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/code-audit/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/code-audit/</id>
+    <published>2020-11-23T07:01:58.000Z</published>
+    <updated>2020-11-23T11:08:37.882Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一切存在输入的地方都有可能存在漏洞&lt;/p&gt;
+&lt;p&gt;Risp&lt;br&gt;Fortity&lt;br&gt;Seay&lt;/p&gt;
+&lt;h2 id=&quot;文件上传漏洞&quot;&gt;&lt;a href=&quot;#文件上传漏洞&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="code-audit" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/code-audit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python-Script</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/python-script/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/python-script/</id>
+    <published>2020-11-21T10:10:12.000Z</published>
+    <updated>2020-11-21T10:10:12.289Z</updated>
     
     
     
@@ -30,18 +164,173 @@
   </entry>
   
   <entry>
-    <title>Hackergame2020</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/06/%C2%96%C2%96hackergame2020/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/06/%C2%96%C2%96hackergame2020/</id>
-    <published>2020-11-06T12:20:34.000Z</published>
-    <updated>2020-11-06T12:29:18.170Z</updated>
+    <title>Library</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/library/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/library/</id>
+    <published>2020-11-21T01:24:03.007Z</published>
+    <updated>2020-11-28T06:44:50.959Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://202.38.93.111:10005/static/js/html_actuator.js&quot; target=&quot;_blank&quot;</summary>
+    <summary type="html">&lt;p&gt;所有层当天预约信息: &lt;a href=&quot;http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?date=20201121&amp;amp;classkind=8&amp;amp;act=get_rsv_sta&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Apache shoir身份绕过(CVE-2020-11989)</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/</id>
+    <published>2020-11-19T03:22:00.000Z</published>
+    <updated>2020-11-19T03:37:47.703Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近在写java web的小练习时候刚好用到了shiro安全框架,偶然间看到了shiro的权限绕过漏洞&lt;br&gt;瞬间感觉颇有意思,顺便参考大佬们的博客初步探索一下,顺便在水一篇博客(开坑不填…).&lt;/p&gt;
+&lt;h2 id=&quot;漏洞风险&quot;&gt;&lt;a href=&quot;#漏洞风险&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CEV" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CEV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>逆向分析</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/reverse/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/reverse/</id>
+    <published>2020-11-17T04:42:50.000Z</published>
+    <updated>2020-11-17T13:17:23.242Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;逆向常用工具:&lt;br&gt;|调试器|反编译工具|使用范围|&lt;br&gt;|–|–|–|&lt;br&gt;|静态调试工具|IDApro|反编译C++/C|&lt;br&gt;|静态调试工具|jeb|反编译Android|&lt;br&gt;|动态调试器|onlydbg|windows|&lt;br&gt;|动态调试器|gdb|li</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>路由安全</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/WIFI/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/WIFI/</id>
+    <published>2020-11-17T02:43:24.000Z</published>
+    <updated>2020-11-17T04:34:45.386Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;白帽子讲路由器安全&lt;br&gt;&lt;a href=&quot;https://www.hetianlab.com/expc.do?ce=1d3ba483-c584-4604-a543-1d82bbb09cda&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kotlin-Study</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/</id>
+    <published>2020-11-13T14:05:46.000Z</published>
+    <updated>2020-11-17T14:08:22.485Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;增加依赖:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gradle工程&lt;br&gt;下载Gradle: &lt;a href=&quot;https://gradle.org/releases/&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows常见CEV漏洞</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/windows-CVE/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/windows-CVE/</id>
+    <published>2020-11-13T02:32:28.000Z</published>
+    <updated>2020-11-14T13:22:56.655Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;2020-CEV&quot;&gt;&lt;a href=&quot;#2020-CEV&quot; class=&quot;headerlink&quot; title=&quot;2020-CEV&quot;&gt;&lt;/a&gt;2020-CEV&lt;/h1&gt;&lt;h2 id=&quot;CVE-2020-0796-SMBv3漏洞复现与提权&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android-App</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/</id>
+    <published>2020-11-08T14:36:11.000Z</published>
+    <updated>2020-11-14T13:22:56.791Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;看了一个关于流氓app是获取语音信息的视频&lt;br&gt;原来加速传感器还能这么玩的&lt;br&gt;瞬间瞬间想试一下这个能偷听你说话的传感器到底有多强&lt;/p&gt;
+&lt;p&gt;这么一看还顺便了解了一下手机的其他传感器&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Badusb</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/</id>
+    <published>2020-11-08T08:20:31.000Z</published>
+    <updated>2020-11-14T13:22:56.577Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;攻击方式&quot;&gt;&lt;a href=&quot;#攻击方式&quot; class=&quot;headerlink&quot; title=&quot;攻击方式&quot;&gt;&lt;/a&gt;攻击方式&lt;/h2&gt;&lt;p&gt;硬件直接插入对方电脑，让对方电脑执行代码，达到干扰、控制主机或者窃取信息等目的。  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2</summary>
         
       
     
@@ -168,285 +457,6 @@
     
     
     <category term="RFID" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/RFID/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装Kali系统之采坑记---固态硬盘安装Kali</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/20/kali-U/</id>
-    <published>2020-07-19T17:08:04.000Z</published>
-    <updated>2020-07-26T16:17:20.478Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;需要kali镜像,VMware,DiskGenius&lt;br&gt;kali-linux-2020.2-live-amd64.iso&lt;br&gt;正常安装步骤省略…如有需要可参考文末链接&lt;br&gt;创建步骤完成后修改以下地方&lt;br&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Chrome插件--右键实现存储功能</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/29/Chrome-plugin/</id>
-    <published>2020-06-29T02:52:56.000Z</published>
-    <updated>2020-06-29T15:05:09.473Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近课设和大作业一天一个真是,忙得不可开交…&lt;br&gt;(事实是—最近又懒了,最后一天效率MAX—–QAQ)&lt;br&gt;在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….&lt;br&gt;特别是有些网页,太狗了,复制还要用到F12&lt;br&gt;唉!对于像我这样的人,还是</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>EFCode</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/22/ef-code/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/06/22/ef-code/</id>
-    <published>2020-06-22T04:14:45.000Z</published>
-    <updated>2020-06-26T16:52:41.440Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;创建Demo.APP设为启动项目&lt;br&gt;dotnet new sln -o Demo&lt;br&gt;The template “Solution File” was created successfully.&lt;/p&gt;
-&lt;p&gt;dotnet new classlib -o</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java Web(mybatis-Plus)</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/18/mybatis-plus/</id>
-    <published>2020-05-18T04:14:45.000Z</published>
-    <updated>2020-10-24T13:50:12.413Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;MyBatis Plus API:&lt;br&gt;&lt;a href=&quot;https://mp.baomidou.com/config/#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android逆向题</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/Android-Reverse/</id>
-    <published>2020-05-10T15:23:23.000Z</published>
-    <updated>2020-07-28T20:00:11.108Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;apk目录介绍&quot;&gt;&lt;a href=&quot;#apk目录介绍&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Linux基础篇 + 2020 Kali KDE桌面美化</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/linux/</id>
-    <published>2020-05-10T15:23:23.000Z</published>
-    <updated>2020-10-10T03:02:31.166Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;hr&gt;
-&lt;h2 id=&quot;0x01-linux基础配置&quot;&gt;&lt;a href=&quot;#0x01-linux基础配置&quot; class=&quot;headerlink&quot; title=&quot;0x01 linux基础配置&quot;&gt;&lt;/a&gt;0x01</summary>
-        
-      
-    
-    
-    
-    
-    <category term="kali" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/kali/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Adb的使用</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/27/adb/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/27/adb/</id>
-    <published>2020-04-27T15:46:03.000Z</published>
-    <updated>2020-06-02T09:03:51.503Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Vue+SpringBoot</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/18/vue/</id>
-    <published>2020-04-18T04:14:45.000Z</published>
-    <updated>2020-07-08T09:06:45.059Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;##vue&lt;/p&gt;
-&lt;h3 id=&quot;0x01-vue相关的基础命令&quot;&gt;&lt;a href=&quot;#0x01-vue相关的基础命令&quot; class=&quot;headerlink&quot; title=&quot;0x01 vue相关的基础命令&quot;&gt;&lt;/a&gt;0x01 vue相关的基础命令&lt;/h3&gt;&lt;figure</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>常见的加密算法及Python解码</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/06/encryption-algorithm/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/04/06/encryption-algorithm/</id>
-    <published>2020-04-05T16:34:12.000Z</published>
-    <updated>2020-04-15T03:17:27.184Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;Base64加密方式-可逆&quot;&gt;&lt;a href=&quot;#Base64加密方式-可逆&quot; class=&quot;headerlink&quot; title=&quot;Base64加密方式(可逆)&quot;&gt;&lt;/a&gt;Base64加密方式(可逆)&lt;/h3&gt;&lt;h5 id=&quot;特点：&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>爬虫入坑</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/23/web_crawler/</id>
-    <published>2020-03-23T06:45:37.000Z</published>
-    <updated>2020-10-11T19:16:45.354Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;爬虫步骤&quot;&gt;&lt;a href=&quot;#爬虫步骤&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>SQL Server基础命令</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/10/SQL-server/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/10/SQL-server/</id>
-    <published>2020-03-10T08:04:57.000Z</published>
-    <updated>2020-05-31T09:49:59.987Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;创建数据库：&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Python有趣的模块库</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/09/Python/</id>
-    <published>2020-03-09T14:33:58.000Z</published>
-    <updated>2020-10-30T15:21:42.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;python基础知识总结的感觉还行，python会用就OK，就懒得总结了&lt;br&gt;&lt;a href=&quot;https://www.cnblogs.com/liuhuacai/category/1431456.html&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows-Tools</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/windows-tools/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/03/05/windows-tools/</id>
-    <published>2020-03-04T16:40:09.000Z</published>
-    <updated>2020-03-04T17:00:21.540Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;一个有意思的windows工具&lt;br&gt;cygwin：Windows中也能用linux命令了！&lt;br&gt;官网：&lt;a href=&quot;https://www.cygwin.com/&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
