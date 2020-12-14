@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2020-12-07T02:32:23.904Z</updated>
+  <updated>2020-12-11T09:06:09.638Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Algorithm-OS</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/11/algorithm-OS/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/11/algorithm-OS/</id>
+    <published>2020-12-11T09:06:09.638Z</published>
+    <updated>2020-12-11T09:06:09.638Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>攻防世界Web进阶题</title>
@@ -434,29 +447,6 @@
     <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
     
     <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Payload/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>了解NFC,走向玩卡之路</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/24/NFC/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/07/24/NFC/</id>
-    <published>2020-07-23T17:45:51.000Z</published>
-    <updated>2020-08-22T07:40:01.813Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;由于最近温习了一遍单机游戏,良心发现于是水文一篇,以表示区区还没真正达到无药可救的地步。&lt;br&gt;别问我为什么总是半夜写博客,灵感来了就想水一篇…&lt;br&gt;由于最近感觉出门还要想着带着门禁卡,真nm麻烦…我知道手机nfc这功能挺方便&lt;br&gt;还是穷的缘故…手机没这功能,而且据说此</summary>
-        
-      
-    
-    
-    
-    
-    <category term="RFID" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/RFID/"/>
     
   </entry>
   
