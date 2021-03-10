@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2020-12-11T09:06:09.638Z</updated>
+  <updated>2021-02-08T06:57:49.138Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux-Backdoor</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/08/linux-backdoor/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/08/linux-backdoor/</id>
+    <published>2021-02-08T06:54:38.000Z</published>
+    <updated>2021-02-08T06:57:49.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;参考：&lt;br&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1683267&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Interview-Preparation</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/31/interview-preparation/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/31/interview-preparation/</id>
+    <published>2021-01-31T08:15:52.000Z</published>
+    <updated>2021-02-08T07:07:51.295Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;内网信息收集&lt;/p&gt;
+&lt;p&gt;扫描器是如何判断端口是否是web服务的，原理是什么&lt;/p&gt;
+&lt;p&gt;SQLmap os-shell原理&lt;/p&gt;
+&lt;p&gt;SQL注入bypass </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>WAF</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/21/WAF/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/21/WAF/</id>
+    <published>2020-12-21T08:35:41.000Z</published>
+    <updated>2020-12-26T03:13:36.345Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;0x01-什么是WAF&quot;&gt;&lt;a href=&quot;#0x01-什么是WAF&quot; class=&quot;headerlink&quot; title=&quot;0x01 什么是WAF&quot;&gt;&lt;/a&gt;0x01 什么是WAF&lt;/h2&gt;&lt;p&gt;Web应用防火墙（Web Application</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Algorithm-OS</title>
@@ -34,7 +100,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/</id>
     <published>2020-12-05T10:47:48.000Z</published>
-    <updated>2020-12-07T02:32:23.904Z</updated>
+    <updated>2020-12-18T08:33:28.588Z</updated>
     
     
       
@@ -55,11 +121,11 @@
   </entry>
   
   <entry>
-    <title>Data-Structure</title>
+    <title>Python数据结构</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/27/data-structure/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/27/data-structure/</id>
     <published>2020-11-27T14:23:36.000Z</published>
-    <updated>2020-11-30T14:33:42.991Z</updated>
+    <updated>2021-01-31T12:33:42.520Z</updated>
     
     
       
@@ -80,7 +146,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/</id>
     <published>2020-11-25T11:39:04.000Z</published>
-    <updated>2020-12-02T04:38:59.254Z</updated>
+    <updated>2021-03-07T11:57:31.336Z</updated>
     
     
       
@@ -101,7 +167,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/</id>
     <published>2020-11-23T11:58:48.000Z</published>
-    <updated>2020-11-23T12:16:50.421Z</updated>
+    <updated>2021-02-08T07:07:48.623Z</updated>
     
     
       
@@ -170,27 +236,6 @@
     <published>2020-11-21T10:10:12.000Z</published>
     <updated>2020-11-21T10:10:12.289Z</updated>
     
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Library</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/library/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/21/library/</id>
-    <published>2020-11-21T01:24:03.007Z</published>
-    <updated>2020-11-28T06:44:50.959Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;所有层当天预约信息: &lt;a href=&quot;http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?date=20201121&amp;amp;classkind=8&amp;amp;act=get_rsv_sta&quot;</summary>
-        
-      
     
     
     
@@ -308,19 +353,20 @@
   </entry>
   
   <entry>
-    <title>Android-App</title>
+    <title>Android Apk脱壳</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/</id>
     <published>2020-11-08T14:36:11.000Z</published>
-    <updated>2020-11-14T13:22:56.791Z</updated>
+    <updated>2021-02-08T07:07:50.094Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;看了一个关于流氓app是获取语音信息的视频&lt;br&gt;原来加速传感器还能这么玩的&lt;br&gt;瞬间瞬间想试一下这个能偷听你说话的传感器到底有多强&lt;/p&gt;
-&lt;p&gt;这么一看还顺便了解了一下手机的其他传感器&lt;br&gt;&lt;a</summary>
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;arm指令集&lt;br&gt;|指令|  描述|&lt;br&gt;–|–&lt;br&gt;|||&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
         
       
     
@@ -398,55 +444,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>提权日记</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/14/attack/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/14/attack/</id>
-    <published>2020-09-14T12:47:10.000Z</published>
-    <updated>2020-09-19T13:43:33.845Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;0x01-常见系统密码文件位置&quot;&gt;&lt;a href=&quot;#0x01-常见系统密码文件位置&quot; class=&quot;headerlink&quot; title=&quot;0x01 常见系统密码文件位置&quot;&gt;&lt;/a&gt;0x01 常见系统密码文件位置&lt;/h2&gt;&lt;p&gt;windows</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android-Payload</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/</id>
-    <published>2020-08-12T14:58:11.000Z</published>
-    <updated>2020-08-19T07:18:45.852Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;打开终端，安装ufw防火墙，开启5555端口&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/Payload/"/>
-    
-    
-    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
-    
-    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Payload/"/>
     
   </entry>
   
