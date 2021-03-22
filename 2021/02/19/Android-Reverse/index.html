@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Android逆向及工具使用 | q0o0p</title><meta name="description" content="Android逆向及工具使用"><meta name="keywords" content=""><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="../../../../img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android逆向及工具使用"><meta name="twitter:description" content="Android逆向及工具使用"><meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/ban.png"><meta property="og:type" content="article"><meta property="og:title" content="Android逆向及工具使用"><meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/"><meta property="og:site_name" content="q0o0p"><meta property="og:description" content="Android逆向及工具使用"><meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/ban.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="../../../../https:/cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="../../../../css/index.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="../../../../https:/cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.css"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/"><link rel="next" title="Linux-Backdoor" href="../../../../https:/github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/08/linux-backdoor/"><link rel="stylesheet" href="../../../../https:/fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight_copy: 'true',
+  highlight_lang: 'true',
+  highlight_shrink: 'false',
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  copyright: undefined,
+  copy_copyright_js: false,
+  ClickShowText: undefined,
+  medium_zoom: 'true',
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"Press","message_next":"to bookmark this page"},"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Light Mode Activated Manually","night_to_day":"Dark Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"}
+  
+}</script><meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="atom.xml" title="q0o0p" type="application/atom+xml">
+</head><body><div id="header"> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="../../../../index.html">q0o0p</a></span><i class="fa fa-bars fa-fw toggle-menu pull_right close" aria-hidden="true"></i><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw film"></i><span> Movie</span></a></li></ul></div></div></span><span class="pull_right" id="search_button"></span></div></div><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="lazyload avatar_img" src="../../../../img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item is_center"><div class="mobile_data_link"><a href="../../../../archives/"><div class="headline">Articles</div><div class="length_num">67</div></a></div></div><div class="mobile_data_item is_center">      <div class="mobile_data_link"><a href="../../../../tags/"><div class="headline">Tags</div><div class="length_num">9</div></a></div></div><div class="mobile_data_item is_center">     <div class="mobile_data_link"><a href="../../../../categories/"><div class="headline">Categories</div><div class="length_num">2</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> About</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> List</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw film"></i><span> Movie</span></a></li></ul></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">Catalog</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Xposed"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">Xposed</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Xposed的优缺点"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">Xposed的优缺点</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Frida"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">Frida</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Frida-介绍"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">Frida 介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Frida-作用"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">Frida 作用</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Frida-安装"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">Frida 安装</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#Frida的优缺点"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">Frida的优缺点</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Android安全机制"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">Android安全机制</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#进程沙箱隔离机制"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">进程沙箱隔离机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#应用程序签名机制"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">应用程序签名机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#权限声明机制"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">权限声明机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#访问控制机制"><span class="toc_mobile_items-number">3.4.</span> <span class="toc_mobile_items-text">访问控制机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#进程通信机制"><span class="toc_mobile_items-number">3.5.</span> <span class="toc_mobile_items-text">进程通信机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#内存通信机制"><span class="toc_mobile_items-number">3.6.</span> <span class="toc_mobile_items-text">内存通信机制</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#SELinux"><span class="toc_mobile_items-number">3.7.</span> <span class="toc_mobile_items-text">SELinux</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#Android系统架构如下："><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">Android系统架构如下：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#常用调试工具"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">常用调试工具</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#常见问题"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">常见问题</span></a></li></ol></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Xposed"><span class="toc-number">1.</span> <span class="toc-text">Xposed</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Xposed的优缺点"><span class="toc-number">1.1.</span> <span class="toc-text">Xposed的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frida"><span class="toc-number">2.</span> <span class="toc-text">Frida</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-介绍"><span class="toc-number">2.1.</span> <span class="toc-text">Frida 介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-作用"><span class="toc-number">2.2.</span> <span class="toc-text">Frida 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida-安装"><span class="toc-number">2.3.</span> <span class="toc-text">Frida 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frida的优缺点"><span class="toc-number">2.4.</span> <span class="toc-text">Frida的优缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android安全机制"><span class="toc-number">3.</span> <span class="toc-text">Android安全机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程沙箱隔离机制"><span class="toc-number">3.1.</span> <span class="toc-text">进程沙箱隔离机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#应用程序签名机制"><span class="toc-number">3.2.</span> <span class="toc-text">应用程序签名机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限声明机制"><span class="toc-number">3.3.</span> <span class="toc-text">权限声明机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问控制机制"><span class="toc-number">3.4.</span> <span class="toc-text">访问控制机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程通信机制"><span class="toc-number">3.5.</span> <span class="toc-text">进程通信机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存通信机制"><span class="toc-number">3.6.</span> <span class="toc-text">内存通信机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SELinux"><span class="toc-number">3.7.</span> <span class="toc-text">SELinux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android系统架构如下："><span class="toc-number">4.</span> <span class="toc-text">Android系统架构如下：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用调试工具"><span class="toc-number">5.</span> <span class="toc-text">常用调试工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见问题"><span class="toc-number">6.</span> <span class="toc-text">常见问题</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/ban.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Android逆向及工具使用</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> Created 2021-02-19<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> Updated 2021-03-22</time><div class="post-meta-wordcount"><i class="fa fa-eye post-meta__icon" aria-hidden="true">       </i><span>Post View: </span><span id="busuanzi_value_page_pv"></span></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="Xposed"><a href="#Xposed" class="headerlink" title="Xposed"></a>Xposed</h2><h3 id="Xposed的优缺点"><a href="#Xposed的优缺点" class="headerlink" title="Xposed的优缺点"></a>Xposed的优缺点</h3><p>优点：在编写Java层hook插件的时候非常好用，这一点完全优越于Frida和SubstrateCydia，因为他也是Android项目，可以直接编写Java代码调用各类api进行操作。而且可以安装到手机上直接使用。</p>
+<p>缺点：配置安装环境繁琐，兼容性差，在Hook底层的时候就很无助了。</p>
+<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><h3 id="Frida-介绍"><a href="#Frida-介绍" class="headerlink" title="Frida 介绍"></a>Frida 介绍</h3><p>frida 是一款基于 python 和 java 的 hook 框架，是一种动态插桩工具，可以插入代码到原生App的内存空间中，动态的监视和修改其行行为，可运行在Android、iOS、Linux和windows等多个平台。</p>
+<p>插桩技术 是指将额外的代码注入程序中以收集运行时的信息，可分为两种：</p>
+<ol>
+<li>源代码插桩【Source Code Instrumentation(SCI)】：额外代码注入到程序源代码中。</li>
+<li>二进制插桩【Binary Instrumentation】：额外代码注入到二进制可执行文件中，其又可分为两种：<br> ● 静态二进制插桩  【 Static Binary Instrumentation(SBI) 】：<pre><code>在程序执行前插入额外的代码和数据，生成一个永久改变的可执行文件。</code></pre> ● 动态二进制插桩  【 Dynamic Binary Instrumentation(DBI) 】：<pre><code>在程序运行时实时地插入额外代码和数据，对可执行文件没有任何永久改变。</code></pre></li>
+</ol>
+<h3 id="Frida-作用"><a href="#Frida-作用" class="headerlink" title="Frida 作用"></a>Frida 作用</h3><p>访问进程的内存<br>应用程序运行时覆盖功能<br>从导入的类调用函数<br>动态Hook跟踪、拦截函数等</p>
+<h3 id="Frida-安装"><a href="#Frida-安装" class="headerlink" title="Frida 安装"></a>Frida 安装</h3><p>Frida 分为客户端和服务端。<br>客户端：PC（控制端）<br>服务器：手机设备（被控制端）</p>
+<p>客户端编写的 Python 代码，用于连接远程设备，提交要注入的 JS 代码到服务端，接受服务端发来的消息。</p>
+<p>服务端中需要用 JS 代码注入到目标进程，操作内存数据，给客户端发送消息。</p>
+<p>Frida 安装<br>客户端:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> frida-tools</span><br><span class="line">pip3 <span class="keyword">install</span> colorama <span class="keyword">prompt</span>-toolkit pygments</span><br><span class="line">frida <span class="comment">--version</span></span><br><span class="line">frida-ps ：查看当前系统进程，表示安装成功。</span><br></pre></td></tr></table></figure>
+<p>查看系统架构</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop ro<span class="selector-class">.product</span><span class="selector-class">.cpu</span><span class="selector-class">.abi</span></span><br></pre></td></tr></table></figure>
+<p>服务端的 Frida 版本必须和客户端的 Frida 版本一致。</p>
+<table>
+<thead>
+<tr>
+<th>API架构</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>armeabiv-v7a</td>
+<td>第7代及以上的 ARM 处理器。目前，大部分手机的CPU都支持此ABI交互规则</td>
+</tr>
+<tr>
+<td>arm64-v8a</td>
+<td>第8代64位ARM处理器，支持此ABI的手机近两年也逐渐增多了</td>
+</tr>
+<tr>
+<td>armeabi</td>
+<td>第5代、第6代的ARM处理器，早期手机用得较多</td>
+</tr>
+<tr>
+<td>x86</td>
+<td>平板、模拟器用得比较多</td>
+</tr>
+<tr>
+<td>x86_64</td>
+<td>64位的平板</td>
+</tr>
+<tr>
+<td>ABI 与 CPU 的联系</td>
+<td></td>
+</tr>
+<tr>
+<td>在 Android 手机上安装一个应用时，只有手机CPU架构支持的ABI架构对应的.so文件会被安装。如果支持多个ABI架构，会按照优先级进行安装。</td>
+<td></td>
+</tr>
+<tr>
+<td>CPU架构</td>
+<td>支持的ABI架构对应的.so文件安装优先级</td>
+</tr>
+<tr>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>ARMv5</td>
+<td>armeabi</td>
+</tr>
+<tr>
+<td>ARMv7</td>
+<td>armeabi，armeabi-v7a</td>
+</tr>
+<tr>
+<td>ARMv8</td>
+<td>armeabi，armeabi-v7a，arm64-v8a</td>
+</tr>
+<tr>
+<td>MIPS</td>
+<td>mips</td>
+</tr>
+<tr>
+<td>MIPS64</td>
+<td>mips，mips64</td>
+</tr>
+<tr>
+<td>x86</td>
+<td>x86，armeabi，armeabi-v7a</td>
+</tr>
+<tr>
+<td>x86_64</td>
+<td>:armeabi，x86，x86_64</td>
+</tr>
+<tr>
+<td>服务端:</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 下载:frida-server-14.2.13-android-arm64.xz</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ xz -d frida-server<span class="number">-14.2</span><span class="number">.13</span>-android-arm64.xz</span><br><span class="line">$ adb push frida-server<span class="number">-14.2</span><span class="number">.13</span>-android-arm64 /data/local/tmp/frida-server</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>运行frida-server<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$adb</span> shell</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$su</span></span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$cd</span>  /data/local/tmp</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$chmod</span>  755  frida-server</span></span><br><span class="line"><span class="symbol">$</span>./frida-server</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>如果使用的是模拟器应该下载frida-server-14.2.13-android-x86或64位<br>如果安装错误的版本，在执行frida-server时会提示报错，报错信息为sh: ./frida-server: not executable: 64-bit ELF file。<br>普通用户没有权限，需要su切换到root用户</p>
+<ol start="3">
+<li>检查是否正常<br>转发android TCP端口到本地<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb forward tcp:<span class="number">27042</span> tcp:<span class="number">27043</span></span><br><span class="line">adb forward tcp:<span class="number">27043</span> tcp:<span class="number">27043</span></span><br><span class="line">Frida-ps -U</span><br></pre></td></tr></table></figure>
+运行结果如图：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/1.png" alt></li>
+</ol>
+<p>客户端：PC（控制端）<br>客户端编写的 Python 代码，用于连接远程设备，提交要注入的 JS代码到服务端，接受服务端发来的消息。 </p>
+<p>服务器：手机设备（被控制端）<br>服务端中需要用 JS 代码注入到目标进程，操作内存数据，给客户端发送消息。</p>
+<h3 id="Frida的优缺点"><a href="#Frida的优缺点" class="headerlink" title="Frida的优缺点"></a>Frida的优缺点</h3><p>优点：在上面我们可以看到他的优点在于配置环境很简单，操作也很便捷，对于破解者开发阶段非常好用。支持Java层和Native层hook操作，在Native层hook如果是非基本类型的话操作有点麻烦。</p>
+<p>缺点：因为他只适用于破解者在开发阶段，也就是他没法像Xposed用于实践生产中，比如我写一个微信外挂用Frida写肯定不行的，因为他无法在手机端运行。也就是破解者用的比较多。</p>
+<p>第三、SubstrateCydia的优缺点</p>
+<p>优点：可以运行在手机端，和Xposed类似可以用于实践生产中。支持Java层和Native层的hook操作，但是Java层hook不怎么常用，用的比较多的是 Native 层 hook 操作，因为他也是Android工程可以引用系统api，操作更为方便。</p>
+<p>缺点：和Xposed一样安装配置环境繁琐，兼容性差。</p>
+<hr>
+<h2 id="Android安全机制"><a href="#Android安全机制" class="headerlink" title="Android安全机制"></a>Android安全机制</h2><p>android安全机制覆盖到各个层面，求开放的同时也保护用户的数据，应用程序和设备的安全。主要安全模型如下： </p>
+<h3 id="进程沙箱隔离机制"><a href="#进程沙箱隔离机制" class="headerlink" title="进程沙箱隔离机制"></a>进程沙箱隔离机制</h3><p>  进程沙箱隔离机制，使得Android应用程序在安装时被赋予独特的用户标识（UID），并永久保持。应用程序及其运行的Dalvik虚拟机运行在独立的Linux进程空间，与其它应用程序完全隔离。 </p>
+<h3 id="应用程序签名机制"><a href="#应用程序签名机制" class="headerlink" title="应用程序签名机制"></a>应用程序签名机制</h3><p>有特例程序共享uid；<br>应用签名机制：规定APK文件必须被开发者进行数字签名，以便标识应用程序作者和在应用程序之间的信任关系。在安装应用程序APK时，系统安装程序首先检查APK是否被签名，有签名才能安装。当应用程序升级时，需要检查新版应用的数字签名与已安装的应用程序的签名是否相同，否则，会被当做一个新的应用程序。Android开发者有可能把安装包命名为相同的名字，通过不同的签名可以把他们区分开来，也保证签名不同的包不被替换，同时防止恶意软件替换安装的应用。</p>
+<h3 id="权限声明机制"><a href="#权限声明机制" class="headerlink" title="权限声明机制"></a>权限声明机制</h3><p>权限声明机制：要想获得在对象上进行操作，就需要把权限和此对象的操作进行绑定。不同级别要求应用程序行使权限的认证方式也不一样，Normal级申请就可以使用，Dangerous级需要安装时由用户确认，Signature和Signatureorsystem级则必须是系统用户才可用。<br>访问控制机制：确保文件系统和永和数据不受非法访问。 </p>
+<h3 id="访问控制机制"><a href="#访问控制机制" class="headerlink" title="访问控制机制"></a>访问控制机制</h3><h3 id="进程通信机制"><a href="#进程通信机制" class="headerlink" title="进程通信机制"></a>进程通信机制</h3><p>进程间通信机制binder，基于共享内存的Binder实现，提供轻量级的远程进程调用（RPC）。通过接口描述语言（AIDL）定义接口与交换数据的类型，确保进程间通信的数据不会溢出越界。 </p>
+<h3 id="内存通信机制"><a href="#内存通信机制" class="headerlink" title="内存通信机制"></a>内存通信机制</h3><p>  内存管理机制，基于Linux的低内存管理机制，设计实现了独特的LMK，将进程重要性分级、分组，当内存不足时，自动清理级别进程所占用的内存空间。同时，引入的Ashmem内存机制，使得Android具备清理不再使用共享内存区域的能力。</p>
+<p>正是因为Android采用多层架构，在保护信息安全的同时，也保证开放平台的灵活性。</p>
+<h3 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h3><p>SE Android</p>
+<p>看源码见<a href="http://blog.csdn.net/luoshengyang/article/details/37613135" target="_blank" rel="noopener">http://blog.csdn.net/luoshengyang/article/details/37613135</a><br>Android是一个基于Linux内核的系统，像传统的Linux系统一样，Android也有用户的概念。只不过这些用户不需要登录，也可以使用Android系统。Android系统将每一个安装在系统的APK都映射为一个不同的Linux用户。也就是每一个APK都有一个对应的UID和GID，这些UID和GID在APK安装的时候由系统安装服务PackageManagerService分配。Android沙箱隔离机制就是建立在Linux的UID和GID基础上。</p>
+<p>这种基于Linux UID/GID的安全机制存在什么样的问题呢？</p>
+<p>Linux将文件的权限划分为读、写和执行三种，分别用字母r、w和x表示。每一个文件有三组读、写和执行权限，分别针对文件的所有者、文件所有者所属的组以及除了所有者以及在所有者所属组的用户之外所有其它用户。这样，如果一个用户想要将一个自己创建的文件交给另外一个用户访问，那么只需要相应地设置一下这个文件的其它用户权限位就可以了。所以，在Linux系统中，文件的权限控制在所有者的手中。因此，这种权限控制方式就称为自主式的，正式的英文名称为Discretionary Access Control，简称为DAC。</p>
+<p>在理想情况下，DAC机制是没有问题的。然而，一个用户可能会不小心将自己创建的文件的权限位错误地修改为允许其它用户访问。如果这个用户是一个特权用户，并且它错误操作的文件是一个敏感的文件，那么就会产生严重的安全问题。这种误操作的产生方式有三种：</p>
+<p>用户执行了错误的命令<br>负责执行用户命令的程序有Bug<br>负责执行用户命令的程序受到攻击<br>后来，Linux内核采用了必要的访问控制机制：SE Linux（Security-Enhanced Linux），它采用了一种强制存取控制MAC（Mandatory Access Control）策略的实现方式，目的在于通过限制系统中的任何进程以及用户对资源的访问，保护内核安全。而SE Android（Security-Enhanced Android）是Android与SE Linux的结合，由美国NSA在2012年推出的Android操作系统安全强化套件，以支持在Android平台上使用SE Linux。</p>
+<p>目前SE Android系统中的策略机制主要有三种：</p>
+<p>安装时MAC（install-time MAC）<br>权限取消（permission revocation）<br>权限标签传播（tag propagation）<br>安装时MAC通过查找MAC策略配置来检查应用程序的权限。权限取消可以为已安装的应用取消权限，该机制在应用程序运行的权限检查时通过查找权限取消列表来取消应用的某些权限。权限标签传播是一种污点跟踪方式的应用，Android系统的权限作为抽象的标签映射到MAC策略配置文件中。</p>
+<p>SE Android安全机制所要保护的对象是系统中的资源，这些资源分布在各个子系统中。实际上，系统中需要保护的资源非常多，除了文件之外，还有进程、socket和IPC等。SE Android是一个复杂的安全模型，本文就不进一步分析了。</p>
+<p>如何解决这些安全问题</p>
+<p>Android应用会遇到各种各样的安全性问题，如何从宏观上了解各种安全隐患，积极采取适当的防御措施便变得尤为重要。那么，Android应用面临哪些安全问题呢？</p>
+<p>病毒<br>关键信息泄露<br>APP重打包<br>进程被劫持<br>数据在传输过程遭劫持<br>Webview漏洞<br>病毒不用多说了，都是一些恶意软件。关键信息泄露，可能有些开发者并不十分留意。虽然Java代码可以做混淆，但是Android的几大组件的创建方式是依赖注入的方式，因此不能被混淆。而且目前常用的一些反编译工具比如apktool等能够毫不费劲地还原Java里的明文信息，native里的库信息也可以通过objdump或IDA获取。因此一旦Java或native代码里存在明文敏感信息，基本上就是毫无安全而言的。重打包即通过反编译后重新加入恶意的代码逻辑，重新打包一个APK文件。进程被劫持一般通过进程注入或者调试进程的方式来hook进程，改变程序运行的逻辑和顺序，从而获取程序运行的内存信息。hook需要获取root权限或者跟被hook进程相同的权限。如果手机没被root，被劫持的可能性还是较小。数据在传输过程遭劫持，一般来说是由于数据明文传输或没使用HTTPS。Webview漏洞一般由于JS注入。</p>
+<p>现实中，出现的问题可能比上面提及的还要多。总的来说，应该从以下几个方面来应对Android开发的常见安全问题：</p>
+<p>应用权限控制。通过控制应用程序的权限防止恶意应用对系统造成破坏，采取的措施包括合理使用系统内置权限和应用程序自定义权限。<br>应用程序签名。采用数字签名为应用程序签名。<br>应用加固。应用加固包括病毒扫描、防注入、防调试、防篡改四个模块，目前行业内已经出现了很多的应用加固解决方案，如360应用加固、腾讯云应用加固、百度应用加固等等。<br>静态代码分析。通过静态代码分析工具lint监测安全隐患，对代码进行优化。<br>防火墙。必要时为Android设备安装防火墙，以防止远程网络攻击。<br>数据存储加密。采用加密的方式保护应用程序敏感数据，如利用SQLCipher加密SQLite数据库。<br>应用程序组件开发的安全要点。Activity, Service, Content Provider, Broadcast Receiver等组件在代码层面应采取的安全措施。它们每一个都可以通过隐式的Intent方式打开，所以这些组件只要不是对外公开的必须在AndroidManifest里面注明exported为false，禁止其它程序访问我们的组件。对于要和外部交互的组件，应当添加访问权限的控制，还需要要对传递的数据进行安全的校验。</p>
+<p>当然，还有Android NDK(Native Development Kit)，使得应用程序可以不依赖Dalvik虚拟机进行开发。Android运行时核心库提供android.os, android.net, android.media等核心API，而Dalvik虚拟机依赖Linux内核，实现进程隔离与线程调度管理、安全与异常管理、垃圾回收等功能，并被改进以适应低内存、低处理器速度的移动设备环境。</p>
+<p>再往上就是应用程序框架层了。一系列的Android应用程序所需的类库，使得开发人员可以快速地进行程序开发，也可以通过继承实现个性化的扩展。如Activity Manager负责主线程ActivityThread的创建、Activity生命周期的维护，并为窗口提供交互的接口。</p>
+<p>应用层就是与用户直接交互的应用程序，如SMS短信、图片浏览器、地图以及开发人员所开发的应用程序。</p>
+<h2 id="Android系统架构如下："><a href="#Android系统架构如下：" class="headerlink" title="Android系统架构如下："></a>Android系统架构如下：</h2><p>android采用自下而上的分层架构，linux内核层，硬件抽象层，运行时和c语言库，程序框架层和应用层。<br>Android以linux内核为基础实现硬件设备驱动，进程和内存管理，网络协议栈、电源管理等核心系统功能。android基于移动设备在linux的基础上补充了内存管理，匿名共享内存和进程间通信binder。 </p>
+<p>HAL(Hardware Abstraction Layer)规定了一套应用层对硬件层的读写和配置的统一接口，本质上是将硬件的驱动分为用户空间和内核空间，其中内核驱动程序运行在内核空间，HAL运行在用户空间。上图中的Stub，以so库的形式存在，可以理解为proxy。上层通过调用标识获得HAL的相关Stub，进而取得相应操作。</p>
+<hr>
+<h2 id="常用调试工具"><a href="#常用调试工具" class="headerlink" title="常用调试工具"></a>常用调试工具</h2><p>Smali、Dedexer、Dexdump、Apktool、Dex2jar、jd-gui。<br>ida动态调式和代码跟踪 </p>
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>打包，编译和破解的流程是什么样的？ </p>
+<ol>
+<li>Android的生命周期<br>onCreate - onStart - onResume - onPause - onStop - onDestory - onRestart</li>
+<li>Android的入口函数？<br>继承了application类中的attachContext,onCreate</li>
+</ol>
+<p>3.xposed框架的原理及常用函数？<br>替换system/bin/app_process文件，app_process就是zygote进程文件，所以xposed通过替换zygote进程实现了控制手机上所有app进程<br>常用函数<br>（1）findAndHookMethod<br>（2）findAndHookConstructor hook构造函数<br>(3)findClass：使用指定的类加载器查找类<br>（4）findField : 在类中查找自动并将其设置为可访问<br>(5)CallMethod 调用给定对象的实例或静态方法<br>(6)newInstance 创建给定类的新实例</p>
+<p>4.hook和注入有哪些？<br>l hook：反射（在程序运行的时候，对任意一个类，都可以获取其方法及变量）<br>l java的动态代理（smali注入）</p>
+<p>5.反调试<br> Tracerpid不等于0<br> Ptrace自身.<br> IsDebuggerConnect。</p>
+<ol start="6">
+<li><p>加壳<br>加壳的另一种常用的方式是在二进制的程序中植入一段代码，在运行的时候优先取得程序的控制权，做一些额外的工作。大多数病毒就是基于此原理。加壳的程序经常想尽办法阻止外部程序或软件对加壳程序的反汇编分析或者动态分析，以达到它不可告人的目的。这种技术也常用来保护软件版权，防止被软件破解。 </p>
+</li>
+<li><p>了解反破解的技术<br>我目前掌握的技术有：<br>1，反模拟器<br>2，反静态代码分析器如：反jeb<br>应该也是有很多反ida的，也就是加壳。</p>
+</li>
+<li><p>安卓程序的加解密和数据传输分析、拆解、逆向等工作;<br>加解密：这就很多了，一般都是遇到后再折腾解密，而且解密代码和秘钥一般都在代码里面。 </p>
+</li>
+<li><p>Andorid本地提权获得root权限，一般真机是用recovery刷机包，但是病毒提权是怎么样的<br>目前掌握的一种提权的是像输入命令行一样输入su并且用pm提权<br>还有一种是修改init.rc文件</p>
+</li>
+</ol>
+<hr>
+<p>参考:<br>Frida-API:<a href="https://frida.re/docs/javascript-api/" target="_blank" rel="noopener">https://frida.re/docs/javascript-api/</a><br>Frida:<br><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
+<p><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
+<p>Android逆向工具:<br><a href="https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank" rel="noopener">https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="../../../../https:/github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="null">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="addthis_inline_share_toolbox"></div><script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=null" async></script></div></div><div class="post-reward"><a class="reward-button"><i class="fa fa-qrcode"></i> Donate<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="../../08/linux-backdoor/"><img class="next_cover" src="/img/ban.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">Next Post</div><div class="next_info"><span>Linux-Backdoor</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> Comment</span></div><div id="disqus_thread"></div><script>var unused = null;
+var disqus_config = function () {
+  this.page.url = 'https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/';
+  this.page.identifier = '2021/02/19/Android-Reverse/';
+  this.page.title = 'Android逆向及工具使用';
+}
+var d = document, s = d.createElement('script');
+s.src = "https://" + '' +".disqus.com/embed.js";
+s.setAttribute('data-timestamp', '' + +new Date());
+(d.head || d.body).appendChild(s);</script></div></div></div><footer id="footer" style="background-image: url(/img/ban.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2021 By q0o0p</div><div class="framework-info"><span>Driven </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="Read Mode"></i><i class="fa fa-plus" id="font_plus" title="Increase font size"></i><i class="fa fa-minus" id="font_minus" title="Decrease font size"></i><i class="darkmode fa fa-sun-o" id="darkmode" title="Dark Mode"></i></div><div id="rightside-config-show"><div id="rightside_config" title="Setting"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="Scroll to comment"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="Table of Contents" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="Back to top" aria-hidden="true"></i></div></section><script src="../../../../https:/cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="../../../../js/utils.js"></script><script src="../../../../js/main.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="../../../../https:/cdn.jsdelivr.net/npm/node-snackbar@0.1.15/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.5" zIndex="-1" count="99" mobile="true" src="../../../../js/third-party/canvas-nest.js"></script><script async src="../../../../busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="../../../../js/third-party/click_heart.js"></script></body></html><script src="/live2d-widget/autoload.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+<!-- 雪花特效1 -->
+<% if (theme.snow_small){ %>
+<script type="text/javascript" src="/js/snow_small.js"></script>
+<% } %>
+<!-- 雪花特效2 -->
+<% if (theme.snow_big){ %>
+<script type="text/javascript" src="/js/snow_big.js"></script>
+<% } %>

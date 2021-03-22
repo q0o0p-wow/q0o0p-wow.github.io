@@ -1,6 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android逆向及工具使用</title>
+    <url>/2021/02/19/Android-Reverse/</url>
+    <content><![CDATA[<h2 id="Xposed"><a href="#Xposed" class="headerlink" title="Xposed"></a>Xposed</h2><h3 id="Xposed的优缺点"><a href="#Xposed的优缺点" class="headerlink" title="Xposed的优缺点"></a>Xposed的优缺点</h3><p>优点：在编写Java层hook插件的时候非常好用，这一点完全优越于Frida和SubstrateCydia，因为他也是Android项目，可以直接编写Java代码调用各类api进行操作。而且可以安装到手机上直接使用。</p>
+<p>缺点：配置安装环境繁琐，兼容性差，在Hook底层的时候就很无助了。</p>
+<h2 id="Frida"><a href="#Frida" class="headerlink" title="Frida"></a>Frida</h2><h3 id="Frida-介绍"><a href="#Frida-介绍" class="headerlink" title="Frida 介绍"></a>Frida 介绍</h3><p>frida 是一款基于 python 和 java 的 hook 框架，是一种动态插桩工具，可以插入代码到原生App的内存空间中，动态的监视和修改其行行为，可运行在Android、iOS、Linux和windows等多个平台。</p>
+<p>插桩技术 是指将额外的代码注入程序中以收集运行时的信息，可分为两种：</p>
+<ol>
+<li>源代码插桩【Source Code Instrumentation(SCI)】：额外代码注入到程序源代码中。</li>
+<li>二进制插桩【Binary Instrumentation】：额外代码注入到二进制可执行文件中，其又可分为两种：<br> ● 静态二进制插桩  【 Static Binary Instrumentation(SBI) 】：<pre><code>在程序执行前插入额外的代码和数据，生成一个永久改变的可执行文件。</code></pre> ● 动态二进制插桩  【 Dynamic Binary Instrumentation(DBI) 】：<pre><code>在程序运行时实时地插入额外代码和数据，对可执行文件没有任何永久改变。</code></pre></li>
+</ol>
+<h3 id="Frida-作用"><a href="#Frida-作用" class="headerlink" title="Frida 作用"></a>Frida 作用</h3><p>访问进程的内存<br>应用程序运行时覆盖功能<br>从导入的类调用函数<br>动态Hook跟踪、拦截函数等</p>
+<h3 id="Frida-安装"><a href="#Frida-安装" class="headerlink" title="Frida 安装"></a>Frida 安装</h3><p>Frida 分为客户端和服务端。<br>客户端：PC（控制端）<br>服务器：手机设备（被控制端）</p>
+<p>客户端编写的 Python 代码，用于连接远程设备，提交要注入的 JS 代码到服务端，接受服务端发来的消息。</p>
+<p>服务端中需要用 JS 代码注入到目标进程，操作内存数据，给客户端发送消息。</p>
+<p>Frida 安装<br>客户端:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">pip <span class="keyword">install</span> frida-tools</span><br><span class="line">pip3 <span class="keyword">install</span> colorama <span class="keyword">prompt</span>-toolkit pygments</span><br><span class="line">frida <span class="comment">--version</span></span><br><span class="line">frida-ps ：查看当前系统进程，表示安装成功。</span><br></pre></td></tr></table></figure>
+<p>查看系统架构</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">adb shell getprop ro<span class="selector-class">.product</span><span class="selector-class">.cpu</span><span class="selector-class">.abi</span></span><br></pre></td></tr></table></figure>
+<p>服务端的 Frida 版本必须和客户端的 Frida 版本一致。</p>
+<table>
+<thead>
+<tr>
+<th>API架构</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>armeabiv-v7a</td>
+<td>第7代及以上的 ARM 处理器。目前，大部分手机的CPU都支持此ABI交互规则</td>
+</tr>
+<tr>
+<td>arm64-v8a</td>
+<td>第8代64位ARM处理器，支持此ABI的手机近两年也逐渐增多了</td>
+</tr>
+<tr>
+<td>armeabi</td>
+<td>第5代、第6代的ARM处理器，早期手机用得较多</td>
+</tr>
+<tr>
+<td>x86</td>
+<td>平板、模拟器用得比较多</td>
+</tr>
+<tr>
+<td>x86_64</td>
+<td>64位的平板</td>
+</tr>
+<tr>
+<td>ABI 与 CPU 的联系</td>
+<td></td>
+</tr>
+<tr>
+<td>在 Android 手机上安装一个应用时，只有手机CPU架构支持的ABI架构对应的.so文件会被安装。如果支持多个ABI架构，会按照优先级进行安装。</td>
+<td></td>
+</tr>
+<tr>
+<td>CPU架构</td>
+<td>支持的ABI架构对应的.so文件安装优先级</td>
+</tr>
+<tr>
+<td>–</td>
+<td>–</td>
+</tr>
+<tr>
+<td>ARMv5</td>
+<td>armeabi</td>
+</tr>
+<tr>
+<td>ARMv7</td>
+<td>armeabi，armeabi-v7a</td>
+</tr>
+<tr>
+<td>ARMv8</td>
+<td>armeabi，armeabi-v7a，arm64-v8a</td>
+</tr>
+<tr>
+<td>MIPS</td>
+<td>mips</td>
+</tr>
+<tr>
+<td>MIPS64</td>
+<td>mips，mips64</td>
+</tr>
+<tr>
+<td>x86</td>
+<td>x86，armeabi，armeabi-v7a</td>
+</tr>
+<tr>
+<td>x86_64</td>
+<td>:armeabi，x86，x86_64</td>
+</tr>
+<tr>
+<td>服务端:</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1. 下载:frida-server-14.2.13-android-arm64.xz</td>
+<td></td>
+</tr>
+<tr>
+<td><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">$ xz -d frida-server<span class="number">-14.2</span><span class="number">.13</span>-android-arm64.xz</span><br><span class="line">$ adb push frida-server<span class="number">-14.2</span><span class="number">.13</span>-android-arm64 /data/local/tmp/frida-server</span><br></pre></td></tr></table></figure></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="2">
+<li>运行frida-server<figure class="highlight gams"><table><tr><td class="code"><pre><span class="line"><span class="meta"><span class="meta-keyword">$adb</span> shell</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$su</span></span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$cd</span>  /data/local/tmp</span></span><br><span class="line"><span class="meta"><span class="meta-keyword">$chmod</span>  755  frida-server</span></span><br><span class="line"><span class="symbol">$</span>./frida-server</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>如果使用的是模拟器应该下载frida-server-14.2.13-android-x86或64位<br>如果安装错误的版本，在执行frida-server时会提示报错，报错信息为sh: ./frida-server: not executable: 64-bit ELF file。<br>普通用户没有权限，需要su切换到root用户</p>
+<ol start="3">
+<li>检查是否正常<br>转发android TCP端口到本地<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">adb forward tcp:<span class="number">27042</span> tcp:<span class="number">27043</span></span><br><span class="line">adb forward tcp:<span class="number">27043</span> tcp:<span class="number">27043</span></span><br><span class="line">Frida-ps -U</span><br></pre></td></tr></table></figure>
+运行结果如图：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/1.png" alt></li>
+</ol>
+<p>客户端：PC（控制端）<br>客户端编写的 Python 代码，用于连接远程设备，提交要注入的 JS代码到服务端，接受服务端发来的消息。 </p>
+<p>服务器：手机设备（被控制端）<br>服务端中需要用 JS 代码注入到目标进程，操作内存数据，给客户端发送消息。</p>
+<h3 id="Frida的优缺点"><a href="#Frida的优缺点" class="headerlink" title="Frida的优缺点"></a>Frida的优缺点</h3><p>优点：在上面我们可以看到他的优点在于配置环境很简单，操作也很便捷，对于破解者开发阶段非常好用。支持Java层和Native层hook操作，在Native层hook如果是非基本类型的话操作有点麻烦。</p>
+<p>缺点：因为他只适用于破解者在开发阶段，也就是他没法像Xposed用于实践生产中，比如我写一个微信外挂用Frida写肯定不行的，因为他无法在手机端运行。也就是破解者用的比较多。</p>
+<p>第三、SubstrateCydia的优缺点</p>
+<p>优点：可以运行在手机端，和Xposed类似可以用于实践生产中。支持Java层和Native层的hook操作，但是Java层hook不怎么常用，用的比较多的是 Native 层 hook 操作，因为他也是Android工程可以引用系统api，操作更为方便。</p>
+<p>缺点：和Xposed一样安装配置环境繁琐，兼容性差。</p>
+<hr>
+<h2 id="Android安全机制"><a href="#Android安全机制" class="headerlink" title="Android安全机制"></a>Android安全机制</h2><p>android安全机制覆盖到各个层面，求开放的同时也保护用户的数据，应用程序和设备的安全。主要安全模型如下： </p>
+<h3 id="进程沙箱隔离机制"><a href="#进程沙箱隔离机制" class="headerlink" title="进程沙箱隔离机制"></a>进程沙箱隔离机制</h3><p>  进程沙箱隔离机制，使得Android应用程序在安装时被赋予独特的用户标识（UID），并永久保持。应用程序及其运行的Dalvik虚拟机运行在独立的Linux进程空间，与其它应用程序完全隔离。 </p>
+<h3 id="应用程序签名机制"><a href="#应用程序签名机制" class="headerlink" title="应用程序签名机制"></a>应用程序签名机制</h3><p>有特例程序共享uid；<br>应用签名机制：规定APK文件必须被开发者进行数字签名，以便标识应用程序作者和在应用程序之间的信任关系。在安装应用程序APK时，系统安装程序首先检查APK是否被签名，有签名才能安装。当应用程序升级时，需要检查新版应用的数字签名与已安装的应用程序的签名是否相同，否则，会被当做一个新的应用程序。Android开发者有可能把安装包命名为相同的名字，通过不同的签名可以把他们区分开来，也保证签名不同的包不被替换，同时防止恶意软件替换安装的应用。</p>
+<h3 id="权限声明机制"><a href="#权限声明机制" class="headerlink" title="权限声明机制"></a>权限声明机制</h3><p>权限声明机制：要想获得在对象上进行操作，就需要把权限和此对象的操作进行绑定。不同级别要求应用程序行使权限的认证方式也不一样，Normal级申请就可以使用，Dangerous级需要安装时由用户确认，Signature和Signatureorsystem级则必须是系统用户才可用。<br>访问控制机制：确保文件系统和永和数据不受非法访问。 </p>
+<h3 id="访问控制机制"><a href="#访问控制机制" class="headerlink" title="访问控制机制"></a>访问控制机制</h3><h3 id="进程通信机制"><a href="#进程通信机制" class="headerlink" title="进程通信机制"></a>进程通信机制</h3><p>进程间通信机制binder，基于共享内存的Binder实现，提供轻量级的远程进程调用（RPC）。通过接口描述语言（AIDL）定义接口与交换数据的类型，确保进程间通信的数据不会溢出越界。 </p>
+<h3 id="内存通信机制"><a href="#内存通信机制" class="headerlink" title="内存通信机制"></a>内存通信机制</h3><p>  内存管理机制，基于Linux的低内存管理机制，设计实现了独特的LMK，将进程重要性分级、分组，当内存不足时，自动清理级别进程所占用的内存空间。同时，引入的Ashmem内存机制，使得Android具备清理不再使用共享内存区域的能力。</p>
+<p>正是因为Android采用多层架构，在保护信息安全的同时，也保证开放平台的灵活性。</p>
+<h3 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h3><p>SE Android</p>
+<p>看源码见<a href="http://blog.csdn.net/luoshengyang/article/details/37613135" target="_blank" rel="noopener">http://blog.csdn.net/luoshengyang/article/details/37613135</a><br>Android是一个基于Linux内核的系统，像传统的Linux系统一样，Android也有用户的概念。只不过这些用户不需要登录，也可以使用Android系统。Android系统将每一个安装在系统的APK都映射为一个不同的Linux用户。也就是每一个APK都有一个对应的UID和GID，这些UID和GID在APK安装的时候由系统安装服务PackageManagerService分配。Android沙箱隔离机制就是建立在Linux的UID和GID基础上。</p>
+<p>这种基于Linux UID/GID的安全机制存在什么样的问题呢？</p>
+<p>Linux将文件的权限划分为读、写和执行三种，分别用字母r、w和x表示。每一个文件有三组读、写和执行权限，分别针对文件的所有者、文件所有者所属的组以及除了所有者以及在所有者所属组的用户之外所有其它用户。这样，如果一个用户想要将一个自己创建的文件交给另外一个用户访问，那么只需要相应地设置一下这个文件的其它用户权限位就可以了。所以，在Linux系统中，文件的权限控制在所有者的手中。因此，这种权限控制方式就称为自主式的，正式的英文名称为Discretionary Access Control，简称为DAC。</p>
+<p>在理想情况下，DAC机制是没有问题的。然而，一个用户可能会不小心将自己创建的文件的权限位错误地修改为允许其它用户访问。如果这个用户是一个特权用户，并且它错误操作的文件是一个敏感的文件，那么就会产生严重的安全问题。这种误操作的产生方式有三种：</p>
+<p>用户执行了错误的命令<br>负责执行用户命令的程序有Bug<br>负责执行用户命令的程序受到攻击<br>后来，Linux内核采用了必要的访问控制机制：SE Linux（Security-Enhanced Linux），它采用了一种强制存取控制MAC（Mandatory Access Control）策略的实现方式，目的在于通过限制系统中的任何进程以及用户对资源的访问，保护内核安全。而SE Android（Security-Enhanced Android）是Android与SE Linux的结合，由美国NSA在2012年推出的Android操作系统安全强化套件，以支持在Android平台上使用SE Linux。</p>
+<p>目前SE Android系统中的策略机制主要有三种：</p>
+<p>安装时MAC（install-time MAC）<br>权限取消（permission revocation）<br>权限标签传播（tag propagation）<br>安装时MAC通过查找MAC策略配置来检查应用程序的权限。权限取消可以为已安装的应用取消权限，该机制在应用程序运行的权限检查时通过查找权限取消列表来取消应用的某些权限。权限标签传播是一种污点跟踪方式的应用，Android系统的权限作为抽象的标签映射到MAC策略配置文件中。</p>
+<p>SE Android安全机制所要保护的对象是系统中的资源，这些资源分布在各个子系统中。实际上，系统中需要保护的资源非常多，除了文件之外，还有进程、socket和IPC等。SE Android是一个复杂的安全模型，本文就不进一步分析了。</p>
+<p>如何解决这些安全问题</p>
+<p>Android应用会遇到各种各样的安全性问题，如何从宏观上了解各种安全隐患，积极采取适当的防御措施便变得尤为重要。那么，Android应用面临哪些安全问题呢？</p>
+<p>病毒<br>关键信息泄露<br>APP重打包<br>进程被劫持<br>数据在传输过程遭劫持<br>Webview漏洞<br>病毒不用多说了，都是一些恶意软件。关键信息泄露，可能有些开发者并不十分留意。虽然Java代码可以做混淆，但是Android的几大组件的创建方式是依赖注入的方式，因此不能被混淆。而且目前常用的一些反编译工具比如apktool等能够毫不费劲地还原Java里的明文信息，native里的库信息也可以通过objdump或IDA获取。因此一旦Java或native代码里存在明文敏感信息，基本上就是毫无安全而言的。重打包即通过反编译后重新加入恶意的代码逻辑，重新打包一个APK文件。进程被劫持一般通过进程注入或者调试进程的方式来hook进程，改变程序运行的逻辑和顺序，从而获取程序运行的内存信息。hook需要获取root权限或者跟被hook进程相同的权限。如果手机没被root，被劫持的可能性还是较小。数据在传输过程遭劫持，一般来说是由于数据明文传输或没使用HTTPS。Webview漏洞一般由于JS注入。</p>
+<p>现实中，出现的问题可能比上面提及的还要多。总的来说，应该从以下几个方面来应对Android开发的常见安全问题：</p>
+<p>应用权限控制。通过控制应用程序的权限防止恶意应用对系统造成破坏，采取的措施包括合理使用系统内置权限和应用程序自定义权限。<br>应用程序签名。采用数字签名为应用程序签名。<br>应用加固。应用加固包括病毒扫描、防注入、防调试、防篡改四个模块，目前行业内已经出现了很多的应用加固解决方案，如360应用加固、腾讯云应用加固、百度应用加固等等。<br>静态代码分析。通过静态代码分析工具lint监测安全隐患，对代码进行优化。<br>防火墙。必要时为Android设备安装防火墙，以防止远程网络攻击。<br>数据存储加密。采用加密的方式保护应用程序敏感数据，如利用SQLCipher加密SQLite数据库。<br>应用程序组件开发的安全要点。Activity, Service, Content Provider, Broadcast Receiver等组件在代码层面应采取的安全措施。它们每一个都可以通过隐式的Intent方式打开，所以这些组件只要不是对外公开的必须在AndroidManifest里面注明exported为false，禁止其它程序访问我们的组件。对于要和外部交互的组件，应当添加访问权限的控制，还需要要对传递的数据进行安全的校验。</p>
+<p>当然，还有Android NDK(Native Development Kit)，使得应用程序可以不依赖Dalvik虚拟机进行开发。Android运行时核心库提供android.os, android.net, android.media等核心API，而Dalvik虚拟机依赖Linux内核，实现进程隔离与线程调度管理、安全与异常管理、垃圾回收等功能，并被改进以适应低内存、低处理器速度的移动设备环境。</p>
+<p>再往上就是应用程序框架层了。一系列的Android应用程序所需的类库，使得开发人员可以快速地进行程序开发，也可以通过继承实现个性化的扩展。如Activity Manager负责主线程ActivityThread的创建、Activity生命周期的维护，并为窗口提供交互的接口。</p>
+<p>应用层就是与用户直接交互的应用程序，如SMS短信、图片浏览器、地图以及开发人员所开发的应用程序。</p>
+<h2 id="Android系统架构如下："><a href="#Android系统架构如下：" class="headerlink" title="Android系统架构如下："></a>Android系统架构如下：</h2><p>android采用自下而上的分层架构，linux内核层，硬件抽象层，运行时和c语言库，程序框架层和应用层。<br>Android以linux内核为基础实现硬件设备驱动，进程和内存管理，网络协议栈、电源管理等核心系统功能。android基于移动设备在linux的基础上补充了内存管理，匿名共享内存和进程间通信binder。 </p>
+<p>HAL(Hardware Abstraction Layer)规定了一套应用层对硬件层的读写和配置的统一接口，本质上是将硬件的驱动分为用户空间和内核空间，其中内核驱动程序运行在内核空间，HAL运行在用户空间。上图中的Stub，以so库的形式存在，可以理解为proxy。上层通过调用标识获得HAL的相关Stub，进而取得相应操作。</p>
+<hr>
+<h2 id="常用调试工具"><a href="#常用调试工具" class="headerlink" title="常用调试工具"></a>常用调试工具</h2><p>Smali、Dedexer、Dexdump、Apktool、Dex2jar、jd-gui。<br>ida动态调式和代码跟踪 </p>
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>打包，编译和破解的流程是什么样的？ </p>
+<ol>
+<li>Android的生命周期<br>onCreate - onStart - onResume - onPause - onStop - onDestory - onRestart</li>
+<li>Android的入口函数？<br>继承了application类中的attachContext,onCreate</li>
+</ol>
+<p>3.xposed框架的原理及常用函数？<br>替换system/bin/app_process文件，app_process就是zygote进程文件，所以xposed通过替换zygote进程实现了控制手机上所有app进程<br>常用函数<br>（1）findAndHookMethod<br>（2）findAndHookConstructor hook构造函数<br>(3)findClass：使用指定的类加载器查找类<br>（4）findField : 在类中查找自动并将其设置为可访问<br>(5)CallMethod 调用给定对象的实例或静态方法<br>(6)newInstance 创建给定类的新实例</p>
+<p>4.hook和注入有哪些？<br>l hook：反射（在程序运行的时候，对任意一个类，都可以获取其方法及变量）<br>l java的动态代理（smali注入）</p>
+<p>5.反调试<br> Tracerpid不等于0<br> Ptrace自身.<br> IsDebuggerConnect。</p>
+<ol start="6">
+<li><p>加壳<br>加壳的另一种常用的方式是在二进制的程序中植入一段代码，在运行的时候优先取得程序的控制权，做一些额外的工作。大多数病毒就是基于此原理。加壳的程序经常想尽办法阻止外部程序或软件对加壳程序的反汇编分析或者动态分析，以达到它不可告人的目的。这种技术也常用来保护软件版权，防止被软件破解。 </p>
+</li>
+<li><p>了解反破解的技术<br>我目前掌握的技术有：<br>1，反模拟器<br>2，反静态代码分析器如：反jeb<br>应该也是有很多反ida的，也就是加壳。</p>
+</li>
+<li><p>安卓程序的加解密和数据传输分析、拆解、逆向等工作;<br>加解密：这就很多了，一般都是遇到后再折腾解密，而且解密代码和秘钥一般都在代码里面。 </p>
+</li>
+<li><p>Andorid本地提权获得root权限，一般真机是用recovery刷机包，但是病毒提权是怎么样的<br>目前掌握的一种提权的是像输入命令行一样输入su并且用pm提权<br>还有一种是修改init.rc文件</p>
+</li>
+</ol>
+<hr>
+<p>参考:<br>Frida-API:<a href="https://frida.re/docs/javascript-api/" target="_blank" rel="noopener">https://frida.re/docs/javascript-api/</a><br>Frida:<br><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
+<p><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
+<p>Android逆向工具:<br><a href="https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank" rel="noopener">https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Linux-Backdoor</title>
     <url>/2021/02/08/linux-backdoor/</url>
     <content><![CDATA[<p>参考：<br><a href="https://cloud.tencent.com/developer/article/1683267" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1683267</a><br><a href="https://mp.weixin.qq.com/s?__biz=MzI4Njk5NjY4OQ==&amp;mid=2247484964&amp;idx=1&amp;sn=d83b946c13b06e35ef82836f8b808b70&amp;chksm=ebd5279adca2ae8c852720703b216f7e290be4d59124b36e908c03dc719e194b628846f3f66d&amp;scene=132#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzI4Njk5NjY4OQ==&amp;mid=2247484964&amp;idx=1&amp;sn=d83b946c13b06e35ef82836f8b808b70&amp;chksm=ebd5279adca2ae8c852720703b216f7e290be4d59124b36e908c03dc719e194b628846f3f66d&amp;scene=132#wechat_redirect</a></p>
@@ -117,7 +296,7 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Android-Study</title>
+    <title>Android开发基础</title>
     <url>/2020/11/25/Android-study/</url>
     <content><![CDATA[<h2 id="0x01-生命周期"><a href="#0x01-生命周期" class="headerlink" title="0x01 生命周期"></a>0x01 生命周期</h2><p>Activity launched<br>onCreate(): 创建对象<br>onStart(): 当Acticity 呈现在屏幕上时调用<br>onResume(): 完成以后实现用户交互<br>Activity running(运行状态)<br>onPause(): (可见,用户不能与之交互)回到前台,进入暂停阶段<br>onStop(): 回到后台不可见<br>优先级更高的app需要内存资源的时候,会被kill<br>onDestroy():<br>Activity shutdown</p>
 <h2 id="0x02-日志打印"><a href="#0x02-日志打印" class="headerlink" title="0x02 日志打印"></a>0x02 日志打印</h2><p>logd</p>
@@ -141,7 +320,81 @@
 <li>singleTask：跨应用调用单任务，不要出现重复页面，同时可以避免标准普通模式的调用栈过深。()</li>
 <li>singleInstance：全局单一实例。如电话来电页面。</li>
 </ul>
-]]></content>
+<h2 id="0x06-状态式通知栏和抽屉式通知栏"><a href="#0x06-状态式通知栏和抽屉式通知栏" class="headerlink" title="0x06 状态式通知栏和抽屉式通知栏"></a>0x06 状态式通知栏和抽屉式通知栏</h2><p>Android从5.0开始,通知可以短暂地显示在浮动窗口中，称之为提醒式通知。这种行为通常适用于用户应立即知晓的重要通知，而且仅在设备未锁定时才会显示。<br><code>注:通知栏图标只能使用alpha图层绘制,而不应该包括RGB图层</code></p>
+<p>以下情况可能会触发提醒式通知：</p>
+<ul>
+<li>用户的 Activity 处于全屏模式（应用使用 fullScreenIntent）。</li>
+<li>通知的优先级很高，且在搭载 Android 7.1（API 级别 25）及更低版本的设备上使用铃声或振动。</li>
+<li>在搭载 Android 8.0（API 级别 26）及更高版本的设备上，通知渠道的重要程度比较高。</li>
+</ul>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">protected void on<span class="constructor">Create(Bundle <span class="params">savedInstanceState</span>)</span> &#123;</span><br><span class="line">        super.on<span class="constructor">Create(<span class="params">savedInstanceState</span>)</span>;</span><br><span class="line">        set<span class="constructor">ContentView(R.<span class="params">layout</span>.<span class="params">activity_main</span>)</span>;</span><br><span class="line"></span><br><span class="line">         manager = (NotificationManager) get<span class="constructor">SystemService(NOTIFICATION_SERVICE)</span>;</span><br><span class="line">         <span class="keyword">if</span>(Build.VERSION.SDK_INT&gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">             NotificationChannel channel = <span class="keyword">new</span> <span class="constructor">NotificationChannel(<span class="string">"q0o0p"</span>, <span class="string">"测试通知"</span>, NotificationManager.IMPORTANCE_HIGH)</span>;</span><br><span class="line">             manager.create<span class="constructor">NotificationChannel(<span class="params">channel</span>)</span>;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        Intent intent = <span class="keyword">new</span> <span class="constructor">Intent(<span class="params">this</span>, NotificationActivity.<span class="params">class</span>)</span>;</span><br><span class="line">        PendingIntent pendingIntent = <span class="module-access"><span class="module"><span class="identifier">PendingIntent</span>.</span></span>get<span class="constructor">Activity(<span class="params">this</span>, 0, <span class="params">intent</span>, 0)</span>;</span><br><span class="line"></span><br><span class="line">        notification = <span class="keyword">new</span> NotificationCompat.<span class="constructor">Builder(<span class="params">this</span>, <span class="string">"q0o0p"</span>)</span></span><br><span class="line">                .set<span class="constructor">ContentTitle(<span class="string">"官方通知"</span>)</span> <span class="comment">//设置标题</span></span><br><span class="line">                .set<span class="constructor">ContentText(<span class="string">"q0o0p-wow"</span>)</span> <span class="comment">//设置文本内容</span></span><br><span class="line">                .set<span class="constructor">SmallIcon(R.<span class="params">drawable</span>.<span class="params">ic_leaves</span>)</span> <span class="comment">//设置小图标</span></span><br><span class="line">                .set<span class="constructor">LargeIcon(BitmapFactory.<span class="params">decodeResource</span>(<span class="params">getResources</span>()</span>,<span class="module-access"><span class="module"><span class="identifier">R</span>.</span></span>drawable.ic_user)) <span class="comment">//设置通知大图标</span></span><br><span class="line">                .set<span class="constructor">Color(Color.<span class="params">parseColor</span>(<span class="string">"#FF0000"</span>)</span>) <span class="comment">//小图标颜色</span></span><br><span class="line">                .set<span class="constructor">ContentIntent(<span class="params">pendingIntent</span>)</span> <span class="comment">//点击通知后跳转意图</span></span><br><span class="line">                .set<span class="constructor">AutoCancel(<span class="params">true</span>)</span> <span class="comment">//点击通知后自动清除通知</span></span><br><span class="line">                .build<span class="literal">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * 点击按钮触发</span></span><br><span class="line"><span class="comment">    * 取消通知</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    public void cancel<span class="constructor">Notification(View <span class="params">view</span>)</span> &#123;</span><br><span class="line">        <span class="comment">//触发条件</span></span><br><span class="line">        manager.cancel(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发送通知</span></span><br><span class="line">    public void send<span class="constructor">Notification(View <span class="params">view</span>)</span> &#123;</span><br><span class="line">        manager.notify(<span class="number">1</span>,notification);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>官方API: <a href="https://developer.android.google.cn/guide/topics/ui/notifiers/notifications?hl=zh-cn" target="_blank" rel="noopener">https://developer.android.google.cn/guide/topics/ui/notifiers/notifications?hl=zh-cn</a></p>
+<h2 id="0x07-toolbar基础用法"><a href="#0x07-toolbar基础用法" class="headerlink" title="0x07 toolbar基础用法"></a>0x07 toolbar基础用法</h2><h3 id="1-toolbar介绍"><a href="#1-toolbar介绍" class="headerlink" title="1. toolbar介绍"></a>1. toolbar介绍</h3><p>Toolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件 ，Google 非常推荐大家使用 Toolbar 来作为Android客户端的导航栏，以此来取代之前的 Actionbar 。与 Actionbar 相比，Toolbar 明显要灵活的多。</p>
+<h3 id="2-关闭固定标题栏"><a href="#2-关闭固定标题栏" class="headerlink" title="2. 关闭固定标题栏"></a>2. 关闭固定标题栏</h3><p>res -&gt; values -&gt; themes.xml<br><code>&lt;style name=&quot;Theme.Q0o0p_three&quot; parent=&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;&gt;</code><br>将DarkActionBar—&gt;改为NoActionBar</p>
+<p>activity_main.xml添加</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">&lt;androidx.appcompat.widget.Toolbar</span><br><span class="line">        android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">        android:layout_height=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">        android:background=<span class="string">"#B6DAEA"</span> </span><br><span class="line">        <span class="keyword">app</span>:navigationIcon=<span class="string">"?attr/actionModeCloseDrawable"</span> <span class="comment">//图标</span></span><br><span class="line">        <span class="keyword">app</span>:titleTextColor=<span class="string">"#000000"</span></span><br><span class="line">        <span class="keyword">app</span>:title=<span class="string">"q0o0p"</span> <span class="comment">//标题</span></span><br><span class="line">        <span class="keyword">app</span>:titleMarginStart=<span class="string">"5dp"</span> <span class="comment">//距离</span></span><br><span class="line">        <span class="keyword">app</span>:subtitle=<span class="string">"wow"</span> <span class="comment">//副标题</span></span><br><span class="line">        <span class="keyword">app</span>:subtitleTextColor=<span class="string">"@color/teal_700"</span> <span class="comment">//副标题颜色</span></span><br><span class="line">        <span class="keyword">app</span>:logo=<span class="string">"@drawable/ic_leaves"</span> <span class="comment">//app logo</span></span><br><span class="line">        /&gt;</span><br></pre></td></tr></table></figure>
+<p>设置标题居中</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">&lt;androidx<span class="selector-class">.appcompat</span><span class="selector-class">.widget</span><span class="selector-class">.Toolbar</span></span><br><span class="line">     android:id=<span class="string">"@+id/tb"</span></span><br><span class="line">     android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">     android:layout_height=<span class="string">"?attr/actionBarSize"</span></span><br><span class="line">     android:<span class="attribute">background</span>=<span class="string">"#B6DAEA"</span></span><br><span class="line">     app:navigationIcon=<span class="string">"?attr/actionModeCloseDrawable"</span>&gt;</span><br><span class="line">     &lt;TextView</span><br><span class="line">         android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">         android:layout_height=<span class="string">"match_parent"</span></span><br><span class="line">         android:gravity=<span class="string">"center"</span></span><br><span class="line">         android:layout_gravity=<span class="string">"center"</span></span><br><span class="line">         android:text=<span class="string">"q0o0p"</span>/&gt;</span><br><span class="line"> &lt;/androidx<span class="selector-class">.appcompat</span><span class="selector-class">.widget</span><span class="selector-class">.Toolbar</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x08-AlertDialog对话框"><a href="#0x08-AlertDialog对话框" class="headerlink" title="0x08 AlertDialog对话框"></a>0x08 AlertDialog对话框</h2><h3 id="对话框简介"><a href="#对话框简介" class="headerlink" title="对话框简介"></a>对话框简介</h3><p>对话框是人机交互过程中十分常见的组件，一般用于在特定条件下对用户显示一些信息，可以增强应用的友好性。</p>
+<p>Dialog 类是对话框的基类。对话框虽然可以在界面上显示，但是 Dialog 不是 View 类的子类，而是直接继承自 java.lang.Object 类。</p>
+<p>Dialog 对象也有自己的生命周期，其生命周期由创建它的 Activity 进行管理。</p>
+<p>常用的对话框有 AlertDialog 和 ProgressDialog，下面将通过实例讲解这两种对话框的使用方法。 </p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">        android:<span class="attribute">id</span>=<span class="string">"@+id/bt2"</span></span><br><span class="line">        android:<span class="attribute">text</span>=<span class="string">"显示对话框"</span></span><br><span class="line">        android:<span class="attribute">onClick</span>=<span class="string">"q0o0pClick"</span></span><br><span class="line">        android:<span class="attribute">layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">        android:<span class="attribute">layout_height</span>=<span class="string">"wrap_content"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">public void q0o0p<span class="constructor">Click(View <span class="params">view</span>)</span> &#123;</span><br><span class="line">        <span class="comment">//View dialogView = getLayoutInflater().inflate(R.layout.dialog_view, null);</span></span><br><span class="line">        AlertDialog.Builder builder = <span class="keyword">new</span> AlertDialog.<span class="constructor">Builder(<span class="params">this</span>)</span>;</span><br><span class="line">        builder.set<span class="constructor">Icon(R.<span class="params">mipmap</span>.<span class="params">ic_user</span>)</span></span><br><span class="line">                .set<span class="constructor">Title(<span class="string">"这是对话框"</span>)</span></span><br><span class="line">                .set<span class="constructor">Message(<span class="string">"uou"</span>)</span></span><br><span class="line">                .set<span class="constructor">PositiveButton(<span class="string">"确定"</span>, <span class="params">new</span> DialogInterface.OnClickListener()</span> &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void on<span class="constructor">Click(DialogInterface <span class="params">dialog</span>, <span class="params">int</span> <span class="params">which</span>)</span> &#123;</span><br><span class="line">                        <span class="module-access"><span class="module"><span class="identifier">Log</span>.</span></span>e(TAG, <span class="string">"点击了确定按钮"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .set<span class="constructor">NegativeButton(<span class="string">"取消"</span>, <span class="params">new</span> DialogInterface.OnClickListener()</span> &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void on<span class="constructor">Click(DialogInterface <span class="params">dialog</span>, <span class="params">int</span> <span class="params">which</span>)</span> &#123;</span><br><span class="line">                        <span class="module-access"><span class="module"><span class="identifier">Log</span>.</span></span>e(TAG, <span class="string">"点击了取消按钮"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .set<span class="constructor">NeutralButton(<span class="string">"中间"</span>, <span class="params">new</span> DialogInterface.OnClickListener()</span> &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void on<span class="constructor">Click(DialogInterface <span class="params">dialog</span>, <span class="params">int</span> <span class="params">which</span>)</span> &#123;</span><br><span class="line">                        <span class="module-access"><span class="module"><span class="identifier">Log</span>.</span></span>e(TAG, <span class="string">"点击了中间"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .set<span class="constructor">View(<span class="params">dialogView</span>)</span></span><br><span class="line">                .create<span class="literal">()</span></span><br><span class="line">                .show<span class="literal">()</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>未添加setView前<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/2.png" alt></p>
+<p>添加setView</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">View dialogView = getLayoutInflater().inflate(R.layout.dialog_view, <span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>layout -&gt;dialog_view.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"horizontal"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"#fff000"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@mipmap/ic_user"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"30dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"30dp"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"q0o0p-wow"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/3.png" alt></p>
+<h2 id="0x09-PopupWindow"><a href="#0x09-PopupWindow" class="headerlink" title="0x09 PopupWindow"></a>0x09 PopupWindow</h2><p>一个弹出窗口控件，可以用来显示任意View，而且会浮动在当前activity的顶部   </p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="built_in">public</span> <span class="type">void</span> wowClick(<span class="keyword">View</span> <span class="keyword">view</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">View</span> popupView = getLayoutInflater().inflate(R.layout.popup_view, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        Button bt1 = popupView.findViewById(R.id.bt1);</span><br><span class="line">        Button bt2 = popupView.findViewById(R.id.bt2);</span><br><span class="line">        PopupWindow popupWindow = <span class="built_in">new</span> PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT,</span><br><span class="line">                ViewGroup.LayoutParams.WRAP_CONTENT,</span><br><span class="line">                <span class="keyword">true</span>); //<span class="keyword">true</span>点击空白处消失</span><br><span class="line">        //设置背景图片</span><br><span class="line">        popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.ic_image,<span class="keyword">null</span>));</span><br><span class="line"></span><br><span class="line">//        popupWindow.showAsDropDown(<span class="keyword">view</span>); //相对某个控件的正下方,无偏移</span><br><span class="line">        popupWindow.showAsDropDown(<span class="keyword">view</span>,<span class="keyword">view</span>.getWidth(),<span class="keyword">view</span>.getHeight());</span><br><span class="line"></span><br><span class="line">        bt1.setOnClickListener(<span class="built_in">new</span> <span class="keyword">View</span>.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="built_in">public</span> <span class="type">void</span> onClick(<span class="keyword">View</span> v) &#123;</span><br><span class="line">                <span class="keyword">Log</span>.e(TAG, "bt1");</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        bt2.setOnClickListener(<span class="built_in">new</span> <span class="keyword">View</span>.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            <span class="built_in">public</span> <span class="type">void</span> onClick(<span class="keyword">View</span> v) &#123;</span><br><span class="line">                <span class="keyword">Log</span>.e(TAG, "bt2");</span><br><span class="line">                popupWindow.dismiss(); //点击bt2退出</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>layout -&gt;创建popup_view.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@mipmap/ic_user"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt1"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">"5dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"q0o0p"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/bt2"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">"5dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">"wow"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>设置背景图片实现效果图<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/4.png" alt></p>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置加载动画</span></span><br><span class="line">popupWindow.setAnimationStyle(<span class="keyword">int</span> anmationStyle);</span><br><span class="line"><span class="comment">//设置触摸使能</span></span><br><span class="line">popupWindow.setTouchable(<span class="keyword">boolean</span> touchable);</span><br><span class="line"><span class="comment">//设置PopupWindow外面的触摸功能</span></span><br><span class="line">popupWindow.setOutsideTouchable(<span class="keyword">boolean</span> touchable);</span><br></pre></td></tr></table></figure>
+
+<h2 id="0x10-layout布局"><a href="#0x10-layout布局" class="headerlink" title="0x10 layout布局"></a>0x10 layout布局</h2><h3 id="LinearLayout布局"><a href="#LinearLayout布局" class="headerlink" title="LinearLayout布局"></a>LinearLayout布局</h3><p>1.android:orientation:<br>布局中间件的排序方式:</p>
+<ul>
+<li>vertical,竖直</li>
+<li>horizontal，水平</li>
+</ul>
+<ol start="2">
+<li>android:gravity:设置View中内容相对于View组件的对齐方式，比如一个Button内部的Text的位置，与android：layout_gravity有所区分，下一个说layout_gravity：</li>
+</ol>
+<p>1）center:在水平和竖直方向上都是居中 center_vertical和center_horizontal可想而知，不赘述</p>
+<p>2）Top和Bottom：置顶与置底</p>
+<p>3）left和right:置左和右</p>
+<p>3.android:layout_gravity:设置该View相对于父View的位置关系，就是设置View组件相对于Container的对齐方式，比如一个button在linearlayout里，你想把该button放在靠左、靠右等位置就可以通过该属性设置：</p>
+<p>对于线性布局来说，当orientation为竖直时，该属性只能设置水平方向上的放置位置，设为center的话，只是水平方向是居中的。</p>
+<p>4.android:layout_marginLeft(Start)/Right(End)/Top/Bottom:调用该属性对象的本身与其他容器或组件的间隙</p>
+<p>5.android:paddingRight/Left/Top/Bottom:调用该属性的对象里的内容与该对象本身有填充物占据。和2.3类似。</p>
+<h2 id="0x11-ListView简单用法"><a href="#0x11-ListView简单用法" class="headerlink" title="0x11 ListView简单用法"></a>0x11 ListView简单用法</h2><p>Android ListView是一个组几个项目，并显示在垂直滚动列表。列表项会使用适配器自动插入到列表中，从内容源，如数组或数据库。<br> 一个适配器实际上UI组件和数据源之间的桥梁，填充数据到UI组件。适配器可以用来提供数据如：spinner，列表视图，网格视图等。<br>ListView和GridView 是 AdapterView 的子类，它们可以填充绑定到一个适配器，它从外部源检索数据，并创建一个视图表示每个数据项。</p>
+<p>MainActivity.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Bean&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            Bean bean = <span class="keyword">new</span> Bean();</span><br><span class="line">            bean.setName(<span class="string">"root-q0o0p"</span> + i);</span><br><span class="line">            data.add(bean);</span><br><span class="line">        &#125;</span><br><span class="line">        ListView listView = findViewById(R.id.lv);</span><br><span class="line">        listView.setAdapter(<span class="keyword">new</span> MyAdapter(data, <span class="keyword">this</span>));</span><br><span class="line">        listView.setOnItemClickListener(<span class="keyword">new</span> AdapterView.OnItemClickListener() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">                Log.e(<span class="string">"ww"</span>, <span class="string">"onclick"</span> + position);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Bean.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bean</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>MyAdapter.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"q0o0p"</span>;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Bean&gt; data;</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(List&lt;Bean&gt; data, Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Viewholder对象</span></span><br><span class="line">        ViewHolder viewHolder;</span><br><span class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">            viewHolder = <span class="keyword">new</span> ViewHolder();</span><br><span class="line">            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, <span class="keyword">false</span>);</span><br><span class="line">            <span class="comment">//viewHolder获取findViewById</span></span><br><span class="line">            viewHolder.textView = convertView.findViewById(R.id.tv);</span><br><span class="line">            convertView.setTag(viewHolder);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            viewHolder = (ViewHolder) convertView.getTag();</span><br><span class="line">        &#125;</span><br><span class="line">        viewHolder.textView.setText(data.get(position).getName());</span><br><span class="line"></span><br><span class="line">        Log.e(TAG, <span class="string">"getView:"</span>+position);</span><br><span class="line">        <span class="keyword">return</span> convertView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//findById进行优化</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span></span>&#123;</span><br><span class="line">        TextView textView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>activity.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ListView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/lv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">         /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>list_item.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">"vertical"</span> <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/tv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">"20sp"</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/5.png" alt></p>
+<h2 id="0x12-RecyclerView的使用"><a href="#0x12-RecyclerView的使用" class="headerlink" title="0x12 RecyclerView的使用"></a>0x12 RecyclerView的使用</h2><p>从Android 5.0开始，谷歌公司推出了一个用于大量数据展示的新控件RecylerView，可以用来代替传统的ListView，更加强大和灵活。<br>build.gradle中添加如下信息</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">// 添加 RecyclerView包</span><br><span class="line">    implementation 'androidx.recyclerview:recyclerview:1.1.0'</span><br></pre></td></tr></table></figure>
+
+<p>main_activity.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Bean&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">            Bean bean = <span class="keyword">new</span> Bean();</span><br><span class="line">            bean.setName(<span class="string">"q0o0p"</span> + i);</span><br><span class="line">            data.add(bean);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        RecyclerView recyclerView = findViewById(R.id.rv);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);</span></span><br><span class="line"><span class="comment">        recyclerView.setLayoutManager(linearLayoutManager);*/</span></span><br><span class="line"></span><br><span class="line">        GridLayoutManager gridLayoutManager = <span class="keyword">new</span> GridLayoutManager(<span class="keyword">this</span>,<span class="number">3</span>);</span><br><span class="line">        recyclerView.setLayoutManager(gridLayoutManager);</span><br><span class="line"></span><br><span class="line">        MyAdapter myAdapter = <span class="keyword">new</span> MyAdapter(data, <span class="keyword">this</span>);</span><br><span class="line">        recyclerView.setAdapter(myAdapter);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Bean.java 和recyclerview_item.xml 同上<br>activity_main.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">androidx.recyclerview.widget.RecyclerView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/rv"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">         /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>MyAdapter.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span>&lt;<span class="title">MyAdapter</span>.<span class="title">MyViewHolder</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Bean&gt; data;</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(List&lt;Bean&gt; data, Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@NonNull</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> MyViewHolder <span class="title">onCreateViewHolder</span><span class="params">(@NonNull ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</span><br><span class="line">        View view = View.inflate(context, R.layout.recyclerview_item, <span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyViewHolder(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//绑定数据到TextView上面</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(@NonNull MyViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        holder.tv.setText(data.get(position).getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data == <span class="keyword">null</span>? <span class="number">0</span>:data.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyViewHolder</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> TextView tv;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MyViewHolder</span><span class="params">(@NonNull View itemView)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(itemView);</span><br><span class="line">            tv = itemView.findViewById(R.id.tv);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>CEV漏洞复现</title>
@@ -625,8 +878,92 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 ]]></content>
   </entry>
   <entry>
+    <title>Linux基础篇 + 2020 Kali KDE桌面美化</title>
+    <url>/2020/05/10/linux/</url>
+    <content><![CDATA[<hr>
+<h2 id="0x01-linux基础配置"><a href="#0x01-linux基础配置" class="headerlink" title="0x01 linux基础配置"></a>0x01 linux基础配置</h2><ul>
+<li><p>换yum</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources_init.list  &#x2F;&#x2F;备份原来的源</span><br><span class="line">sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list  &#x2F;&#x2F;更换源</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update    &#x2F;&#x2F;  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install &#x2F;&#x2F;   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade &#x2F;&#x2F;  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找文件所在位置</li>
+</ul>
+<p>　　1.whereis 文件名<br>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
+<p>　　2.find / -name 文件名<br>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用<br>　　#find / -name php.ini</p>
+<p>　　3.locate 文件名<br>　　强力推荐的方法,最快,最好的方法.</p>
+<hr>
+<h2 id="0x02-桌面美化"><a href="#0x02-桌面美化" class="headerlink" title="0x02 桌面美化"></a>0x02 桌面美化</h2><h3 id="安装KDE桌面"><a href="#安装KDE桌面" class="headerlink" title="安装KDE桌面"></a>安装KDE桌面</h3><p>KDE Plasma Desktop （最小化的等离子桌面）<br>安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install kali-defaults kali-root-login desktop-base kde-plasma-desktop</span><br></pre></td></tr></table></figure>
+<p>中途输入 y 进行安装确认。<br>然后会显示 存在多个显示管理器，确认默认显示管理器为 sddm.<br><img src="https://q0o0p.top/2020/05/10/linux/1.jpg" alt></p>
+<p>更改默认显示管理器优先级</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config x-session-manager</span><br></pre></td></tr></table></figure>
+<p>选择1,回车<br><img src="https://q0o0p.top/2020/05/10/linux/2.jpg" alt><br><img src="https://q0o0p.top/2020/05/10/linux/3.png" alt><br>卸载：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get remove kde-plasma-desktop</span><br></pre></td></tr></table></figure>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>打开菜单栏–&gt;选择系统设置<br><img src="https://q0o0p.top/2020/05/10/linux/4.png" alt><br>点击全局主题,默认有四个主题。<br><img src="https://q0o0p.top/2020/05/10/linux/5.png" alt><br>点击获取新全局主题,自行下载(根据个人喜好选择)<br><img src="https://q0o0p.top/2020/05/10/linux/6.png" alt><br>工作空间行为–&gt;桌面特效(自行勾选美化)<br><img src="https://q0o0p.top/2020/05/10/linux/7.png" alt></p>
+<hr>
+<h2 id="0x03-安装软件"><a href="#0x03-安装软件" class="headerlink" title="0x03 安装软件"></a>0x03 安装软件</h2><p>打开官网:<a href="https://www.sublimetext.com/3" target="_blank" rel="noopener">sublimetext3</a><br>找到  Linux repos - also available as a 64 bit<br>复制链接,打开终端下载:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://download.sublimetext.com/sublime_text_3_build_3211_x64.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>打开下载文件目录,解压</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -jxvf sublime_text_3_build_3211_x64.tar.bz2</span><br></pre></td></tr></table></figure>
+
+<p>找到解压后文件夹中的desktop文件，用文字的方式打开,查看“Exec=”后的路径,将文件夹移动到此路径下。</p>
+<p>将desktop文件（启动器）移动到 /usr/share/applications 目录下,即可使用。</p>
+<hr>
+<h2 id="0x04-开启ssh服务"><a href="#0x04-开启ssh服务" class="headerlink" title="0x04 开启ssh服务"></a>0x04 开启ssh服务</h2><ol>
+<li>修改sshd_config文件</li>
+</ol>
+<p>　　vim /etc/ssh/sshd_config</p>
+<p>　　将#PasswordAuthentication yes的注释去掉</p>
+<p>　　将#PermitRootLogin prohibit-password的注释去掉 ,prohibit-password 改为yes</p>
+<ul>
+<li>生成ssh密钥<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa  //生成密钥文件</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><p>开放22/TCP端口</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ufw status  //检查防火墙状态</span><br><span class="line">ufw allow 22/tcp  //允许外部访问22端口</span><br><span class="line"></span><br><span class="line">//防火墙简单操作</span><br><span class="line">ufw <span class="built_in">enable</span> //启动防火墙</span><br><span class="line">ufw <span class="built_in">disable</span> //关闭防火墙</span><br><span class="line">ufw deny 3306//禁止外部访问3306端口</span><br></pre></td></tr></table></figure>
+<p>centos<br>打开/etc/ssh文件夹下sshd_config<br>将监听端口个</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置ssh开机自启</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd start  //开启ssh服务</span><br><span class="line">　　update-rc.d ssh <span class="built_in">enable</span> //设置ssh开机自启,kali</span><br><span class="line">　　update-rc.d ssh disabled //设置关闭,kali</span><br><span class="line"></span><br><span class="line">scp .ssh/id_rsa.pub user@192.168.1.23:/root/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="0x05-linux清理磁盘空间"><a href="#0x05-linux清理磁盘空间" class="headerlink" title="0x05 linux清理磁盘空间"></a>0x05 linux清理磁盘空间</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get autoclean  //自动清理</span><br><span class="line"><span class="built_in">cd</span> /var/cache/apt/archives  </span><br><span class="line">rm -rf ./*   //删除软件压缩包</span><br><span class="line"></span><br><span class="line">df -h  //查看磁盘空间占用情况</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="0x06-linux基本目录信息"><a href="#0x06-linux基本目录信息" class="headerlink" title="0x06 linux基本目录信息"></a>0x06 linux基本目录信息</h2><ul>
+<li><p>/etc/passwd  用户信息 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>/etc/shadow 密码信息</p>
+</li>
+<li><p>touch更改时间戳</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//查看文件时间戳</span><br><span class="line"><span class="built_in">stat</span> filename </span><br><span class="line">touch -r test.txt test2.txt //更新test.txt的时间和test2.txt时间戳相同</span><br><span class="line">touch -t [[CC]YY]MMDDhhmm[.SS]  //自定义时间戳</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h2 id="0x07-linux常用加密算法"><a href="#0x07-linux常用加密算法" class="headerlink" title="0x07 linux常用加密算法"></a>0x07 linux常用加密算法</h2><ul>
+<li>Md5加密算法</li>
+<li>Blowfish加密算法</li>
+<li>Sha-256加密算法</li>
+<li>Sha-512加密算法 </li>
+<li>DES加密算法<br>passwd</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>kali</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android逆向题</title>
-    <url>/2020/05/10/Android-Reverse/</url>
+    <url>/2020/05/10/CTF-Android-Reverse/</url>
     <content><![CDATA[<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><table>
 <thead>
 <tr>
@@ -791,90 +1128,6 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <p>360脱壳<br><a href="https://juejin.cn/post/6844903742857281550" target="_blank" rel="noopener">https://juejin.cn/post/6844903742857281550</a><br><a href="https://www.jianshu.com/p/138c9de2c987" target="_blank" rel="noopener">https://www.jianshu.com/p/138c9de2c987</a></p>
 <p>ARM 汇编基础教程番外篇——配置实验环境:<br><a href="https://bbs.pediy.com/thread-220907.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-220907.htm</a><br>ARM汇编基础教程——数据类型和寄存器:<br><a href="https://bbs.pediy.com/thread-220535.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-220535.htm</a><br>彩虹猫病毒分析:<br><a href="https://bbs.pediy.com/thread-262873.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-262873.htm</a><br>easy-java:<br><a href="https://blog.csdn.net/qq_41429081/article/details/90234730" target="_blank" rel="noopener">https://blog.csdn.net/qq_41429081/article/details/90234730</a><br>easy-so:<br><a href="https://www.52pojie.cn/thread-1318827-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1318827-1-1.html</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Linux基础篇 + 2020 Kali KDE桌面美化</title>
-    <url>/2020/05/10/linux/</url>
-    <content><![CDATA[<hr>
-<h2 id="0x01-linux基础配置"><a href="#0x01-linux基础配置" class="headerlink" title="0x01 linux基础配置"></a>0x01 linux基础配置</h2><ul>
-<li><p>换yum</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources_init.list  &#x2F;&#x2F;备份原来的源</span><br><span class="line">sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list  &#x2F;&#x2F;更换源</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更新：</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update    &#x2F;&#x2F;  &lt;!-- wget install -y update --&gt;  更新源</span><br><span class="line"></span><br><span class="line">sudo apt-get -f install &#x2F;&#x2F;   卸载出错的包，重新安装正确版本的</span><br><span class="line"></span><br><span class="line">sudo apt-get upgrade &#x2F;&#x2F;  &lt;!-- wegt install -y upgrade --&gt; 更新软件</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找文件所在位置</li>
-</ul>
-<p>　　1.whereis 文件名<br>　　特点:快速,但是是模糊查找,例如 找 #whereis mysql 它会把mysql,mysql.ini,mysql.*所在的目录都找出来.</p>
-<p>　　2.find / -name 文件名<br>　　特点:准确,但速度慢,消耗资源大,例如我想找到php.ini的准确位置,就需要用<br>　　#find / -name php.ini</p>
-<p>　　3.locate 文件名<br>　　强力推荐的方法,最快,最好的方法.</p>
-<hr>
-<h2 id="0x02-桌面美化"><a href="#0x02-桌面美化" class="headerlink" title="0x02 桌面美化"></a>0x02 桌面美化</h2><h3 id="安装KDE桌面"><a href="#安装KDE桌面" class="headerlink" title="安装KDE桌面"></a>安装KDE桌面</h3><p>KDE Plasma Desktop （最小化的等离子桌面）<br>安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install kali-defaults kali-root-login desktop-base kde-plasma-desktop</span><br></pre></td></tr></table></figure>
-<p>中途输入 y 进行安装确认。<br>然后会显示 存在多个显示管理器，确认默认显示管理器为 sddm.<br><img src="https://q0o0p.top/2020/05/10/linux/1.jpg" alt></p>
-<p>更改默认显示管理器优先级</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config x-session-manager</span><br></pre></td></tr></table></figure>
-<p>选择1,回车<br><img src="https://q0o0p.top/2020/05/10/linux/2.jpg" alt><br><img src="https://q0o0p.top/2020/05/10/linux/3.png" alt><br>卸载：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get remove kde-plasma-desktop</span><br></pre></td></tr></table></figure>
-<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>打开菜单栏–&gt;选择系统设置<br><img src="https://q0o0p.top/2020/05/10/linux/4.png" alt><br>点击全局主题,默认有四个主题。<br><img src="https://q0o0p.top/2020/05/10/linux/5.png" alt><br>点击获取新全局主题,自行下载(根据个人喜好选择)<br><img src="https://q0o0p.top/2020/05/10/linux/6.png" alt><br>工作空间行为–&gt;桌面特效(自行勾选美化)<br><img src="https://q0o0p.top/2020/05/10/linux/7.png" alt></p>
-<hr>
-<h2 id="0x03-安装软件"><a href="#0x03-安装软件" class="headerlink" title="0x03 安装软件"></a>0x03 安装软件</h2><p>打开官网:<a href="https://www.sublimetext.com/3" target="_blank" rel="noopener">sublimetext3</a><br>找到  Linux repos - also available as a 64 bit<br>复制链接,打开终端下载:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://download.sublimetext.com/sublime_text_3_build_3211_x64.tar.bz2</span><br></pre></td></tr></table></figure>
-<p>打开下载文件目录,解压</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -jxvf sublime_text_3_build_3211_x64.tar.bz2</span><br></pre></td></tr></table></figure>
-
-<p>找到解压后文件夹中的desktop文件，用文字的方式打开,查看“Exec=”后的路径,将文件夹移动到此路径下。</p>
-<p>将desktop文件（启动器）移动到 /usr/share/applications 目录下,即可使用。</p>
-<hr>
-<h2 id="0x04-开启ssh服务"><a href="#0x04-开启ssh服务" class="headerlink" title="0x04 开启ssh服务"></a>0x04 开启ssh服务</h2><ol>
-<li>修改sshd_config文件</li>
-</ol>
-<p>　　vim /etc/ssh/sshd_config</p>
-<p>　　将#PasswordAuthentication yes的注释去掉</p>
-<p>　　将#PermitRootLogin prohibit-password的注释去掉 ,prohibit-password 改为yes</p>
-<ul>
-<li>生成ssh密钥<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa  //生成密钥文件</span><br></pre></td></tr></table></figure></li>
-</ul>
-<ol start="2">
-<li><p>开放22/TCP端口</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ufw status  //检查防火墙状态</span><br><span class="line">ufw allow 22/tcp  //允许外部访问22端口</span><br><span class="line"></span><br><span class="line">//防火墙简单操作</span><br><span class="line">ufw <span class="built_in">enable</span> //启动防火墙</span><br><span class="line">ufw <span class="built_in">disable</span> //关闭防火墙</span><br><span class="line">ufw deny 3306//禁止外部访问3306端口</span><br></pre></td></tr></table></figure>
-<p>centos<br>打开/etc/ssh文件夹下sshd_config<br>将监听端口个</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置ssh开机自启</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service sshd start  //开启ssh服务</span><br><span class="line">　　update-rc.d ssh <span class="built_in">enable</span> //设置ssh开机自启,kali</span><br><span class="line">　　update-rc.d ssh disabled //设置关闭,kali</span><br><span class="line"></span><br><span class="line">scp .ssh/id_rsa.pub user@192.168.1.23:/root/</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="0x05-linux清理磁盘空间"><a href="#0x05-linux清理磁盘空间" class="headerlink" title="0x05 linux清理磁盘空间"></a>0x05 linux清理磁盘空间</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get autoclean  //自动清理</span><br><span class="line"><span class="built_in">cd</span> /var/cache/apt/archives  </span><br><span class="line">rm -rf ./*   //删除软件压缩包</span><br><span class="line"></span><br><span class="line">df -h  //查看磁盘空间占用情况</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="0x06-linux基本目录信息"><a href="#0x06-linux基本目录信息" class="headerlink" title="0x06 linux基本目录信息"></a>0x06 linux基本目录信息</h2><ul>
-<li><p>/etc/passwd  用户信息 </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat /etc/passwd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>/etc/shadow 密码信息</p>
-</li>
-<li><p>touch更改时间戳</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//查看文件时间戳</span><br><span class="line"><span class="built_in">stat</span> filename </span><br><span class="line">touch -r test.txt test2.txt //更新test.txt的时间和test2.txt时间戳相同</span><br><span class="line">touch -t [[CC]YY]MMDDhhmm[.SS]  //自定义时间戳</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<hr>
-<h2 id="0x07-linux常用加密算法"><a href="#0x07-linux常用加密算法" class="headerlink" title="0x07 linux常用加密算法"></a>0x07 linux常用加密算法</h2><ul>
-<li>Md5加密算法</li>
-<li>Blowfish加密算法</li>
-<li>Sha-256加密算法</li>
-<li>Sha-512加密算法 </li>
-<li>DES加密算法<br>passwd</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>kali</tag>
-      </tags>
   </entry>
   <entry>
     <title>Adb的使用</title>
