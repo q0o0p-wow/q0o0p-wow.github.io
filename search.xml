@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Packers-Shelling</title>
+    <title>App加壳和脱壳</title>
     <url>/2021/03/23/packers-shelling/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>加固厂商特征：</p>
+<p>娜迦： libchaosvmp.so , libddog.solibfdog.so<br>爱加密：libexec.so, libexecmain.so<br>梆梆： libsecexe.so, libsecmain.so , libDexHelper.so<br>360：libprotectClass.so, libjiagu.so<br>通付盾：libegis.so<br>网秦：libnqshield.so<br>百度：libbaiduprotect.so</p>
+]]></content>
   </entry>
   <entry>
     <title>Android逆向及工具使用</title>
@@ -1090,19 +1092,9 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 <td>IDA</td>
 <td>动态调试so文件</td>
 </tr>
-<tr>
-<td>—</td>
-<td></td>
-</tr>
-<tr>
-<td>## apkHelper</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://github.com/PeterBuerer/apkHelper">https://github.com/PeterBuerer/apkHelper</a></td>
-<td></td>
-</tr>
 </tbody></table>
+<hr>
+<h2 id="apkHelper"><a href="#apkHelper" class="headerlink" title="apkHelper"></a>apkHelper</h2><p><a href="https://github.com/PeterBuerer/apkHelper">https://github.com/PeterBuerer/apkHelper</a></p>
 <p>获取软件包名称和版本信息</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apkHelper summary /path/to/the/file.apk</span><br></pre></td></tr></table></figure>
 <p>签署apk</p>

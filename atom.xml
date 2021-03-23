@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-03-23T13:19:38.286Z</updated>
+  <updated>2021-03-23T13:21:36.232Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -17,12 +17,21 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Packers-Shelling</title>
+    <title>App加壳和脱壳</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/</id>
     <published>2021-03-23T13:19:38.000Z</published>
-    <updated>2021-03-23T13:19:38.286Z</updated>
+    <updated>2021-03-23T13:21:36.232Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;加固厂商特征：&lt;/p&gt;
+&lt;p&gt;娜迦： libchaosvmp.so , libddog.solibfdog.so&lt;br&gt;爱加密：libexec.so, libexecmain.so&lt;br&gt;梆梆： libsecexe.so, libsecmain.so ,</summary>
+        
+      
     
     
     
