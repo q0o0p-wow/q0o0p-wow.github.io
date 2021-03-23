@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-03-23T13:21:36.232Z</updated>
+  <updated>2021-03-23T13:31:07.432Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -17,19 +17,22 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>App加壳和脱壳</title>
+    <title>App脱壳实例</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/</id>
     <published>2021-03-23T13:19:38.000Z</published>
-    <updated>2021-03-23T13:21:36.232Z</updated>
+    <updated>2021-03-23T13:31:07.432Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;加固厂商特征：&lt;/p&gt;
-&lt;p&gt;娜迦： libchaosvmp.so , libddog.solibfdog.so&lt;br&gt;爱加密：libexec.so, libexecmain.so&lt;br&gt;梆梆： libsecexe.so, libsecmain.so ,</summary>
+    <summary type="html">&lt;p&gt;##&lt;/p&gt;
+&lt;hr&gt;
+&lt;hr&gt;
+&lt;p&gt;arm指令集&lt;br&gt;|指令|  描述|&lt;br&gt;–|–&lt;br&gt;|||&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
         
       
     
@@ -372,22 +375,12 @@
   </entry>
   
   <entry>
-    <title>Android Apk脱壳</title>
+    <title>Android Apk商城实例</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/</id>
     <published>2020-11-08T14:36:11.000Z</published>
-    <updated>2021-02-08T07:07:50.094Z</updated>
+    <updated>2021-03-23T13:31:21.724Z</updated>
     
-    
-      
-      
-        
-        
-    <summary type="html">&lt;hr&gt;
-&lt;p&gt;arm指令集&lt;br&gt;|指令|  描述|&lt;br&gt;–|–&lt;br&gt;|||&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
     
     
     
