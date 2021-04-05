@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-03-23T13:31:07.432Z</updated>
+  <updated>2021-03-31T01:08:13.727Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -17,22 +17,127 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Xposed Hook技术及root检测绕过</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/30/Xposed-hook/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/30/Xposed-hook/</id>
+    <published>2021-03-30T08:50:10.000Z</published>
+    <updated>2021-03-31T01:08:13.727Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Xposed-Hook原理及运用&quot;&gt;&lt;a href=&quot;#Xposed-Hook原理及运用&quot; class=&quot;headerlink&quot; title=&quot;Xposed Hook原理及运用&quot;&gt;&lt;/a&gt;Xposed</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android安全检测工具</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/29/Blackbox-tool/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/29/Blackbox-tool/</id>
+    <published>2021-03-29T09:00:09.000Z</published>
+    <updated>2021-03-30T08:35:29.457Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;qark安装&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/vivian_ll/article/details/84769520&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Caught-Tools</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/27/Caught-tools/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/27/Caught-tools/</id>
+    <published>2021-03-27T11:57:41.000Z</published>
+    <updated>2021-03-30T08:14:15.980Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;fiddler手机抓包配置&lt;/p&gt;
+&lt;p&gt;burpsuite手机抓包配置&lt;/p&gt;
+&lt;p&gt;Xposed+XServer无需脱壳抓取加密包&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;360加固脱壳分析:&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Cydia-Hook</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/24/cydia-hook/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/24/cydia-hook/</id>
+    <published>2021-03-24T03:29:24.000Z</published>
+    <updated>2021-03-24T03:38:51.567Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;官网:&lt;a href=&quot;http://www.cydiasubstrate.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.cydiasubstrate.com/&lt;/a&gt;&lt;br&gt;官方教程:&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Frida Hook 简单使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/</id>
+    <published>2021-03-23T13:44:18.000Z</published>
+    <updated>2021-03-31T01:19:21.147Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;hook介绍&quot;&gt;&lt;a href=&quot;#hook介绍&quot; class=&quot;headerlink&quot; title=&quot;hook介绍&quot;&gt;&lt;/a&gt;hook介绍&lt;/h2&gt;&lt;p&gt;Hook 翻译过来就是 “钩子”</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>App脱壳实例</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/</id>
     <published>2021-03-23T13:19:38.000Z</published>
-    <updated>2021-03-23T13:31:07.432Z</updated>
+    <updated>2021-04-01T09:26:16.800Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;##&lt;/p&gt;
-&lt;hr&gt;
-&lt;hr&gt;
-&lt;p&gt;arm指令集&lt;br&gt;|指令|  描述|&lt;br&gt;–|–&lt;br&gt;|||&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+    <summary type="html">&lt;h2 id=&quot;android-app脱壳方法研究&quot;&gt;&lt;a href=&quot;#android-app脱壳方法研究&quot; class=&quot;headerlink&quot; title=&quot;android app脱壳方法研究&quot;&gt;&lt;/a&gt;android app脱壳方法研究&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
         
       
     
@@ -46,14 +151,14 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/</id>
     <published>2021-02-19T15:23:23.000Z</published>
-    <updated>2021-03-23T03:50:16.492Z</updated>
+    <updated>2021-04-05T15:18:18.247Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;常见的壳&quot;&gt;&lt;a href=&quot;#常见的壳&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;App加壳和脱壳&quot;&gt;&lt;a href=&quot;#App加壳和脱壳&quot; class=&quot;headerlink&quot; title=&quot;App加壳和脱壳&quot;&gt;&lt;/a&gt;App加壳和脱壳&lt;/h1&gt;&lt;h2 id=&quot;常见的壳&quot;&gt;&lt;a href=&quot;#常见的壳&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -84,11 +189,11 @@
   </entry>
   
   <entry>
-    <title>WAF</title>
+    <title>WAF 绕过</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/21/WAF/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/21/WAF/</id>
     <published>2020-12-21T08:35:41.000Z</published>
-    <updated>2020-12-26T03:13:36.345Z</updated>
+    <updated>2021-03-31T01:23:06.278Z</updated>
     
     
       
@@ -168,7 +273,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/</id>
     <published>2020-11-25T11:39:04.000Z</published>
-    <updated>2021-03-23T13:03:32.021Z</updated>
+    <updated>2021-03-29T09:11:58.556Z</updated>
     
     
       
@@ -322,111 +427,6 @@
         
         
     <summary type="html">&lt;p&gt;白帽子讲路由器安全&lt;br&gt;&lt;a href=&quot;https://www.hetianlab.com/expc.do?ce=1d3ba483-c584-4604-a543-1d82bbb09cda&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Kotlin-Study</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/</id>
-    <published>2020-11-13T14:05:46.000Z</published>
-    <updated>2020-11-17T14:08:22.485Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;增加依赖:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Gradle工程&lt;br&gt;下载Gradle: &lt;a href=&quot;https://gradle.org/releases/&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>windows常见CEV漏洞</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/windows-CVE/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/windows-CVE/</id>
-    <published>2020-11-13T02:32:28.000Z</published>
-    <updated>2020-11-14T13:22:56.655Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;2020-CEV&quot;&gt;&lt;a href=&quot;#2020-CEV&quot; class=&quot;headerlink&quot; title=&quot;2020-CEV&quot;&gt;&lt;/a&gt;2020-CEV&lt;/h1&gt;&lt;h2 id=&quot;CVE-2020-0796-SMBv3漏洞复现与提权&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android Apk商城实例</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/Android-App/</id>
-    <published>2020-11-08T14:36:11.000Z</published>
-    <updated>2021-03-23T13:31:21.724Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Badusb</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/</id>
-    <published>2020-11-08T08:20:31.000Z</published>
-    <updated>2020-11-14T13:22:56.577Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;攻击方式&quot;&gt;&lt;a href=&quot;#攻击方式&quot; class=&quot;headerlink&quot; title=&quot;攻击方式&quot;&gt;&lt;/a&gt;攻击方式&lt;/h2&gt;&lt;p&gt;硬件直接插入对方电脑，让对方电脑执行代码，达到干扰、控制主机或者窃取信息等目的。  &lt;/p&gt;
-&lt;hr&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Html-Css-Js</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/</id>
-    <published>2020-10-10T08:04:21.000Z</published>
-    <updated>2020-11-04T04:40:22.634Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近写动态网站的大作业-_- 头疼&lt;br&gt;前端标签和属性太多,水一篇记录一下常用属性&lt;br&gt;写的原因还是因为健忘&lt;/p&gt;
-&lt;p&gt;常用的修改超链接属性&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a&gt;标签&lt;/a&gt;&lt;/p&gt;
-&lt;figure</summary>
         
       
     

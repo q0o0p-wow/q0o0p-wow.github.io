@@ -1,10 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Xposed Hook技术及root检测绕过</title>
+    <url>/2021/03/30/Xposed-hook/</url>
+    <content><![CDATA[<h1 id="Xposed-Hook原理及运用"><a href="#Xposed-Hook原理及运用" class="headerlink" title="Xposed Hook原理及运用"></a>Xposed Hook原理及运用</h1><p>安装好的Xposed在重启手机过程中 通过替换/system/bin/app_process的程序 控制zygote进程，同时在app_process启动过程中会加载XposedBridge.jar这个包 (里面是后面说到的xposed api代码), 让基于Xposed开发的模块app们 都能使用XposedBridge.jar里的api (像android.jar那样, 后面会说到如何使用)，然后对Zygote进程和Dalvik虚拟机进行劫持。</p>
+<h2 id="Zygote原理"><a href="#Zygote原理" class="headerlink" title="Zygote原理"></a>Zygote原理</h2><p>在Android系统中App进程都是由Zygote进程fork出来的。Zygote进程在启动时会创建一个虚拟机实例，每当它fork一个新的应用程序进程时，都会将这个Dalvik虚拟机实例复制到新的App进程里面去，从而使每个App进程都有一个独立的Dalvik虚拟机实例。</p>
+<p>Zygote进程在启动的过程中，除了会创建一个虚拟机实例之外还会将Java Rumtime加载到进程中并注册一些Android核心类的JNI（Java Native Interface，Java本地接口）方法。一个App进程被Zygote进程fork出来的时候，不仅会获得Zygote进程中的虚拟机实例拷贝，还会与Zygote进程一起共享Java Rumtime，也就是可以将XposedBridge.jar这个Jar包加载到每一个Android App进程中去。安装Xposed Installer之后，系统app_process将被替换，然后利用Java的Reflection机制覆写内置方法，实现功能劫持。下面我们来看一下细节。</p>
+<h2 id="Hook和Replace"><a href="#Hook和Replace" class="headerlink" title="Hook和Replace"></a>Hook和Replace</h2><p>Xposed Installer框架中真正起作用的是对方法的Hook和Replace。在Android系统启动的时候，Zygote进程加载XposedBridge.jar，将所有需要替换的Method通过JNI方法hookMethodNative指向Native方法xposedCallHandler，这个方法再通过调用handleHookedMethod这个Java方法来调用被劫持的方法转入Hook逻辑。</p>
+<p>上面提到的hookMethodNative是XposedBridge.jar中的私有的本地方法，它将一个方法对象作为传入参数并修改Dalvik虚拟机中对于该方法的定义，把该方法的类型改变为Native并将其实现指向另外一个B方法。</p>
+<p>换言之，当调用那个被Hook的A方法时，其实调用的是B方法，调用者是不知道的。在hookMethodNative的实现中，会调用XposedBridge.jar中的handleHookedMethod这个方法来传递参数。handleHookedMethod这个方法类似于一个统一调度的Dispatch例程，其对应的底层的C++函数是xposedCallHandler。而handleHookedMethod实现里面会根据一个全局结构hookedMethodCallbacks来选择相应的Hook函数并调用他们的before和after函数，当多模块同时Hook一个方法的时候Xposed会自动根据Module的优先级来排序。</p>
+<p>调用顺序如下：A.before -&gt; B.before -&gt; original method -&gt; B.after -&gt; A.after。</p>
+<h2 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h2><p>在做Android App的安全防御中检测点众多，Xposed Installer检测是必不可少的一环。对于Xposed框架的防御总体上分为两层：Java层和Native层。</p>
+<p>Java层检测<br>需要说明的是，Java层的检测基本只能检测出基础的Xposed Installer框架，而不能防护其对App内方法的Hook，如果框架中带有反检测则Java层检测大多不起作用。</p>
+<p>下面列出Java层的检测点，仅供参考。</p>
+<p>① 通过PackageManager查看安装列表</p>
+<p>最简单的检测，我们调用Android提供的PackageManager的API来遍历系统中App的安装情况来辨别是否有安装Xposed Installer相关的软件包。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">PackageManager packageManager = context.getPackageManager();</span><br><span class="line">List applicationInfoList = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);</span><br><span class="line"><span class="keyword">for</span> (ApplicationInfo applicationInfo: applicationInfoList) &#123;</span><br><span class="line">    <span class="keyword">if</span> (applicationInfo.packageName.equals(<span class="string">"de.robv.android.xposed.installer"</span>)) &#123;</span><br><span class="line">        <span class="comment">// is Xposed TODO... &#125;</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>通常情况下使用Xposed Installer框架都会屏蔽对其的检测，即Hook掉PackageManager的getInstalledApplications方法的返回值，以便过滤掉de.robv.android.xposed.installer来躲避这种检测。</p>
+<p>② 自造异常读取栈</p>
+<p>Xposed Installer框架对每个由Zygote孵化的App进程都会介入，因此在程序方法异常栈中就会出现Xposed相关的“身影”，我们可以通过自造异常Catch来读取异常堆栈的形式，用以检查其中是否存在Xposed的调用方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"blah"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">    <span class="keyword">for</span> (StackTraceElement stackTraceElement: e.getStackTrace()) &#123;</span><br><span class="line">        <span class="comment">// stackTraceElement.getClassName() stackTraceElement.getMethodName() 是否存 在Xposed</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">E/GEnvironment: no such table: preference (code <span class="number">1</span>): <span class="keyword">while</span> compiling: SELECT keyguard_show_livewallpaper FROM preference</span><br><span class="line">...</span><br><span class="line">at com.meituan.test.extpackage.ExtPackageManager.checkUpdate(ExtPackageManager.java:<span class="number">127</span>)</span><br><span class="line">at com.meituan.test.MiFGService$<span class="number">1</span>.run(MiFGService.java:<span class="number">41</span>)</span><br><span class="line">at android.os.Looper.loop(Looper.java:<span class="number">136</span>)</span><br><span class="line">at android.app.ActivityThread.main(ActivityThread.java:<span class="number">5072</span>)</span><br><span class="line">at java.lang.reflect.Method.invokeNative(Native Method)</span><br><span class="line">at java.lang.reflect.Method.invoke(Method.java:<span class="number">515</span>)</span><br><span class="line">...</span><br><span class="line">at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:<span class="number">793</span>)</span><br><span class="line">at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:<span class="number">609</span>)</span><br><span class="line">at de.robv.android.xposed.XposedBridge.main(XposedBridge.java:<span class="number">132</span>) <span class="comment">//发现Xposed模块</span></span><br><span class="line">at dalvik.system.NativeStart.main(Native Method)</span><br></pre></td></tr></table></figure>
+<p>③ 检查关键Java方法被变为Native JNI方法</p>
+<p>当一个Android App中的Java方法被莫名其妙地变成了Native JNI方法，则非常有可能被Xposed Hook了。由此可得，检查关键方法是不是变成Native JNI方法，也可以检测是否被Hook。</p>
+<p>通过反射调用Modifier.isNative(method.getModifiers())方法可以校验方法是不是Native JNI方法，Xposed同样可以篡改isNative这个方法的返回值。</p>
+<p>④ 反射读取XposedHelper类字段</p>
+<p>通过反射遍历XposedHelper类中的fieldCache、methodCache、constructorCache变量，读取HashMap缓存字段，如字段项的key中包含App中唯一或敏感方法等，即可认为有Xposed注入。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">boolean</span> methodCache = CheckHook(clsXposedHelper, <span class="string">"methodCache"</span>, keyWord);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">CheckHook</span><span class="params">(Object cls, String filedName, String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> result = <span class="keyword">false</span>;</span><br><span class="line">    String interName;</span><br><span class="line">    Set keySet;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Field filed = cls.getClass().getDeclaredField(filedName);</span><br><span class="line">        filed.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        keySet = filed.get(cls)).keySet();</span><br><span class="line">        <span class="keyword">if</span> (!keySet.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Object aKeySet: keySet) &#123;</span><br><span class="line">                interName = aKeySet.toString().toLowerCase();</span><br><span class="line">                <span class="keyword">if</span> (interName.contains(<span class="string">"meituan"</span>) || interName.contains(<span class="string">"dianping"</span>) ) &#123;</span><br><span class="line">                    result = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                    &#125; </span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Native层检测<br>由上文可知，无论在Java层做何种检测，Xposed都可以通过Hook相关的API并返回指定的结果来绕过检测，只要有方法就可以被Hook。如果仅在Java层检测就显得很徒劳，为了有效提搞检测准确率，就须做到Java和Native层同时检测。每个App在系统中都有对应的加载库列表，这些加载库列表在/proc/下对应的pid/maps文件中描述，在Native层读取/proc/self/maps文件不失为检测Xposed Installer的有效办法之一。由于Xposed Installer通常只能Hook Java层，因此在Native层使用C来解析/proc/self/maps文件，搜检App自身加载的库中是否存在XposedBridge.jar、相关的Dex、Jar和So库等文件。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">bool <span class="title">is_xposed</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   bool rel = <span class="keyword">false</span>;</span><br><span class="line">   FILE *fp = NULL;</span><br><span class="line">   <span class="keyword">char</span>* filepath = <span class="string">"/proc/self/maps"</span>;</span><br><span class="line">   ...</span><br><span class="line">   string xp_name = <span class="string">"XposedBridge.jar"</span>;</span><br><span class="line">   fp = fopen(filepath,<span class="string">"r"</span>)) </span><br><span class="line">   <span class="keyword">while</span> (!feof(fp))                                 </span><br><span class="line">   &#123;</span><br><span class="line">       fgets(strLine,BUFFER_SIZE,fp);                    </span><br><span class="line">       origin_str = strLine;</span><br><span class="line">       str = trim(origin_str);</span><br><span class="line">       <span class="keyword">if</span> (contain(str,xp_name))</span><br><span class="line">       &#123;</span><br><span class="line">           rel = <span class="keyword">true</span>; <span class="comment">//检测到Xposed模块</span></span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>缺点:<br>无法hook 接口、抽象类和native方法</p>
+<hr>
+<h1 id="root检测绕过"><a href="#root检测绕过" class="headerlink" title="root检测绕过"></a>root检测绕过</h1><p>hook调用api的函数<br>开源的RootCloak用来对抗root监测<br><a href="https://github.com/devadvance/rootcloak">https://github.com/devadvance/rootcloak</a></p>
+<p>Xposed 插件: rootCloak</p>
+<h2 id="修改系统文件"><a href="#修改系统文件" class="headerlink" title="修改系统文件"></a>修改系统文件</h2><p>tool:<br>git clone <a href="https://github.com/dineshshetty/Android-InsecureBankv2.git">https://github.com/dineshshetty/Android-InsecureBankv2.git</a></p>
+<h2 id="Frida-hook关键函数"><a href="#Frida-hook关键函数" class="headerlink" title="Frida hook关键函数"></a>Frida hook关键函数</h2><h2 id="Objection-hook关键函数"><a href="#Objection-hook关键函数" class="headerlink" title="Objection hook关键函数"></a>Objection hook关键函数</h2><h2 id="修改smali代码重新打包实现永久绕过"><a href="#修改smali代码重新打包实现永久绕过" class="headerlink" title="修改smali代码重新打包实现永久绕过"></a>修改smali代码重新打包实现永久绕过</h2><hr>
+<p>参考：<br><a href="https://tech.meituan.com/2018/02/02/android-anti-hooking.html" target="_blank" rel="noopener">https://tech.meituan.com/2018/02/02/android-anti-hooking.html</a></p>
+<p>root检测绕过:<br><a href="https://bbs.pediy.com/thread-266265.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-266265.htm</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Android安全检测工具</title>
+    <url>/2021/03/29/Blackbox-tool/</url>
+    <content><![CDATA[<p>qark安装<br><a href="https://blog.csdn.net/vivian_ll/article/details/84769520" target="_blank" rel="noopener">https://blog.csdn.net/vivian_ll/article/details/84769520</a><br>qark使用python2.7</p>
+<p>交互模式<br>无脑模式</p>
+<p>python bytes和str两种类型可以通过函数encode()和decode()相互转换，<br>str→bytes：encode()方法。<br>bytes→str：decode()方法。</p>
+<p>APKInspector<br>带有GUI的安卓应用分析工具<br>github下载: <a href="https://github.com/honeynet/apkinspector/">https://github.com/honeynet/apkinspector/</a></p>
+<hr>
+<p>工具包:<br><a href="http://www.tidesec.net/" target="_blank" rel="noopener">http://www.tidesec.net/</a><br>移动安全博客：<br><a href="https://www.yuque.com/tidesec/app" target="_blank" rel="noopener">https://www.yuque.com/tidesec/app</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Caught-Tools</title>
+    <url>/2021/03/27/Caught-tools/</url>
+    <content><![CDATA[<p>fiddler手机抓包配置</p>
+<p>burpsuite手机抓包配置</p>
+<p>Xposed+XServer无需脱壳抓取加密包</p>
+<hr>
+<p>360加固脱壳分析:<br><a href="https://bbs.pediy.com/thread-263220.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-263220.htm</a><br>Hyperpwn:基于gdb的调试利器:<br><a href="https://www.52pojie.cn/thread-1093821-1-5.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1093821-1-5.html</a><br>Xposed+XServer无需脱壳抓取加密包<br><a href="https://xz.aliyun.com/t/7669" target="_blank" rel="noopener">https://xz.aliyun.com/t/7669</a><br>Xposed 插件开发<br><a href="https://blog.csdn.net/ausboyue/article/details/89950463" target="_blank" rel="noopener">https://blog.csdn.net/ausboyue/article/details/89950463</a></p>
+<p><a href="https://blog.csdn.net/u011195398/article/details/86680658?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-8&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">https://blog.csdn.net/u011195398/article/details/86680658?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-8&amp;spm=1001.2101.3001.4242</a></p>
+<p><a href="https://blog.csdn.net/u013496707/article/details/50945639?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control" target="_blank" rel="noopener">https://blog.csdn.net/u013496707/article/details/50945639?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control</a><br>Cydiasubstrate:<br><a href="http://www.cydiasubstrate.com/id/264d6581-a762-4343-9605-729ef12ff0af/" target="_blank" rel="noopener">http://www.cydiasubstrate.com/id/264d6581-a762-4343-9605-729ef12ff0af/</a></p>
+<p>Cydiasubstrate modules 的java开发:<br><a href="https://blog.csdn.net/Xbalien29/article/details/22661479?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328741.49458.16170913173692643&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank" rel="noopener">https://blog.csdn.net/Xbalien29/article/details/22661479?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328741.49458.16170913173692643&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Cydia-Hook</title>
+    <url>/2021/03/24/cydia-hook/</url>
+    <content><![CDATA[<p>官网:<a href="http://www.cydiasubstrate.com/" target="_blank" rel="noopener">http://www.cydiasubstrate.com/</a><br>官方教程:<br><a href="http://www.cydiasubstrate.com/id/20cf4700-6379-4a14-9bc2-853fde8cc9d1" target="_blank" rel="noopener">http://www.cydiasubstrate.com/id/20cf4700-6379-4a14-9bc2-853fde8cc9d1</a><br>SDK:<br>href=”<a href="http://asdk.cydiasubstrate.com/zips/cydia_substrate-r2.zip&quot;" target="_blank" rel="noopener">http://asdk.cydiasubstrate.com/zips/cydia_substrate-r2.zip&quot;</a><br>Hook底层方法非常方便，对so中的方法hook操作非常便捷。</p>
+<hr>
+<p>参考:<br><a href="https://blog.csdn.net/m0_46204016/article/details/104115851" target="_blank" rel="noopener">https://blog.csdn.net/m0_46204016/article/details/104115851</a></p>
+<p>hook native函数:<br><a href="https://blog.csdn.net/weixin_39669163/article/details/114738500" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39669163/article/details/114738500</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Frida Hook 简单使用</title>
+    <url>/2021/03/23/hook-frida/</url>
+    <content><![CDATA[<h2 id="hook介绍"><a href="#hook介绍" class="headerlink" title="hook介绍"></a>hook介绍</h2><p>Hook 翻译过来就是 “钩子” 的意思，钩子实际上是一个处理消息的程序段，通过系统调用，把它挂入系统。每当特定的消息发出，在没有到达目的窗口前，钩子程序就先捕获该消息，亦即钩子函数先得到控制权。这时钩子函数即可以加工处理（改变）该消息，也可以不作处理而继续传递该消息，还可以强制结束消息的传递。Hook 技术无论对安全软件还是恶意软件都是十分关键的一项技术，其本质就是<code>劫持函数调用</code> 。</p>
+<h2 id="frida环境配置"><a href="#frida环境配置" class="headerlink" title="frida环境配置"></a>frida环境配置</h2><p><a href="https://q0o0p.top/2021/02/19/Android-Reverse/" target="_blank" rel="noopener">https://q0o0p.top/2021/02/19/Android-Reverse/</a></p>
+<h2 id="非root设备使用Frida"><a href="#非root设备使用Frida" class="headerlink" title="非root设备使用Frida"></a>非root设备使用Frida</h2><p><code>非root设备，需要反编译目标应用包，然后注入frida-gadget</code><br>获取您要测试的te应用程序的APK二进制文件，例如myapp.apk。<br>用于apktool将APK解码为其内容。最好是它的最新版本。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apktool d myapp.apk -o extractedFolder</span><br></pre></td></tr></table></figure>
+<p>将frida本机库（frida-gadget）添加到APK的/ lib文件夹中。可以在Frida的发行页面中找到每种体系结构的小工具库。确保将正确架构的库添加到/lib例如/lib/armeabi32位ARM设备下的合适文件夹中。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apktool --version</span><br><span class="line"></span><br><span class="line">$ apktool d -o out_dir original.apk</span><br><span class="line">I: Using Apktool 2.2.2 on original.apk</span><br><span class="line">I: Loading resource table...</span><br><span class="line">I: Decoding AndroidManifest.xml with resources...</span><br><span class="line">I: Loading resource table from file: ~/.<span class="built_in">local</span>/share/apktool/framework/1.apk</span><br><span class="line">I: Regular manifest package...</span><br><span class="line">I: Decoding file-resources...</span><br><span class="line">I: Decoding values XMLs...</span><br><span class="line">I: Baksmaling classes.dex...</span><br><span class="line">I: Copying assets and libs...</span><br><span class="line">I: Copying unknown files...</span><br><span class="line">I: Copying original files...</span><br><span class="line"></span><br><span class="line"><span class="comment"># download frida gadget - for 32bit ARM in this case</span></span><br><span class="line">$ wget https://github.com/frida/frida/releases/download/9.1.26/frida-gadget-9.1.26-android-arm.so.xz</span><br><span class="line">2017-04-11 10:48:45 (3.29 MB/s) - ‘frida-gadget-9.1.26-android-arm.so.xz’ saved [3680748/3680748]</span><br><span class="line"></span><br><span class="line"><span class="comment"># extract the compressed archive</span></span><br><span class="line">$ unxz frida-gadget-9.1.26-android-arm.so.xz</span><br><span class="line"></span><br><span class="line">$ ls</span><br><span class="line">frida-gadget-9.1.26-android-arm.so</span><br><span class="line"></span><br><span class="line"><span class="comment"># copy frida gadget library in armeabi directory under lib</span></span><br><span class="line">$ cp frida_libs/armeabi/frida-gadget-9.1.26-android-arm.so out_dir/lib/armeabi/libfrida-gadget.so</span><br></pre></td></tr></table></figure>
+<p>注入System.loadLibrary(“frida-gadget”)调用到应用程序的字节代码，加载任何其他字节码执行或任何本地代码之前的理想。合适的位置通常是应用程序的入口点类的静态初始化程序，例如，通过清单找到的主应用程序Activity。</p>
+<p>一种简单的方法是在适当的函数中添加以下smali代码：<br><code>const-string v0, &quot;frida-gadget&quot;</code><br><code>invoke-static {v0}, Ljava/lang/System;-&gt;loadLibrary(Ljava/lang/String;)V</code><br>另外，有人可以创建一个脚本，通过ptrace将库注入到进程中。但是此脚本需要与应用程序打包在一起（就像一样gdbserver）。</p>
+<p>如果清单中还没有Internet权限，请将其添加到清单中，以便Frida小工具可以打开套接字。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重新打包应用程序：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ apktool b -o repackaged.apk out_dir/</span><br><span class="line">I: Using Apktool 2.2.2</span><br><span class="line">I: Checking whether sources has changed...</span><br><span class="line">I: Smaling smali folder into classes.dex...</span><br><span class="line">I: Checking whether resources has changed...</span><br><span class="line">I: Building resources...</span><br><span class="line">I: Copying libs... (/lib)</span><br><span class="line">I: Building apk file...</span><br><span class="line">I: Copying unknown files/dir...</span><br></pre></td></tr></table></figure>
+<p>使用您自己的密钥对更新的APK进行签名并zipalign。</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line"><span class="comment"># if you dont have a keystore already, here's how to create one</span></span><br><span class="line"><span class="variable">$ </span>keytool -genkey -v -keystore custom.keystore -<span class="keyword">alias</span> mykeyaliasname -keyalg RSA -keysize <span class="number">2048</span> -validity <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sign the APK</span></span><br><span class="line"><span class="variable">$ </span>jarsigner -sigalg SHA1withRSA -digestalg SHA1 -keystore mycustom.keystore -storepass mystorepass repackaged.apk mykeyaliasname</span><br><span class="line"></span><br><span class="line"><span class="comment"># verify the signature you just created</span></span><br><span class="line"><span class="variable">$ </span>jarsigner -verify repackaged.apk</span><br><span class="line"></span><br><span class="line"><span class="comment"># zipalign the APK</span></span><br><span class="line"><span class="variable">$ </span>zipalign <span class="number">4</span> repackaged.apk repackaged-final.apk</span><br></pre></td></tr></table></figure>
+<p>将更新的APK安装到设备上。<br>这个过程看起来很复杂，但它可以自动化。<br>请记住一件事：在Frida工具中要使用的进程名称应为“ Gadget ”，而不是常规的程序包名称。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ frida-ps -U</span><br><span class="line">Waiting <span class="keyword">for</span> USB device to appear...</span><br><span class="line">  PID  Name</span><br><span class="line">-----  ------</span><br><span class="line">16071  Gadget</span><br></pre></td></tr></table></figure>
+<p>例子:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ frida -U Gadget</span><br><span class="line">     ____</span><br><span class="line">    / _  |   Frida 9.1.26 - A world-class dynamic instrumentation framework</span><br><span class="line">   | (_| |</span><br><span class="line">    &gt; _  |   Commands:</span><br><span class="line">   /_/ |_|       <span class="built_in">help</span>      -&gt; Displays the <span class="built_in">help</span> system</span><br><span class="line">   . . . .       object?   -&gt; Display information about <span class="string">'object'</span></span><br><span class="line">   . . . .       <span class="built_in">exit</span>/quit -&gt; Exit</span><br><span class="line">   . . . .</span><br><span class="line">   . . . .   More info at http://www.frida.re/docs/home/</span><br><span class="line">Waiting <span class="keyword">for</span> USB device to appear...</span><br><span class="line"></span><br><span class="line">[USB::Samsung SM-G925F::Gadget]-&gt; Java.available</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">[USB::Samsung SM-G925F::Gadget]-&gt;</span><br><span class="line">$ frida-trace -U -i open Gadget</span><br><span class="line">Instrumenting <span class="built_in">functions</span>...</span><br><span class="line">open: Auto-generated handler at <span class="string">"/tmp/test/__handlers__/libc.so/open.js"</span></span><br><span class="line">Started tracing 1 <span class="keyword">function</span>. Press Ctrl+C to stop.                       </span><br><span class="line">           /* TID 0x2df7 */</span><br><span class="line">  4870 ms  open(pathname=0xa280b100, flags=0x241)</span><br><span class="line">  4873 ms  open(pathname=0xb6d69df3, flags=0x2)</span><br><span class="line">           /* TID 0x33d2 */</span><br><span class="line">115198 ms  open(pathname=0xb6d69df3, flags=0x2)</span><br><span class="line">115227 ms  open(pathname=0xb6d69df3, flags=0x2)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Frida-hook-java层"><a href="#Frida-hook-java层" class="headerlink" title="Frida hook java层"></a>Frida hook java层</h2><p>Frida 大致原理是手机端安装一个 server 程序，然后把手机端的端口转到 PC端，PC端写 python 脚本进行通信，而 python 脚本中需要 hook 的代码采用 javascript 语言。</p>
+<h3 id="写一个最基础的demo进行测试"><a href="#写一个最基础的demo进行测试" class="headerlink" title="写一个最基础的demo进行测试"></a>写一个最基础的demo进行测试</h3><p>客户端运行Frida</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./frida-server</span><br></pre></td></tr></table></figure>
+<p>打开电脑端运行脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line">adb forward tcp:27042 tcp:27042</span><br><span class="line">python F:\apk\frida\hook\hook1.py</span><br></pre></td></tr></table></figure>
+
+<p>apk包名: top.q0o0p.wow_first<br>hook1.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> frida</span><br><span class="line"></span><br><span class="line">jscode = <span class="string">""" </span></span><br><span class="line"><span class="string">    Java.perform(function()&#123;  </span></span><br><span class="line"><span class="string">        var MainActivity = Java.use('top.q0o0p.wow_first.MainActivity'); //获得MainActivity类</span></span><br><span class="line"><span class="string">         MainActivity.testFrida.implementation = function()&#123; //Hook testFrida函数，用js自己实现</span></span><br><span class="line"><span class="string">            send('Statr! Hook!'); //发送信息，用于回调python中的函数</span></span><br><span class="line"><span class="string">            return 'Change String!' //劫持返回值，修改为我们想要返回的字符串</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(message,data)</span>:</span> <span class="comment">#js中执行send函数后要回调的函数</span></span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line">process = frida.get_remote_device().attach(<span class="string">'top.q0o0p.wow_first'</span>) <span class="comment">#得到设备并劫持进程com.example.testfrida（该开始用get_usb_device函数用来获取设备，但是一直报错找不到设备，改用get_remote_device函数即可解决这个问题）</span></span><br><span class="line">script = process.create_script(jscode) <span class="comment">#创建js脚本</span></span><br><span class="line">script.on(<span class="string">'message'</span>,on_message) <span class="comment">#加载回调函数，也就是js中执行send函数规定要执行的python函数</span></span><br><span class="line">script.load() <span class="comment">#加载脚本</span></span><br><span class="line">sys.stdin.read()</span><br></pre></td></tr></table></figure>
+<p>hook java层之前,点击Button后的效果<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/2.png" alt></p>
+<p>hook java层之后,可看到字符串已经被替换成我们要替换的了<br>点击Button后的效果<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/1.png" alt></p>
+<p>执行python后的效果:<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/3.png" alt></p>
+<h3 id="修改Java层的函数参数和返回值"><a href="#修改Java层的函数参数和返回值" class="headerlink" title="修改Java层的函数参数和返回值"></a>修改Java层的函数参数和返回值</h3><p>实例:<br>com.yaotong.crackme.MainActivity<br>进入 MainActivity 查看源码<br>securityCheck 函数 返回 true 即可<br>使用 frida 开始 hook</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> frida  <span class="comment"># 导入frida模块</span></span><br><span class="line"><span class="keyword">import</span> sys  <span class="comment"># 导入sys模块</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 从此处开始定义用来Hook的javascript代码</span></span><br><span class="line">js_code = <span class="string">"""  </span></span><br><span class="line"><span class="string">    Java.perform(function() &#123;</span></span><br><span class="line"><span class="string">        // 获取当前安卓设备的安卓版本</span></span><br><span class="line"><span class="string">        var v = Java.androidVersion;</span></span><br><span class="line"><span class="string">        send('version:' + v);</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">        //获取该应用加载的类</span></span><br><span class="line"><span class="string">        var class_names = Java.enumerateLoadedClassesSync();        </span></span><br><span class="line"><span class="string">        for (var i = 0; i &lt; class_names.length; i++)&#123;</span></span><br><span class="line"><span class="string">            send('class name:' + class_names[i])</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">        var MainActivity = Java.use('com.yaotong.crackme.MainActivity'); //获得MainActivity类</span></span><br><span class="line"><span class="string">        var java_string = Java.use('java.lang.String');</span></span><br><span class="line"><span class="string">        MainActivity.securityCheck.implementation = function(java_string)&#123;             </span></span><br><span class="line"><span class="string">            send('I am here');      // 发送信息，用于回调python中的函数</span></span><br><span class="line"><span class="string">            return true;            //劫持返回值，修改为我们想要返回的字符串</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message_1</span><span class="params">(msg, data)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> msg[<span class="string">'type'</span>] == <span class="string">'send'</span>:</span><br><span class="line">        print(<span class="string">f'[*] <span class="subst">&#123;msg[<span class="string">"payload"</span>]&#125;</span>'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(msg)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">on_message</span><span class="params">(msg, data)</span>:</span>  <span class="comment"># js中执行send函数后要回调的函数</span></span><br><span class="line">    print(msg)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 得到设备并劫持进程 com.example.testfrida</span></span><br><span class="line"><span class="comment"># (刚开始用get_usb_device函数用来获取设备，但是一直报错找不到设备，改用get_remote_device函数即可解决这个问题)</span></span><br><span class="line">process = frida.get_remote_device().attach(<span class="string">'com.yaotong.crackme'</span>)</span><br><span class="line">script = process.create_script(js_code)  <span class="comment"># 创建js脚本</span></span><br><span class="line">script.on(<span class="string">'message'</span>, on_message)  <span class="comment"># 加载回调函数，也就是js中执行send函数规定要执行的python函数</span></span><br><span class="line">script.load()  <span class="comment"># 加载脚本</span></span><br><span class="line">sys.stdin.read()</span><br></pre></td></tr></table></figure>
+<p>任意输入，点击按钮都可以通过。</p>
+<h3 id="打印Java层的方法堆栈信息"><a href="#打印Java层的方法堆栈信息" class="headerlink" title="打印Java层的方法堆栈信息"></a>打印Java层的方法堆栈信息</h3><h3 id="拦截native层的函数参数和返回值"><a href="#拦截native层的函数参数和返回值" class="headerlink" title="拦截native层的函数参数和返回值"></a>拦截native层的函数参数和返回值</h3><h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><p>1.JAVA<br>（1）Java.perform(fn)<br>frida的main，注意：所有的脚本必须放在这里面，示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;                                                                                     </span><br><span class="line">    <span class="keyword">var</span> Activity = Java.use(“android.app.Activity”);<span class="comment">//获得类包相当于js的new()                                                       </span></span><br><span class="line">    Activity.onResume.implementation = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//改变onResume函数      </span></span><br><span class="line">            send(<span class="string">"onResume() got called! Let's call the original implementation”);                              </span></span><br><span class="line"><span class="string">         this.onResume();                                           </span></span><br><span class="line"><span class="string">    &#125;;                                                      </span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）Java.use(className)<br>动态获取一个类的对象，为以后改变对象方法的实现，或者用$new()实例化对象， $dispose()销毁对象，示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Java.perform(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;                                      </span><br><span class="line">    <span class="keyword">var</span> Activity = Java.use(<span class="string">"android.app.Activity"</span>);                        </span><br><span class="line">    <span class="keyword">var</span> Exception = Java.use(<span class="string">"java.lang.Exception"</span>);                        </span><br><span class="line">    Activity.onResume.implementation = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;                        </span><br><span class="line">        <span class="keyword">throw</span> Exception.$<span class="keyword">new</span>(“Hello World!<span class="string">");                           </span></span><br><span class="line"><span class="string">    &#125;;                                                      </span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="hook-natvie层"><a href="#hook-natvie层" class="headerlink" title="hook natvie层"></a>hook natvie层</h2><h3 id="hook未导出函数功能"><a href="#hook未导出函数功能" class="headerlink" title="hook未导出函数功能"></a>hook未导出函数功能</h3><p>未导出的函数我们需要手动的计算出函数地址，然后将其转化成一个 NativePointer 的对象然后进行 hook 操作，那么如何计算一个函数地址呢？这个很简单只要得到 so 的内存基地址加上函数的相对地址就可以了。基地址获取直接查看程序对应的 maps 文件即可：</p>
+<p>相对地址直接用 IDA 打开 so 文件就可以查看，比如这里我们通过静态分析之后想 hook 这个 sub_5070 函数：</p>
+<p>然后我们 F5 查看函数对应的 C 语言代码查看参数信息：</p>
+<p>这里看到是三个参数，那么计算了后的实际地址就是 0x7816A000+5070=0x7816F070，不过这个地址不是最后的地址，因为thumb 和 arm 指令的区分，地址最后一位的奇偶性来进行标志，所以这里还需加1也就是最终的0x7816F071，这一点很重要不管使用 Cydia 还是 Frida 都要注意最后计算的绝对地址要 +1，不然会报错的：</p>
+<p>这里 hook 之后有两个回调方法一个是进入函数之前，一个是执行完之后，这个和 Xposed 非常类似了，我们打印参数，不过这个和之前Hook Java层就不一样了，因为在C中大部分都是和地址指针相关，特别是常见的字符串信息，我们如果要正确的打印字符串值就需要借助 Memory系统类来通过指针获取字符串信息了，这个类非常重要，在后面修改返回值也是用它写内存值的。我们先看看这个函数原始返回值是什么：     </p>
+<p>注意： <code>雷电模拟器是 x86 架构，所以需要使用 IDA Pro 打开 x86 的 so 文件，找到 函数偏移地址，然后再通过  &quot; 基址 + 函数偏移地址 &quot;</code></p>
+<h2 id="hook导出函数功能"><a href="#hook导出函数功能" class="headerlink" title="hook导出函数功能"></a>hook导出函数功能</h2><p>这部分内容很简单了，比上面的简单是因为不需要手动的计算函数地址，因为是导出的，所以直接可以得到导出的函数名即可，因为C语言中没有重载的形式，而C++中有，所以有时候发现导出的函数名和正常的函数名前面加上了一串数据作为区分那应该是 C++ 代码写的。有了so文件和导出的函数名就不需要构造 NativePoniter 了：</p>
+<hr>
+<h2 id="函数追踪可以使用frida-trace"><a href="#函数追踪可以使用frida-trace" class="headerlink" title="函数追踪可以使用frida-trace"></a>函数追踪可以使用frida-trace</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Trace recv* and send* APIs in Safari</span></span><br><span class="line">$ frida-trace -i <span class="string">"recv*"</span> -i <span class="string">"send*"</span> Safari</span><br><span class="line">​</span><br><span class="line"><span class="comment"># Trace ObjC method calls in Safari</span></span><br><span class="line">$ frida-trace -m <span class="string">"-[NSView drawRect:]"</span> Safari</span><br><span class="line">​</span><br><span class="line"><span class="comment"># Launch SnapChat on your iPhone and trace crypto API calls</span></span><br><span class="line">$ frida-trace -U -f com.toyopagroup.picaboo -I <span class="string">"libcommonCrypto*"</span></span><br></pre></td></tr></table></figure>
+
+<p>burp的插件brida也支持对函数名进行检索hook<br>想将目标定在“OBJC: +[BLYDevice isJailBreak]”</p>
+<p>frida启动APP，并加载脚本的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frida -U -f com.x.x -l js-scripts</span><br></pre></td></tr></table></figure>
+<p>js脚本编写可以看官方文档:<a href="https://frida.re/docs/javascript-api/" target="_blank" rel="noopener">https://frida.re/docs/javascript-api/</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//hook传入值，ObjC: args[0] = self, args[1] = selector, args[2-n] = arguments </span></span><br><span class="line">Interceptor.attach(myFunction.implementation, &#123; </span><br><span class="line">  onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myString = <span class="keyword">new</span> ObjC.Object(args[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"String argument: "</span> + myString.toString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//hook返回值，</span></span><br><span class="line">Interceptor.attach(Module.getExportByName(<span class="string">'libc.so'</span>, <span class="string">'read'</span>), &#123;</span><br><span class="line">  onEnter: <span class="function"><span class="keyword">function</span> (<span class="params">args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.fileDescriptor = args[<span class="number">0</span>].toInt32();</span><br><span class="line">  &#125;,</span><br><span class="line">  onLeave: <span class="function"><span class="keyword">function</span> (<span class="params">retval</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (retval.toInt32() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="comment">/* do something with this.fileDescriptor */</span></span><br><span class="line">    &#125;&#125;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>定义js脚本后，尝试hook出“OBJC: +[BLYDevice isJailBreak]”的传入值和返回值，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hook_specific_method_of_class</span>(<span class="params">className, funcName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hook = ObjC.classes[className][funcName];</span><br><span class="line">    Interceptor.attach(hook.implementation, &#123;</span><br><span class="line">      onEnter: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// args[0] is self</span></span><br><span class="line">        <span class="comment">// args[1] is selector (SEL "sendMessageWithText:")</span></span><br><span class="line">        <span class="comment">// args[2] holds the first function argument, an NSString</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"\n\t[*] Class Name: "</span> + className);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"[*] Method Name: "</span> + funcName);</span><br><span class="line">        <span class="comment">//For viewing and manipulating arguments</span></span><br><span class="line">        <span class="comment">//console.log("\t[-] Value1: "+ObjC.Object(args[2]));</span></span><br><span class="line">        <span class="comment">//console.log("\t[-] Value2: "+(ObjC.Object(args[2])).toString());</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"\t[-]arg value   "</span>+args[<span class="number">2</span>]);</span><br><span class="line">        Interceptor.attach(hook.implementation, </span><br><span class="line">            &#123;</span><br><span class="line">              onLeave: <span class="function"><span class="keyword">function</span>(<span class="params">retval</span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"[*] Class Name: "</span> + className);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"[*] Method Name: "</span> + funcName);</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">"\t[-] Return Value: "</span> + retval);</span><br><span class="line">             &#125;&#125;</span><br><span class="line">            );</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>参考:<br>Frida github:<a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a><br>Frida教程:<br><a href="https://zhuanlan.zhihu.com/p/35411248" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35411248</a></p>
+<p><a href="https://blog.csdn.net/weixin_35016347/article/details/104002411?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-1&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">https://blog.csdn.net/weixin_35016347/article/details/104002411?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-1&amp;spm=1001.2101.3001.4242</a><br><a href="https://blog.csdn.net/zhy025907/article/details/89512096" target="_blank" rel="noopener">https://blog.csdn.net/zhy025907/article/details/89512096</a></p>
+<p><a href="https://www.52pojie.cn/thread-1128884-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1128884-1-1.html</a></p>
+<p><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
+<p><a href="https://blog.csdn.net/qingemengyue/article/details/80061491?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">https://blog.csdn.net/qingemengyue/article/details/80061491?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&amp;spm=1001.2101.3001.4242</a></p>
+<p>xposed hook app:<br><a href="https://www.52pojie.cn/thread-1315865-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1315865-1-1.html</a><br>Frida HOOK加解密函数<br><a href="https://www.freebuf.com/articles/mobile/252882.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/mobile/252882.html</a></p>
+<p>非root设备:<br><a href="https://koz.io/using-frida-on-android-without-root/" target="_blank" rel="noopener">https://koz.io/using-frida-on-android-without-root/</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>App脱壳实例</title>
     <url>/2021/03/23/packers-shelling/</url>
-    <content><![CDATA[<p>##</p>
+    <content><![CDATA[<h2 id="android-app脱壳方法研究"><a href="#android-app脱壳方法研究" class="headerlink" title="android app脱壳方法研究"></a>android app脱壳方法研究</h2><p><a href="https://cloud.tencent.com/developer/article/1740663" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1740663</a><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/1.png" alt><br>修改系统源码自动脱壳<br>通过hook对关键函数进行脱壳<br>开源工具zjdroid,dexhunter进行脱壳<br>利用IDA或者GDB动态调试进行脱壳</p>
 <hr>
+<h2 id="FDex2脱壳实例"><a href="#FDex2脱壳实例" class="headerlink" title="FDex2脱壳实例"></a>FDex2脱壳实例</h2><p>① 在Xposed中激活FDex2<br>② 启动Xposed中的FDex2，并配置要脱壳的应用。<br>③ 在VirtualXposed中运行要脱壳的应用。<br>④ 导出脱壳的dex文件：<br>脱壳后的dex文件在/data/user/0/{packageName}该目录下查看，多出来的dex文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">root设备：</span><br><span class="line">adb root</span><br><span class="line">adb pull /data/user/0/iv.va.exposed/virtual/data/user/0/&#123;packageName&#125;   &#123;电脑上的目录&#125;</span><br></pre></td></tr></table></figure>
+<p>⑤ 通过dex2jar对 脱壳的dex进行反编译</p>
+<h2 id="FDex2核心代码MainHook"><a href="#FDex2核心代码MainHook" class="headerlink" title="FDex2核心代码MainHook"></a>FDex2核心代码MainHook</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.ppma.xposed;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.IXposedHookLoadPackage;</span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.XC_MethodHook;</span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.XSharedPreferences;</span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.XposedBridge;</span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.XposedHelpers;</span><br><span class="line"><span class="keyword">import</span> de.robv.android.xposed.callbacks.XC_LoadPackage;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainHook</span> <span class="keyword">implements</span> <span class="title">IXposedHookLoadPackage</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    XSharedPreferences xsp;</span><br><span class="line">    Class Dex;</span><br><span class="line">    Method Dex_getBytes;</span><br><span class="line">    Method getDex;</span><br><span class="line">    String packagename;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleLoadPackage</span><span class="params">(XC_LoadPackage.LoadPackageParam lpparam)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        xsp = <span class="keyword">new</span> XSharedPreferences(<span class="string">"com.ppma.appinfo"</span>, <span class="string">"User"</span>);</span><br><span class="line">        xsp.makeWorldReadable();</span><br><span class="line">        xsp.reload();</span><br><span class="line">        initRefect();</span><br><span class="line">        packagename = xsp.getString(<span class="string">"packagename"</span>, <span class="keyword">null</span>);</span><br><span class="line">        XposedBridge.log(<span class="string">"设定包名："</span>+packagename);</span><br><span class="line">        <span class="keyword">if</span> ((!lpparam.packageName.equals(packagename))||packagename==<span class="keyword">null</span>) &#123;</span><br><span class="line">            XposedBridge.log(<span class="string">"当前程序包名与设定不一致或者包名为空"</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        XposedBridge.log(<span class="string">"目标包名："</span>+lpparam.packageName);</span><br><span class="line">        String str = <span class="string">"java.lang.ClassLoader"</span>;</span><br><span class="line">        String str2 = <span class="string">"loadClass"</span>;</span><br><span class="line"> </span><br><span class="line">        XposedHelpers.findAndHookMethod(str, lpparam.classLoader, str2, String.class, Boolean.TYPE, <span class="keyword">new</span> XC_MethodHook() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">afterHookedMethod</span><span class="params">(MethodHookParam param)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.afterHookedMethod(param);</span><br><span class="line">                Class cls = (Class) param.getResult();</span><br><span class="line">                <span class="keyword">if</span> (cls == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">//XposedBridge.log("cls == null");</span></span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                String name = cls.getName();</span><br><span class="line">                XposedBridge.log(<span class="string">"当前类名："</span> + name);</span><br><span class="line">                <span class="keyword">byte</span>[] bArr = (<span class="keyword">byte</span>[]) Dex_getBytes.invoke(getDex.invoke(cls, <span class="keyword">new</span> Object[<span class="number">0</span>]), <span class="keyword">new</span> Object[<span class="number">0</span>]);</span><br><span class="line">                <span class="keyword">if</span> (bArr == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    XposedBridge.log(<span class="string">"数据为空：返回"</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                XposedBridge.log(<span class="string">"开始写数据"</span>);</span><br><span class="line">                String dex_path = <span class="string">"/data/data/"</span> + packagename + <span class="string">"/"</span> + packagename + <span class="string">"_"</span> + bArr.length + <span class="string">".dex"</span>;</span><br><span class="line">                XposedBridge.log(dex_path);</span><br><span class="line">                File file = <span class="keyword">new</span> File(dex_path);</span><br><span class="line">                <span class="keyword">if</span> (file.exists()) <span class="keyword">return</span>;</span><br><span class="line">                writeByte(bArr, file.getAbsolutePath());</span><br><span class="line">            &#125;</span><br><span class="line">            &#125; );</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initRefect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Dex = Class.forName(<span class="string">"com.android.dex.Dex"</span>);</span><br><span class="line">            Dex_getBytes = Dex.getDeclaredMethod(<span class="string">"getBytes"</span>, <span class="keyword">new</span> Class[<span class="number">0</span>]);</span><br><span class="line">            getDex = Class.forName(<span class="string">"java.lang.Class"</span>).getDeclaredMethod(<span class="string">"getDex"</span>, <span class="keyword">new</span> Class[<span class="number">0</span>]);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">writeByte</span><span class="params">(<span class="keyword">byte</span>[] bArr, String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            OutputStream outputStream = <span class="keyword">new</span> FileOutputStream(str);</span><br><span class="line">            outputStream.write(bArr);</span><br><span class="line">            outputStream.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            XposedBridge.log(<span class="string">"文件写出失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<h2 id="xxqg"><a href="#xxqg" class="headerlink" title="xxqg"></a>xxqg</h2><p>d2j-dex2jar.bat F:\apk\xxqg\classes.dex</p>
+<hr>
+<h3 id="dalvik-寄存器"><a href="#dalvik-寄存器" class="headerlink" title="dalvik 寄存器"></a>dalvik 寄存器</h3><p>32位<br>64 使用两个寄存器</p>
+<p>寄存器P 参数寄存器<br>V 局部变量寄存器</p>
+<p>.java-&gt;.class-&gt;.dex-&gt;smali<br>dx-dex –output=</p>
+<h3 id="字段"><a href="#字段" class="headerlink" title="字段"></a>字段</h3><p>包名/类名; -&gt;字段:类型</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>(III)Z:方法签名信息</p>
+<h3 id="指令格式"><a href="#指令格式" class="headerlink" title="指令格式"></a>指令格式</h3><pre><code>基础字节码 - 名称后缀/字节码后缀 目的寄存器 源寄存器</code></pre><p>move ,基础字节码,opcode<br>名称后缀wide,数据宽度64位<br>from16,源寄存器16位<br>V0<del>V255目的寄存器<br>v0</del>65535源寄存器</p>
+<h3 id="dalvik指令"><a href="#dalvik指令" class="headerlink" title="dalvik指令"></a>dalvik指令</h3><ul>
+<li>nop : 空操作指令,值00,一般对齐代码使用;</li>
+<li>move : 赋值操作,move-result接收方法返回值,异常处理;</li>
+<li></li>
+<li></li>
+</ul>
 <hr>
 <p>arm指令集<br>|指令|  描述|<br>–|–<br>|||</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -16,12 +183,13 @@
 <p>这么一看还顺便了解了一下手机的其他传感器<br><a href="https://blog.csdn.net/weixin_43896750/article/details/95942772?utm_medium=distribute.pc_relevant.none-task-blog-title-7&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43896750/article/details/95942772?utm_medium=distribute.pc_relevant.none-task-blog-title-7&amp;spm=1001.2101.3001.4242</a><br>手机自带的硬件确实好用(旧手机也是一个好东西,上面的硬件不应该放着吃灰)<br>关键是直接调用大佬们写好的方法就行,适当改进一下用法就行</p>
 <hr>
 <p>几个关于加速传感器的介绍:<br><a href="https://zhuanlan.zhihu.com/p/35856475" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/35856475</a><br><a href="https://blog.csdn.net/Li_peilun/article/details/68921262" target="_blank" rel="noopener">https://blog.csdn.net/Li_peilun/article/details/68921262</a><br><a href="https://blog.csdn.net/weixin_43896750/article/details/95942772?utm_medium=distribute.pc_relevant.none-task-blog-title-7&amp;spm=1001.2101.3001.4242" target="_blank" rel="noopener">https://blog.csdn.net/weixin_43896750/article/details/95942772?utm_medium=distribute.pc_relevant.none-task-blog-title-7&amp;spm=1001.2101.3001.4242</a><br><a href="https://blog.csdn.net/youmingyu/article/details/52750374" target="_blank" rel="noopener">https://blog.csdn.net/youmingyu/article/details/52750374</a></p>
+<p><a href="https://www.dazhuanlan.com/2020/03/24/5e7928c2417ae/" target="_blank" rel="noopener">https://www.dazhuanlan.com/2020/03/24/5e7928c2417ae/</a></p>
 ]]></content>
   </entry>
   <entry>
     <title>Android逆向及工具使用</title>
     <url>/2021/02/19/Android-Reverse/</url>
-    <content><![CDATA[<h2 id="常见的壳"><a href="#常见的壳" class="headerlink" title="常见的壳"></a>常见的壳</h2><p>通常是看lib文件夹下so库特征，以下是市面上常见的不同厂商对APP的加固特征：<br>爱加密：libexec.so,libexecmain.so，ijiami.dat<br>梆梆： libsecexe.so,libsecmain.so , libDexHelper.so libSecShell.so<br>360：libprotectClass.so,libjiagu.so，libjiagu_art.so，libjiagu_x86.so<br>百度：libbaiduprotect.so<br>腾讯：libshellx-2.10.6.0.so，libBugly.so，libtup.so, libexec.so，libshell.so，stub_tengxun<br>网易易盾：libnesec.so</p>
+    <content><![CDATA[<h1 id="App加壳和脱壳"><a href="#App加壳和脱壳" class="headerlink" title="App加壳和脱壳"></a>App加壳和脱壳</h1><h2 id="常见的壳"><a href="#常见的壳" class="headerlink" title="常见的壳"></a>常见的壳</h2><p>通常是看lib文件夹下so库特征，以下是市面上常见的不同厂商对APP的加固特征：<br>爱加密：libexec.so,libexecmain.so，ijiami.dat<br>梆梆： libsecexe.so,libsecmain.so , libDexHelper.so libSecShell.so<br>360：libprotectClass.so,libjiagu.so，libjiagu_art.so，libjiagu_x86.so<br>百度：libbaiduprotect.so<br>腾讯：libshellx-2.10.6.0.so，libBugly.so，libtup.so, libexec.so，libshell.so，stub_tengxun<br>网易易盾：libnesec.so<br>娜迦： libchaosvmp.so , libddog.solibfdog.so<br>通付盾：libegis.so<br>网秦：libnqshield.so</p>
 <h3 id="脱壳机制原理"><a href="#脱壳机制原理" class="headerlink" title="脱壳机制原理"></a>脱壳机制原理</h3><p>smali层：只做了一些简单的混淆<br>Native 层：<br>和如下内容相关<br>各种so库<br>比如libdvm.so<br>对应着内部函数调用：<br>.init<br>.init_array<br>JNI_Onload<br>分析修改ELF头信息<br>sub_xxx函数<br>比如：sub_78614CD0<br>R2寄存器<br>最后分析出：<br>ClassLoader<br>loadDex<br>multidex<br>（作者）QEver<br>写的一个IDA的脚本=一个dex脱壳脚本<br>配合kill方法，可以实现脱绝大部分运行于dalvik上的dex壳<br>可以dump导出正确的dex文件<br>脱壳注意事项和说明<br>不是所有的加固的安卓apk都能成功脱壳的。<br>比如，康美通的安卓apk：<br>老版本 v2.0.7 没有加固，可以直接用Jadx反编译得到源码的<br>新版本 v4.4.0 是360加固保加固的，用FDex2也无法导出dex，无法破解<br>总结出来就是：<br>没有加固的：直接用Jadx即可导出源码<br>比如老旧的Android的apk，很多都没有加固<br>不管你怎么混淆都很容易被人分析得干干净净<br>部分加密不强的：可以脱壳<br>包括<br>老一代或免费的360加固保<br>爱加密（收费）<br>娜迦加固（收费）<br>用FDex2可以脱壳<br>可以hook导出dex，再dex转jar，jar转java源码<br>腾讯乐固，新一代的360加固保：没法脱壳<br>即使用FDex2也无法脱壳无法破解，无法得到dex文件<br>其中新一代的360加固保：用art模式+dex2oat相关机制，或许可以破解<br>【未解决】用ART，oat，dex2oat相关机制去破解新一代360、腾讯等安卓apk的加固<br>对于使用加固方案的建议和结论<br>免费版的加固可以防止大多数只会反编译的小白<br>对于普通攻击者还是很有效果的<br>对于会用工具脱壳的，还是没太大用途的<br>除非用更加高级的，收费版的加固服务<br>估计就很难破解，很难脱壳了<br>如果真的想要彻底防止别人破解<br>除了考虑（用更高级的）加固方式<br>还要花精力在app的业务逻辑层面，权限校验等方面，防止被破解<br>如何判断是哪家加固方案<br>通过反编译工具后，从dex或jar包的目录结构，以及相关的文件（比如AndroidManifest.xml）的内容，往往可以看出是哪家的加密方案：<br>腾讯乐固加密后的目录结构和典型内容<br>腾讯的乐固legu加密加壳后的apk，去用apktool反编译后，得到的jar包的目录结构是：<br>com.tencent.bugly<br>com.tencent.bugly.legu<br>crashreport<br>proguard<br>com.tencent.StubShell<br>TxAppEntry<br>截图举例：</p>
 <p>详细的目录结构和文件是：<br>➜  tencent ll<br>total 0<br>drwxr-xr-x  12 crifan  staff   384B  3 14 13:39 StubShell<br>drwxr-xr-x   3 crifan  staff    96B  3 14 13:39 bugly<br>➜  tencent tree .<br>.<br>├── StubShell<br>│   ├── SystemClassLoaderInjector.smali<br>│   ├── SystemInfoException.smali<br>│   ├── TxAppEntry.smali<br>│   ├── TxReceiver.smali<br>│   ├── XposedCheck.smali<br>│   ├── ZipUtil.smali<br>│   ├── a.smali<br>│   ├── b.smali<br>│   ├── c.smali<br>│   └── d.smali<br>└── bugly<br>    └── legu<br>        ├── Bugly.smali<br>        ├── BuglyStrategy$a.smali<br>        ├── BuglyStrategy.smali<br>        ├── CrashModule.smali<br>        ├── a.smali<br>        ├── b.smali<br>        ├── crashreport<br>        │   ├── BuglyHintException.smali<br>        │   ├── BuglyLog.smali<br>        │   ├── CrashReport$CrashHandleCallback.smali<br>        │   ├── CrashReport$UserStrategy.smali<br>        │   ├── CrashReport.smali<br>        │   。。。<br>        │   └── inner<br>        │       └── InnerAPI.smali<br>        └── proguard<br>            ├── a.smali<br>            ├── 。。。<br>            └── z.smali<br>➜  lib tree .<br>.<br>├── arm64-v8a<br>│   ├── libBugly.so<br>│   ├── libgifimage.so<br>│   ├── libimagepipeline.so<br>│   ├── libjcore119.so<br>│   ├── libshella-2.9.1.2.so<br>│   └── libstatic-webp.so<br>├── armeabi<br>│   ├── libBugly.so<br>│   ├── libgifimage.so<br>│   ├── libimagepipeline.so<br>│   ├── libjcore119.so<br>│   ├── libshella-2.9.1.2.so<br>│   ├── libstatic-webp.so<br>│   ├── mix.dex<br>│   └── mixz.dex<br>├── armeabi-v7a<br>│   ├── libBugly.so<br>│   ├── libgifimage.so<br>│   ├── libimagepipeline.so<br>│   ├── libjcore119.so<br>│   ├── libshella-2.9.1.2.so<br>│   └── libstatic-webp.so<br>├──<br>另外反编译出的AndroidManifest.xml内容：<br><application android:allowbackup="true" android:icon="@drawable/app_logo" android:label="@string/app_name" android:name="com.tencent.StubShell.TxAppEntry" android:supportsrtl="true" android:theme="@style/AppTheme"><br><meta-data android:name="TxAppEntry" android:value="com.huili.readingclub.MyApplication"><br>android:name=”com.tencent.StubShell.TxAppEntry”<br>其中有：<br>com.tencent.StubShell.TxAppEntry<br><meta-data android:name="TxAppEntry"><br>也是典型的腾讯乐固的内容。</meta-data></meta-data></application></p>
 <p>360加固保的加固的目录结构<br>360加固后的apk经过dex2jar反编译后的目录结构是：<br>com.qihoo.util<br>com.qihoo360.replugin<br>com.stub<br>这种结构就说明是360加固保加固的。</p>
@@ -41,7 +209,7 @@
 <p>Frida 安装<br>客户端:</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">pip <span class="keyword">install</span> frida-tools</span><br><span class="line">pip3 <span class="keyword">install</span> colorama <span class="keyword">prompt</span>-toolkit pygments</span><br><span class="line">frida <span class="comment">--version</span></span><br><span class="line">frida-ps ：查看当前系统进程，表示安装成功。</span><br></pre></td></tr></table></figure>
 <p>查看系统架构</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">adb shell getprop ro<span class="selector-class">.product</span><span class="selector-class">.cpu</span><span class="selector-class">.abi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">adb shell getprop ro<span class="selector-class">.product</span><span class="selector-class">.cpu</span><span class="selector-class">.abi</span></span><br><span class="line"><span class="comment">//cat /proc/cpuinfo</span></span><br></pre></td></tr></table></figure>
 <p>服务端的 Frida 版本必须和客户端的 Frida 版本一致。</p>
 <table>
 <thead>
@@ -70,69 +238,14 @@
 <td>x86_64</td>
 <td>64位的平板</td>
 </tr>
-<tr>
-<td>ABI 与 CPU 的联系</td>
-<td></td>
-</tr>
-<tr>
-<td>在 Android 手机上安装一个应用时，只有手机CPU架构支持的ABI架构对应的.so文件会被安装。如果支持多个ABI架构，会按照优先级进行安装。</td>
-<td></td>
-</tr>
-<tr>
-<td>CPU架构</td>
-<td>支持的ABI架构对应的.so文件安装优先级</td>
-</tr>
-<tr>
-<td>–</td>
-<td>–</td>
-</tr>
-<tr>
-<td>ARMv5</td>
-<td>armeabi</td>
-</tr>
-<tr>
-<td>ARMv7</td>
-<td>armeabi，armeabi-v7a</td>
-</tr>
-<tr>
-<td>ARMv8</td>
-<td>armeabi，armeabi-v7a，arm64-v8a</td>
-</tr>
-<tr>
-<td>MIPS</td>
-<td>mips</td>
-</tr>
-<tr>
-<td>MIPS64</td>
-<td>mips，mips64</td>
-</tr>
-<tr>
-<td>x86</td>
-<td>x86，armeabi，armeabi-v7a</td>
-</tr>
-<tr>
-<td>x86_64</td>
-<td>:armeabi，x86，x86_64</td>
-</tr>
-<tr>
-<td>服务端:</td>
-<td></td>
-</tr>
-<tr>
-<td><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></td>
-<td></td>
-</tr>
-<tr>
-<td>1. 下载:frida-server-14.2.13-android-arm64.xz</td>
-<td></td>
-</tr>
-<tr>
-<td><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ xz -d frida-server-14.2.13-android-arm64.xz</span><br><span class="line">$ adb push frida-server-14.2.13-android-arm64 /data/<span class="built_in">local</span>/tmp/frida-server</span><br></pre></td></tr></table></figure></td>
-<td></td>
-</tr>
 </tbody></table>
-<ol start="2">
-<li>运行frida-server<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$adb</span> shell</span><br><span class="line"><span class="variable">$su</span></span><br><span class="line"><span class="variable">$cd</span>  /data/<span class="built_in">local</span>/tmp</span><br><span class="line"><span class="variable">$chmod</span>  755  frida-server</span><br><span class="line">$./frida-server</span><br></pre></td></tr></table></figure>
+<p>ABI 与 CPU 的联系<br>在 Android 手机上安装一个应用时，只有手机CPU架构支持的ABI架构对应的.so文件会被安装。如果支持多个ABI架构，会按照优先级进行安装。<br>k<br>|CPU架构| 支持的ABI架构对应的.so文件安装优先级|<br>|–|–|<br>|ARMv5| armeabi|<br>|ARMv7| armeabi，armeabi-v7a|<br>|ARMv8| armeabi，armeabi-v7a，arm64-v8a|<br>|MIPS | mips|<br>|MIPS64|  mips，mips64|<br>|x86| x86，armeabi，armeabi-v7a|<br>|x86_64|  :armeabi，x86，x86_64|<br>服务端:<br><a href="https://github.com/frida/frida/releases">https://github.com/frida/frida/releases</a></p>
+<ol>
+<li><p>下载:frida-server-14.2.13-android-arm64.xz</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ adb push frida-server-14.2.13-android-arm64 /data/<span class="built_in">local</span>/tmp/frida-server</span><br><span class="line">$ xz -d frida-server-14.2.13-android-arm64.xz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行frida-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$adb</span> shell</span><br><span class="line"><span class="variable">$su</span></span><br><span class="line"><span class="variable">$cd</span>  /data/<span class="built_in">local</span>/tmp</span><br><span class="line"><span class="variable">$chmod</span>  755  frida-server</span><br><span class="line">$./frida-server</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
@@ -148,6 +261,7 @@
 <p>第三、SubstrateCydia的优缺点</p>
 <p>优点：可以运行在手机端，和Xposed类似可以用于实践生产中。支持Java层和Native层的hook操作，但是Java层hook不怎么常用，用的比较多的是 Native 层 hook 操作，因为他也是Android工程可以引用系统api，操作更为方便。</p>
 <p>缺点：和Xposed一样安装配置环境繁琐，兼容性差。</p>
+<p>总结: <code>Java层Hook还是Xposed方便，写 Native 层 Hook 还是Cydia 了，而对于破解者开发那还是 Frida 最靠谱了。写外挂最难的也是最重要的不是写代码而是寻找 hook点，也就是逆向分析 app 找到那个地方，然后写 hook 代码实现插件功能。</code></p>
 <hr>
 <h2 id="Android安全机制"><a href="#Android安全机制" class="headerlink" title="Android安全机制"></a>Android安全机制</h2><p>系统中的文件的访问权限是通过<code>用户ID（UID）和用户组ID（GID）</code>来控制的。换句话说，就是Linux的安全机制是基于UID和GID来实现的。Android在Linux内核提供的基于UID和GID的安全机制的基础上，又实现了一套称为Permission的安全机制(三个基本角色：用户-&gt;进程-&gt;文件)<br>一个UID可以对应多个GID,用户属性划分为三组：Owner、Group和Other。</p>
 <p>android安全机制覆盖到各个层面，求开放的同时也保护用户的数据，应用程序和设备的安全。主要安全模型如下： </p>
@@ -194,6 +308,7 @@
 2. Android的Permission就相当于是Linux的GID。
 3. Android的Signature就是用来控制APK的UID和GID分配的。</code></pre><hr>
 <h2 id="常用调试工具"><a href="#常用调试工具" class="headerlink" title="常用调试工具"></a>常用调试工具</h2><p>Smali、Dedexer、Dexdump、Apktool、Dex2jar、jd-gui。<br>ida动态调式和代码跟踪<br>IDA工具分析的ARM汇编，IDA打开SO文件看到的就是ARM汇编指令。</p>
+<h3 id="JADX"><a href="#JADX" class="headerlink" title="JADX"></a>JADX</h3><p>介绍一个反编译利器 JADX ，它可以直接将 Apk 反编译成 Java 代码进行查看，毕竟 smali 代码不是那么人性化。<br>直接就可以看到对应的 Java 代码，理清逻辑之后再去阅读 smali 代码进行修改，事半功倍。支持反编译 Java 代码的工具还有很多，例如基于 Python 实现的 Androgurad 等等。</p>
 <h3 id="DexExtractor"><a href="#DexExtractor" class="headerlink" title="DexExtractor"></a>DexExtractor</h3><p>功能：<br>用于破解邦邦加密的安卓dex文件提取器<br>github主页<br>lambdalang/DexExtractor<br>使用说明<br>4.4的虚拟机 编译好了libdvm。<br>代码github上，脱梆梆的壳，别的没测试<br>把dexdump出来，然后base64解码下，然后odex2dex，没了<br>system.img 有空上传<br>作者编译好的镜像文件system.img的下载地址<br>system-arm_md5_6395c2f1451dbbed027d7293ab39a6e7.img.tar.gz<br>启动模拟器加上sdcard<br>注意<br>apk没有写权限的反编译了加上write就好了。<br>支持<br>梆梆加固<br>爱加密（新版本没事）<br>其他，暂时没测试</p>
 <h3 id="InDroid"><a href="#InDroid" class="headerlink" title="InDroid"></a>InDroid</h3><ul>
 <li>romangol/InDroid: Dalvik vm Instrumentation OS</li>
@@ -207,6 +322,59 @@
 
 </li>
 </ul>
+<h3 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h3><ul>
+<li><p>IDA 动态调试环境搭建<br>将F:\AndroidTools\IDA_Pro_v7.5_Portable\dbgsrv路径下的android_server<br>push到模拟器上</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push F:\AndroidTools\IDA_Pro_v7.5_Portable\dbgsrv\android_server /data/<span class="built_in">local</span>/tmp</span><br></pre></td></tr></table></figure>
+<p>模拟器终端运行android_server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su </span><br><span class="line"><span class="built_in">cd</span> /data/<span class="built_in">local</span>/tmp</span><br><span class="line">chmod 777 android_server</span><br><span class="line">./android_server //端口被占用使用./android_server -p31928 修改端口</span><br></pre></td></tr></table></figure>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/3.png" alt></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> //端口转发,必须与android_server运行的端口一致</span><br><span class="line">adb forward tcp:23946 tcp:23946</span><br></pre></td></tr></table></figure>
+<p>打开IDA -&gt; Debugger -&gt; Attach -&gt; Remote ARMLinux/Android debugger</p>
+</li>
+<li><blockquote>
+<p>hostname:127.0.0.1 </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>端口填写以上端口 -&gt; 点击ok </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>呈现所有手机上运行中的程序的一个线程(搜索要调试的应用,当然首先模拟器要打开此app)<br>选择以后点击ok </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>debugger </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>debugger option </p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>勾选 Suspend on process,<br>Suspend on thread,Suspend on library<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/4.png" alt></p>
+</blockquote>
+</li>
+<li><p>IDA 窗口介绍<br>空格 : 视图切换<br>IDA-view-PC : 反汇编窗口<br>Hex-view : 十六进制编辑窗口<br>Outout windows : 输出窗口<br>general register : 寄存器窗口<br>Stack view : 栈视图<br>View -&gt; Open subviews -&gt; String : 字符串编辑窗口 (Shift+F12)<br>可以看到此程序所有常量字符串列表(分析方向之一)<br>Search -&gt;Search : 字符串查找窗口<br>Jump -&gt; Jump Address : 地址跳转<br>File -&gt; Script file : 脚本执行窗口(选择执行的脚本)<br>右键点击函数名 -&gt; List cross refereaces to (Ctrl+x) : 交叉引用</p>
+</li>
+<li><p>IDA 快捷键<br>F2: 下断点<br>F7: 单步步入(点击可以继续往下走)<br>F8: 单步步过(不执行函数直接过去)<br>F4: 运行到光标所在(程序运行到光标所在之处)<br>G: 可以直接跳到一个地址<br>U: 把一个数据解析成未定义的数据(Udefine)<br>C: 将数据解析成汇编指令<br>P: 将汇编指令识别成函数<br>Ctrl+F: 搜素指令<br>F5: 将汇编识别为伪代码<br>Alt+G: 判断当前的系统的指令是Thumb还是ARM<br>Ctrl+S: 查看系统中所有的模块<br>X: 交叉引用(可以看到所有对此字符串或函数的一个引用)</p>
+</li>
+<li><p>修改寄存器的值<br>(1) 选中寄存器,右键选择<code>Modify value</code> 可以改为任意值<br>(2) 选中寄存器,直接<code>Zero value</code>选项,置零 </p>
+</li>
+<li><p>篡改内存数据<br>例如 IDA View-PC<br>ADD R2,PC,R2<br>Hex View<br>右键 -&gt; Synchrogazer with -&gt; R2 -&gt; F2修改十六进制的值在次使用F2提交</p>
+</li>
+<li><p>NOP函数或代码<br>可用于过反调试,将该函数值置为零<br>(1) 选中函数或代码,来到十六进制窗口<br>(2) 鼠标右键,选择Synchrogazer with 同步寄存器<br>(3) 选中目标,右键 -&gt; Edit(F2)修改<br>(4) 继续右键 -&gt; Edit(F2)提交<br>程序执行到此处会编译执行下一条,紧接着读取下一条,修改需要隔三条进行修改<br>(三级流水线)</p>
+</li>
+<li><p>改变程序执行流程<br>改变引起跳转指令的执行流程<br>如: BLX R3<br>  CMP R0 ,#0  :BLX执行完毕会把返回值放到R0寄存器,CMP把R0和0进行比较<br>  BNE loc_75566433   :不等于则跳转<br>BNE<br>改变BNE指令执行条件,从而无法跳转目的地址,进而执行无法跳转目的地址</p>
+</li>
+</ul>
+<hr>
+<h2 id="代码混淆"><a href="#代码混淆" class="headerlink" title="代码混淆"></a>代码混淆</h2><h3 id="混淆的概念"><a href="#混淆的概念" class="headerlink" title="混淆的概念"></a>混淆的概念</h3><p>通过一些工具对函数名,变量名,类名,字段名进行批量的重命名<br>但整体逻辑是清晰的</p>
+<h3 id="ProGuard"><a href="#ProGuard" class="headerlink" title="ProGuard"></a>ProGuard</h3><p>检测和移除未使用的类,字段名,方法和属性<br>优化字节码,移除未使用到的代码指令</p>
+<h2 id="资源混淆"><a href="#资源混淆" class="headerlink" title="资源混淆"></a>资源混淆</h2><p>MT管理器绕过资源文件的触发(捕鱼达人)<br>MT管理器 -&gt; data/app/程序包名<br>-&gt; 点击.apk查看<br>-&gt; 点击.dex文件<br>-&gt; dex编辑器++<br>-&gt;反编译完成(里面的方法修改后会出现星号)<br>-&gt; 修改完成把保存并退出(绿色表示修改成功)<br>-&gt; 双击覆盖安装</p>
+<p>MT管理器原理: 基于压缩包进行反编译,可以反编译单独的dex</p>
+<h2 id="签名验证"><a href="#签名验证" class="headerlink" title="签名验证"></a>签名验证</h2><p>签名修改后安装出现闪退(存在签名验证)<br>(1) 阅读签名验证源码<br>打开文件 -&gt; 开始分析java层 -&gt; 重新打包,回编译<br>获取包管理,从而获取签名信息<br>(2) 分析以及过掉签名验证<br>安装程序包 -&gt; 对程序包重新签名 -&gt; 安装签名过后的程序 -&gt; 开始分析<br>打开就提示错误 -&gt; 逻辑检查 OnCreate -&gt;native(so层检测)<br>-&gt; IDA打开lib目录下的so文件<br>-&gt; 搜索JNI_onload(没有JNI_onload,不是采用动态组成)<br>-&gt; 在搜索java_(有结果,双击分析)<br>-&gt; 看到getSignHashCode(点击)<br>-&gt; 看到getPackageManager , getPackageInfo , getPackageName(签名三兄弟)<br>-&gt; 还有signatures,hashcode(一块一块的函数的调用)<br>-&gt; F5看伪代码<br>-&gt; 上一层只传一个R0(env),第二个参数在java层代码,没有被static修饰,说明obj<br>-&gt; 右键Hide-casts 隐藏类型</p>
+<h3 id="JNI-OnLoad简介"><a href="#JNI-OnLoad简介" class="headerlink" title="JNI_OnLoad简介"></a>JNI_OnLoad简介</h3><p>Java JNI有两种方法，一种是通过javah,获取一组带签名函数，然后实现这些函数。<br>这种方法很常用，也是官方推荐的方法。<br>还有一种就是JNI_OnLoad方法。<br>​<br>当Android的VM(Virtual Machine)执行到C组件(即<em>so档)里的System.loadLibrary()函数时，<br>首先会去执行C组件里的JNI_OnLoad()函数。<br>它的用途有二：<br>. 告诉VM此C组件使用那一个JNI版本。<br>  如果你的</em>.so档没有提供JNI_OnLoad()函数，VM会默认该*.so档是使用最老的JNI 1.1版本。<br>  由于新版的JNI做了许多扩充，如果需要使用JNI的新版功能，<br>  例如JNI 1.4的java.nio.ByteBuffer,就必须藉由JNI_OnLoad()函数来告知VM。</p>
 <hr>
 <h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>打包，编译和破解的流程是什么样的？ </p>
 <ol>
@@ -241,11 +409,33 @@
 </ol>
 <p>15.SE Android安全机制所要保护的对象是什么？<br>SE Android安全机制所要保护的对象是系统中的资源，这些资源分布在各个子系统中.<br>实际上，系统中需要保护的资源非常多，除了文件之外，还有进程、socket和IPC等。</p>
 <hr>
+<h2 id="逆向思维"><a href="#逆向思维" class="headerlink" title="逆向思维"></a>逆向思维</h2><p>获取注册码<br>一般有三种方式，打 log，动态调试 smali，自己写注册机。<br>打 log 日志<br>其实在逆向过程中，注入 log 代码是很常见的操作。适当的打 log，可以很好的帮助我们理解代码执行流程。在这里例子中，最终会拿我们输入的注册码和正确的注册码进行比较，在比较的时候我们就可以通过打 log 把正确的注册码打印出来，这样我们就可以直接输入注册码进行注册了。</p>
+<p>打 log 的 smali 代码是固定的，一般格式如下：</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span>-<span class="keyword">string</span> vX, <span class="string">"TAG"</span>invoke-<span class="keyword">static</span> &#123;vX,vX&#125;, Landroid/util/Log;-&gt;e(Ljava/lang/<span class="keyword">String</span>;Ljava/lang/<span class="keyword">String</span>;)I</span><br></pre></td></tr></table></figure>
+
+<p>vX 都是指寄存器。把这两行代码加到注册码的检验操作之前就可以了：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line"><span class="keyword">.line</span> 63.local v6, <span class="string">"userSN"</span>:<span class="class">Ljava/lang/String;</span>  <span class="comment"># userSN = sb.toString()const-string v8, "TAG"invoke-static &#123;v8,v6&#125;, Landroid/util/Log;-&gt;e(Ljava/lang/String;Ljava/lang/String;)I# userSN.equalsIgnoreCase(sn)invoke-virtual &#123;v6, p2&#125;, Ljava/lang/String;-&gt;equalsIgnoreCase(Ljava/lang/String;)Z</span></span><br><span class="line"></span><br><span class="line">const-string v8, <span class="string">"TAG"</span></span><br><span class="line">invoke-static &#123;v8,v6&#125;, <span class="class">Landroid/util/Log;</span>-&gt;e(<span class="class">Ljava/lang/String;</span><span class="class">Ljava/lang/String;</span>)I</span><br><span class="line"></span><br><span class="line"><span class="comment"># userSN.equalsIgnoreCase(sn)</span></span><br><span class="line">invoke-virtual &#123;v6, p2&#125;, <span class="class">Ljava/lang/String;</span>-&gt;equalsIgnoreCase(<span class="class">Ljava/lang/String;</span>)Z</span><br></pre></td></tr></table></figure>
+<p>再次重新打包运行，输入用户名和注册码，会得到日志</p>
+<p>动态调试 smali<br>动态调试 smali 来的更加直截了当。不管是你自己写程序，还是做逆向，debug 永远都是快速理清逻辑的好方法。smali 也是可以进行动态调试的，依赖于 Smalidea 插件，你可以在 Android Studio 的 Plugin 中进行安装，也可以下载下来本地安装。</p>
+<p>第一步，我们要保证我们的应用处于 debug 版本，在 AndroidManifest.xml 中加上 android:debuggable=”true” 即可，重打包再安装到手机上。</p>
+<p>第二步，将之前反编译得到的 smali 文件夹导入 Android Studio 或者 IDEA，并配置远程调试环境。选择 Run -&gt; Edit Configurations，点击左上角 + 号，选择 Remote，弹出配置窗口，如下图所示：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/2.png" alt></p>
+<p>注意记住自己填写的端口号，端口号不是固定的，只要未被占用即可。配置完成后，记得在合适的地方打上断点，我这里就在 checkSN() 方法内打上断点。</p>
+<p>第三步，命令行启动进程调试等待模式。首先执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell am start -D -n com.droider.crackme0201/.MainActivity</span><br></pre></td></tr></table></figure>
+<p>然后建立端口转发，输入如下命令：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">adb</span> <span class="selector-tag">forward</span> <span class="selector-tag">tcp</span><span class="selector-pseudo">:8700</span> <span class="selector-tag">jdwp</span><span class="selector-pseudo">:pid</span></span><br></pre></td></tr></table></figure>
+<p>用你自己的应用的 pid 替换进去。关于 pid 的获取，可以通过 ps 和 grep 组合：</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">adb shell ps | grep com.droider.crackme0201u0_a364   <span class="number">30110</span> <span class="number">537</span>   <span class="number">2166480</span> <span class="number">30204</span> futex_wait <span class="number">0000000000</span> S com.droider.crackme0201</span><br></pre></td></tr></table></figure>
+<p>这里的 pid 就是 30010 。</p>
+<p>最后在 Android Studio 或 IDEA 中启动 debug 。 点击 Run -&gt; Debug，应用就进入调试模式了。之后的操作就和开发中的 debug 模式一模一样了。我们可以在运行中看到寄存器中的值，运行逻辑一览无遗。运行至注册码校验处的断点，截图如下：</p>
+<p>640?wx_fmt=png<br>userName 是用户名，sn 是输入的注册码，userSN 是正确的注册码。</p>
+<hr>
 <p>参考:<br>Frida-API:<a href="https://frida.re/docs/javascript-api/" target="_blank" rel="noopener">https://frida.re/docs/javascript-api/</a><br>Frida:<br><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
 <p><a href="https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control" target="_blank" rel="noopener">https://blog.csdn.net/freeking101/article/details/106965168?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-9.control</a></p>
 <p>Android逆向工具:<br><a href="https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank" rel="noopener">https://blog.csdn.net/earbao/article/details/54590040?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;dist_request_id=1328680.54300.16164185419388575&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></p>
 <p>Android(系统进程)安全机制:<br><a href="https://blog.csdn.net/haoxuhong/article/details/80140911" target="_blank" rel="noopener">https://blog.csdn.net/haoxuhong/article/details/80140911</a></p>
 <p>脱壳机制原理:<br><a href="https://crifan.github.io/android_app_security_crack/website/android_crack_tech/how_remove_shell_unpacking.html(大佬博客)" target="_blank" rel="noopener">https://crifan.github.io/android_app_security_crack/website/android_crack_tech/how_remove_shell_unpacking.html(大佬博客)</a></p>
+<p>逆向思维:<br><a href="https://blog.csdn.net/u012551350/article/details/98871295" target="_blank" rel="noopener">https://blog.csdn.net/u012551350/article/details/98871295</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -255,9 +445,12 @@
 ]]></content>
   </entry>
   <entry>
-    <title>WAF</title>
+    <title>WAF 绕过</title>
     <url>/2020/12/21/WAF/</url>
     <content><![CDATA[<h2 id="0x01-什么是WAF"><a href="#0x01-什么是WAF" class="headerlink" title="0x01 什么是WAF"></a>0x01 什么是WAF</h2><p>Web应用防火墙（Web Application Firewall，WAF），通过对HTTP(S)请求进行检测，识别并阻断SQL注入、跨站脚本攻击、网页木马上传、命令/代码注入、文件包含、敏感文件访问、第三方应用漏洞攻击、CC攻击、恶意爬虫扫描、跨站请求伪造等攻击，保护Web服务安全稳定。<br>在WAF管理控制台将网站添加并接入WAF，即可启用WAF。启用之后，您网站所有的公网流量都会先经过WAF，恶意攻击流量在WAF上被检测过滤，而正常流量返回给源站IP，从而确保源站IP安全、稳定、可用。<br>WAF支持云模式和独享模式两种部署方式。</p>
+<hr>
+<p>waf绕过:</p>
+<p><a href="https://www.freebuf.com/articles/web/259027.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/259027.html</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -440,7 +633,17 @@
 <p>res-&gt;anim-&gt;translate.xml</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">translate</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:duration</span>=<span class="string">"2000"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:fromXDelta</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:fromYDelta</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:toXDelta</span>=<span class="string">"400"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:toYDelta</span>=<span class="string">"400"</span></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="fragment"><a href="#fragment" class="headerlink" title="fragment"></a>fragment</h2>]]></content>
+<h2 id="fragment"><a href="#fragment" class="headerlink" title="fragment"></a>fragment</h2><h3 id="activity-与-Fragment-通信"><a href="#activity-与-Fragment-通信" class="headerlink" title="activity 与 Fragment 通信"></a>activity 与 Fragment 通信</h3><ul>
+<li>原生方案: Bundle</li>
+<li>java语言中类与类自己的通信常用方案: 接口</li>
+</ul>
+<hr>
+<h2 id="Activity、FragmentActivity和AppCompatActivity的区别"><a href="#Activity、FragmentActivity和AppCompatActivity的区别" class="headerlink" title="Activity、FragmentActivity和AppCompatActivity的区别"></a>Activity、FragmentActivity和AppCompatActivity的区别</h2><h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>Activity是最基础的一个，是其它类的直接或间接父类。<br>Activity中只能使用系统自带的host Fragment（API Level 11中加入），对应getFragmentManager方法来控制Activity和Fragment之间的交互。</p>
+<h3 id="FragmentActivity"><a href="#FragmentActivity" class="headerlink" title="FragmentActivity"></a>FragmentActivity</h3><p>在v4包中引入FragmentActivity，FragmentActivity间接继承自Activity，并提供了对v4包中support Fragment的支持。<br>在FragmentActivity中必须使用getSupportFragmentManager方法来处理support Fragment的交互。也可以处理support Fragment的嵌套使用。</p>
+<h3 id="AppCompatActivity"><a href="#AppCompatActivity" class="headerlink" title="AppCompatActivity"></a>AppCompatActivity</h3><p>AppCompatActivity继承自FragmentActivity，同时取代了ActionBarActivity。<br>AppCompatActivity支持ActionBar功能，同时更推荐使用ToolBar。AppCompatActivity为支持Material Design风格控件提供了便利。</p>
+<hr>
+<p>模仿微信界面:<br><a href="https://blog.csdn.net/ahuyangdong/article/details/82493158" target="_blank" rel="noopener">https://blog.csdn.net/ahuyangdong/article/details/82493158</a><br><a href="https://github.com/ahuyangdong/TabCustom">https://github.com/ahuyangdong/TabCustom</a></p>
+]]></content>
   </entry>
   <entry>
     <title>CEV漏洞复现</title>
