@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Vmp-Ollvm</title>
+    <url>/2021/04/07/vmp-ollvm/</url>
+    <content><![CDATA[<h2 id="固件和固件中的后门"><a href="#固件和固件中的后门" class="headerlink" title="固件和固件中的后门"></a>固件和固件中的后门</h2><p>什么是固件中的后门呢？固件后门是指，固件的开发人员或者恶意攻击者，可以利用所谓的后门，在未得到用户授权的条件下控制或完全控制设备。</p>
+<p>听起来比较抽象，我们举个例子：一般来说，手机用户需要自行设置手机的解锁口令（比如密码、九宫格什么的），只有正确输入解锁口令才能解锁手机。然而，手机的固件中存在一个后门：只要输入一个特殊的口令就可以直接解锁手机。更隐蔽的方法可能是：按10次Home键，按3次增加音量键，再按2次减小音量键，就可以解锁手机。这就是所谓的后门了。</p>
+<p>如果门禁系统有后门，攻击者可以通过后门打开门禁。当然，后门还可能是另一种形式：攻击者给门禁发送一个特殊的指令，门禁告诉攻击者用户那些时候开门了。这样一来，攻击者就可以把握用户的动向，判断用户是否在家。<br>如果智能电报有后门，攻击者或许可以篡改电表数字，让用户支付更多的电费。攻击者或许还可以知道用户用电量的趋势。如果某时刻用电量大，则判断用户在家；如果长时间用电量低，则判断用户出远门了。</p>
+<h2 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h2><p>一个编译器,用来编译so和可执行文件等<br>它将源代码(.c或者.cpp或者.m等文件代码)生成与机器无关的中间代码，称之为IR。然后对产生的IR进行优化，生成对应的机器汇编语言。这和传统编译器前端，中间优化，后端的设计模式很相似。而不同之处在于，可以通过自定制前端或者后端来使之支持编译你的语言，对应的就是将源码转为中间IR代码，或者中间IR代码转为指定的机器代码，即只需要实现指定的前端后者后端即可。这就是LLVM强大的可扩展性。</p>
+<p>对于LLVM来说，其前端是clang，在编译源码文件的时候使用的编译工具也是clang。而生成中间IR代码后需要对IR代码进行一些操作，例如添加一些代码混淆功能。LLVM的做法是通过编写Pass(其实就是对应的一个个类，每个类实现不同的功能)来实现混淆的功能。所以实现混淆，其实就是编写功能性的Pass。</p>
+<h2 id="OLLVM"><a href="#OLLVM" class="headerlink" title="OLLVM"></a>OLLVM</h2><p>在LLVM的基础上去混淆so</p>
+<h1 id="二进制自动化分析工具"><a href="#二进制自动化分析工具" class="headerlink" title="二进制自动化分析工具"></a>二进制自动化分析工具</h1><h2 id="1-angr"><a href="#1-angr" class="headerlink" title="1.angr"></a>1.angr</h2><p><a href="http://angr.io/" target="_blank" rel="noopener">http://angr.io/</a><br><a href="https://github.com/angr">https://github.com/angr</a></p>
+<h2 id="2-Pin插桩"><a href="#2-Pin插桩" class="headerlink" title="2.Pin插桩"></a>2.Pin插桩</h2><p>Pin 是 Intel 公司研发的一个动态二进制插桩框架，可以在二进制程序运行过程中插入各种函数，以监控程序每一步的执行。</p>
+<p>插桩技术：在不改变程序原有运行顺序的基础下，在程序中插入一些用来进行信息记录的探针，通过探针的执行使程序自动抛出一些信息，再加以对这些信息的分析，获得程序控制流和数据流的信息。分为源代码插桩和二进制插桩。<br>源码插桩：修改源代码，插入额外的代码，我们日常调试程序中打log的方法就是源代码插桩。<br>二进制插桩：分为静态二进制插桩和动态二进制插桩。<br>静态二进制插桩：插入额外的汇编代码，生成一个新的可执行程序。<br>动态二进制插桩：用动态库的方式，运行时动态的注入代码，不会改变原有二进制程序。<br>Pin可以用于对可执行程序进行运行时动态插桩来分析程序的运行信息。它支持Linux，macOS，Windows等多个平台和IA-32，Intel(R) 64等指令架构。在官方文档中Pin可以理解一种“just in time”编译器，只不过编译的是常规的可执行文件，而不是字节码。</p>
+<p>最细粒度的就是instruction instrumentation即指令级插桩，它可以遍历程序执行的指令，很适合初学者使用。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Xposed Hook技术及root检测绕过</title>
     <url>/2021/03/30/Xposed-hook/</url>
     <content><![CDATA[<h1 id="Xposed-Hook原理及运用"><a href="#Xposed-Hook原理及运用" class="headerlink" title="Xposed Hook原理及运用"></a>Xposed Hook原理及运用</h1><p>安装好的Xposed在重启手机过程中 通过替换/system/bin/app_process的程序 控制zygote进程，同时在app_process启动过程中会加载XposedBridge.jar这个包 (里面是后面说到的xposed api代码), 让基于Xposed开发的模块app们 都能使用XposedBridge.jar里的api (像android.jar那样, 后面会说到如何使用)，然后对Zygote进程和Dalvik虚拟机进行劫持。</p>
@@ -491,7 +506,7 @@
 <p>最后在 Android Studio 或 IDEA 中启动 debug 。 点击 Run -&gt; Debug，应用就进入调试模式了。之后的操作就和开发中的 debug 模式一模一样了。我们可以在运行中看到寄存器中的值，运行逻辑一览无遗。运行至注册码校验处的断点，截图如下：</p>
 <p>640?wx_fmt=png<br>userName 是用户名，sn 是输入的注册码，userSN 是正确的注册码。</p>
 <hr>
-<h1 id="adb的相关使用"><a href="#adb的相关使用" class="headerlink" title="adb的相关使用"></a>adb的相关使用</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys activity top //显示当前页的activity6.</span><br><span class="line">adb shell dumpsys package 包名 //获取包信息</span><br><span class="line">adb shell dumpsys meminfo 包名 //获取当前应用程序的内存数据</span><br><span class="line">adb shell dumpsys dbinfo packagename //获取数据库文件</span><br><span class="line">adb shell  pm list packages //列出当前所有已安装的程序包名</span><br><span class="line">adb shell pm path packagename //获取指定程序所在的路径</span><br><span class="line">adb shell dumpsys window | findstr mCurrentFocus //当前应用包名</span><br></pre></td></tr></table></figure>
+<h1 id="adb的相关使用"><a href="#adb的相关使用" class="headerlink" title="adb的相关使用"></a>adb的相关使用</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell dumpsys activity top //显示当前页的activity.</span><br><span class="line">adb shell dumpsys package 包名 //获取包信息</span><br><span class="line">adb shell dumpsys meminfo 包名 //获取当前应用程序的内存数据</span><br><span class="line">adb shell dumpsys dbinfo packagename //获取数据库文件</span><br><span class="line">adb shell  pm list packages //列出当前所有已安装的程序包名</span><br><span class="line">adb shell pm path packagename //获取指定程序所在的路径</span><br><span class="line">adb shell dumpsys window | findstr mCurrentFocus //当前应用包名</span><br></pre></td></tr></table></figure>
 
 <h2 id="除去广告"><a href="#除去广告" class="headerlink" title="除去广告"></a>除去广告</h2><p>一、删除广告网络权限（去除广告）,在AndroidManifest.xml中删除如下权限信息：<br>与网络权限有关的五种</p>
 <ol>
@@ -506,8 +521,8 @@
 <li><p>允许应用程序完全使用网络（不能删除，会导致app无法运行）</p>
 </li>
 </ol>
-<p>二、修改app入口页面的除去广告<br>检查AndroidManifest.xml是否同时包括<br><action android:name="android.intent.action.VIEW"><br><category android:name="android.intent.category.DEFAULT"><br>可以看到游戏的入口页面</category></action></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">android:name=<span class="string">"com.popcap.pvz2cthd360.SexyAppActivity"</span></span><br></pre></td></tr></table></figure>
+<p>二、修改app入口页面去广告<br>检查AndroidManifest.xml是否同时包括<br><action android:name="android.intent.action.VIEW"><br><category android:name="android.intent.category.DEFAULT"><br>可以看到游戏的入口页面</category></action></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">android:=<span class="string">"com.popcap.pvz2cthd360.wxapi.WXEntryActivity"</span></span><br><span class="line">android:name=<span class="string">"com.popcap.pvz2cthd360.SexyAppActivity"</span></span><br></pre></td></tr></table></figure>
 <p>adb shell dumpsys activity top //查看当前页面入口<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/1.png" alt></p>
 <p>将app入口页面替换成当前入口页面（没有广告的入口页面）</p>
 <p>三、更改图标及apk名字<br>AndroidKiller中搜索<code>android:icon -&gt; 看到ic_launcher -&gt; 在.MF文件中搜索 -&gt; 找到icon路径</code></p>
@@ -531,6 +546,17 @@
 <li>查看logcat日志<br>去广告：<br>打开DDMS -&gt; 添加过滤器 -&gt; 浏览日志信息，找到https://广告链接</li>
 </ol>
 <p>-&gt; 替换为127.0.0.1</p>
+<h3 id="真机调试"><a href="#真机调试" class="headerlink" title="真机调试"></a>真机调试</h3><ul>
+<li>使用mprop<br>getprop ro.product.cpu.abi<br>下载mprop :<a href="https://github.com/wpvsyou/mprop/blob/master/arm64-v8a/mprop">https://github.com/wpvsyou/mprop/blob/master/arm64-v8a/mprop</a><br>adb -s fea4b345 push mprop /data/local/tmp</li>
+</ul>
+<p>手机端:<br>chmod 755 mprop<br>./mprop ro.debuggable 1</p>
+<ul>
+<li><p>magisk(重启失效)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell <span class="comment">#adb进入命令行模式</span></span><br><span class="line">su <span class="comment">#切换至超级用户</span></span><br><span class="line">magisk resetprop ro.debuggable 1</span><br><span class="line">stop;start; <span class="comment">#一定要通过该方式重启</span></span><br><span class="line">getprop ro.debuggable <span class="comment">#显示1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MagiskHide Props Config模块修改(永久有效)<br>Magisk中搜索MagiskHide Props Config模块并安装</p>
+</li>
+</ul>
 <h2 id="log插桩调试smail代码"><a href="#log插桩调试smail代码" class="headerlink" title="log插桩调试smail代码"></a>log插桩调试smail代码</h2><h3 id="应用程序入口页面插入信息"><a href="#应用程序入口页面插入信息" class="headerlink" title="应用程序入口页面插入信息"></a>应用程序入口页面插入信息</h3><p>将apk拖入AndroidKiller<br>工程信息栏找到入口 -&gt; 找到OnCreate函数<br>在<code>.prologue</code>(代码开始的位置) 下一行插入 -&gt; 右键 -&gt; 插入代码 -&gt; log信息输出</p>
 <h3 id="程序入口点插入log信息"><a href="#程序入口点插入log信息" class="headerlink" title="程序入口点插入log信息"></a>程序入口点插入log信息</h3><p>工程管理器 -&gt; AndroidMainfest.xml -&gt; application -&gt;<br>android:name= “程序入口点” -&gt; smail中找到 -&gt; OnCreat()<br>-&gt; .prologue 下面插入log信息 -&gt; DDMS添加过滤器（主要填写过滤器名字和包名信息）查看 -&gt; 根据插入的日志信息进行筛选（应用程序执行入口页面早于程序入口页面）</p>
 <p><code>注意:
@@ -562,8 +588,15 @@
 <h2 id="基于Frida的工具"><a href="#基于Frida的工具" class="headerlink" title="基于Frida的工具"></a>基于Frida的工具</h2><p>FRIDA-DEXDUMP<br>github地址：<a href="https://github.com/hluwa/FRIDA-DEXDump">https://github.com/hluwa/FRIDA-DEXDump</a><br>这个工具主要是暴力搜索内存dump dex方式。<br>对于完整的dex，采用暴力搜索dexn035即可找到。 而对于抹头的dex，通过匹配一些特征来找到，然后自动修复文件头，很强大的一个脚本工具。</p>
 <p>Frida-Apk-Unpack<br>github地址：<br><a href="https://github.com/hluwa/FRIDA-DEXDump">https://github.com/hluwa/FRIDA-DEXDump</a><br><a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack">https://github.com/GuoQiang1993/Frida-Apk-Unpack</a><br>上面这三个工具都是优先找到OpenMemory和OpenCommon函数，在内存中，也就是app loader以后查找dex文件头dex035，然后根据dex size偏移量把dex整个dump下来。但这个工具在android7.1以上测试由于hook opencommon(libart.so中openmemory去掉了，只能用opencommon这个入口)函数，存在无法唤醒函数情况。</p>
 <hr>
-<h1 id="app重新打包过程"><a href="#app重新打包过程" class="headerlink" title="app重新打包过程"></a>app重新打包过程</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#apktool</span>反编译</span><br><span class="line"><span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">Apktool_2</span><span class="selector-class">.5</span><span class="selector-class">.0</span><span class="selector-class">.jar</span> <span class="selector-tag">d</span> <span class="selector-tag">zwdzjs</span><span class="selector-class">.apk</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 重新打包</span><br><span class="line"><span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">Apktool_2</span><span class="selector-class">.5</span><span class="selector-class">.0</span><span class="selector-class">.jar</span> <span class="selector-tag">b</span> <span class="selector-tag">zwdzjs</span></span><br><span class="line"></span><br><span class="line"># 生成<span class="selector-tag">key</span></span><br><span class="line"><span class="selector-tag">keytool</span> <span class="selector-tag">-genkey</span> <span class="selector-tag">-alias</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span> <span class="selector-tag">-keyalg</span> <span class="selector-tag">RSA</span> <span class="selector-tag">-validity</span> 20000 <span class="selector-tag">-keystore</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span></span><br><span class="line"></span><br><span class="line"># 使用上面生成的<span class="selector-tag">key</span>进行签名</span><br><span class="line"><span class="selector-tag">jarsigner</span> <span class="selector-tag">-verbose</span> <span class="selector-tag">-keystore</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span> <span class="selector-tag">-signedjar</span> <span class="selector-tag">zwdzjs_signed</span><span class="selector-class">.apk</span> <span class="selector-tag">zwdzjs</span><span class="selector-class">.apk</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span></span><br></pre></td></tr></table></figure>
-
+<h1 id="app重新打包过程"><a href="#app重新打包过程" class="headerlink" title="app重新打包过程"></a>app重新打包过程</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#apktool</span>反编译</span><br><span class="line"><span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">Apktool_2</span><span class="selector-class">.5</span><span class="selector-class">.0</span><span class="selector-class">.jar</span> <span class="selector-tag">d</span> <span class="selector-tag">zwdzjs</span><span class="selector-class">.apk</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 重新打包</span><br><span class="line"><span class="selector-tag">java</span> <span class="selector-tag">-jar</span> <span class="selector-tag">Apktool_2</span><span class="selector-class">.5</span><span class="selector-class">.0</span><span class="selector-class">.jar</span> <span class="selector-tag">b</span> <span class="selector-tag">zwdzjs</span></span><br><span class="line"></span><br><span class="line"># 生成<span class="selector-tag">key</span></span><br><span class="line"><span class="selector-tag">keytool</span> <span class="selector-tag">-genkey</span> <span class="selector-tag">-alias</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span> <span class="selector-tag">-keyalg</span> <span class="selector-tag">RSA</span> <span class="selector-tag">-validity</span> 20000 <span class="selector-tag">-keystore</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 使用上面生成的<span class="selector-tag">key</span>进行签名</span><br><span class="line"><span class="selector-tag">jarsigner</span> <span class="selector-tag">-verbose</span> <span class="selector-tag">-keystore</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span> <span class="selector-tag">-signedjar</span> <span class="selector-tag">zwdzjs_signed</span><span class="selector-class">.apk</span> <span class="selector-tag">zwdzjs</span><span class="selector-class">.apk</span> <span class="selector-tag">q0o0p</span><span class="selector-class">.keystore</span></span><br></pre></td></tr></table></figure>
+<p>首先记得去除签名，用WinRAR打开apk，找到META-INF文件夹，删除MANIFEST.MF之外的所有其他文件即可。</p>
+<p>jarsigner方式只支持v1签名，apksigner方式支持v1和v2的方式。<br>v1和v2的区别，可以参考 <a href="https://blog.csdn.net/qq_32115439/article/details/55520012。" target="_blank" rel="noopener">https://blog.csdn.net/qq_32115439/article/details/55520012。</a><br>方式一：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jarsigner -verbose -keystore [您的私钥存放路径] -signedjar [签名后文件存放路径] [未签名的文件路径] [您的证书名称]</span><br><span class="line">jarsigner -verbose -keystore ~/Workspace/mykeystore -signedjar ./signed.apk ./unsigned.apk xiaomi</span><br></pre></td></tr></table></figure>
+<p>方式二：</p>
+<p>apksigner sign –ks 密钥库名 –ks-key-alias 密钥别名 xxx.apk</p>
+<p>上述命令，签名后没有改变文件名称。如何判断是否签名成功？可以采用如下命令。</p>
+<p>打印签名信息命令：</p>
+<p>keytool -genkey -alias demo.keystore -keyalg RSA -validity 20000 -keystore demo.keystore<br>keytool -list -printcert -jarfile appname.apk</p>
 <hr>
 <p>梆梆&amp;爱加密java反调试绕过：<br><a href="https://bbs.pediy.com/thread-259610.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-259610.htm</a><br>基于Frida的工具：<br><a href="https://yangrz.github.io/blog/2020/06/09/frida/" target="_blank" rel="noopener">https://yangrz.github.io/blog/2020/06/09/frida/</a><br>Android ART虚拟机：<br><a href="https://blog.csdn.net/u011337574/article/details/81362621" target="_blank" rel="noopener">https://blog.csdn.net/u011337574/article/details/81362621</a></p>
 <hr>

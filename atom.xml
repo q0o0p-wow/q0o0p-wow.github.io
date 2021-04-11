@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-04-06T08:44:45.638Z</updated>
+  <updated>2021-04-07T11:39:18.590Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vmp-Ollvm</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/07/vmp-ollvm/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/07/vmp-ollvm/</id>
+    <published>2021-04-07T09:00:28.000Z</published>
+    <updated>2021-04-07T11:39:18.590Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;固件和固件中的后门&quot;&gt;&lt;a href=&quot;#固件和固件中的后门&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Xposed Hook技术及root检测绕过</title>
@@ -151,7 +172,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/</id>
     <published>2021-02-19T15:23:23.000Z</published>
-    <updated>2021-04-06T09:07:44.358Z</updated>
+    <updated>2021-04-11T01:43:49.511Z</updated>
     
     
       
@@ -406,27 +427,6 @@
         
         
     <summary type="html">&lt;p&gt;逆向常用工具:&lt;br&gt;|调试器|反编译工具|使用范围|&lt;br&gt;|–|–|–|&lt;br&gt;|静态调试工具|IDApro|反编译C++/C|&lt;br&gt;|静态调试工具|jeb|反编译Android|&lt;br&gt;|动态调试器|onlydbg|windows|&lt;br&gt;|动态调试器|gdb|li</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>路由安全</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/WIFI/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/WIFI/</id>
-    <published>2020-11-17T02:43:24.000Z</published>
-    <updated>2020-11-17T04:34:45.386Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;白帽子讲路由器安全&lt;br&gt;&lt;a href=&quot;https://www.hetianlab.com/expc.do?ce=1d3ba483-c584-4604-a543-1d82bbb09cda&quot; target=&quot;_blank&quot;</summary>
         
       
     
