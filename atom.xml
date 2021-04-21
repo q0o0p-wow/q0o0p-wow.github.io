@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-04-11T02:18:36.151Z</updated>
+  <updated>2021-04-21T06:37:27.352Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ida</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/19/ida/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/19/ida/</id>
+    <published>2021-04-19T15:12:22.000Z</published>
+    <updated>2021-04-21T06:37:27.352Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;通用寄存器：&quot;&gt;&lt;a href=&quot;#通用寄存器：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>App木马介绍</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/14/Rootkits-analysis/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/14/Rootkits-analysis/</id>
+    <published>2021-04-14T08:35:05.000Z</published>
+    <updated>2021-04-14T13:22:39.483Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Clicker木马&quot;&gt;&lt;a href=&quot;#Clicker木马&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>简单介绍Vmp，ollvm</title>
@@ -63,19 +105,50 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/29/Blackbox-tool/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/29/Blackbox-tool/</id>
     <published>2021-03-29T09:00:09.000Z</published>
-    <updated>2021-04-06T07:37:31.765Z</updated>
+    <updated>2021-04-21T10:31:00.042Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;qark安装&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/vivian_ll/article/details/84769520&quot; target=&quot;_blank&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;OWASP-MASVS&quot;&gt;&lt;a href=&quot;#OWASP-MASVS&quot; class=&quot;headerlink&quot; title=&quot;OWASP MASVS&quot;&gt;&lt;/a&gt;OWASP MASVS&lt;/h2&gt;&lt;p&gt;•</summary>
         
       
     
     
     
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/Android/"/>
+    
+    
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android逆向及工具使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/28/Android-Reverse/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/28/Android-Reverse/</id>
+    <published>2021-03-28T15:23:23.000Z</published>
+    <updated>2021-04-21T10:31:20.732Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;App加壳和脱壳&quot;&gt;&lt;a href=&quot;#App加壳和脱壳&quot; class=&quot;headerlink&quot; title=&quot;App加壳和脱壳&quot;&gt;&lt;/a&gt;App加壳和脱壳&lt;/h1&gt;&lt;h2 id=&quot;常见的壳&quot;&gt;&lt;a href=&quot;#常见的壳&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="tools" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/tools/"/>
+    
+    
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
+    
+    <category term="reverse" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/reverse/"/>
     
   </entry>
   
@@ -84,18 +157,15 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/27/Caught-tools/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/27/Caught-tools/</id>
     <published>2021-03-27T11:57:41.000Z</published>
-    <updated>2021-04-06T07:30:31.146Z</updated>
+    <updated>2021-04-21T08:30:36.928Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;fiddler手机抓包配置&lt;/p&gt;
-&lt;p&gt;burpsuite手机抓包配置&lt;/p&gt;
-&lt;p&gt;Xposed+XServer无需脱壳抓取加密包&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;360加固脱壳分析:&lt;br&gt;&lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;fiddler手机抓包配置&quot;&gt;&lt;a href=&quot;#fiddler手机抓包配置&quot; class=&quot;headerlink&quot; title=&quot;fiddler手机抓包配置&quot;&gt;&lt;/a&gt;fiddler手机抓包配置&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 id=&quot;Burp-Suite&quot;&gt;&lt;a</summary>
         
       
     
@@ -130,7 +200,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/</id>
     <published>2021-03-23T13:44:18.000Z</published>
-    <updated>2021-04-06T09:02:05.166Z</updated>
+    <updated>2021-04-21T08:33:26.674Z</updated>
     
     
       
@@ -151,7 +221,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/packers-shelling/</id>
     <published>2021-03-23T13:19:38.000Z</published>
-    <updated>2021-04-06T07:29:19.151Z</updated>
+    <updated>2021-04-21T02:11:06.253Z</updated>
     
     
       
@@ -164,27 +234,12 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Android逆向及工具使用</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/Android-Reverse/</id>
-    <published>2021-02-19T15:23:23.000Z</published>
-    <updated>2021-04-11T01:43:49.511Z</updated>
+    <category term="脱壳" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/%E8%84%B1%E5%A3%B3/"/>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;App加壳和脱壳&quot;&gt;&lt;a href=&quot;#App加壳和脱壳&quot; class=&quot;headerlink&quot; title=&quot;App加壳和脱壳&quot;&gt;&lt;/a&gt;App加壳和脱壳&lt;/h1&gt;&lt;h2 id=&quot;常见的壳&quot;&gt;&lt;a href=&quot;#常见的壳&quot; class=&quot;headerlink&quot;</summary>
-        
-      
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
     
-    
-    
+    <category term="逆向" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/%E9%80%86%E5%90%91/"/>
     
   </entry>
   
@@ -384,51 +439,6 @@
     <published>2020-11-21T10:10:12.000Z</published>
     <updated>2020-11-21T10:10:12.289Z</updated>
     
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Apache shoir身份绕过(CVE-2020-11989)</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/</id>
-    <published>2020-11-19T03:22:00.000Z</published>
-    <updated>2020-11-19T03:37:47.703Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近在写java web的小练习时候刚好用到了shiro安全框架,偶然间看到了shiro的权限绕过漏洞&lt;br&gt;瞬间感觉颇有意思,顺便参考大佬们的博客初步探索一下,顺便在水一篇博客(开坑不填…).&lt;/p&gt;
-&lt;h2 id=&quot;漏洞风险&quot;&gt;&lt;a href=&quot;#漏洞风险&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="CEV" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CEV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>逆向分析</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/reverse/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/17/reverse/</id>
-    <published>2020-11-17T04:42:50.000Z</published>
-    <updated>2020-11-17T13:17:23.242Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;逆向常用工具:&lt;br&gt;|调试器|反编译工具|使用范围|&lt;br&gt;|–|–|–|&lt;br&gt;|静态调试工具|IDApro|反编译C++/C|&lt;br&gt;|静态调试工具|jeb|反编译Android|&lt;br&gt;|动态调试器|onlydbg|windows|&lt;br&gt;|动态调试器|gdb|li</summary>
-        
-      
     
     
     
