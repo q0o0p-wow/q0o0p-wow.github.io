@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-04-14T13:22:39.483Z</updated>
+  <updated>2021-04-11T02:18:36.151Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>App木马介绍</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/14/Rootkits-analysis/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/14/Rootkits-analysis/</id>
-    <published>2021-04-14T08:35:05.000Z</published>
-    <updated>2021-04-14T13:22:39.483Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Clicker木马&quot;&gt;&lt;a href=&quot;#Clicker木马&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>简单介绍Vmp，ollvm</title>
@@ -467,6 +446,34 @@
     
     
     
+    
+  </entry>
+  
+  <entry>
+    <title>Android-Payload</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/</id>
+    <published>2020-08-12T14:58:11.000Z</published>
+    <updated>2020-08-19T07:18:45.852Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;打开终端，安装ufw防火墙，开启5555端口&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/Payload/"/>
+    
+    
+    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
+    
+    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Payload/"/>
     
   </entry>
   

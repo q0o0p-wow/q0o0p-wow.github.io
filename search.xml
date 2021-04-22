@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>App木马介绍</title>
-    <url>/2021/04/14/Rootkits-analysis/</url>
-    <content><![CDATA[<h2 id="Clicker木马"><a href="#Clicker木马" class="headerlink" title="Clicker木马"></a>Clicker木马</h2><p>Clicker木马是广泛的恶意程序，旨在提高网站访问率在线赚钱。它们通过单击链接和其他交互式元素来模拟网页上的用户操作，实现无声地模拟与广告网站的交互，自动订阅付费服务。该木马是一个恶意模块，它内置于普通应用程序中，例如字典，在线地图，音频播放器，条形码扫描仪和其他软件。</p>
-<h2 id="Joker木马"><a href="#Joker木马" class="headerlink" title="Joker木马"></a>Joker木马</h2><p>Joker恶意家族采用动态加载的方式进行触发恶意行为，通过两次远程下载才将真正的恶意模块落地并执行起来。</p>
-<p>Haken木马</p>
-<p>Clicker木马<br><a href="https://www.freebuf.com/articles/terminal/230524.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/terminal/230524.html</a><br>Joker木马<br><a href="https://xz.aliyun.com/t/8060" target="_blank" rel="noopener">https://xz.aliyun.com/t/8060</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>简单介绍Vmp，ollvm</title>
     <url>/2021/04/07/vmp-ollvm/</url>
     <content><![CDATA[<h2 id="固件和固件中的后门"><a href="#固件和固件中的后门" class="headerlink" title="固件和固件中的后门"></a>固件和固件中的后门</h2><p>什么是固件中的后门呢？固件后门是指，固件的开发人员或者恶意攻击者，可以利用所谓的后门，在未得到用户授权的条件下控制或完全控制设备。</p>
