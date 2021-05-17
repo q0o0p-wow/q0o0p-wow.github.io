@@ -6,7 +6,7 @@
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/atom.xml" rel="self"/>
   
   <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/"/>
-  <updated>2021-04-11T02:18:36.151Z</updated>
+  <updated>2021-04-13T13:39:22.000Z</updated>
   <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/</id>
   
   <author>
@@ -15,6 +15,188 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Drozer</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/17/drozer/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/17/drozer/</id>
+    <published>2021-05-17T08:18:05.572Z</published>
+    <updated>2021-04-13T13:39:22.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://labs.f-secure.com/tools/drozer/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://labs.f-secure.com/tools/drozer/&lt;/a&gt;&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MIUI的正确使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/07/miui12-android11/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/07/miui12-android11/</id>
+    <published>2021-05-07T11:28:33.000Z</published>
+    <updated>2021-05-17T08:25:31.391Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;miui自带搜狗输入法剪切板路径&lt;/p&gt;
+&lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>逆向学习之旅——（010 Editor注册）</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/07/reverse/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/07/reverse/</id>
+    <published>2021-05-07T11:28:33.000Z</published>
+    <updated>2021-05-17T08:23:28.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;010-editor&quot;&gt;&lt;a href=&quot;#010-editor&quot; class=&quot;headerlink&quot; title=&quot;010 editor&quot;&gt;&lt;/a&gt;010</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>移动安全之旅</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/06/mobile-security-top10/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/05/06/mobile-security-top10/</id>
+    <published>2021-05-06T14:07:49.000Z</published>
+    <updated>2021-05-17T08:23:59.527Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;常用的测试技术&quot;&gt;&lt;a href=&quot;#常用的测试技术&quot; class=&quot;headerlink&quot; title=&quot;常用的测试技术&quot;&gt;&lt;/a&gt;常用的测试技术&lt;/h2&gt;&lt;p&gt;• 黑盒测试(DAST)是在测试人员尚未知晓任何关于被测 App</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Cipher的使用</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/%C2%96Cipher/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/%C2%96Cipher/</id>
+    <published>2021-04-26T12:27:20.000Z</published>
+    <updated>2021-04-26T12:48:21.425Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Cipher类-AES-ECB-PKCS5Padding-加解密整理&quot;&gt;&lt;a href=&quot;#Cipher类-AES-ECB-PKCS5Padding-加解密整理&quot; class=&quot;headerlink&quot; title=&quot;Cipher类</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SHA</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/SHA/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/SHA/</id>
+    <published>2021-04-26T12:19:00.000Z</published>
+    <updated>2021-04-26T12:19:00.523Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>java实现MD5,以及base64+MD5</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/MD5/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/26/MD5/</id>
+    <published>2021-04-26T12:17:19.000Z</published>
+    <updated>2021-04-28T07:41:18.538Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;思路&lt;/strong&gt;&lt;br&gt;    (1)直接使用new MessageDigist( )来创建对象，而必须通过其静态方法getInstance( )生成MessageDigest对象。]sghkl;’&lt;br&gt;    ‘&lt;br&gt;   </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Iot-Fuzzing</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/iot-fuzzing/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/iot-fuzzing/</id>
+    <published>2021-04-23T08:13:15.000Z</published>
+    <updated>2021-04-23T08:23:22.573Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/zyw-200/FirmAFL&quot;&gt;https://github.com/zyw-200/FirmAFL&lt;/a&gt;&lt;br&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Monody</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/monody/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/monody/</id>
+    <published>2021-04-23T07:52:33.000Z</published>
+    <updated>2021-04-27T03:28:42.440Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;密码学算法&quot;&gt;&lt;a href=&quot;#密码学算法&quot; class=&quot;headerlink&quot; title=&quot;密码学算法&quot;&gt;&lt;/a&gt;密码学算法&lt;/h1&gt;&lt;h1 id=&quot;HOOK&quot;&gt;&lt;a href=&quot;#HOOK&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>简单介绍Vmp，ollvm</title>
@@ -88,7 +270,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/28/Android-Reverse/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/28/Android-Reverse/</id>
     <published>2021-03-28T15:23:23.000Z</published>
-    <updated>2021-04-22T00:52:18.805Z</updated>
+    <updated>2021-05-07T11:34:46.438Z</updated>
     
     
       
@@ -136,7 +318,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/03/23/hook-frida/</id>
     <published>2021-03-23T13:44:18.000Z</published>
-    <updated>2021-04-22T02:02:32.123Z</updated>
+    <updated>2021-05-06T13:57:07.890Z</updated>
     
     
       
@@ -184,7 +366,7 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/ida/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/02/19/ida/</id>
     <published>2021-02-19T15:12:22.000Z</published>
-    <updated>2021-04-22T02:03:28.990Z</updated>
+    <updated>2021-04-23T11:36:25.885Z</updated>
     
     
       
@@ -205,14 +387,14 @@
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/27/Caught-tools/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/27/Caught-tools/</id>
     <published>2021-01-27T11:57:41.000Z</published>
-    <updated>2021-04-22T02:03:48.844Z</updated>
+    <updated>2021-05-17T08:38:35.088Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;fiddler手机抓包&quot;&gt;&lt;a href=&quot;#fiddler手机抓包&quot; class=&quot;headerlink&quot; title=&quot;fiddler手机抓包&quot;&gt;&lt;/a&gt;fiddler手机抓包&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;fiddler-HttpCanary手机抓包&quot;&gt;&lt;a href=&quot;#fiddler-HttpCanary手机抓包&quot; class=&quot;headerlink&quot; title=&quot;fiddler, HttpCanary手机抓包&quot;&gt;&lt;/a&gt;fiddler,</summary>
         
       
     
@@ -264,216 +446,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>Android 基础篇</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/25/Android-study/</id>
-    <published>2020-11-25T11:39:04.000Z</published>
-    <updated>2021-03-29T09:11:58.556Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;0x01-生命周期&quot;&gt;&lt;a href=&quot;#0x01-生命周期&quot; class=&quot;headerlink&quot; title=&quot;0x01 生命周期&quot;&gt;&lt;/a&gt;0x01 生命周期&lt;/h2&gt;&lt;p&gt;Activity launched&lt;br&gt;onCreate():</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>CEV漏洞复现</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/0day/</id>
-    <published>2020-11-23T11:58:48.000Z</published>
-    <updated>2021-02-08T07:07:48.623Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;CVE-2020-0796-SMBv3漏洞复现与提权”永恒之黑”&quot;&gt;&lt;a href=&quot;#CVE-2020-0796-SMBv3漏洞复现与提权”永恒之黑”&quot; class=&quot;headerlink&quot; title=&quot;CVE-2020-0796 -</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Sql注入</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/</id>
-    <published>2020-11-23T11:04:03.000Z</published>
-    <updated>2020-12-02T04:39:00.405Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;搭建sqli-lab靶场&quot;&gt;&lt;a href=&quot;#搭建sqli-lab靶场&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Apache shoir身份绕过(CVE-2020-11989)</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/19/web-shiro/</id>
-    <published>2020-11-19T03:22:00.000Z</published>
-    <updated>2020-11-19T03:37:47.703Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近在写java web的小练习时候刚好用到了shiro安全框架,偶然间看到了shiro的权限绕过漏洞&lt;br&gt;瞬间感觉颇有意思,顺便参考大佬们的博客初步探索一下,顺便在水一篇博客(开坑不填…).&lt;/p&gt;
-&lt;h2 id=&quot;漏洞风险&quot;&gt;&lt;a href=&quot;#漏洞风险&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="CEV" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CEV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kotlin-Study</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/</id>
-    <published>2020-11-13T14:05:46.000Z</published>
-    <updated>2020-11-17T14:08:22.485Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;增加依赖:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Gradle工程&lt;br&gt;下载Gradle: &lt;a href=&quot;https://gradle.org/releases/&quot; target=&quot;_blank&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Badusb</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/08/badusb/</id>
-    <published>2020-11-08T08:20:31.000Z</published>
-    <updated>2020-11-14T13:22:56.577Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;攻击方式&quot;&gt;&lt;a href=&quot;#攻击方式&quot; class=&quot;headerlink&quot; title=&quot;攻击方式&quot;&gt;&lt;/a&gt;攻击方式&lt;/h2&gt;&lt;p&gt;硬件直接插入对方电脑，让对方电脑执行代码，达到干扰、控制主机或者窃取信息等目的。  &lt;/p&gt;
-&lt;hr&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Html-Css-Js</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/10/10/html-css-js/</id>
-    <published>2020-10-10T08:04:21.000Z</published>
-    <updated>2020-11-04T04:40:22.634Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近写动态网站的大作业-_- 头疼&lt;br&gt;前端标签和属性太多,水一篇记录一下常用属性&lt;br&gt;写的原因还是因为健忘&lt;/p&gt;
-&lt;p&gt;常用的修改超链接属性&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a&gt;标签&lt;/a&gt;&lt;/p&gt;
-&lt;figure</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Layui+shiro</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/21/java-layui/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/09/21/java-layui/</id>
-    <published>2020-09-21T12:18:31.000Z</published>
-    <updated>2020-11-04T04:40:22.509Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;layui&quot;&gt;&lt;a href=&quot;#layui&quot; class=&quot;headerlink&quot; title=&quot;layui&quot;&gt;&lt;/a&gt;layui&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;默认选中&lt;br&gt;class = “layui-this”&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android-Payload</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/12/Android-payload/</id>
-    <published>2020-08-12T14:58:11.000Z</published>
-    <updated>2020-08-19T07:18:45.852Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;打开终端，安装ufw防火墙，开启5555端口&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/categories/Payload/"/>
-    
-    
-    <category term="Android" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Android/"/>
-    
-    <category term="Payload" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/Payload/"/>
     
   </entry>
   
