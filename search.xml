@@ -2173,6 +2173,19 @@ v2就保存了t方法的返回值String类型</code></pre></li>
 ]]></content>
   </entry>
   <entry>
+    <title>模拟手写---打印</title>
+    <url>/2020/06/29/Simulation-Handwritten/</url>
+    <content><![CDATA[<p>xxxx实习,手写几十页报告…<br>emmm…出于探索学习新东西的目的…(具体原因…略)开启了制作逼真’手写报告’的实验开始了…</p>
+<h2 id="1-准备字体库"><a href="#1-准备字体库" class="headerlink" title="1. 准备字体库"></a>1. 准备字体库</h2><p>安装一些字形相近的手写字体,</p>
+<h2 id="2-安装word宏-没自带的情况下需要安装-创建宏"><a href="#2-安装word宏-没自带的情况下需要安装-创建宏" class="headerlink" title="2. 安装word宏(没自带的情况下需要安装),创建宏"></a>2. 安装word宏(没自带的情况下需要安装),创建宏</h2><p>wps创建word 宏 :<br>【工具】-【js宏】-【宏编辑器】<br><img src="https://q0o0p.top/2018/06/29/Simulation-Handwritten/1.png" alt></p>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Sub 字体修改()</span><br><span class="line">'</span><br><span class="line">' 字体修改 宏</span><br><span class="line">'</span><br><span class="line">    Dim R_Character As <span class="keyword">Range</span></span><br><span class="line"></span><br><span class="line">    Dim <span class="keyword">FontSize</span>(<span class="number">5</span>)</span><br><span class="line">    ' 字体大小在<span class="number">5</span>个值之间进行波动，可以改写</span><br><span class="line">    <span class="keyword">FontSize</span>(<span class="number">1</span>) = <span class="string">"21"</span></span><br><span class="line">    <span class="keyword">FontSize</span>(<span class="number">2</span>) = <span class="string">"21.5"</span></span><br><span class="line">    <span class="keyword">FontSize</span>(<span class="number">3</span>) = <span class="string">"22"</span></span><br><span class="line">    <span class="keyword">FontSize</span>(<span class="number">4</span>) = <span class="string">"22.5"</span></span><br><span class="line">    <span class="keyword">FontSize</span>(<span class="number">5</span>) = <span class="string">"23"</span></span><br><span class="line"></span><br><span class="line">    Dim <span class="keyword">FontName</span>(<span class="number">3</span>)</span><br><span class="line">    '字体名称在三种字体之间进行波动，可改写，但需要保证系统拥有下列字体</span><br><span class="line">    <span class="keyword">FontName</span>(<span class="number">1</span>) = <span class="string">"钟齐陈伟勋硬笔行书字库"</span></span><br><span class="line">    <span class="keyword">FontName</span>(<span class="number">2</span>) = <span class="string">"王金彦行书20123800"</span></span><br><span class="line">    <span class="keyword">FontName</span>(<span class="number">3</span>) = <span class="string">"Aa浅山行书 (非商业使用)"</span></span><br><span class="line"></span><br><span class="line">    Dim ParagraphSpace(<span class="number">5</span>)</span><br><span class="line">    '行间距 在一定以下值中均等分布，可改写</span><br><span class="line">    ParagraphSpace(<span class="number">1</span>) = <span class="string">"12"</span></span><br><span class="line">    ParagraphSpace(<span class="number">2</span>) = <span class="string">"13"</span></span><br><span class="line">    ParagraphSpace(<span class="number">3</span>) = <span class="string">"20"</span></span><br><span class="line">    ParagraphSpace(<span class="number">4</span>) = <span class="string">"7"</span></span><br><span class="line">    ParagraphSpace(<span class="number">5</span>) = <span class="string">"12"</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">For</span> Each R_Character <span class="keyword">In</span> ActiveDocument.<span class="keyword">Characters</span></span><br><span class="line">        VBA.Randomize</span><br><span class="line"></span><br><span class="line">        R_Character.<span class="keyword">Font</span>.Name = <span class="keyword">FontName</span>(Int(VBA.Rnd * <span class="number">3</span>) + <span class="number">1</span>)</span><br><span class="line">        R_Character.<span class="keyword">Font</span>.Size = <span class="keyword">FontSize</span>(Int(VBA.Rnd * <span class="number">5</span>) + <span class="number">1</span>)</span><br><span class="line">        R_Character.<span class="keyword">Font</span>.<span class="keyword">Position</span> = Int(VBA.Rnd * <span class="number">3</span>) + <span class="number">1</span></span><br><span class="line">        R_Character.<span class="keyword">Font</span>.Spacing = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">Next</span></span><br><span class="line">    Application.ScreenUpdating = <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">For</span> Each Cur_Paragraph <span class="keyword">In</span> ActiveDocument.Paragraphs</span><br><span class="line">        Cur_Paragraph.<span class="keyword">LineSpacing</span> = ParagraphSpace(Int(VBA.Rnd * <span class="number">5</span>) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">Next</span></span><br><span class="line">        Application.ScreenUpdating = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">End</span> Sub</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-调整"><a href="#3-调整" class="headerlink" title="3. 调整"></a>3. 调整</h2><p>如果对结果不满意，可以多运行几次宏，找到合适的一版，再微调一下<br>实验结果如图:<br><img src="https://q0o0p.top/2018/06/29/Simulation-Handwritten/2.jpg" alt></p>
+<hr>
+<p>参考:<br><a href="https://zhuanlan.zhihu.com/p/97163374" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/97163374</a><br><a href="https://www.zhihu.com/question/20308770" target="_blank" rel="noopener">https://www.zhihu.com/question/20308770</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Chrome插件--右键实现存储功能</title>
     <url>/2020/06/29/Chrome-plugin/</url>
     <content><![CDATA[<p>最近课设和大作业一天一个真是,忙得不可开交…<br>(事实是—最近又懒了,最后一天效率MAX—–QAQ)<br>在查资料的过程中,信息零零散散,每次都要用Ctrl+C然后还要Ctrl+V….<br>特别是有些网页,太狗了,复制还要用到F12<br>唉!对于像我这样的人,还是希望能有更方便的用法<br>然后就有了这个标题~~<br>(最近刚研究了一下WPS的word宏手写体,在家手抄几十页的报告…不存在的,O(∩_∩)O)<br>手写,查资料可以懒,但敲代码不能懒!<br>下面进入正题….</p>
@@ -3418,7 +3431,7 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
 ]]></content>
   </entry>
   <entry>
-    <title>有趣的查询网站</title>
+    <title>查询网站链接</title>
     <url>/2020/01/08/useful-website/</url>
     <content><![CDATA[<p>唉!最近居然养成了深夜水文的习惯…|ू･ω･` )<br>下面放几个有意思的网站(物联网设备漏洞查询平台):<br><a href="https://fofa.so/" target="_blank" rel="noopener">https://fofa.so/</a></p>
 <p><a href="https://www.zoomeye.org/" target="_blank" rel="noopener">https://www.zoomeye.org/</a></p>
@@ -3510,42 +3523,6 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
       </tags>
   </entry>
   <entry>
-    <title>Cft-Tool</title>
-    <url>/2019/11/19/cft-tool/</url>
-    <content><![CDATA[<h2 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h2><p><a href="https://blog.csdn.net/qq_36119192/article/details/82079150" target="_blank" rel="noopener">https://blog.csdn.net/qq_36119192/article/details/82079150</a></p>
-<hr>
-<h2 id="foremost–-gt-文件分离和还原工具"><a href="#foremost–-gt-文件分离和还原工具" class="headerlink" title="foremost–&gt;文件分离和还原工具"></a>foremost–&gt;文件分离和还原工具</h2><p>是一个控制台程序，用于文件分离和还原<br>根据页眉，页脚和内部数据结构恢复文件，可以处理图像文件（例如由dd，Safeback，Encase等生成的图像文件）这些内置类型查看给定文件格式的数据结构，从而实现更可靠，更快速的恢复。<br>或直接在驱动器上。页眉和页脚可以由配置文件指定，也可以使用命令行开关指定内置文件类型。</p>
-<p>在数字取证中和CTF中常用来恢复、分离文件。它默认支持19种类型文件(jpg, gif, png, bmp, avi, exe, mpg, mp4, wav, riff, wmv, mov, pdf, ole, doc, zip, rar, html, cpp 等文件)的扫描识别恢复，还可以通过(通过配置它的配置文件foremost.conf)增加新的支持类型。</p>
-<p>windows下载地址 –&gt; <a href="https://github.com/raddyfiy/foremost">https://github.com/raddyfiy/foremost</a><br>可以选择自己源码编译为exe，也可以直接用大佬们编译完的（在binary里面）<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/1.png" alt><br>将foremost.conf 和 foermost.exe 单独分离出来放入一个新文件夹中<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/2.png" alt><br>使用时将要分离的文件放入该文件夹下<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/19/cft-tool/3.png" alt><br>分离完成的后文件–&gt;如果没有指定路径，则放入output里面.</p>
-<p>Linux下对于压缩包形式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ tar zxvf foremost-xx.tar.gz</span><br><span class="line">$ cd foremost-xx</span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure>
-
-<p>直接安装（根据自己的Linux版本）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ apt-get install foremost  &#x2F;&#x2F;Ubuntu安装foremost</span><br><span class="line">$ foremost -h  &#x2F;&#x2F;检查是否安装成功</span><br><span class="line">$ foremost [-v|-V|-h|-T|-Q|-q|-a|-w-d] [-t &lt;type&gt;] [-s &lt;blocks&gt;] [-k &lt;size&gt;] </span><br><span class="line">    [-b &lt;size&gt;] [-c &lt;file&gt;] [-o &lt;dir&gt;] [-i &lt;file] </span><br><span class="line">    &#x2F;&#x2F;命令及作用</span><br><span class="line"></span><br><span class="line">-V  - 显示版权信息并退出  </span><br><span class="line">-t  - 指定文件类型.  (-t jpeg,pdf ...) </span><br><span class="line">-d  -打开间接块检测 (针对UNIX文件系统) </span><br><span class="line">-i  - 指定输入文件 (默认为标准输入) </span><br><span class="line">-a  - 写入所有的文件头部, 不执行错误检测(损坏文件) </span><br><span class="line">-w  - 向磁盘写入审计文件，不写入任何检测到的文件</span><br><span class="line">-o  - 设置输出目录 (默认为为输出)</span><br><span class="line">-c  - 设置配置文件 (默认为 foremost.conf)</span><br><span class="line">-q  - 启用快速模式. 在512字节边界执行搜索.</span><br><span class="line">-Q  - 启用安静模式. 禁用输出消息. </span><br><span class="line">-v  - 详细模式. 向屏幕上记录所有消息。</span><br></pre></td></tr></table></figure>
-
-<p>注： 未指定输出目录，结果放在foremost所在目录的output文件夹内，配置文件为所在目录的foremost.conf。</p>
-<hr>
-<h2 id="Wireshark"><a href="#Wireshark" class="headerlink" title="Wireshark"></a>Wireshark</h2><p><a href="https://www.wireshark.org/download.html" target="_blank" rel="noopener">官网下载地址</a></p>
-<p><a href="https://blog.csdn.net/Zhou_ZiZi/article/details/84987259" target="_blank" rel="noopener">1. burpsuite和Wireshark的原理及区别</a><br><a href="https://blog.csdn.net/qq78069460/article/details/79153895" target="_blank" rel="noopener">2. Wiresharkd的详细分析</a></p>
-<hr>
-<p>HxD Hex Editor<br>专门用于文件十六进制显示和编辑的软件<br>免费的，且功能强其功能比Notepad++的插件强<br><a href="https://mh-nexus.de/en/downloads.php?product=HxD20" target="_blank" rel="noopener">https://mh-nexus.de/en/downloads.php?product=HxD20</a></p>
-<p>参考：<a href="https://blog.csdn.net/john_david_/article/details/87273152" target="_blank" rel="noopener">https://blog.csdn.net/john_david_/article/details/87273152</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Burpsuite的使用</title>
-    <url>/2019/11/12/burpsuite/</url>
-    <content><![CDATA[<p>目前最新版BurpSuite Pro 2020.9.2 For Windows安装:<br><a href="https://www.sqlsec.com/2020/10/winbp.html" target="_blank" rel="noopener">https://www.sqlsec.com/2020/10/winbp.html</a></p>
-<h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/1.png" alt></p>
-<h2 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h2><p>打开图书馆预约界面的url：<br><a href="http://office.chaoxing.com/front/third/apps/reserve/item/reserve?itemId=2469&amp;fidEnc=797928204c34e200" target="_blank" rel="noopener">http://office.chaoxing.com/front/third/apps/reserve/item/reserve?itemId=2469&amp;fidEnc=797928204c34e200</a><br>打开代理，刷新界面，使用burpsuite抓包，其他没用的包直接forward，看到这个关于日期的包如下：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/3.png" alt><br>将里面的日期修改为之后未显示的日期，如图：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/4.png" alt><br>forward后，出现的界面即可预约，如下图：<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/5.png" alt><br>点击预约，看到带有日期的数据包可进行修改，下面是两种预约方式：</p>
-<h3 id="1-预约之后未显示的日期"><a href="#1-预约之后未显示的日期" class="headerlink" title="1.预约之后未显示的日期"></a>1.预约之后未显示的日期</h3><p>更改时间： &amp;date=2020-09-18&amp;startTime=2020-09-18+07%3A00&amp;endTime=2020-09-18+22%3A00<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/6.png" alt></p>
-<h3 id="2-预约人数已满的日期"><a href="#2-预约人数已满的日期" class="headerlink" title="2.预约人数已满的日期"></a>2.预约人数已满的日期</h3><p>更改时间：<br>&amp;date=2020-09-18&amp;startTime=2020-09-16+07%3A00&amp;endTime=2020-09-16+22%3A00<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/11/12/burpsuite/7.png" alt><br>提示：此方式有bug，还在测试中……</p>
-<hr>
-<p>扩展：<br>http请求方式：<br>HTTP1.0定义了三种方法：GET ,OPST, HEAD<br>HTTP1.1新增加了五种： OPTIONS ,PUT, DELETE.TRACE,CONNECT</p>
-<p>GET 请求指定的页面信息，并返回实体主体。<br>HEAD 类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头<br>POST 向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。<br>PUT 从客户端向服务器传送的数据取代指定的文档的内容。<br>DELETE 请求服务器删除指定的页面。<br>CONNECT HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>OPTIONS 允许客户端查看服务器的性能。<br>TRACE 回显服务器收到的请求，主要用于测试或诊断。</p>
-<h2 id="burpsuite-爆破"><a href="#burpsuite-爆破" class="headerlink" title="burpsuite 爆破"></a>burpsuite 爆破</h2>]]></content>
-  </entry>
-  <entry>
     <title>Git的使用</title>
     <url>/2019/11/12/git/</url>
     <content><![CDATA[<p>##1.绑定用户<br>打开git-bash.exe（直接在桌面上点击右键，或者点击开始按钮找到Git Bash）<br>运行gitBash.gif</p>
@@ -3603,19 +3580,19 @@ application.yml文件<figure class="highlight java"><table><tr><td class="code">
   <entry>
     <title>攻防世界-Misc</title>
     <url>/2019/10/19/ctf-misc/</url>
-    <content><![CDATA[<p>如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。<br>与佛论禅”网站，一个编码/解码网站<br>佛曰：……<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/1.png" alt><br>尝试使用Rot13这个明文的形式,但解密之后还是乱码<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/2.png" alt></p>
+    <content><![CDATA[<p>如来十三掌-菜狗为了打败菜猫，学了一套如来十三掌。<br>与佛论禅”网站，一个编码/解码网站<br>佛曰：……<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/https://q0o0p.top/2019/10/19/ctf-misc/1.png" alt><br>尝试使用Rot13这个明文的形式,但解密之后还是乱码<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/https://q0o0p.top/2019/10/19/ctf-misc/2.png" alt></p>
 <p>然后将得到的结果再进行base64解密，得到flag</p>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/3.png" alt></p>
+<p><img src="https://q0o0p.top/2019/10/19/ctf-misc/3.png" alt></p>
 <hr>
 <p>pdf-菜猫给了菜狗一张图，说图下面什么都没有</p>
-<p>将图片拖走。。。<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/4.png" alt></p>
-<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/5.png" alt><br>得到答案。。。。</p>
+<p>将图片拖走。。。<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/https://q0o0p.top/2019/10/19/ctf-misc/4.png" alt></p>
+<p><img src="https://q0o0p.top/2019/10/19/ctf-misc/https://q0o0p.top/2019/10/19/ctf-misc/5.png" alt><br>得到答案。。。。</p>
 <hr>
 <p>功夫再高也怕菜刀</p>
 <hr>
 <p>对小白的详细补充<br>foremost是一个文件分离和还原的工具<br>foremost的<a href="https://github.com/raddyfiy/foremost">下载</a>及使用<br><a href="http://q0o0p.top/2019/11/19/cft-tool/" target="_blank" rel="noopener">http://q0o0p.top/2019/11/19/cft-tool/</a></p>
 <hr>
-<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/8.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/9.png" alt><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/10.png" alt><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/11.png" alt><br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/12.png" alt><br>打开该图片得到密码<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2019/10/19/ctf-misc/13.png" alt><br>然后根据密码打开压缩包，得到flag。。。</p>
+<p>用foremost 分离文件，得到一个压缩包，里面有一个加密的flag.txt<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/7.png" alt><br>然后用wireshark打开文件，分组字节流查找flag.txt<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/8.png" alt><br><img src="https://q0o0p.top/2019/10/19/ctf-misc/9.png" alt><br>分组字节流搜索6666.jpg，并追踪TCP流。<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/10.png" alt><br>找到jpg文件的文件头(FFD8)和文件尾(FFD9)并复制<br>插入到一个十六进制编辑软件中（这个是<a href="https://mh-nexus.de/en/hxd/" target="_blank" rel="noopener">HxD Hex Editor</a>），并保存为.jpg的格式<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/11.png" alt><br><img src="https://q0o0p.top/2019/10/19/ctf-misc/12.png" alt><br>打开该图片得到密码<br><img src="https://q0o0p.top/2019/10/19/ctf-misc/13.png" alt><br>然后根据密码打开压缩包，得到flag…</p>
 <hr>
 ]]></content>
   </entry>
@@ -4206,11 +4183,6 @@ POST：
 
 <h3 id="npm更新"><a href="#npm更新" class="headerlink" title="npm更新"></a>npm更新</h3><figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check   </span><br><span class="line"><span class="built_in">npm</span> -check <span class="regexp">//</span>检查更新</span><br><span class="line"></span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade</span><br><span class="line"><span class="built_in">npm</span>-upgrade</span><br></pre></td></tr></table></figure>
 ]]></content>
-  </entry>
-  <entry>
-    <title>模拟手写---打印</title>
-    <url>/2018/06/29/Simulation-Handwritten/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Python实现手机版自动答题及拍照(原理及过程)</title>
