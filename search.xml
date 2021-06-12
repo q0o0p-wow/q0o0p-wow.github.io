@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>汽车安全</title>
+    <url>/2021/06/03/iot-car/</url>
+    <content><![CDATA[<h2 id="BeagleBoneBlack"><a href="#BeagleBoneBlack" class="headerlink" title="BeagleBoneBlack"></a>BeagleBoneBlack</h2><p>在主处理器上有两个CAN接口。一个设备中存在两个CAN接口，这就可能导致CAN MITM攻击和会话劫持。Cannelloni框架将单板计算机转换为CAN-to-UDP接口，这使您可以在更强大的机器上运行Scapy。<br>大多数应用层协议都有许多专门的 Packet 类。<br>使用 explore() 函数获取一个特定协议的所有信息。<br><a href="1.png"></a></p>
+<p>Oliver Hartkopp提供了一些非常有用的命令行工具：<a href="https://github.com/linux-can/can-utils">https://github.com/linux-can/can-utils</a></p>
+<h1 id="车载蓝牙"><a href="#车载蓝牙" class="headerlink" title="车载蓝牙"></a>车载蓝牙</h1><h3 id="蓝牙基本速率（BR）和增强数据速率（EDR）"><a href="#蓝牙基本速率（BR）和增强数据速率（EDR）" class="headerlink" title="蓝牙基本速率（BR）和增强数据速率（EDR）"></a>蓝牙基本速率（BR）和增强数据速率（EDR）</h3><p>这些是“经典”的蓝牙物理层。</p>
+<p>BR 达到最高721kbit/s的有效速度。这被批准为 IEEE 802.15.1-2002 （V1.1）和 -2005 （V1.2）。</p>
+<p>EDR 作为蓝牙2.0（2004）的可选功能引入。它可以达到2.1兆位/秒的有效速度，比BR的功耗更低。</p>
+<p>在蓝牙4.0及更高版本中，不支持 低能 接口，除非它们标记为 dual-mode .</p>
+<h3 id="蓝牙高速（HS）"><a href="#蓝牙高速（HS）" class="headerlink" title="蓝牙高速（HS）"></a>蓝牙高速（HS）</h3><p>作为蓝牙3.0（2009）的可选功能引入，它通过提供 IEEE 802.11 （WiFi）作为另一种更高速的数据传输方式。节点协商切换 AMP .</p>
+<p>这仅受标记为的蓝牙接口支持 +HS . 并非所有蓝牙3.0及更高版本的接口都支持它。</p>
+<h3 id="蓝牙低能量（BLE）"><a href="#蓝牙低能量（BLE）" class="headerlink" title="蓝牙低能量（BLE）"></a>蓝牙低能量（BLE）</h3><p>在蓝牙4.0（2010）中引入，这是为低功耗嵌入式系统设计的备用物理层。它具有更短的设置时间、更低的数据速率和更小的 MTU 尺寸。除了点对点链接之外，它还添加了广播和网状网络拓扑。</p>
+<p>这只受标记为的蓝牙接口支持 +LE 或 低能 –并非所有的蓝牙4.0和更高版本的接口都支持它。</p>
+<p>PC上的大多数蓝牙接口都使用USB连接（甚至在笔记本电脑上），这是由主机控制器接口（HCI）控制的。这通常不支持混杂模式（嗅探），但是有许多其他专用的、非HCI设备支持它。</p>
+<h2 id="蓝牙架构"><a href="#蓝牙架构" class="headerlink" title="蓝牙架构"></a>蓝牙架构</h2><h3 id="1-HW层：本质蓝牙芯片层，包含"><a href="#1-HW层：本质蓝牙芯片层，包含" class="headerlink" title="1.HW层：本质蓝牙芯片层，包含"></a>1.HW层：本质蓝牙芯片层，包含</h3><p>(1)RF(radio)：射频层，本地蓝牙数据通过射频发送给远端设备，并且通过射频接收来自远端蓝牙设备的数据<br>(2) BB(BASEBAND)：基带层，进行射频信号与数字或语音信号的相互转化<br>(3) LMP(LINK MANAGER PROTOCOL)：链路管理层，负责管理蓝牙设备之间的通信，实现链路的建立、验证、链路配置等操作<br>(4) HCI(HOST CONTROLLER INTERFACE)：主机控制器接口层，HCI层在芯片以及协议栈都有，芯片层面的HCI负责把协议栈的数据做处理，转换为芯片内部动作，并且接收到远端的数据<br>(5) BLE PHY：BLE的物理层<br>(6) BLE LL：BLE的链路层</p>
+<h3 id="2-传输层：此部分在硬件接口UART-USB-SDIO实现HOST和控制器的交互，同时有几个子协议："><a href="#2-传输层：此部分在硬件接口UART-USB-SDIO实现HOST和控制器的交互，同时有几个子协议：" class="headerlink" title="2.传输层：此部分在硬件接口UART/USB/SDIO实现HOST和控制器的交互，同时有几个子协议："></a>2.传输层：此部分在硬件接口UART/USB/SDIO实现HOST和控制器的交互，同时有几个子协议：</h3><p>(1)H2:针对USB类型<br>(2)H4:针对UART类型<br>(3)H5:针对UART类型<br>(5)BCSP:针对UART类型</p>
+<h3 id="3-HOST层-此层是协议栈"><a href="#3-HOST层-此层是协议栈" class="headerlink" title="3.HOST层,此层是协议栈"></a>3.HOST层,此层是协议栈</h3><p>(1)HCI是HOST controller interface, 主机控制层接口，主要负责透过transport把协议栈的数据发送给蓝牙芯片，并且接受来自蓝牙芯片的数据。<br>1615188541_6045d23da424618e645fd.png!small?1615188541739<br>(2) L2CAP（Logical Link Control and Adaptation Protocol）：逻辑链路控制与适配协议，将ACL数据分组交换为便于高层应用的数据分组格式，并提供协议复用和服务质量交换等功能。<br>(3)SDP（SERVICE DISCOVERY PROTOCOL）：服务发现协议<br>(4)RFCOMM（Serial Port Emulation）：串口仿真协议，上层协议蓝牙电话，蓝牙透传SPP<br>等等功能模块</p>
+<h2 id="蓝牙安全"><a href="#蓝牙安全" class="headerlink" title="蓝牙安全"></a>蓝牙安全</h2><h3 id="蓝牙基本的安全服务"><a href="#蓝牙基本的安全服务" class="headerlink" title="蓝牙基本的安全服务"></a>蓝牙基本的安全服务</h3><ul>
+<li>认证：基于蓝牙设备地址，验证正在通信的设备的身份。蓝牙不提供原生的用户认证机制。</li>
+<li>机密性：确保只有被授权的设备能够访问和查看传输的数据，以防止窃听导致的信息泄露。</li>
+<li>授权：通过确保设备在被允许使用一项服务之前是已经被授权的，来允许其对资源的控制。<br>蓝牙安全措施可以保护手机和笔记本电脑之间通讯，而IEEE802.11提供了从路由器到笔记本电脑的WLAN连接安全问题。除此之外的，不在上述保护范围内。</li>
+</ul>
+<h3 id="蓝牙设备可以实现四种不同的安全模式"><a href="#蓝牙设备可以实现四种不同的安全模式" class="headerlink" title="蓝牙设备可以实现四种不同的安全模式"></a>蓝牙设备可以实现四种不同的安全模式</h3><p>1.不安全：蓝牙设备不启动任何安全措施。</p>
+<p>2.服务级别强制实施的安全模式：两个蓝牙设备可以建立不安全的ACL链接。当发出逻辑链接控制和适应协议（L2CAP）面向连接（CO）或L2CAP少连接（CL）通道请求时，将启动安全性过程，即身份验证，授权和可选加密。</p>
+<p>3.链路级强制安全模式：建立ACL链路后，将启动安全性过程。</p>
+<p>4.服务级别强制实施的安全模式：此模式类似于模式2，不同的是只有使用SSP的蓝牙设备可以使用它，即，只有蓝牙2.1 + EDR或更高版本的设备才能使用此安全模式。蓝牙使用具有128位密钥的安全和快速加密例程+（SAFER +）作为认证和密钥生成算法，在最高3.0 + HS（高速）的蓝牙版本中，而蓝牙4.0（即低功耗蓝牙）用更安全的128位高级加密标准（AES）代替SAFER +SAFER +由Massey等人开发。1998年,它被提交为AES竞赛的候选人，但未被选为决赛入围者。</p>
+<p>SAFER +是具有以下主要功能的分组密码。它具有128位的块大小和三个不同的密钥长度（128、192和256位）。SAFER +由九个阶段（八个相同的回合和输出转换）和一个密钥调度算法（KSA）组成，其方式如下。KSA产生17个不同的128位子密钥。每个回合使用两个子项和上一个回合中的一个128位输入字来计算一个128位字，该字是下一回合的新输入字。最后一个子关键字用于输出转换，它是最后一轮输出与最后一个子关键字的简单按位XOR。在AES竞赛的评估过程之后，AES由美国国家标准技术研究院（NIST）于2001年发布。Rijndael是比赛的获胜者，NIST选择它作为AES的算法。AES是一种对称的分组密码，旨在代替数据加密标准（DES）作为广泛应用的认可标准，但是此过程 将需要很多年。NIST预计，在可预见的将来，至少在美国政府使用的情况下，三重数据加密标准（3DES）仍将是批准的算法。AES加密由10-14轮组成，其中数据块按以下方式逐步处理（最后一轮除外；值得注意的是，AES解密与AES加密对称）1.字节替换：字节替换使用S-box来执行块的逐字节替换。2.行移位：行移位是一个简单的排列。3.柱混合：柱混合是对GF（28）的一种算术替代。Galois字段GF（28）是256个元素的有限字段，可以用八位字符串或十六进制表示法表示。4.圆键添加：圆键添加是当前块与一部分扩展键的简单按位XOR。最后一轮AES加密（和AES解密）略有不同<br>1.字节替换<br>2.行移位<br>3.圆键添加<br>AES被认为是安全的，它非常快速且紧凑（大约1 kB代码），其块大小是32的倍数（通常为128位），其密钥长度也是32的倍数（通常为128、192或256位） ），并且它有非常整齐的代数描述。<br>48位BD_ADDR分为三个部分：16位非有效地址部分（NAP），8位高地址部分（UAP）和24位低地址部分（LAP）。BD_ADDR的前三个字节（NAP和UAP）是蓝牙芯片的制造商，代表company_id。BD_ADDR（LAP）的后三个字节（称为company_assigned）在不同的蓝牙设备型号中或多或少地随机使用。<br>蓝牙设备首次连接时会生成一个初始化密钥（Kini t），该初始化密钥用于保护其他更安全的128位密钥的生成，这些密钥是在事件安全性链的下一个阶段生成的。<br>K_init是从伪随机数IN_RAND、L-byte PIN code、BD_ADDR中生成的128bit位的秘钥，此处的IN_RAND生成须放在高保密环境中。</p>
+<p>某个密钥生成函数的输出可以用函数本身及其输入来表示。此处K_init的生成采用K_init=Encrypt(PIN’,L’,IN_RAND)。<br>在将PIN码及其长度L发送到Encrypt功能之前，将其修改为称为PIN’和L’的两个不同数量。如果PIN小于16字节，则通过从设备的BD_ADDR附加字节来增加PIN，直到PIN的总长度达到16字节或整个BD_ADDR被附加，以先到者为准。<br>K_ini t用于加密128位伪随机数（RAND或LK_ RAND），如图K_A=Encrypt2(BD_ADDR_A,RAND_A)；如图，设备A可以用K_init加密K_A，例如K_A xor K_init，然后发给设备B；设备B用Kinit得到K_A；此处设备A,B都拿到A的秘钥。<br>使用单元密钥的蓝牙设备只有一个密钥可用于其所有连接。这意味着同一密钥与所有其他受信任的蓝牙设备共享。此外，任何使用相同单元密钥的受信任蓝牙设备都可以窃听共享同一单元密钥的两个其他蓝牙设备之间的任何流量。此外，任何使用相同单元密钥的受信任蓝牙设备都可以仅通过复制其BD_ADDR来模拟目标设备。<br>上述的方式提供的加密方式只在比较低的层级机型使用。</p>
+<p>一种更常见的组合秘钥K_AB会更普遍使用K_AB=Encrypt2(BD_ADDR_A,RAND_A) xor Encrypt2(BD_ADDR_B,RAND_B)。或者K_AB=K_A xor K_B</p>
+<ul>
+<li>响应认证机制<br>认证过程初步互换秘钥过程是：最开始A设备用K来加密LK_RAND_A，之后将其释放到B（不管K是K_A，还是K_B， K_AB）；B中采用同样的秘钥K可以得到随机数LK_RAND_A，过程是(LK_RANDA ⊕K)⊕K；而B中可以用K加密LK_RAND_B，用K加密后传输至A处，A在采用K解密，此处可以达到(LK_RANDB ⊕K)⊕K = LK_RANDB，这样生成K_B.</li>
+</ul>
+<p>二者采用不同方式，可以生成K_AB等复合型秘钥。<br>质询-响应身份验证的过程是，其中将检查申请人对秘密链接密钥的了解，如上图所描述。每次身份验证期间，系统都会使用一个新的128位伪随机数 AU_RAND以未加密形式通过空中交换。通过E1（AU_RANDA，BD_ADDRB，链接秘钥）功能在两个设备中生成32位结果（SRES，签名响应）和96位结果（ACO，身份验证密码偏移），其中链接秘钥为KA或KAB 。A生成的SRES值，通过未加密形式向验证设备B传播。验证者将生成的SRES值与接收到的SRES值进行比较，如果这些值匹配（0），则验证成功完成。当生成加密密钥时，将在事件安全性链的下一个阶段中使用ACO。</p>
+<h3 id="数据加密部分"><a href="#数据加密部分" class="headerlink" title="数据加密部分"></a>数据加密部分</h3><p>ACO，当前链接密钥（KA或KAB）和128位伪随机数EN_RAND是用于生成加密密钥（KC）的加密密钥生成函数E3的输入。主设备A生成EN_RAND并通过空中以未加密形式将其发送到设备B，而K_C采用如下函数生成：KC = E3(EN_RANDA, ACO, K_A或K_AB)。此处，密钥流生成器功能E0通过在两个设备中生成相同的密码比特流或密钥流（也称为运行密钥），使对称加密成为可能。</p>
+<p>E0功能的输入是KC，主机的BD_ADDR（BD_ADDRA）和主机的实时时钟的26位（CLK26-1）。密钥流由E0（KC，CLK26-1，BD_ADDRA）函数生成，该函数针对每个新发送或接收的基带数据包重新初始化。这意味着E0功能的输入永远不会比一个基带数据包的寿命更长，因此每个新的基带数据包都会生成一个新的密钥流。</p>
+<p>发送者通过将其与密钥流（即Plaintext⊕Keystream= Ciphertext）进行异或来对明文进行加密，然后将生成的密文发送给接收者。接收者通过与相同的密钥流进行异或来解密密文</p>
+<p>值得注意的是，只有蓝牙基带数据包的有效载荷被加密（而不是访问代码或报头），因此攻击者无法使用访问代码和访问者的规则重复信息（攻击者容易猜到），以便于对密码进行密码分析 。</p>
+<h3 id="MITM"><a href="#MITM" class="headerlink" title="MITM"></a>MITM</h3><p>MITM称为Man In The Middle Attack：</p>
+<p>1.爱丽丝将她的公钥发送给鲍勃，但Mallory能够截获它。Mallory向Bob发送自己的公共密钥，并为其具有匹配的私有密钥。现在鲍勃错误地认为自己拥有爱丽丝的公钥。</p>
+<p>2.Bob将他的公钥发送给Alice，但是Mallory能够截取它。Mallory向爱丽丝发送自己的公共密钥，并为其提供匹配的私有密钥。现在爱丽丝错误地认为她拥有鲍勃的公钥。</p>
+<p>3.爱丽丝向鲍勃发送了一封用马洛里公钥加密的消息，但Mallory是能够拦截它。Mallory用他的私钥解密邮件，并保留一个邮件的副本，使用Bob的公钥对邮件重新加密，然后发送给鲍勃的消息。现在鲍勃错误地认为消息是直接传来的来自爱丽丝。</p>
+<ol start="4">
+<li>Bob向Alice发送了一条用Mallory的公共密钥加密的消息，但是Mallory是能够拦截它。</li>
+</ol>
+<p>Mallory用他的私钥解密消息，并保留一个邮件副本，使用爱丽丝的公钥重新加密邮件，然后发送给爱丽丝的消息。现在，爱丽丝错误地认为消息是直接传来的来自鲍勃。</p>
+<p>蓝牙版本2.1 + EDR，3.0 + HS和4.0添加了用于配对过程的新规范，即SSP。其主要目标是通过提供针对被动监听和MITM攻击的保护来提高配对的安全性</p>
+<p><code>SSP使用椭圆曲线Diffie-Hellman（ECDH）公钥加密技术</code>，而不是使用（通常为短密钥）作为构建链接密钥的唯一熵源。为了构造链接密钥，设备使用公共-专用密钥对，多个随机数和设备的蓝牙地址。SSP可以有效地阻止了被动窃听。</p>
+<p>为了提供针对MITM攻击的保护，SSP使用OOB通道（例如，Near Field Communication，NFC），或寻求用户的帮助：例如，当两个设备都具有显示器和键盘时，要求用户比较两个六位数的数字。也可以将这种比较视为不受MITM控制的OOB通道。如果配对过程中使用的值已被MITM篡改，则六位数完整性校验和将以0.999999的概率不同</p>
+<p>SSP使用四个关联模型。除了两个关联模型 前面提到过，OOB和数值比较模型名为PasskeyEntry 和Just Works也被使用。</p>
+<p>如果一台设备具有输入功能，但没有可显示六位数字的屏幕，则使用“密钥输入关联”模型。在具有输出功能的设备上向用户显示六位数的校验和，并要求用户在具有输入功能的设备上输入该校验和。如果两个设备都具有输入功能但没有输出功能，则也可以使用“密钥输入”关联模型。在这种情况下，用户选择一个6位数的校验和并将其输入两个设备中。最后，如果至少一个设备既没有输入也没有输出能力，并且不能使用OOB。</p>
+<h3 id="SSP-六个阶段-："><a href="#SSP-六个阶段-：" class="headerlink" title="SSP(六个阶段)："></a>SSP(六个阶段)：</h3><p>1.能力交换：由于某种原因从未想过进行配对的设备，首先要交换其输入/输出（IO）能力，以确定要使用的正确关联模型。<br>2.公用密钥交换：设备生成其公用-专用密钥对，并将公用密钥相互发送。他们还计算Diffie-Hellman密钥。<br>3.身份验证阶段1：在此阶段运行的协议取决于关联模型。此阶段的目标之一是确保设备之间的通信中没有MITM。这是通过使用一系列随机数，对随机数的承诺以及对完整性的最终检查来实现的通过OOB通道或在用户帮助下执行的校验和。<br>4.认证阶段2：设备完成值（公共密钥和随机数）的交换并验证其完整性。<br>5.链接密钥计算：双方使用其蓝牙地址，先前交换的值以及阶段2中构造的Diffie-Hellman密钥来计算链接密钥。<br>6. LMP身份验证和加密：在此阶段生成加密密钥，这与在2.0 + EDR以下的蓝牙版本中进行配对的最终步骤相同。</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><h3 id="所需硬件"><a href="#所需硬件" class="headerlink" title="所需硬件"></a>所需硬件</h3><p>Ubertooth 一个 （配合ubertooth-btle使用）<br>CSR模组 一个 (配合bluetoothctl使用，也可使用树莓派等设备替代)<br>Linux PC 一台<br>ESP32模组 一个 （作为ble server使用）</p>
+<h3 id="所需软件"><a href="#所需软件" class="headerlink" title="所需软件"></a>所需软件</h3><p>ubertooth-btle （抓取数据信道数据）<br>bluetoothctl （监听广播数据）<br>esp-idf （烧录ble server）<br>crackle （分析加密情况） wireshark<br>LightBlue （手机APP）</p>
+<p><a href="https://www.freebuf.com/articles/wireless/255087.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/wireless/255087.html</a></p>
+<hr>
+<p>大佬博客:<br><a href="https://www.osgeo.cn/scapy/layers/automotive.html" target="_blank" rel="noopener">https://www.osgeo.cn/scapy/layers/automotive.html</a><br><a href="https://www.freebuf.com/articles/wireless/265436.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/wireless/265436.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python-Modules</title>
+    <url>/2021/05/26/python-modules/</url>
+    <content><![CDATA[<h2 id="os模块"><a href="#os模块" class="headerlink" title="os模块"></a>os模块</h2><ul>
+<li><p>windows:<br>os.environ[‘HOMEPATH’]:当前用户主目录。<br>os.environ[‘TEMP’]:临时目录路径。<br>os.environ[PATHEXT’]:可执行文件。<br>os.environ[‘SYSTEMROOT’]:系统主目录。<br>os.environ[‘LOGONSERVER’]:机器名。<br>os.environ[‘PROMPT’]:设置提示符。</p>
+</li>
+<li><p>linux：<br>os.environ[‘USER’]:当前使用用户。<br>os.environ[‘LC_COLLATE’]:路径扩展的结果排序时的字母顺序。<br>os.environ[‘SHELL’]:使用shell的类型。<br>os.environ[‘LAN’]:使用的语言。<br>os.environ[‘SSH_AUTH_SOCK’]:ssh的执行路径。<br>os.environ[‘HOME’] #windows not environ[‘HOME’]</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Drozer</title>
     <url>/2021/05/17/drozer/</url>
     <content><![CDATA[<p><a href="https://labs.f-secure.com/tools/drozer/" target="_blank" rel="noopener">https://labs.f-secure.com/tools/drozer/</a><br><a href="https://hub.docker.com/r/fsecurelabs/drozer" target="_blank" rel="noopener">https://hub.docker.com/r/fsecurelabs/drozer</a><br>drozer app渗透:<br><a href="https://blog.csdn.net/tangsilian/article/details/105911084" target="_blank" rel="noopener">https://blog.csdn.net/tangsilian/article/details/105911084</a></p>
@@ -15,7 +84,7 @@
     <title>MIUI的正确使用</title>
     <url>/2021/05/07/miui12-android11/</url>
     <content><![CDATA[<p>miui自带搜狗输入法剪切板路径</p>
-<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">/data/data/com<span class="selector-class">.sohu</span><span class="selector-class">.inputmethod</span><span class="selector-class">.sogou</span><span class="selector-class">.xiaomi</span>/files/sogou_clipboard</span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta-keyword">/data/</span>data/com.sohu.inputmethod.sogou.xiaomi<span class="meta-keyword">/files/</span>sogou_clipboard</span><br><span class="line"></span><br><span class="line"><span class="symbol">umi:</span><span class="meta-keyword">/data/</span>data/com.sohu.inputmethod.sogou.xiaomi/files <span class="meta"># </span></span><br><span class="line">sed ‘/[/r ins.txt’ mysed.txt</span><br><span class="line">sed ‘/[/<span class="class">r </span>&#123;<span class="string">"time"</span>:<span class="number">1623287535604</span>,<span class="string">"content"</span>:<span class="string">"wow"</span>&#125;,’ mysed.txt</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">//获取剪切板内容</span><br><span class="line">adb shell am startservice top.q0o0p.getclipboard/.ClipboardService</span><br><span class="line">am broadcast -a clipper.set -e text <span class="string">"this can be pasted now"</span></span><br><span class="line">am broadcast -a clipper.get</span><br><span class="line"></span><br><span class="line">//wifi</span><br><span class="line">/data/misc/wifi/wpa_supplicant.conf</span><br></pre></td></tr></table></figure>
 
@@ -2004,6 +2073,30 @@ v2就保存了t方法的返回值String类型</code></pre></li>
 <h3 id="5-常用函数"><a href="#5-常用函数" class="headerlink" title="5. 常用函数"></a>5. 常用函数</h3><p>concat(str1,str2…) :没有分隔符串联多列结果。<br>concat_ws(separator,str1,str2,…): 含有分隔符地串联多列结果<br>group_concat(str1,str2,…): 用逗号,串联多行结果为一行，每行结果用逗号串联。<br>//0x3a是“:”的十六进制，在这里把它作为分隔符 : 的hex值.<br>concat(str1,str2…)和concat_ws(separator,str1,str2,…)进行对比:<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/7.png" alt><br>group_concat(str1,str2,…):<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2020/11/23/sql-injection/8.png" alt><br>concat，concat_ws，group_concat函数在实际注入场景中，应用于回显注入类型。可以根据回显的数据位置或回显数据列数，根据实际情况选择相应的函数。从功能上看，group_concat函数包含了concat和concat_ws的功能。</p>
 <hr>
 <p>参考:<br>搭建靶场:<br><a href="https://www.sqlsec.com/2020/05/sqlilabs.html" target="_blank" rel="noopener">https://www.sqlsec.com/2020/05/sqlilabs.html</a><br><a href="https://www.freebuf.com/sectool/244499.html" target="_blank" rel="noopener">https://www.freebuf.com/sectool/244499.html</a><br><a href="https://www.freebuf.com/articles/web/255614.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/web/255614.html</a><br>sql基础:<br><a href="https://www.freebuf.com/column/201364.html" target="_blank" rel="noopener">https://www.freebuf.com/column/201364.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Library</title>
+    <url>/2020/11/21/library/</url>
+    <content><![CDATA[<p>所有层当天预约信息: <a href="http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?date=20201121&amp;classkind=8&amp;act=get_rsv_sta" target="_blank" rel="noopener">http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?date=20201121&amp;classkind=8&amp;act=get_rsv_sta</a></p>
+<p>dev_id=103762589 具体位置预约信息<br>role=512<br>act : login,<br>get_my_resv(查看当前预约信息),如:<br><a href="http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/reserve.aspx?stat_flag=9&amp;act=get_my_resv&amp;_nocache=1605938710792" target="_blank" rel="noopener">http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/reserve.aspx?stat_flag=9&amp;act=get_my_resv&amp;_nocache=1605938710792</a><br>act=del_resv(取消预约)<br><a href="http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/reserve.aspx?act=del_resv&amp;id=141095903&amp;_nocache=1605941888031" target="_blank" rel="noopener">http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/reserve.aspx?act=del_resv&amp;id=141095903&amp;_nocache=1605941888031</a></p>
+<p>GET /ClientWeb/pro/ajax/reserve.aspx?act=del_resv&amp;id=141086066&amp;_nocache=1605943767971 HTTP/1.1</p>
+<p>act=resv_leave(提前结束)<br>/ClientWeb/pro/ajax/reserve.aspx?act=resv_leave&amp;type=2&amp;resv_id=141100887&amp;_nocache=1605942654940 </p>
+<p>act=get_rsv_sta<br>当前XX厅详细信息:<br><a href="http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?right=detail&amp;fr_all_day=false&amp;room_id=103762313&amp;name=%E7%BB%8F%E6%B5%8E%E5%8E%85%EF%BC%88409%EF%BC%89&amp;open_start=700&amp;open_end=2200&amp;classkind=8&amp;date=2020-11-21&amp;start=15:30&amp;end=17:30&amp;act=get_rsv_sta&amp;fr_start=19:30&amp;fr_end=21:40&amp;_nocache=1605944105345" target="_blank" rel="noopener">http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/device.aspx?right=detail&amp;fr_all_day=false&amp;room_id=103762313&amp;name=%E7%BB%8F%E6%B5%8E%E5%8E%85%EF%BC%88409%EF%BC%89&amp;open_start=700&amp;open_end=2200&amp;classkind=8&amp;date=2020-11-21&amp;start=15:30&amp;end=17:30&amp;act=get_rsv_sta&amp;fr_start=19:30&amp;fr_end=21:40&amp;_nocache=1605944105345</a></p>
+<p>/ClientWeb/pro/ajax/reserve.aspx?dev_id=103762590&amp;lab_id=103762299&amp;room_id=&amp;kind_id=100531888&amp;type=dev&amp;prop=&amp;test_id=&amp;resv_id=&amp;term=&amp;min_user=&amp;max_user=&amp;mb_list=&amp;classkind=&amp;start=2020-11-21%2015:50&amp;end=2020-11-21%2021:50&amp;memo=&amp;act=set_resv&amp;_nocache=1605944618962 HTTP/1.1</p>
+<p>dev_id=103762632 (座位号)<br>accno   “103057508”<br>_nocache=1605921473944</p>
+<p>个人信息<br><a href="http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/login.aspx?act=login&amp;id=@relogin&amp;pwd=&amp;role=512&amp;_nocache=1605921473944" target="_blank" rel="noopener">http://lib2.ecjtu.edu.cn/ClientWeb/pro/ajax/login.aspx?act=login&amp;id=@relogin&amp;pwd=&amp;role=512&amp;_nocache=1605921473944</a></p>
+<p>4FN-A043:<br><a href="http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762587_1DJ" target="_blank" rel="noopener">http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762587_1DJ</a></p>
+<p>4FN-A045:<br><a href="http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762589_1DJ" target="_blank" rel="noopener">http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762589_1DJ</a></p>
+<p>4FN-A046:<br><a href="http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762590_1DJ" target="_blank" rel="noopener">http://update.unifound.net/wxnotice/s.aspx?c=103762299_Seat_103762590_1DJ</a></p>
+<p>GET /ClientWeb/m/a/resvsub.aspx?kind=100531888&amp;dev=103762585&amp;lab=103762299&amp;type=dev&amp;date=2020-11-21&amp;start=13:40&amp;end=15:40&amp;classId=103762313&amp;devtype=rm&amp;classkind=8 HTTP/1.1</p>
+<p>GET /ClientWeb/pro/ajax/device.aspx?date=20201121&amp;classkind=8&amp;dev_id=103762585&amp;act=get_rsv_sta&amp;_nocache=1605938306691 HTTP/1.1</p>
+<p>GET /ClientWeb/pro/ajax/reserve.aspx?dev_id=103762585&amp;lab_id=103762299&amp;room_id=&amp;kind_id=100531888&amp;type=dev&amp;prop=&amp;test_id=&amp;resv_id=&amp;term=&amp;min_user=&amp;max_user=&amp;mb_list=&amp;classkind=&amp;start=2020-11-21%2016:00&amp;end=2020-11-21%2022:00&amp;memo=&amp;act=set_resv&amp;_nocache=1605938455014 HTTP/1.1</p>
+<p>DoLogon=true&amp;sysidform=1DJ&amp;aluseridform=9a2e1041-b7d1-4e13-ad17-4349d8a8747c&amp;wxuseridform=&amp;szLogonName=2017512005000119&amp;szPassword=020316<br>Cookie: ASP.NET_SessionId=y3q1ae55oaxzwj45pc1l1grg; safedog-flow-item=4F9AEE669001FA2C93FD54C3EFB735AF</p>
+<p>图书馆ip<br>个人: 120.203.25.245 (江西省南昌市 移动)<br>ecjtu.edu.cn: 202.101.209.228<br>ecjtu.jx.cn:202.101.208.106<br>监控？<a href="http://172.16.6.5/" target="_blank" rel="noopener">http://172.16.6.5/</a></p>
+<p>ecjtu.apk   –&gt;   微哨<br>锐捷旗下微哨IM工具存在储存型xss(本地域)影响大量高校<br><a href="https://www.uedbox.com/post/26954/" target="_blank" rel="noopener">https://www.uedbox.com/post/26954/</a></p>
+<p>云艺-lib:218.194.205.13</p>
+<p>工具下载:<br><a href="https://www.uedbox.com/tools/" target="_blank" rel="noopener">https://www.uedbox.com/tools/</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -4153,7 +4246,7 @@ POST：
 <figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os,re</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(result.read(1024))</span></span><br><span class="line"><span class="comment"># 返回的结果是一个&lt;class 'os._wrap_close'&gt;对象，需要读取后才能处理</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">execCmd</span><span class="params">(cmd)</span>:</span>  </span><br><span class="line">    r = os.popen(cmd)  </span><br><span class="line">    text = r.read(<span class="number">1024</span>)  </span><br><span class="line">    r.close()  </span><br><span class="line">    <span class="keyword">return</span> text  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apktool_d</span><span class="params">(apk)</span>:</span></span><br><span class="line">    apktool=<span class="string">"java -jar Apktool_2.5.0.jar d "</span>+apk+<span class="string">' -o F:/apk/u0o0u'</span></span><br><span class="line">    print(apktool)</span><br><span class="line">    r = os.popen(apktool)</span><br><span class="line">    text = r.read(<span class="number">1024</span>) </span><br><span class="line">    r.close()</span><br><span class="line">    <span class="keyword">return</span> text </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apktool_b</span><span class="params">(apk_mkdir)</span>:</span></span><br><span class="line">    apktool=<span class="string">"java -jar Apktool_2.5.0.jar b "</span>+apk_mkdir+<span class="string">" -o F:/apk/wow.apk"</span></span><br><span class="line">    r = os.popen(apktool)</span><br><span class="line">    text = r.read(<span class="number">1024</span>) </span><br><span class="line">    r.close()</span><br><span class="line">    <span class="keyword">return</span> text     </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">writeFile</span><span class="params">(filename, data)</span>:</span>  </span><br><span class="line">    f = open(filename, <span class="string">"w"</span>)  </span><br><span class="line">    f.write(data)  </span><br><span class="line">    f.close()  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:  </span><br><span class="line">    cmd = <span class="string">"adb -s fea4b345 shell dumpsys activity top "</span>  </span><br><span class="line">    <span class="comment"># cmd1 = "adb devices "  </span></span><br><span class="line">    <span class="comment"># result1 = execCmd(cmd1) </span></span><br><span class="line">    <span class="comment"># cmd = "adb -s fea4b345 install F:/apk/植物大战僵尸2_2.6.3.apk "  </span></span><br><span class="line">    <span class="comment"># result = execCmd(cmd) </span></span><br><span class="line">    pat1 = <span class="string">"ACTIVITY (.*?)/. "</span>  </span><br><span class="line">    <span class="comment"># pat2 = "IP Address[\. ]+: ([\.\d]+)"  </span></span><br><span class="line">    <span class="comment"># ACTIVITY = re.findall(pat1, result)      # 找到ACTIVITY   </span></span><br><span class="line">    <span class="comment"># IP = re.findall(pat2, result)[0]        # 找到IP  </span></span><br><span class="line">    <span class="comment"># print("MAC=%s, IP=%s" %(MAC, IP))  </span></span><br><span class="line">    <span class="comment"># print(result)</span></span><br><span class="line">    <span class="comment"># write=writeFile('1.txt',result)</span></span><br><span class="line">    apk=<span class="string">'F:/apk/植物大战僵尸2_2.6.3.apk'</span></span><br><span class="line">    apk_mkdir=<span class="string">'F:/apk/u0o0u'</span></span><br><span class="line">    <span class="comment"># result_apktool=apktool_d(apk)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># result_apktool=apktool_b(apk_mkdir)</span></span><br><span class="line">    <span class="comment"># print(result_apktool)</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'success!'</span>)</span><br><span class="line">    print(os.popen(cmd).read(<span class="number">1024</span>))</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>python 小游戏<br>pip install pygame -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a><br>python加载动态图<br>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyglet </p>
+<h3 id="python-小游戏-咕咕咕"><a href="#python-小游戏-咕咕咕" class="headerlink" title="python 小游戏(咕咕咕)"></a>python 小游戏(咕咕咕)</h3><p>pip install pygame -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a><br>python加载动态图<br>pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> pyglet </p>
 <p>引用  初始化  事件处理 窗口刷新</p>
 <p>resources : 图片音乐和音效<br>source文件夹 :<br>    constants.py : 存放游戏中的常量(屏幕宽高,攻击特效,动作)<br>    sound.py : 音乐/音效<br>    setup.py : 启动代码(载入游戏的素材,如初始化,创建屏幕)<br>    tools.py : 工具代码<br>    data文件夹:游戏关卡, 游戏人物资料<br>    components文件夹 : 游戏人物,相关道具<br>        feed : 鱼食<br>        coin : 金币<br>        egg : 关卡结束重点<br>        enemy : 敌人<br>        medicine : 药品<br>        weapon : 武器<br>        player : 玩家<br>        octopus : 章鱼<br>        stuff : 物品<br>        info : 游戏信息(显示分数提示)<br>    states文件夹 : 存放game各个阶段要做的事情<br>        main_menu : 主菜单<br>        load_screen : 载入界面,关卡之间的载入屏幕<br>        level : 关卡</p>
 <hr>
