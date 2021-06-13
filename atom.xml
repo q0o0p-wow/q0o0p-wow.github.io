@@ -285,28 +285,6 @@
   </entry>
   
   <entry>
-    <title>MIUI的正确使用</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/07/miui12-android11/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/01/07/miui12-android11/</id>
-    <published>2021-01-07T11:28:33.000Z</published>
-    <updated>2021-06-12T00:44:19.422Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;miui自带搜狗输入法剪切板路径&lt;/p&gt;
-&lt;figure class=&quot;highlight dts&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>攻防世界Web进阶题</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/12/05/CTF-Web/</id>
@@ -457,6 +435,29 @@
     
     
     <category term="CEV" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CEV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kotlin-Study</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/</id>
+    <published>2020-11-13T14:05:46.000Z</published>
+    <updated>2020-11-17T14:08:22.485Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;增加依赖:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gradle工程&lt;br&gt;下载Gradle: &lt;a href=&quot;https://gradle.org/releases/&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
     
   </entry>
   
