@@ -39,27 +39,6 @@
   
   <entry>
     <title>学习路线整理中...</title>
-    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/monody/"/>
-    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/monody/</id>
-    <published>2021-04-23T07:52:33.000Z</published>
-    <updated>2021-06-13T07:08:12.591Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;密码学算法&quot;&gt;&lt;a href=&quot;#密码学算法&quot; class=&quot;headerlink&quot; title=&quot;密码学算法&quot;&gt;&lt;/a&gt;密码学算法&lt;/h1&gt;&lt;h1 id=&quot;HOOK&quot;&gt;&lt;a href=&quot;#HOOK&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>学习路线整理中...</title>
     <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/reverse-leaning/"/>
     <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/04/23/reverse-leaning/</id>
     <published>2021-04-23T07:52:33.000Z</published>
@@ -456,6 +435,29 @@
     
     
     <category term="CEV" scheme="https://github.com/q0o0p-wow/q0o0p-wow.github.io/tags/CEV/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kotlin-Study</title>
+    <link href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/"/>
+    <id>https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/11/13/kotlin-study/</id>
+    <published>2020-11-13T14:05:46.000Z</published>
+    <updated>2020-11-17T14:08:22.485Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;增加依赖:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gradle工程&lt;br&gt;下载Gradle: &lt;a href=&quot;https://gradle.org/releases/&quot; target=&quot;_blank&quot;</summary>
+        
+      
+    
+    
+    
     
   </entry>
   
