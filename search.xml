@@ -643,13 +643,19 @@
     
     
     <entry>
-      <title>查询网站链接</title>
+      <title>学习工具集</title>
       <link href="/2020/01/08/useful-website/"/>
       <url>/2020/01/08/useful-website/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>唉!最近居然养成了深夜水文的习惯…|ू･ω･` )<br>下面放几个有意思的网站(物联网设备漏洞查询平台):<br><a href="https://fofa.so/">https://fofa.so/</a></p><p><a href="https://www.zoomeye.org/">https://www.zoomeye.org/</a></p><p><a href="https://www.shodan.io/">https://www.shodan.io/</a></p><h2 id="whois"><a href="#whois" class="headerlink" title="whois"></a>whois</h2><p>查询域名ip，使用tcpip协议443端口</p><h2 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h2><p>交互模式:允许用户查询域名服务器，关于主机和域名的信息，输出域名内的主机列表。<br>非交互模式：输出主机或域名的名字。<br><img src="1.png"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script><p>唉!最近居然养成了深夜水文的习惯…|ू･ω･` )<br>下面放几个有意思的网站(物联网设备漏洞查询平台):<br><a href="https://fofa.so/">https://fofa.so/</a></p><p><a href="https://www.zoomeye.org/">https://www.zoomeye.org/</a></p><p><a href="https://www.shodan.io/">https://www.shodan.io/</a></p><h2 id="whois"><a href="#whois" class="headerlink" title="whois"></a>whois</h2><p>查询域名ip，使用tcpip协议443端口</p><h2 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h2><p>交互模式:允许用户查询域名服务器，关于主机和域名的信息，输出域名内的主机列表。<br>非交互模式：输出主机或域名的名字。<br><img src="1.png"></p><h2 id="资产收集工具"><a href="#资产收集工具" class="headerlink" title="资产收集工具"></a>资产收集工具</h2><h3 id="Kunyu"><a href="#Kunyu" class="headerlink" title="Kunyu"></a>Kunyu</h3><p>下载:<a href="https://github.com/knownsec/Kunyu">https://github.com/knownsec/Kunyu</a></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/knownsec/Kunyu.git</span><br><span class="line"><span class="built_in">cd</span> Kunyu</span><br><span class="line">pip3 install -r requirements.txt</span><br><span class="line"></span><br><span class="line">Linux:</span><br><span class="line">    python3 setup.py install</span><br><span class="line">    kunyu console</span><br><span class="line"></span><br><span class="line">Windows:</span><br><span class="line">    <span class="built_in">cd</span> kunyu</span><br><span class="line">    python3 console.py</span><br><span class="line"></span><br><span class="line">PYPI:</span><br><span class="line">    pip3 install kunyu</span><br><span class="line">    </span><br><span class="line">P.S. Windows also supports python3 setup.py install.</span><br></pre></td></tr></table></figure><p>参考:<br><a href="https://paper.seebug.org/1654/">https://paper.seebug.org/1654/</a></p><hr><p><a href="https://github.com/aldaor/HackerOneReports">https://github.com/aldaor/HackerOneReports</a></p><h2 id="渗透测试学习"><a href="#渗透测试学习" class="headerlink" title="渗透测试学习"></a>渗透测试学习</h2><p><a href="https://zhishihezi.net/c/ca2108d94cf521aa6a2e1172de967183">https://zhishihezi.net/c/ca2108d94cf521aa6a2e1172de967183</a></p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> tools-url </tag>
+            
+        </tags>
       
     </entry>
     
