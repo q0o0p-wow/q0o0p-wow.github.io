@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>电脑端小程序渗透测试</title>
+      <link href="/2022/04/14/applet-test/"/>
+      <url>/2022/04/14/applet-test/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h3 id="小程序路径："><a href="#小程序路径：" class="headerlink" title="小程序路径："></a>小程序路径：</h3><p>D:\Software\WeChat\WeChat Files\Applet\wx4e8a0957bbf2ead8\151</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414142753121.png" alt="image-20220414142753121"></p><h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><h3 id="wxappUnpacker"><a href="#wxappUnpacker" class="headerlink" title="wxappUnpacker"></a>wxappUnpacker</h3><p>下载:</p><p><code>git clone https://github.com/wanliofficial/wxappUnpacker.git</code></p><p>安装依赖</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd F:\tools\Android-tools\wxappUnpacker</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><h3 id="小程序解密包工具"><a href="#小程序解密包工具" class="headerlink" title="小程序解密包工具"></a>小程序解密包工具</h3><p>下载地址:<a href="https://cowtransfer.com/s/04ec0d0a737745">https://cowtransfer.com/s/04ec0d0a737745</a> 或 打开【奶牛快传】cowtransfer.com 使用传输口令：7chgsl 提取；</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414152748697.png" alt="image-20220414152748697"></p><hr><h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><h3 id="逆向解包分析"><a href="#逆向解包分析" class="headerlink" title="逆向解包分析"></a>逆向解包分析</h3><h4 id="1-解密"><a href="#1-解密" class="headerlink" title="1. 解密"></a>1. 解密</h4><p>使用小程序解密工具UnpackMiniApp.exe解密，解密完成后wxpack中有解密后的.wxapkg文件</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414153353471.png" alt="image-20220414153353471"></p><h4 id="2-解包"><a href="#2-解包" class="headerlink" title="2. 解包"></a>2. 解包</h4><p>将解密出来的文件进行解包</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node wuWxapkg.js &lt;wx_mini_progranm_file_path&gt;</span><br></pre></td></tr></table></figure><p>解包完成后生成对应的文件</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414153727289.png" alt="image-20220414153727289"></p><h3 id="抓包分析"><a href="#抓包分析" class="headerlink" title="抓包分析"></a>抓包分析</h3><h4 id="1-Proxifier配置"><a href="#1-Proxifier配置" class="headerlink" title="1. Proxifier配置"></a>1. Proxifier配置</h4><ul><li>配置代理服务器</li></ul><p><code>profile -&gt; proxy servers -&gt; add..</code>  填入Burpsuite的代理IP和端口，选择协议HTTPS</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414160115631.png" alt="image-20220414160115631"></p><ul><li>添加规则</li></ul><p>由于系统流量较多，如果不设置指定的规则，会有许多干扰流量，不方便后续的渗透测试</p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414160342301.png" alt="image-20220414160342301"></p><p><code>proxification rules -&gt; add.. -&gt; wechatappex.exe,Proxy HTTPS 127.0.0.1</code></p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414161402693.png" alt="image-20220414161402693"></p><p><img src="/q0o0p-wow/q0o0p-wow.github.io/2022/04/14/applet-test/.%5Capplet-test%5Cimage-20220414161557640.png" alt="image-20220414161557640"></p><p>然后开始愉快的使用burpsuite，哈哈哈~~~</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>frida hook进阶篇（反frida绕过）</title>
       <link href="/2021/11/09/frida-hook-advance/"/>
       <url>/2021/11/09/frida-hook-advance/</url>
