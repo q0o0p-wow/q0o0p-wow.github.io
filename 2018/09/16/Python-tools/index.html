@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>自制Python小工具 | q0o0p</title><meta name="keywords" content="python"><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pip安装需要使用的模块 1pip install -i https:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F; pyinstaller 打包.exe文件 如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令： 1pyinstaller.exe -F -icon&#x3D;F:\testTools F:&#x2F;code&#x2F;python-tools&#x2F;tes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制Python小工具">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="pip安装需要使用的模块 1pip install -i https:&#x2F;&#x2F;pypi.douban.com&#x2F;simple&#x2F; pyinstaller 打包.exe文件 如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令： 1pyinstaller.exe -F -icon&#x3D;F:\testTools F:&#x2F;code&#x2F;python-tools&#x2F;tes">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/true">
+<meta property="article:published_time" content="2018-09-16T15:46:03.000Z">
+<meta property="article:modified_time" content="2022-09-22T02:26:15.436Z">
+<meta property="article:author" content="q0o0p">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/true"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '自制Python小工具',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-22 10:26:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2018/09/16/Python-tools/true')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">自制Python小工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2018-09-16T15:46:03.000Z" title="Created 2018-09-16 23:46:03">2018-09-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-09-22T02:26:15.436Z" title="Updated 2022-09-22 10:26:15">2022-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/tools/">tools</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="自制Python小工具"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>pip安装需要使用的模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.douban.com/simple/ pyinstaller</span><br></pre></td></tr></table></figure>
+<p>打包.exe文件</p>
+<p>如果Python安装目录下的Scripts路径是加到了系统环境变量中，那么可以在任意路劲下直接运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller.exe -F -icon=F:\testTools F:/code/python-tools/test.py</span><br></pre></td></tr></table></figure>
+<p>如果带-icon参数打包运行时报错，那么可以在你想保存的文件路劲下直接运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller.exe -F F:/code/python-tools/test.py</span><br></pre></td></tr></table></figure>
+
+<p>1.程序设置自定义图标：pyinstaller -F -i ico_path  py_path </p>
+<p>首先需要下载一张正常的ico，不能用直接修改后缀的。</p>
+<p>下载图片：　　  <a target="_blank" rel="noopener" href="https://www.easyicon.net/">https://www.easyicon.net</a></p>
+<p>图片改为ico:　　<a target="_blank" rel="noopener" href="http://www.ico.la/">http://www.ico.la/</a></p>
+<p>输入命令 pyinstaller -F -i “demo.ico” “main.py”</p>
+<p>2.报错提示：</p>
+<p>pyinstaller -F -i “demo.ico” “main.py” 命令格式一定是先图标路径，再程序路径。</p>
+<p>路径最好为英文，没有中文字符；脚本名称里没有特殊字符如 .</p>
+<p>使用utf8编码</p>
+<p>图标文件必须是正常格式，不能直接更改后缀。</p>
+<p>tuble index out of range —》pyinstaller版本尚未支持python的版本</p>
+<p>3.窗口程序</p>
+<p>使用 pyinstaller -F -w  -i ico_path  py_path ，这样脚本不会弹出命令窗，前提是用了GUI库. </p>
+<hr>
+<h2 id="Python开发右键菜单功能"><a href="#Python开发右键菜单功能" class="headerlink" title="Python开发右键菜单功能"></a>Python开发右键菜单功能</h2><p>右键菜单功能使用Pyhton内置的_winreg模块</p>
+<h3 id="右键菜单"><a href="#右键菜单" class="headerlink" title="右键菜单"></a>右键菜单</h3><ul>
+<li>注册表编辑器添加右键菜单的基本原理<br>win + R快捷键打开运行命令输入框，输入 <code>regedit</code> 命令并回车，打开注册表编辑器。<br>目录–&gt;树形结构，树中的每个项目都称为key，也就是注册表的键，其实我们添加右键菜单，本质上就是在某个父键下面新增一个具体执行某种操作的子键。<br><img src="/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/09/16/Python-tools/1.png"><br>计算机\HKEY_CLASSES_ROOT\Directory\Background\shell,这个就是添加文件夹空白处右键菜单的父键，可以看到当前该父键下已经有三个子键，也就是有三个右键菜单了</li>
+</ul>
+<p><img src="/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/09/16/Python-tools/2.png"><br>git_shell展开，可以看到还有一个名为command的子键，还可以在注册表编辑器右边看到git_shell这个键的详情，Git Bash Here这个右键菜单，执行git-bash.exe<br>并且自动带上了–cd&#x3D;%v.这样一个参数。还可以右键点击名称，修改这个键的值</p>
+<p>如果不想使用某个右键菜单，只需把这个右键菜单的键（包括子键）在注册表编辑器中删掉即可</p>
+<ul>
+<li>添加右键菜单打印字符串<br>找到注册表中的shell，在HKEY_CLASSES_ROOT&#x2F;Directory&#x2F;Background&#x2F;shell键上面执行（右键–&gt;新建–&gt;项），并为HelloWorld子键添加一个名为command的子键：</li>
+</ul>
+<p>代码中添加注册表键的command命令时，是以%v代表一个路径参数的，还有其他几种参数可以使用：</p>
+<p>系统默认变量的含义：<br>%1  表示程序操作的文件<br>%2  表示系统默认的打印机<br>%3  表示资料扇区<br>%4  表示操作的Port端口<br>“%v”  程序操作的路径</p>
+<p>删除上面添加的Show file path右键菜单的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">import _winreg as reg</span><br><span class="line">def delete_reg_key(root_key,key,menu_name):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    删除一个右键菜单注册表子键</span><br><span class="line">    :param root_key:根键</span><br><span class="line">    :param key: 父键</span><br><span class="line">    :param menu_name: 菜单子键名称</span><br><span class="line">    :return: None</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    try:</span><br><span class="line">        parent_key = reg.OpenKey(root_key,key)</span><br><span class="line">    except Exception as msg:</span><br><span class="line">        print msg</span><br><span class="line">        return</span><br><span class="line">    if parent_key:</span><br><span class="line">        try:</span><br><span class="line">            menu_key = reg.OpenKey(parent_key,menu_name)</span><br><span class="line">        except Exception as msg:</span><br><span class="line">            print msg</span><br><span class="line">            return</span><br><span class="line">        if menu_key:</span><br><span class="line">            try:</span><br><span class="line">                # 必须先删除子键的子键，才能删除子键本身</span><br><span class="line">                reg.DeleteKey(menu_key,&#x27;command&#x27;)</span><br><span class="line">            except Exception as msg:</span><br><span class="line">                print msg</span><br><span class="line">                return</span><br><span class="line">            else:</span><br><span class="line">                reg.DeleteKey(parent_key,menu_name)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    menu_name = &#x27;Show file path&#x27;</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT,r&#x27;*\\shell&#x27;,menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, r&#x27;Directory\\shell&#x27;, menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, r&#x27;Directory\\Background\\shell&#x27;, menu_name)</span><br><span class="line">    delete_reg_key(reg.HKEY_CLASSES_ROOT, r&#x27;Drive\\shell&#x27;, menu_name)</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现”用Chrome浏览器打开文件”的右键菜单"><a href="#实现”用Chrome浏览器打开文件”的右键菜单" class="headerlink" title="实现”用Chrome浏览器打开文件”的右键菜单"></a>实现”用Chrome浏览器打开文件”的右键菜单</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">import _winreg as reg</span><br><span class="line">def add_context_menu(menu_name,command,reg_root_key_path,reg_key_path,shortcut_key):</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    封装的添加一个右键菜单的方法</span><br><span class="line">    :param menu_name: 显示的菜单名称</span><br><span class="line">    :param command: 菜单执行的命令</span><br><span class="line">    :param reg_root_key_path: 注册表根键路径</span><br><span class="line">    :param reg_key_path: 要添加到的注册表父键的路径（相对路径）</span><br><span class="line">    :param shortcut_key: 菜单快捷键，如：&#x27;S&#x27;</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    # 打开名称父键</span><br><span class="line">    key = reg.OpenKey(reg_root_key_path, reg_key_path)</span><br><span class="line">    # 为key创建一个名称为menu_name的sub_key，并设置sub_key的值为menu_name加上快捷键，数据类型为REG_SZ字符串类型</span><br><span class="line">    reg.SetValue(key, menu_name, reg.REG_SZ, menu_name + &#x27;(&amp;&#123;0&#125;)&#x27;.format(shortcut_key))</span><br><span class="line"></span><br><span class="line">    # 打开刚刚创建的名为menu_name的sub_key</span><br><span class="line">    sub_key = reg.OpenKey(key, menu_name)</span><br><span class="line">    # 为sub_key添加名为&#x27;command&#x27;的子键，并设置其值为command + &#x27; &quot;%v&quot;&#x27;，数据类型为REG_SZ字符串类型</span><br><span class="line">    reg.SetValue(sub_key, &#x27;command&#x27;, reg.REG_SZ, command + &#x27; &quot;%v&quot;&#x27;)</span><br><span class="line"></span><br><span class="line">    # 关闭sub_key和key</span><br><span class="line">    reg.CloseKey(sub_key)</span><br><span class="line">    reg.CloseKey(key)</span><br><span class="line"></span><br><span class="line">def add_open_with_chrome():</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    添加&quot;用谷歌浏览器打开&quot;右键菜单</span><br><span class="line">    :return:</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">    # 右键菜单名</span><br><span class="line">    menu_name = &#x27;Open with chrome&#x27;</span><br><span class="line">    # Chrome浏览器可执行文件的本地绝对路径</span><br><span class="line">    command = r&#x27;C:\\Users\\Administrator.PC-20170728DWIF\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe&#x27;</span><br><span class="line">    # 注册表根键</span><br><span class="line">    reg_root_key_path = reg.HKEY_CLASSES_ROOT</span><br><span class="line">    # 注册表父键</span><br><span class="line">    reg_key_path = r&#x27;*\\shell&#x27;</span><br><span class="line">    # 快捷键</span><br><span class="line">    shortcut_key = &#x27;C&#x27;</span><br><span class="line">    add_context_menu(menu_name, command, reg_root_key_path, reg_key_path, shortcut_key)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    add_open_with_chrome()</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b9ef487d7c87">https://www.jianshu.com/p/b9ef487d7c87</a></p>
+<hr>
+<h2 id="Chrome-增加-右键菜单项-实现多搜索"><a href="#Chrome-增加-右键菜单项-实现多搜索" class="headerlink" title="Chrome 增加 右键菜单项 实现多搜索"></a>Chrome 增加 右键菜单项 实现多搜索</h2><p>1、随地创建一个文件包并命名</p>
+<p>2、文件包内创建以下文件：</p>
+<p>2.1 .&#x2F;manifest.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span>  </span><br><span class="line">  <span class="attr">&quot;manifest_version&quot;</span><span class="punctuation">:</span><span class="number">2</span><span class="punctuation">,</span> <span class="comment">//必需是2</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;BaiduSeachString&quot;</span><span class="punctuation">,</span>  </span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.1.0&quot;</span><span class="punctuation">,</span>  </span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;走百度搜索.&quot;</span><span class="punctuation">,</span> </span><br><span class="line">  <span class="attr">&quot;icons&quot;</span><span class="punctuation">:</span> </span><br><span class="line">  <span class="punctuation">&#123;</span> </span><br><span class="line">    <span class="attr">&quot;16&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sicon.png&quot;</span><span class="punctuation">,</span>  <span class="comment">//当前路径中的图标           </span></span><br><span class="line">    <span class="attr">&quot;48&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sicon.png&quot;</span><span class="punctuation">,</span>            </span><br><span class="line">    <span class="attr">&quot;128&quot;</span><span class="punctuation">:</span> <span class="string">&quot;sicon.png&quot;</span> </span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span>    </span><br><span class="line">  <span class="attr">&quot;background&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;BDSCHbackground.js&quot;</span><span class="punctuation">]</span> <span class="comment">//菜单功能</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;permissions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;contextMenus&quot;</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.2 .&#x2F;BDSCHbackground.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;使用度娘搜索：%s&#x27;</span>, <span class="comment">// %s表示选中的文字</span></span><br><span class="line">    <span class="attr">contexts</span>: [<span class="string">&#x27;selection&#x27;</span>], <span class="comment">// 只有当选中文字时才会出现此右键菜单</span></span><br><span class="line">    <span class="attr">onclick</span>: <span class="keyword">function</span>(<span class="params">params</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 注意不能使用location.href，因为location是属于background的window对象</span></span><br><span class="line">        chrome.<span class="property">tabs</span>.<span class="title function_">create</span>(&#123;<span class="attr">url</span>: <span class="string">&#x27;https://www.baidu.com/s?ie=utf-8&amp;wd=&#x27;</span> + <span class="built_in">encodeURI</span>(params.<span class="property">selectionText</span>)&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>2.3 .&#x2F;sicon.png<br>随便找个PNG的图片当做log。越小越好。</p>
+<p>3、打开Chrome右上角找到”更多工具-&gt;扩展程序“中，加载已解压文件，选择你创建的哪个文件包，即可。</p>
+<hr>
+<h2 id="python执行系统命令"><a href="#python执行系统命令" class="headerlink" title="python执行系统命令"></a>python执行系统命令</h2><ol>
+<li>相关基础模块介绍</li>
+</ol>
+<p>1.1 显示当前日期</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">d = datetime.datetime.now()</span><br><span class="line">dTime = d.strftime(<span class="string">&quot;%Y-%m-%d&quot;</span>)</span><br><span class="line">hour= d.hour</span><br><span class="line"><span class="built_in">print</span>(hour)</span><br><span class="line"><span class="built_in">print</span>(dTime)</span><br></pre></td></tr></table></figure>
+<p>1.2 cmd下执行命令</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">command = <span class="string">&#x27;nmap localhost&#x27;</span></span><br><span class="line">status=os.system(command)</span><br><span class="line"><span class="built_in">print</span>(status)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="socket-网络编程"><a href="#socket-网络编程" class="headerlink" title="socket 网络编程"></a>socket 网络编程</h2><h3 id="主要函数"><a href="#主要函数" class="headerlink" title="主要函数"></a>主要函数</h3><ul>
+<li>connect(address) #远程连接计算机</li>
+<li>send(byte[,flags]) #发送数据</li>
+<li>recv(bufsize[,flags]) #接收数据</li>
+<li>bind(address) #绑定地址</li>
+<li>listen(backlog) #开始监听,等待客户端连接</li>
+<li>accept() #响应客户端的一个请求,接收请求</li>
+<li>socket.gethostname() #获取本地主机名</li>
+</ul>
+<ol>
+<li>服务端代码</li>
+</ol>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">laguage=&#123;<span class="string">&#x27;what is you name?&#x27;</span>:<span class="string">&#x27;q0o0p&#x27;</span>,<span class="string">&#x27;how old are you?&#x27;</span>:<span class="string">&#x27;I am 22&#x27;</span>,<span class="string">&#x27;bye&#x27;</span>:<span class="string">&#x27;bey!&#x27;</span>&#125;</span><br><span class="line">HOST=<span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">PORT= <span class="number">6666</span></span><br><span class="line">a=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">s.bind((HOST,PORT))</span><br><span class="line">s.listen(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Listing at port 6666!&#x27;</span>)</span><br><span class="line">conn,addr=s.accept()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Connect by:&#x27;</span>,addr)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data=conn.recv(<span class="number">1024</span>)</span><br><span class="line">    data=data.decode()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Received message:&#x27;</span>,data)</span><br><span class="line">    conn.sendall(laguage.get(data,<span class="string">&#x27;Nothing&#x27;</span>).encode())</span><br><span class="line">conn.close()</span><br><span class="line">s.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,sys</span><br><span class="line">HOST=<span class="string">&#x27;127.0.0.1&#x27;</span></span><br><span class="line">PORT=<span class="number">6666</span></span><br><span class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    s.connect((HOST,PORT))</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;server not find!&#x27;</span>)</span><br><span class="line">    sys.exit()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    c=<span class="built_in">input</span>(<span class="string">&#x27;YOU SAY!&#x27;</span>)</span><br><span class="line">    s.sendall(c.encode())</span><br><span class="line">    data = s.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Received:&#x27;</span>,data)</span><br><span class="line">    <span class="keyword">if</span> c.lower()==<span class="string">&#x27;再见&#x27;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="apk编译-反编译小工具-继续更新中…"><a href="#apk编译-反编译小工具-继续更新中…" class="headerlink" title="apk编译-反编译小工具(继续更新中…)"></a>apk编译-反编译小工具(继续更新中…)</h2><p>F:\tool\read_activity</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os,re</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(result.read(1024))</span></span><br><span class="line"><span class="comment"># 返回的结果是一个&lt;class &#x27;os._wrap_close&#x27;&gt;对象，需要读取后才能处理</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">execCmd</span>(<span class="params">cmd</span>):  </span><br><span class="line">    r = os.popen(cmd)  </span><br><span class="line">    text = r.read(<span class="number">1024</span>)  </span><br><span class="line">    r.close()  </span><br><span class="line">    <span class="keyword">return</span> text  </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">apktool_d</span>(<span class="params">apk</span>):</span><br><span class="line">    apktool=<span class="string">&quot;java -jar Apktool_2.5.0.jar d &quot;</span>+apk+<span class="string">&#x27; -o F:/apk/u0o0u&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(apktool)</span><br><span class="line">    r = os.popen(apktool)</span><br><span class="line">    text = r.read(<span class="number">1024</span>) </span><br><span class="line">    r.close()</span><br><span class="line">    <span class="keyword">return</span> text </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">apktool_b</span>(<span class="params">apk_mkdir</span>):</span><br><span class="line">    apktool=<span class="string">&quot;java -jar Apktool_2.5.0.jar b &quot;</span>+apk_mkdir+<span class="string">&quot; -o F:/apk/wow.apk&quot;</span></span><br><span class="line">    r = os.popen(apktool)</span><br><span class="line">    text = r.read(<span class="number">1024</span>) </span><br><span class="line">    r.close()</span><br><span class="line">    <span class="keyword">return</span> text     </span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">writeFile</span>(<span class="params">filename, data</span>):  </span><br><span class="line">    f = <span class="built_in">open</span>(filename, <span class="string">&quot;w&quot;</span>)  </span><br><span class="line">    f.write(data)  </span><br><span class="line">    f.close()  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    cmd = <span class="string">&quot;adb -s fea4b345 shell dumpsys activity top &quot;</span>  </span><br><span class="line">    <span class="comment"># cmd1 = &quot;adb devices &quot;  </span></span><br><span class="line">    <span class="comment"># result1 = execCmd(cmd1) </span></span><br><span class="line">    <span class="comment"># cmd = &quot;adb -s fea4b345 install F:/apk/植物大战僵尸2_2.6.3.apk &quot;  </span></span><br><span class="line">    <span class="comment"># result = execCmd(cmd) </span></span><br><span class="line">    pat1 = <span class="string">&quot;ACTIVITY (.*?)/. &quot;</span>  </span><br><span class="line">    <span class="comment"># pat2 = &quot;IP Address[\. ]+: ([\.\d]+)&quot;  </span></span><br><span class="line">    <span class="comment"># ACTIVITY = re.findall(pat1, result)      # 找到ACTIVITY   </span></span><br><span class="line">    <span class="comment"># IP = re.findall(pat2, result)[0]        # 找到IP  </span></span><br><span class="line">    <span class="comment"># print(&quot;MAC=%s, IP=%s&quot; %(MAC, IP))  </span></span><br><span class="line">    <span class="comment"># print(result)</span></span><br><span class="line">    <span class="comment"># write=writeFile(&#x27;1.txt&#x27;,result)</span></span><br><span class="line">    apk=<span class="string">&#x27;F:/apk/植物大战僵尸2_2.6.3.apk&#x27;</span></span><br><span class="line">    apk_mkdir=<span class="string">&#x27;F:/apk/u0o0u&#x27;</span></span><br><span class="line">    <span class="comment"># result_apktool=apktool_d(apk)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># result_apktool=apktool_b(apk_mkdir)</span></span><br><span class="line">    <span class="comment"># print(result_apktool)</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;success!&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(os.popen(cmd).read(<span class="number">1024</span>))</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="python-QT工具"><a href="#python-QT工具" class="headerlink" title="python QT工具"></a>python QT工具</h2><h3 id="pyside6"><a href="#pyside6" class="headerlink" title="pyside6"></a>pyside6</h3><p>打开自动生成代码UI界面cmd执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyside6-designer</span><br><span class="line">pyside6-uic hello.ui &gt; ui.py</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="python-小游戏-咕咕咕"><a href="#python-小游戏-咕咕咕" class="headerlink" title="python 小游戏(咕咕咕)"></a>python 小游戏(咕咕咕)</h3><p>pip install pygame -i <a target="_blank" rel="noopener" href="https://pypi.douban.com/simple">https://pypi.douban.com/simple</a><br>python加载动态图<br>pip install -i <a target="_blank" rel="noopener" href="https://pypi.douban.com/simple/">https://pypi.douban.com/simple/</a> pyglet </p>
+<p>引用  初始化  事件处理 窗口刷新</p>
+<p>resources : 图片音乐和音效<br>source文件夹 :<br>    constants.py : 存放游戏中的常量(屏幕宽高,攻击特效,动作)<br>    sound.py : 音乐&#x2F;音效<br>    setup.py : 启动代码(载入游戏的素材,如初始化,创建屏幕)<br>    tools.py : 工具代码<br>    data文件夹:游戏关卡, 游戏人物资料<br>    components文件夹 : 游戏人物,相关道具<br>        feed : 鱼食<br>        coin : 金币<br>        egg : 关卡结束重点<br>        enemy : 敌人<br>        medicine : 药品<br>        weapon : 武器<br>        player : 玩家<br>        octopus : 章鱼<br>        stuff : 物品<br>        info : 游戏信息(显示分数提示)<br>    states文件夹 : 存放game各个阶段要做的事情<br>        main_menu : 主菜单<br>        load_screen : 载入界面,关卡之间的载入屏幕<br>        level : 关卡</p>
+<hr>
+<p>while True : 无线循环<br>    for event in pygame.event.get()    #取出事件<br>        if event.typw &#x3D;&#x3D; pygame.QUIT:<br>            sys.exit() #调用函数 退出事件<br>screen &#x3D; pygame.display.set_mode(size,pygame.RESIZABLE)  &#x2F;&#x2F;大小可调</p>
+<p>pygame.display.set_mode() &#x2F;&#x2F;设置屏幕相关信息<br>pygame.display.Info() 生成屏幕相关信息<br>pygame.image.load()  —  从文件加载新图片<br>pygame.image.save()  —  将图像保存到磁盘上<br>pygame.image.get_extended()  —  检测是否支持载入扩展的图像格式<br>pygame.image.tostring()  —  将图像转换为字符串描述<br>pygame.image.fromstring()  —  将字符串描述转换为图像<br>pygame.image.frombuffer()  —  创建一个与字符串描述共享数据的 Surface 对象</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2018/09/16/Python-tools/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/python/">python</a></div><div class="post_share"><div class="social-share" data-image="/2018/09/16/Python-tools/true" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/03/23/live2D-two/"><img class="prev-cover" src="/img/1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Live2D添加板娘</div></div></a></div><div class="next-post pull-right"><a href="/2018/09/12/hexo-one/"><img class="next-cover" src="/2018/09/12/hexo-one/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">hexo的简单使用</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python%E5%BC%80%E5%8F%91%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E5%8A%9F%E8%83%BD"><span class="toc-number">1.</span> <span class="toc-text">Python开发右键菜单功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="toc-number">1.1.</span> <span class="toc-text">右键菜单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E2%80%9D%E7%94%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E2%80%9D%E7%9A%84%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="toc-number">2.</span> <span class="toc-text">实现”用Chrome浏览器打开文件”的右键菜单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chrome-%E5%A2%9E%E5%8A%A0-%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E9%A1%B9-%E5%AE%9E%E7%8E%B0%E5%A4%9A%E6%90%9C%E7%B4%A2"><span class="toc-number">3.</span> <span class="toc-text">Chrome 增加 右键菜单项 实现多搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">python执行系统命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#socket-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="toc-number">5.</span> <span class="toc-text">socket 网络编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text">主要函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">5.2.</span> <span class="toc-text">客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apk%E7%BC%96%E8%AF%91-%E5%8F%8D%E7%BC%96%E8%AF%91%E5%B0%8F%E5%B7%A5%E5%85%B7-%E7%BB%A7%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD%E2%80%A6"><span class="toc-number">6.</span> <span class="toc-text">apk编译-反编译小工具(继续更新中…)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-QT%E5%B7%A5%E5%85%B7"><span class="toc-number">7.</span> <span class="toc-text">python QT工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pyside6"><span class="toc-number">7.1.</span> <span class="toc-text">pyside6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E5%B0%8F%E6%B8%B8%E6%88%8F-%E5%92%95%E5%92%95%E5%92%95"><span class="toc-number">7.2.</span> <span class="toc-text">python 小游戏(咕咕咕)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2026/01/12/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2026-01-12T11:48:33.582Z" title="Created 2026-01-12 19:48:33">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑"><img src="/2022/08/01/audio-clip/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python 实现简单的音频剪辑"/></a><div class="content"><a class="title" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑">python 实现简单的音频剪辑</a><time datetime="2022-08-01T01:59:45.000Z" title="Created 2022-08-01 09:59:45">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现"><img src="/2022/07/19/IoT-Vulnerability/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT漏洞复现"/></a><div class="content"><a class="title" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现">IoT漏洞复现</a><time datetime="2022-07-19T08:27:13.000Z" title="Created 2022-07-19 16:27:13">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/2018/09/16/Python-tools/true')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

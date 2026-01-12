@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>kali 之打造自己工具库 | q0o0p</title><meta name="keywords" content="outguess,kali"><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常用命令及操作$HOME: &#x2F;root 修改root密码1sudo passwd root  查看内核版本信息1uname -r   history 执行命令记录存储路径：&#x2F;root&#x2F;.bash_history 在.bash_profile文件中添加 12HISTFILE&#x3D;&#x2F;root&#x2F;historyexport HISTFILE 重新登录后历史命令都会写入到&amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kali 之打造自己工具库">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/28/kali-update/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="常用命令及操作$HOME: &#x2F;root 修改root密码1sudo passwd root  查看内核版本信息1uname -r   history 执行命令记录存储路径：&#x2F;root&#x2F;.bash_history 在.bash_profile文件中添加 12HISTFILE&#x3D;&#x2F;root&#x2F;historyexport HISTFILE 重新登录后历史命令都会写入到&amp;#x2F">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/5.jpg">
+<meta property="article:published_time" content="2020-08-28T00:05:50.000Z">
+<meta property="article:modified_time" content="2022-10-09T01:46:44.063Z">
+<meta property="article:author" content="q0o0p">
+<meta property="article:tag" content="outguess">
+<meta property="article:tag" content="kali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/5.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/28/kali-update/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'kali 之打造自己工具库',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-09 09:46:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/5.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">kali 之打造自己工具库</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-08-28T00:05:50.000Z" title="Created 2020-08-28 08:05:50">2020-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-10-09T01:46:44.063Z" title="Updated 2022-10-09 09:46:44">2022-10-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>11min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="kali 之打造自己工具库"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="常用命令及操作"><a href="#常用命令及操作" class="headerlink" title="常用命令及操作"></a>常用命令及操作</h1><p>$HOME: &#x2F;root</p>
+<h2 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看内核版本信息"><a href="#查看内核版本信息" class="headerlink" title="查看内核版本信息"></a>查看内核版本信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uname</span> -r </span><br></pre></td></tr></table></figure>
+
+<h2 id="history-执行命令记录"><a href="#history-执行命令记录" class="headerlink" title="history 执行命令记录"></a>history 执行命令记录</h2><p>存储路径：<br>&#x2F;root&#x2F;.bash_history</p>
+<p>在.bash_profile文件中添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HISTFILE=/root/history</span><br><span class="line"><span class="built_in">export</span> HISTFILE</span><br></pre></td></tr></table></figure>
+<p>重新登录后历史命令都会写入到&#x2F;root&#x2F;history文件中</p>
+<p>其余的一些设置可以在.bashrc文件中设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HISTCONTROL=ignoredups <span class="comment">#忽略重复的命令</span></span><br><span class="line"><span class="built_in">export</span> HISTIGNORE=”[ ]*:&amp;:<span class="built_in">bg</span>:<span class="built_in">fg</span>:<span class="built_in">exit</span>” <span class="comment">#忽略由冒号分割的这些命令</span></span><br><span class="line"><span class="built_in">export</span> HISTFILESIZE=1000 <span class="comment">#设置保存的历史命令的文件大小</span></span><br><span class="line"><span class="built_in">export</span> HISTSIZE=100 <span class="comment">#设置保存的历史命令的条数</span></span><br></pre></td></tr></table></figure>
+<p>要清除整个命令历史中的重复条目，可以将 HISTCONTROL 设置成 erasedups</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HISTCONTROL=erasedups</span><br></pre></td></tr></table></figure>
+
+<h2 id="find命令按时间筛选"><a href="#find命令按时间筛选" class="headerlink" title="find命令按时间筛选"></a>find命令按时间筛选</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">-amin -n: 最后一次访问发生在 n分钟 之内</span><br><span class="line">-amin n:  最后一次访问发生在距离当前时间 n分钟 至 (n+1)分钟</span><br><span class="line">-amin +n: 最后一次访问发生在 (n+1)分钟 之外</span><br><span class="line"></span><br><span class="line">-atime -n: 最后一次访问发生在 n天 之内</span><br><span class="line">-atime n: 最后一次访问发生在 n天 至 (n+1)天 </span><br><span class="line">-atime +n: 最后一次访问发生在 (n+1)天 之外</span><br><span class="line"></span><br><span class="line">-cmin -n: 最后一次文件状态修改发生在 n分钟 之内</span><br><span class="line">-cmin n: 最后一次文件状态修改发生在 n分钟 至 (n+1)分钟</span><br><span class="line">-cmin +n: 最后一次文件状态修改发生在 (n+1)分钟 之外</span><br><span class="line"></span><br><span class="line">-ctime -n: 最后一次文件状态修改发生在 n天 之内</span><br><span class="line">-ctime n: 最后一次文件状态修改发生在 n天 至 (n+1) 天</span><br><span class="line">-ctime +n: 最后一次文件状态修改发生在 (n+1)天 之外</span><br><span class="line"></span><br><span class="line">-mmin -n: 最后一次文件内容修改发生在 n分钟 之内</span><br><span class="line">-mmin n: 最后一次文件内容修改发生在 n分钟 至 (n+1)分钟</span><br><span class="line">-mmin +n: 最后一次文件内容修改发生在 (n+1)分钟 之外</span><br><span class="line"></span><br><span class="line">-mtime -n: 最后一次文件内容修改发生在 n天 之内</span><br><span class="line">-mtime n: 最后一次文件内容修改发生在 n天 至 (n+1)天</span><br><span class="line">-mtime +n: 最后一次文件内容修改发生在 (n+1)天 之外</span><br><span class="line"></span><br><span class="line"><span class="comment">#查找文件内容修改发生在2天之内的文件</span></span><br><span class="line">find /var/log/hive/ -name <span class="string">&quot;*&quot;</span> -mtime -2  </span><br></pre></td></tr></table></figure>
+<h2 id="WiFi密码默认路径"><a href="#WiFi密码默认路径" class="headerlink" title="WiFi密码默认路径"></a>WiFi密码默认路径</h2><p>&#x2F;etc&#x2F;NetworkManager&#x2F;system-connections</p>
+<h2 id="修改时区"><a href="#修改时区" class="headerlink" title="修改时区"></a>修改时区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tzselect <span class="comment">#Asia–&gt;China–&gt;Beijing Time–Yes</span></span><br><span class="line"><span class="built_in">echo</span> “ZONE=Asia/Shanghai” &gt;&gt; /etc/sysconfig</span><br><span class="line"><span class="built_in">rm</span> -f /etc/localtime <span class="comment"># 链接到上海时区文件</span></span><br><span class="line"><span class="built_in">ln</span> -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br><span class="line"><span class="built_in">date</span> <span class="comment">#查看时间</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改环境配置"><a href="#修改环境配置" class="headerlink" title="修改环境配置"></a>修改环境配置</h2><h3 id="设置静态ip地址"><a href="#设置静态ip地址" class="headerlink" title="设置静态ip地址"></a>设置静态ip地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/network/interfaces</span><br><span class="line">auto wlan0 </span><br><span class="line">iface wlan0 inet static</span><br><span class="line">address 192.168.1.210</span><br><span class="line">netmask 255.255.255.0 <span class="comment">#子网掩码</span></span><br><span class="line">gateway 192.168.1.1 <span class="comment">#网关</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><p>下载clash（<a href="https://github.com/Dreamacro/clash/releases%EF%BC%89">https://github.com/Dreamacro/clash/releases）</a><br>最新版clash-linux-amd64-v1.6.5.gz</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gunzip clash-linux-amd64-v1.6.5.gz</span><br><span class="line"><span class="built_in">mv</span> clash-linux-amd64-v1.6.5 clash</span><br><span class="line"><span class="built_in">chmod</span> +x clash <span class="comment"># /home/q0o0p</span></span><br><span class="line"><span class="built_in">cd</span> /root/.config/clash/ <span class="comment"># 如果.config中没有clash，先运行一次./clash</span></span><br><span class="line"><span class="built_in">rm</span> -rf config.yaml</span><br><span class="line"><span class="comment"># 在Clash目录下，从你的[subscirbe_links]下载config.yaml配置文件</span></span><br><span class="line">wget -O config.yaml [subscirbe_links]</span><br><span class="line"> /clash -t <span class="comment"># 检查是否可以运行</span></span><br><span class="line"> ./clash</span><br></pre></td></tr></table></figure>
+
+<p>选择代理节点<br>进入图形化界面<a target="_blank" rel="noopener" href="http://clash.razord.top/#/proxies">http://clash.razord.top/#/proxies</a><br>最后在浏览器中配置代理端口就大功告成了。。。<br>参考： <a target="_blank" rel="noopener" href="https://www.iculture.cc/cybersecurity/pig=265">https://www.iculture.cc/cybersecurity/pig=265</a></p>
+<h3 id="配置内网访问端口"><a href="#配置内网访问端口" class="headerlink" title="配置内网访问端口"></a>配置内网访问端口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/sysconfig/</span><br><span class="line">vi iptables</span><br><span class="line">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 1111 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="工具集"><a href="#工具集" class="headerlink" title="工具集"></a>工具集</h1><h2 id="隐写工具"><a href="#隐写工具" class="headerlink" title="隐写工具"></a>隐写工具</h2><h3 id="outguess"><a href="#outguess" class="headerlink" title="outguess"></a>outguess</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/crorvick/outguess  //下载</span><br><span class="line">./configure &amp;&amp; make &amp;&amp; make install //进行安装</span><br><span class="line">outguess -<span class="built_in">help</span> </span><br><span class="line">outguess -r /root/angrybird.jpg -t 11.txt</span><br><span class="line"></span><br><span class="line">// 将a.txt和b.jpg隐写，输出c.jpg,隐写：</span><br><span class="line">outguess -k <span class="string">&quot;123&quot;</span> -d a.txt b.jpg c.jpg  //,密码123</span><br><span class="line">outguess -d a.txt b.jpg c.jpg</span><br><span class="line"></span><br><span class="line">// 从c.jpg中提取a.txt</span><br><span class="line">outguess -r c.jpg a.txt</span><br><span class="line">outguess -k <span class="string">&quot;123&quot;</span> -r c.jpg a.txt</span><br></pre></td></tr></table></figure>
+<h3 id="steghide"><a href="#steghide" class="headerlink" title="steghide"></a>steghide</h3><p>Steghide是一款开源的隐写术软件<br>将post.txt文件隐藏到xxx.jpg中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">steghide embed -cf xxx.jpg -ef post.txt -p 123456（不加-p参数 不设置密码 ）</span><br></pre></td></tr></table></figure>
+
+<p>从xxx.jpg解出post.txt:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">steghide extract -sf xxx.jpg -p 123456（-p 密码）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h2><h3 id="添加普通用户"><a href="#添加普通用户" class="headerlink" title="添加普通用户"></a>添加普通用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser wow</span><br></pre></td></tr></table></figure>
+
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>kali自带mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">mysql_secure_installation   //初始化密码</span><br><span class="line">mysql -u root -p   //登录数据库</span><br><span class="line"></span><br><span class="line">//执行下面命令才可以用刚才设置的密码登录数据库</span><br><span class="line">use mysql;</span><br><span class="line">update user <span class="built_in">set</span> plugin=<span class="string">&quot;&quot;</span>;</span><br><span class="line">fiush privileges;</span><br><span class="line"></span><br><span class="line">//关闭方法</span><br><span class="line">mysqladmin -u root shutdown</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//卸载</span><br><span class="line"> apt-get remove mysql*</span><br></pre></td></tr></table></figure>
+
+<h3 id="捕捉网网页"><a href="#捕捉网网页" class="headerlink" title="捕捉网网页"></a>捕捉网网页</h3><ul>
+<li>cutycapt<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cutycapt  --url=https://q0o0p.top/ --out=q0o0p.png --min-width=300 --min-height=250</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="清理工具"><a href="#清理工具" class="headerlink" title="清理工具"></a>清理工具</h3><ul>
+<li>bleachbit<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install bleachbit</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>中国国家漏洞库:<br><a target="_blank" rel="noopener" href="http://www.cnnvd.org.cn/">http://www.cnnvd.org.cn/</a></p>
+<hr>
+<h2 id="ettercap-arp欺骗工具的使用"><a href="#ettercap-arp欺骗工具的使用" class="headerlink" title="ettercap arp欺骗工具的使用"></a>ettercap arp欺骗工具的使用</h2><p>重启网络服务或主机后效果不再。若要其自动执行，可将命令echo “1” &gt; &#x2F;proc&#x2F;sys&#x2F;net&#x2F;ipv4&#x2F;ip_forward 写入脚本&#x2F;etc&#x2F;rc.d&#x2F;rc.local 或者 在&#x2F;etc&#x2F;sysconfig&#x2F;network脚本中添加 FORWARD_IPV4&#x3D;”YES”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 1 &gt; /proc/sys/net/ipv4/ip_forward  //开启请求转发,默认是0,1表示允许，</span><br><span class="line"></span><br><span class="line">/etc/init.d/apache2 start  //开启apache</span><br><span class="line"></span><br><span class="line">//如果执行报错,可能端口被占用</span><br><span class="line">netstat -lnp|grep 80  //查看80端口的进程</span><br><span class="line"> <span class="built_in">kill</span> -9 18594  //关闭进程</span><br><span class="line"></span><br><span class="line"> ettercap -G  //打开ettercap图形界面,或者手动输入如下命令</span><br><span class="line"> ettercap -Tqi wlan0 -M arp:remote /// /10.10. (网关) //</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="无线网络"><a href="#无线网络" class="headerlink" title="无线网络"></a>无线网络</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng //查看无线网卡设备名</span><br><span class="line">airmon-ng start wlan0//切换无线网卡进入监听状态</span><br><span class="line">airmon-ng stop wlan0mon //停止</span><br><span class="line"></span><br><span class="line">airodump-ng wlan0mon //扫描周围的基站信息</span><br></pre></td></tr></table></figure>
+<h2 id="字典攻击-dictionary-attack"><a href="#字典攻击-dictionary-attack" class="headerlink" title="字典攻击(dictionary attack)"></a>字典攻击(dictionary attack)</h2><h3 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h3><ul>
+<li>目前使用最广泛的加密方式<br>WPA2-PSK[AES]<br>PSK (Preshared Key) : 共享密钥,连接wifi时使用的密码<br>WPA(TKIP):向后兼容考虑使用到<br>WPA&#x2F;WPA2 Enterprise : 通常企业使用,避免共享的密钥PSK,提供额外的安全保护<br>WEP : 有效对等加密(完全过时)</li>
+</ul>
+<p>WPA2加密方式 : AES(Advanced Encryption Standard)(包括硬盘数据加密)</p>
+<h3 id="全自动化工具"><a href="#全自动化工具" class="headerlink" title="全自动化工具"></a>全自动化工具</h3><ul>
+<li><p>Airgeddon<br>Airgeddon是一个多Bash脚本，并依靠打开多个窗口完成任务，所以无法通过SSH工作。你应该通过HDMI或VNC进行连接。它和 aircrack-ng 套件一样，同样可以很好地破解无线网络。<br>Kali上默认没有安装该脚本工具，因此要使用它我们必须先从 git 上进行克隆安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/v1s1t0r1sh3r3/airgeddon.git   //下载</span><br><span class="line">./airgeddon.sh   //启动bash airgeddon.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fluxion</p>
+</li>
+<li><p>wifiPhiser</p>
+</li>
+</ul>
+<p>进入页面自动检索周围存在的WiFi，选择你想钓鱼的WiFi</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wifiphisher</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ifconfig wlan0 up</span><br><span class="line"> airmon-ng start wlan0</span><br><span class="line"> airodump-ng -w q0o0p wlan0</span><br><span class="line">airodump-ng -c 2 --bssid  B4:61:8C:DF:BE:61 -w q0o0p wlan0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h1><h2 id="AndroidStudio"><a href="#AndroidStudio" class="headerlink" title="AndroidStudio"></a>AndroidStudio</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建引用链接</span></span><br><span class="line"><span class="built_in">ln</span> -s /media/q0o0p/C14D581BDA18EBFA1/software/android-studio/bin/studio.sh /usr/bin/android-studio</span><br><span class="line"><span class="comment"># 创建 Android Studio 启动图标</span></span><br><span class="line">vi /usr/share/applications/android-studio.desktop</span><br><span class="line"></span><br><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Android Studio</span><br><span class="line">Comment=Android Studio Integrated Development Environment</span><br><span class="line">Icon=/media/q0o0p/C14D581BDA18EBFA1/software/android-studio/bin/studio.png</span><br><span class="line">Exec=android-studio  <span class="comment"># install path, default &#x27;/usr/xxx&#x27;</span></span><br><span class="line">Terminal=<span class="literal">false</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//删除C++快捷方式</span><br><span class="line">sudo update-alternatives --remove-all gcc</span><br><span class="line">sudo update-alternatives --remove-all g++</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置java环境变量"><a href="#配置java环境变量" class="headerlink" title="配置java环境变量"></a>配置java环境变量</h2><h2 id="phpstudy"><a href="#phpstudy" class="headerlink" title="phpstudy"></a>phpstudy</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh https://download.xp.cn/install.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">==============运行状态=========================</span><br><span class="line"></span><br><span class="line">docker daemon running </span><br><span class="line">centos_env container running </span><br><span class="line">webpanel running </span><br><span class="line">phpstudy running </span><br><span class="line"></span><br><span class="line">=================安装完成==================</span><br><span class="line"></span><br><span class="line">请用浏览器访问面板:</span><br><span class="line">外网:http://59.52.0.215:9080/06B58D</span><br><span class="line">内网:http://192.168.31.20:9080/06B58D</span><br><span class="line">系统初始账号:admin</span><br><span class="line">系统初始密码:hmhIuifM-x	</span><br><span class="line">官网:https://www.xp.cn</span><br><span class="line">如果使用的是云服务器，请至安全组开放9080端口</span><br><span class="line">如果使用ftp，请开放21以及30000-30050端口</span><br><span class="line"></span><br><span class="line">===========================================</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) phpstudy -start             启动小皮面板</span><br><span class="line"><span class="number">2</span>) phpstudy -stop              停止小皮面板</span><br><span class="line"><span class="number">3</span>) phpstudy -restart           重启小皮面板</span><br><span class="line"><span class="number">4</span>) phpstudy -status            查询面板状态</span><br><span class="line"><span class="number">5</span>) phpstudy -initpwd newPwd    修改登录密码</span><br><span class="line"><span class="number">6</span>) phpstudy -visiturl          查看面板登录信息</span><br><span class="line"><span class="number">7</span>) phpstudy -repair            修复web面板</span><br><span class="line"><span class="number">8</span>) phpstudy -instinfo          查看首次安装信息</span><br><span class="line"><span class="number">9</span>) phpstudy -setport newPort   修改面板监听端口</span><br><span class="line"><span class="number">10</span>) phpstudy -retoken          重置登录授权码</span><br><span class="line"><span class="number">11</span>) phpstudy -update           检查更新</span><br><span class="line"><span class="number">12</span>) phpstudy -v                查看版本</span><br><span class="line"><span class="number">13</span>) phpstudy -canceldomain     取消域名访问</span><br><span class="line"><span class="number">14</span>) phpstudy -cancelip         取消授权ip限制</span><br><span class="line"><span class="number">98</span>) phpstudy -uninstall        卸载小皮面板</span><br></pre></td></tr></table></figure>
+
+<h2 id="golang"><a href="#golang" class="headerlink" title="golang"></a>golang</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//https://studygolang.com/dl download</span><br><span class="line"> tar -C /usr/local -xzf go1.16.4.linux-amd64.tar.gz </span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/usr/local/go/bin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">go version</span><br><span class="line">//go version go1.16.4 linux/amd64</span><br></pre></td></tr></table></figure>
+
+<p>首先看home目录有没有.zshrc文件，没有的话新建一个，然后复制下面三行进去，保存退出。重开终端窗口，这样就解决了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> GOROOT=<span class="string">&quot;/usr/local/go&quot;</span></span><br><span class="line"><span class="built_in">export</span> GOPATH=<span class="string">&quot;/usr/local/GO&quot;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GOROOT</span>/bin:<span class="variable">$GOPATH</span>/bin</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker //start</span><br><span class="line">//拉取ONLYOFFICE Document Server 的Docker镜像</span><br><span class="line">sudo docker pull onlyoffice/documentserver</span><br><span class="line">//启动Docker容器并映射80端口至本地</span><br><span class="line">sudo docker run -i -t -d -p 8088:80 onlyoffice/documentserver</span><br></pre></td></tr></table></figure>
+<p>API:<br><a target="_blank" rel="noopener" href="https://ip:8088/editors/howitworks">https://ip:8088/editors/howitworks</a></p>
+<h3 id="docker-安装ubuntu"><a href="#docker-安装ubuntu" class="headerlink" title="docker 安装ubuntu"></a>docker 安装ubuntu</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br><span class="line">docker pull ubuntu:20.04</span><br><span class="line">docker images <span class="comment"># 查看本地镜像</span></span><br><span class="line">docker start f838cf497219  </span><br><span class="line">docker run -it ubuntu /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="sublime-text-4"><a href="#sublime-text-4" class="headerlink" title="sublime text 4"></a>sublime text 4</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>官网下载deb文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i ./sublime-text_build-3211_amd64.deb</span><br></pre></td></tr></table></figure>
+<p>kali中sublime的文件目录在&#x2F;var&#x2F;www&#x2F;html中</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb https://download.sublimetext.com/ apt/stable/&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/sublime-text.list</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://www.sublimetext.com/docs/linux_repositories.html#apt">http://www.sublimetext.com/docs/linux_repositories.html#apt</a></p>
+<h2 id="第三方插件路径"><a href="#第三方插件路径" class="headerlink" title="第三方插件路径"></a>第三方插件路径</h2><p>下载gosublime :<a href="https://github.com/DisposaBoy/GoSublime">https://github.com/DisposaBoy/GoSublime</a><br>解压后放到如下路径<br>&#x2F;home&#x2F;q0o0p&#x2F;.config&#x2F;sublime-text-3&#x2F;Packages&#x2F;GoSublime</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Preferences -&gt; Package Setting -&gt; GoSublime -&gt;default</span><br><span class="line"># false -&gt; true</span><br><span class="line">  &quot;gscomplete_enabled&quot;: true</span><br><span class="line"></span><br><span class="line">  // Whether or not gsfmt is enabled</span><br><span class="line">  &quot;fmt_enabled&quot;: true,</span><br></pre></td></tr></table></figure>
+<p>Tools-&gt;Build System-&gt;New Build System</p>
+<h2 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h2><p>curl -sSL <a target="_blank" rel="noopener" href="https://packages.microsoft.com/keys/microsoft.asc">https://packages.microsoft.com/keys/microsoft.asc</a> | sudo apt-key add -</p>
+<p>echo “deb [arch&#x3D;amd64] <a target="_blank" rel="noopener" href="https://packages.microsoft.com/repos/vscode">https://packages.microsoft.com/repos/vscode</a> stable main” | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;vscode.list</p>
+<h1 id="常用脚本"><a href="#常用脚本" class="headerlink" title="常用脚本"></a>常用脚本</h1><h2 id="自动换源更新"><a href="#自动换源更新" class="headerlink" title="自动换源更新"></a>自动换源更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;------------q0o0p-kali update sources is begin-------------&quot;</span></span><br><span class="line">log_file=<span class="string">&quot;#aliyun 阿里云 \n</span></span><br><span class="line"><span class="string">deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib \n</span></span><br><span class="line"><span class="string">deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib \n</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># ustc 中科大 \n</span></span><br><span class="line"><span class="string">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib \n</span></span><br><span class="line"><span class="string">#deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib \n</span></span><br><span class="line"><span class="string">#deb http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free \n</span></span><br><span class="line"><span class="string">#deb-src http://mirrors.ustc.edu.cn/kali-security kali-current/updates main contrib non-free&quot;</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="variable">$log_file</span> &gt;&gt; sources.list</span><br><span class="line"><span class="built_in">echo</span>  <span class="string">&quot;---------------------update sources is end-----------------------&quot;</span></span><br><span class="line"><span class="built_in">echo</span>  <span class="string">&quot;---------------------update system is begin-----------------------&quot;</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get upgrade</span><br><span class="line">apt-get dist-upgrade</span><br><span class="line">apt-get clean</span><br><span class="line">apt-get autoclean</span><br><span class="line"><span class="built_in">echo</span>  <span class="string">&quot;---------------------update system is end-----------------------&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<p>无线攻击:<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/wireless/243445.html">https://www.freebuf.com/articles/wireless/243445.html</a><br>wifi找回密码:<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/wireless/143796.html">https://www.freebuf.com/articles/wireless/143796.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/28/kali-update/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/08/28/kali-update/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/outguess/">outguess</a><a class="post-meta__tags" href="/tags/kali/">kali</a></div><div class="post_share"><div class="social-share" data-image="/img/5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/21/exploitation-vulnerability/"><img class="prev-cover" src="/2020/09/21/exploitation-vulnerability/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">漏洞利用</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/12/Android-payload/"><img class="next-cover" src="/2020/08/12/Android-payload/true" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Android-payload</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2020/05/10/linux/" title="Linux基础篇 + 2020 kali KDE桌面美化"><img class="cover" src="/2020/05/10/linux/undefined" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-10</div><div class="title">Linux基础篇 + 2020 kali KDE桌面美化</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">常用命令及操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9root%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">修改root密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">查看内核版本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#history-%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95"><span class="toc-number">1.3.</span> <span class="toc-text">history 执行命令记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find%E5%91%BD%E4%BB%A4%E6%8C%89%E6%97%B6%E9%97%B4%E7%AD%9B%E9%80%89"><span class="toc-number">1.4.</span> <span class="toc-text">find命令按时间筛选</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WiFi%E5%AF%86%E7%A0%81%E9%BB%98%E8%AE%A4%E8%B7%AF%E5%BE%84"><span class="toc-number">1.5.</span> <span class="toc-text">WiFi密码默认路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%97%B6%E5%8C%BA"><span class="toc-number">1.6.</span> <span class="toc-text">修改时区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text">修改环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81ip%E5%9C%B0%E5%9D%80"><span class="toc-number">1.7.1.</span> <span class="toc-text">设置静态ip地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-number">1.7.2.</span> <span class="toc-text">设置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AE%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.7.3.</span> <span class="toc-text">配置内网访问端口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">工具集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%86%99%E5%B7%A5%E5%85%B7"><span class="toc-number">2.1.</span> <span class="toc-text">隐写工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#outguess"><span class="toc-number">2.1.1.</span> <span class="toc-text">outguess</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#steghide"><span class="toc-number">2.1.2.</span> <span class="toc-text">steghide</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">简单配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7"><span class="toc-number">2.2.1.</span> <span class="toc-text">添加普通用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql"><span class="toc-number">2.2.2.</span> <span class="toc-text">mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8D%95%E6%8D%89%E7%BD%91%E7%BD%91%E9%A1%B5"><span class="toc-number">2.2.3.</span> <span class="toc-text">捕捉网网页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">2.2.4.</span> <span class="toc-text">清理工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ettercap-arp%E6%AC%BA%E9%AA%97%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">ettercap arp欺骗工具的使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C"><span class="toc-number">3.</span> <span class="toc-text">无线网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%94%BB%E5%87%BB-dictionary-attack"><span class="toc-number">3.1.</span> <span class="toc-text">字典攻击(dictionary attack)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text">加密方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7"><span class="toc-number">3.1.2.</span> <span class="toc-text">全自动化工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">工具安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AndroidStudio"><span class="toc-number">4.1.</span> <span class="toc-text">AndroidStudio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEjava%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">4.2.</span> <span class="toc-text">配置java环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#phpstudy"><span class="toc-number">4.3.</span> <span class="toc-text">phpstudy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#golang"><span class="toc-number">4.4.</span> <span class="toc-text">golang</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-number">4.5.</span> <span class="toc-text">docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-%E5%AE%89%E8%A3%85ubuntu"><span class="toc-number">4.5.1.</span> <span class="toc-text">docker 安装ubuntu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sublime-text-4"><span class="toc-number">4.6.</span> <span class="toc-text">sublime text 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">4.6.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">4.6.2.</span> <span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="toc-number">4.7.</span> <span class="toc-text">第三方插件路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode"><span class="toc-number">4.8.</span> <span class="toc-text">vscode</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%84%9A%E6%9C%AC"><span class="toc-number">5.</span> <span class="toc-text">常用脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%8D%A2%E6%BA%90%E6%9B%B4%E6%96%B0"><span class="toc-number">5.1.</span> <span class="toc-text">自动换源更新</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2026/01/12/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2026-01-12T11:48:33.582Z" title="Created 2026-01-12 19:48:33">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑"><img src="/2022/08/01/audio-clip/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python 实现简单的音频剪辑"/></a><div class="content"><a class="title" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑">python 实现简单的音频剪辑</a><time datetime="2022-08-01T01:59:45.000Z" title="Created 2022-08-01 09:59:45">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现"><img src="/2022/07/19/IoT-Vulnerability/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT漏洞复现"/></a><div class="content"><a class="title" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现">IoT漏洞复现</a><time datetime="2022-07-19T08:27:13.000Z" title="Created 2022-07-19 16:27:13">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/5.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

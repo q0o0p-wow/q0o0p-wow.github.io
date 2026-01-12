@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>智能汽车安全入坑 | q0o0p</title><meta name="keywords" content="IoT"><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="BeagleBoneBlack在主处理器上有两个CAN接口。一个设备中存在两个CAN接口，这就可能导致CAN MITM攻击和会话劫持。Cannelloni框架将单板计算机转换为CAN-to-UDP接口，这使您可以在更强大的机器上运行Scapy。大多数应用层协议都有许多专门的 Packet 类。使用 explore() 函数获取一个特定协议的所有信息。 Oliver Hartkopp提供了一些非常有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能汽车安全入坑">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/06/03/iot-car/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="BeagleBoneBlack在主处理器上有两个CAN接口。一个设备中存在两个CAN接口，这就可能导致CAN MITM攻击和会话劫持。Cannelloni框架将单板计算机转换为CAN-to-UDP接口，这使您可以在更强大的机器上运行Scapy。大多数应用层协议都有许多专门的 Packet 类。使用 explore() 函数获取一个特定协议的所有信息。 Oliver Hartkopp提供了一些非常有">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/2.jpg">
+<meta property="article:published_time" content="2021-06-03T04:55:16.000Z">
+<meta property="article:modified_time" content="2021-10-11T12:37:30.034Z">
+<meta property="article:author" content="q0o0p">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/06/03/iot-car/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '智能汽车安全入坑',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-11 20:37:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">智能汽车安全入坑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-06-03T04:55:16.000Z" title="Created 2021-06-03 12:55:16">2021-06-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-10-11T12:37:30.034Z" title="Updated 2021-10-11 20:37:30">2021-10-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>14min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="智能汽车安全入坑"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="BeagleBoneBlack"><a href="#BeagleBoneBlack" class="headerlink" title="BeagleBoneBlack"></a>BeagleBoneBlack</h2><p>在主处理器上有两个CAN接口。一个设备中存在两个CAN接口，这就可能导致CAN MITM攻击和会话劫持。Cannelloni框架将单板计算机转换为CAN-to-UDP接口，这使您可以在更强大的机器上运行Scapy。<br>大多数应用层协议都有许多专门的 Packet 类。<br>使用 explore() 函数获取一个特定协议的所有信息。<br><a href="1.png"></a></p>
+<p>Oliver Hartkopp提供了一些非常有用的命令行工具：<a href="https://github.com/linux-can/can-utils">https://github.com/linux-can/can-utils</a></p>
+<h1 id="车载蓝牙"><a href="#车载蓝牙" class="headerlink" title="车载蓝牙"></a>车载蓝牙</h1><h3 id="蓝牙基本速率（BR）和增强数据速率（EDR）"><a href="#蓝牙基本速率（BR）和增强数据速率（EDR）" class="headerlink" title="蓝牙基本速率（BR）和增强数据速率（EDR）"></a>蓝牙基本速率（BR）和增强数据速率（EDR）</h3><p>这些是“经典”的蓝牙物理层。</p>
+<p>BR 达到最高721kbit&#x2F;s的有效速度。这被批准为 IEEE 802.15.1-2002 （V1.1）和 -2005 （V1.2）。</p>
+<p>EDR 作为蓝牙2.0（2004）的可选功能引入。它可以达到2.1兆位&#x2F;秒的有效速度，比BR的功耗更低。</p>
+<p>在蓝牙4.0及更高版本中，不支持 低能 接口，除非它们标记为 dual-mode .</p>
+<h3 id="蓝牙高速（HS）"><a href="#蓝牙高速（HS）" class="headerlink" title="蓝牙高速（HS）"></a>蓝牙高速（HS）</h3><p>作为蓝牙3.0（2009）的可选功能引入，它通过提供 IEEE 802.11 （WiFi）作为另一种更高速的数据传输方式。节点协商切换 AMP .</p>
+<p>这仅受标记为的蓝牙接口支持 +HS . 并非所有蓝牙3.0及更高版本的接口都支持它。</p>
+<h3 id="蓝牙低能量（BLE）"><a href="#蓝牙低能量（BLE）" class="headerlink" title="蓝牙低能量（BLE）"></a>蓝牙低能量（BLE）</h3><p>在蓝牙4.0（2010）中引入，这是为低功耗嵌入式系统设计的备用物理层。它具有更短的设置时间、更低的数据速率和更小的 MTU 尺寸。除了点对点链接之外，它还添加了广播和网状网络拓扑。</p>
+<p>这只受标记为的蓝牙接口支持 +LE 或 低能 –并非所有的蓝牙4.0和更高版本的接口都支持它。</p>
+<p>PC上的大多数蓝牙接口都使用USB连接（甚至在笔记本电脑上），这是由主机控制器接口（HCI）控制的。这通常不支持混杂模式（嗅探），但是有许多其他专用的、非HCI设备支持它。</p>
+<h2 id="蓝牙架构"><a href="#蓝牙架构" class="headerlink" title="蓝牙架构"></a>蓝牙架构</h2><h3 id="1-HW层：本质蓝牙芯片层，包含"><a href="#1-HW层：本质蓝牙芯片层，包含" class="headerlink" title="1.HW层：本质蓝牙芯片层，包含"></a>1.HW层：本质蓝牙芯片层，包含</h3><p>(1)RF(radio)：射频层，本地蓝牙数据通过射频发送给远端设备，并且通过射频接收来自远端蓝牙设备的数据<br>(2) BB(BASEBAND)：基带层，进行射频信号与数字或语音信号的相互转化<br>(3) LMP(LINK MANAGER PROTOCOL)：链路管理层，负责管理蓝牙设备之间的通信，实现链路的建立、验证、链路配置等操作<br>(4) HCI(HOST CONTROLLER INTERFACE)：主机控制器接口层，HCI层在芯片以及协议栈都有，芯片层面的HCI负责把协议栈的数据做处理，转换为芯片内部动作，并且接收到远端的数据<br>(5) BLE PHY：BLE的物理层<br>(6) BLE LL：BLE的链路层</p>
+<h3 id="2-传输层：此部分在硬件接口UART-x2F-USB-x2F-SDIO实现HOST和控制器的交互，同时有几个子协议："><a href="#2-传输层：此部分在硬件接口UART-x2F-USB-x2F-SDIO实现HOST和控制器的交互，同时有几个子协议：" class="headerlink" title="2.传输层：此部分在硬件接口UART&#x2F;USB&#x2F;SDIO实现HOST和控制器的交互，同时有几个子协议："></a>2.传输层：此部分在硬件接口UART&#x2F;USB&#x2F;SDIO实现HOST和控制器的交互，同时有几个子协议：</h3><p>(1)H2:针对USB类型<br>(2)H4:针对UART类型<br>(3)H5:针对UART类型<br>(5)BCSP:针对UART类型</p>
+<h3 id="3-HOST层-此层是协议栈"><a href="#3-HOST层-此层是协议栈" class="headerlink" title="3.HOST层,此层是协议栈"></a>3.HOST层,此层是协议栈</h3><p>(1)HCI是HOST controller interface, 主机控制层接口，主要负责透过transport把协议栈的数据发送给蓝牙芯片，并且接受来自蓝牙芯片的数据。<br>1615188541_6045d23da424618e645fd.png!small?1615188541739<br>(2) L2CAP（Logical Link Control and Adaptation Protocol）：逻辑链路控制与适配协议，将ACL数据分组交换为便于高层应用的数据分组格式，并提供协议复用和服务质量交换等功能。<br>(3)SDP（SERVICE DISCOVERY PROTOCOL）：服务发现协议<br>(4)RFCOMM（Serial Port Emulation）：串口仿真协议，上层协议蓝牙电话，蓝牙透传SPP<br>等等功能模块</p>
+<h2 id="蓝牙安全"><a href="#蓝牙安全" class="headerlink" title="蓝牙安全"></a>蓝牙安全</h2><h3 id="蓝牙基本的安全服务"><a href="#蓝牙基本的安全服务" class="headerlink" title="蓝牙基本的安全服务"></a>蓝牙基本的安全服务</h3><ul>
+<li>认证：基于蓝牙设备地址，验证正在通信的设备的身份。蓝牙不提供原生的用户认证机制。</li>
+<li>机密性：确保只有被授权的设备能够访问和查看传输的数据，以防止窃听导致的信息泄露。</li>
+<li>授权：通过确保设备在被允许使用一项服务之前是已经被授权的，来允许其对资源的控制。<br>蓝牙安全措施可以保护手机和笔记本电脑之间通讯，而IEEE802.11提供了从路由器到笔记本电脑的WLAN连接安全问题。除此之外的，不在上述保护范围内。</li>
+</ul>
+<h3 id="蓝牙设备可以实现四种不同的安全模式"><a href="#蓝牙设备可以实现四种不同的安全模式" class="headerlink" title="蓝牙设备可以实现四种不同的安全模式"></a>蓝牙设备可以实现四种不同的安全模式</h3><p>1.不安全：蓝牙设备不启动任何安全措施。</p>
+<p>2.服务级别强制实施的安全模式：两个蓝牙设备可以建立不安全的ACL链接。当发出逻辑链接控制和适应协议（L2CAP）面向连接（CO）或L2CAP少连接（CL）通道请求时，将启动安全性过程，即身份验证，授权和可选加密。</p>
+<p>3.链路级强制安全模式：建立ACL链路后，将启动安全性过程。</p>
+<p>4.服务级别强制实施的安全模式：此模式类似于模式2，不同的是只有使用SSP的蓝牙设备可以使用它，即，只有蓝牙2.1 + EDR或更高版本的设备才能使用此安全模式。蓝牙使用具有128位密钥的安全和快速加密例程+（SAFER +）作为认证和密钥生成算法，在最高3.0 + HS（高速）的蓝牙版本中，而蓝牙4.0（即低功耗蓝牙）用更安全的128位高级加密标准（AES）代替SAFER +SAFER +由Massey等人开发。1998年,它被提交为AES竞赛的候选人，但未被选为决赛入围者。</p>
+<p>SAFER +是具有以下主要功能的分组密码。它具有128位的块大小和三个不同的密钥长度（128、192和256位）。SAFER +由九个阶段（八个相同的回合和输出转换）和一个密钥调度算法（KSA）组成，其方式如下。KSA产生17个不同的128位子密钥。每个回合使用两个子项和上一个回合中的一个128位输入字来计算一个128位字，该字是下一回合的新输入字。最后一个子关键字用于输出转换，它是最后一轮输出与最后一个子关键字的简单按位XOR。在AES竞赛的评估过程之后，AES由美国国家标准技术研究院（NIST）于2001年发布。Rijndael是比赛的获胜者，NIST选择它作为AES的算法。AES是一种对称的分组密码，旨在代替数据加密标准（DES）作为广泛应用的认可标准，但是此过程 将需要很多年。NIST预计，在可预见的将来，至少在美国政府使用的情况下，三重数据加密标准（3DES）仍将是批准的算法。AES加密由10-14轮组成，其中数据块按以下方式逐步处理（最后一轮除外；值得注意的是，AES解密与AES加密对称）1.字节替换：字节替换使用S-box来执行块的逐字节替换。2.行移位：行移位是一个简单的排列。3.柱混合：柱混合是对GF（28）的一种算术替代。Galois字段GF（28）是256个元素的有限字段，可以用八位字符串或十六进制表示法表示。4.圆键添加：圆键添加是当前块与一部分扩展键的简单按位XOR。最后一轮AES加密（和AES解密）略有不同<br>1.字节替换<br>2.行移位<br>3.圆键添加<br>AES被认为是安全的，它非常快速且紧凑（大约1 kB代码），其块大小是32的倍数（通常为128位），其密钥长度也是32的倍数（通常为128、192或256位） ），并且它有非常整齐的代数描述。<br>48位BD_ADDR分为三个部分：16位非有效地址部分（NAP），8位高地址部分（UAP）和24位低地址部分（LAP）。BD_ADDR的前三个字节（NAP和UAP）是蓝牙芯片的制造商，代表company_id。BD_ADDR（LAP）的后三个字节（称为company_assigned）在不同的蓝牙设备型号中或多或少地随机使用。<br>蓝牙设备首次连接时会生成一个初始化密钥（Kini t），该初始化密钥用于保护其他更安全的128位密钥的生成，这些密钥是在事件安全性链的下一个阶段生成的。<br>K_init是从伪随机数IN_RAND、L-byte PIN code、BD_ADDR中生成的128bit位的秘钥，此处的IN_RAND生成须放在高保密环境中。</p>
+<p>某个密钥生成函数的输出可以用函数本身及其输入来表示。此处K_init的生成采用K_init&#x3D;Encrypt(PIN’,L’,IN_RAND)。<br>在将PIN码及其长度L发送到Encrypt功能之前，将其修改为称为PIN’和L’的两个不同数量。如果PIN小于16字节，则通过从设备的BD_ADDR附加字节来增加PIN，直到PIN的总长度达到16字节或整个BD_ADDR被附加，以先到者为准。<br>K_ini t用于加密128位伪随机数（RAND或LK_ RAND），如图K_A&#x3D;Encrypt2(BD_ADDR_A,RAND_A)；如图，设备A可以用K_init加密K_A，例如K_A xor K_init，然后发给设备B；设备B用Kinit得到K_A；此处设备A,B都拿到A的秘钥。<br>使用单元密钥的蓝牙设备只有一个密钥可用于其所有连接。这意味着同一密钥与所有其他受信任的蓝牙设备共享。此外，任何使用相同单元密钥的受信任蓝牙设备都可以窃听共享同一单元密钥的两个其他蓝牙设备之间的任何流量。此外，任何使用相同单元密钥的受信任蓝牙设备都可以仅通过复制其BD_ADDR来模拟目标设备。<br>上述的方式提供的加密方式只在比较低的层级机型使用。</p>
+<p>一种更常见的组合秘钥K_AB会更普遍使用K_AB&#x3D;Encrypt2(BD_ADDR_A,RAND_A) xor Encrypt2(BD_ADDR_B,RAND_B)。或者K_AB&#x3D;K_A xor K_B</p>
+<ul>
+<li>响应认证机制<br>认证过程初步互换秘钥过程是：最开始A设备用K来加密LK_RAND_A，之后将其释放到B（不管K是K_A，还是K_B， K_AB）；B中采用同样的秘钥K可以得到随机数LK_RAND_A，过程是(LK_RANDA ⊕K)⊕K；而B中可以用K加密LK_RAND_B，用K加密后传输至A处，A在采用K解密，此处可以达到(LK_RANDB ⊕K)⊕K &#x3D; LK_RANDB，这样生成K_B.</li>
+</ul>
+<p>二者采用不同方式，可以生成K_AB等复合型秘钥。<br>质询-响应身份验证的过程是，其中将检查申请人对秘密链接密钥的了解，如上图所描述。每次身份验证期间，系统都会使用一个新的128位伪随机数 AU_RAND以未加密形式通过空中交换。通过E1（AU_RANDA，BD_ADDRB，链接秘钥）功能在两个设备中生成32位结果（SRES，签名响应）和96位结果（ACO，身份验证密码偏移），其中链接秘钥为KA或KAB 。A生成的SRES值，通过未加密形式向验证设备B传播。验证者将生成的SRES值与接收到的SRES值进行比较，如果这些值匹配（0），则验证成功完成。当生成加密密钥时，将在事件安全性链的下一个阶段中使用ACO。</p>
+<h3 id="数据加密部分"><a href="#数据加密部分" class="headerlink" title="数据加密部分"></a>数据加密部分</h3><p>ACO，当前链接密钥（KA或KAB）和128位伪随机数EN_RAND是用于生成加密密钥（KC）的加密密钥生成函数E3的输入。主设备A生成EN_RAND并通过空中以未加密形式将其发送到设备B，而K_C采用如下函数生成：KC &#x3D; E3(EN_RANDA, ACO, K_A或K_AB)。此处，密钥流生成器功能E0通过在两个设备中生成相同的密码比特流或密钥流（也称为运行密钥），使对称加密成为可能。</p>
+<p>E0功能的输入是KC，主机的BD_ADDR（BD_ADDRA）和主机的实时时钟的26位（CLK26-1）。密钥流由E0（KC，CLK26-1，BD_ADDRA）函数生成，该函数针对每个新发送或接收的基带数据包重新初始化。这意味着E0功能的输入永远不会比一个基带数据包的寿命更长，因此每个新的基带数据包都会生成一个新的密钥流。</p>
+<p>发送者通过将其与密钥流（即Plaintext⊕Keystream&#x3D; Ciphertext）进行异或来对明文进行加密，然后将生成的密文发送给接收者。接收者通过与相同的密钥流进行异或来解密密文</p>
+<p>值得注意的是，只有蓝牙基带数据包的有效载荷被加密（而不是访问代码或报头），因此攻击者无法使用访问代码和访问者的规则重复信息（攻击者容易猜到），以便于对密码进行密码分析 。</p>
+<h3 id="MITM"><a href="#MITM" class="headerlink" title="MITM"></a>MITM</h3><p>MITM称为Man In The Middle Attack：</p>
+<p>1.爱丽丝将她的公钥发送给鲍勃，但Mallory能够截获它。Mallory向Bob发送自己的公共密钥，并为其具有匹配的私有密钥。现在鲍勃错误地认为自己拥有爱丽丝的公钥。</p>
+<p>2.Bob将他的公钥发送给Alice，但是Mallory能够截取它。Mallory向爱丽丝发送自己的公共密钥，并为其提供匹配的私有密钥。现在爱丽丝错误地认为她拥有鲍勃的公钥。</p>
+<p>3.爱丽丝向鲍勃发送了一封用马洛里公钥加密的消息，但Mallory是能够拦截它。Mallory用他的私钥解密邮件，并保留一个邮件的副本，使用Bob的公钥对邮件重新加密，然后发送给鲍勃的消息。现在鲍勃错误地认为消息是直接传来的来自爱丽丝。</p>
+<ol start="4">
+<li>Bob向Alice发送了一条用Mallory的公共密钥加密的消息，但是Mallory是能够拦截它。</li>
+</ol>
+<p>Mallory用他的私钥解密消息，并保留一个邮件副本，使用爱丽丝的公钥重新加密邮件，然后发送给爱丽丝的消息。现在，爱丽丝错误地认为消息是直接传来的来自鲍勃。</p>
+<p>蓝牙版本2.1 + EDR，3.0 + HS和4.0添加了用于配对过程的新规范，即SSP。其主要目标是通过提供针对被动监听和MITM攻击的保护来提高配对的安全性</p>
+<p><code>SSP使用椭圆曲线Diffie-Hellman（ECDH）公钥加密技术</code>，而不是使用（通常为短密钥）作为构建链接密钥的唯一熵源。为了构造链接密钥，设备使用公共-专用密钥对，多个随机数和设备的蓝牙地址。SSP可以有效地阻止了被动窃听。</p>
+<p>为了提供针对MITM攻击的保护，SSP使用OOB通道（例如，Near Field Communication，NFC），或寻求用户的帮助：例如，当两个设备都具有显示器和键盘时，要求用户比较两个六位数的数字。也可以将这种比较视为不受MITM控制的OOB通道。如果配对过程中使用的值已被MITM篡改，则六位数完整性校验和将以0.999999的概率不同</p>
+<p>SSP使用四个关联模型。除了两个关联模型 前面提到过，OOB和数值比较模型名为PasskeyEntry 和Just Works也被使用。</p>
+<p>如果一台设备具有输入功能，但没有可显示六位数字的屏幕，则使用“密钥输入关联”模型。在具有输出功能的设备上向用户显示六位数的校验和，并要求用户在具有输入功能的设备上输入该校验和。如果两个设备都具有输入功能但没有输出功能，则也可以使用“密钥输入”关联模型。在这种情况下，用户选择一个6位数的校验和并将其输入两个设备中。最后，如果至少一个设备既没有输入也没有输出能力，并且不能使用OOB。</p>
+<h3 id="SSP-六个阶段-："><a href="#SSP-六个阶段-：" class="headerlink" title="SSP(六个阶段)："></a>SSP(六个阶段)：</h3><p>1.能力交换：由于某种原因从未想过进行配对的设备，首先要交换其输入&#x2F;输出（IO）能力，以确定要使用的正确关联模型。<br>2.公用密钥交换：设备生成其公用-专用密钥对，并将公用密钥相互发送。他们还计算Diffie-Hellman密钥。<br>3.身份验证阶段1：在此阶段运行的协议取决于关联模型。此阶段的目标之一是确保设备之间的通信中没有MITM。这是通过使用一系列随机数，对随机数的承诺以及对完整性的最终检查来实现的通过OOB通道或在用户帮助下执行的校验和。<br>4.认证阶段2：设备完成值（公共密钥和随机数）的交换并验证其完整性。<br>5.链接密钥计算：双方使用其蓝牙地址，先前交换的值以及阶段2中构造的Diffie-Hellman密钥来计算链接密钥。<br>6. LMP身份验证和加密：在此阶段生成加密密钥，这与在2.0 + EDR以下的蓝牙版本中进行配对的最终步骤相同。</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><h3 id="所需硬件"><a href="#所需硬件" class="headerlink" title="所需硬件"></a>所需硬件</h3><p>Ubertooth 一个 （配合ubertooth-btle使用）<br>CSR模组 一个 (配合bluetoothctl使用，也可使用树莓派等设备替代)<br>Linux PC 一台<br>ESP32模组 一个 （作为ble server使用）</p>
+<h3 id="所需软件"><a href="#所需软件" class="headerlink" title="所需软件"></a>所需软件</h3><p>ubertooth-btle （抓取数据信道数据）<br>bluetoothctl （监听广播数据）<br>esp-idf （烧录ble server）<br>crackle （分析加密情况） wireshark<br>LightBlue （手机APP）</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/wireless/255087.html">https://www.freebuf.com/articles/wireless/255087.html</a></p>
+<hr>
+<p>参考大佬博客:<br><a target="_blank" rel="noopener" href="https://www.osgeo.cn/scapy/layers/automotive.html">https://www.osgeo.cn/scapy/layers/automotive.html</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/wireless/265436.html">https://www.freebuf.com/articles/wireless/265436.html</a><br><a target="_blank" rel="noopener" href="https://bbs.ichunqiu.com/thread-61911-1-1.html">https://bbs.ichunqiu.com/thread-61911-1-1.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/06/03/iot-car/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2021/06/03/iot-car/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/IoT/">IoT</a></div><div class="post_share"><div class="social-share" data-image="/img/2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/27/cryptology/"><img class="prev-cover" src="/2021/06/27/cryptology/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">app中常见的加密</div></div></a></div><div class="next-post pull-right"><a href="/2021/05/23/RaspberryPi/"><img class="next-cover" src="/img/7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">树莓派入坑篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img class="cover" src="/img/7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-14</div><div class="title">IoT-hardware</div></div></a></div><div><a href="/2021/07/04/iot-secruity/" title="IoT 安全入坑工具学习篇"><img class="cover" src="/img/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-04</div><div class="title">IoT 安全入坑工具学习篇</div></div></a></div><div><a href="/2022/10/14/smart-television/" title="smart-television"><img class="cover" src="/img/5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-14</div><div class="title">smart-television</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BeagleBoneBlack"><span class="toc-number">1.</span> <span class="toc-text">BeagleBoneBlack</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%A6%E8%BD%BD%E8%93%9D%E7%89%99"><span class="toc-number"></span> <span class="toc-text">车载蓝牙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E5%9F%BA%E6%9C%AC%E9%80%9F%E7%8E%87%EF%BC%88BR%EF%BC%89%E5%92%8C%E5%A2%9E%E5%BC%BA%E6%95%B0%E6%8D%AE%E9%80%9F%E7%8E%87%EF%BC%88EDR%EF%BC%89"><span class="toc-number">0.1.</span> <span class="toc-text">蓝牙基本速率（BR）和增强数据速率（EDR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E9%AB%98%E9%80%9F%EF%BC%88HS%EF%BC%89"><span class="toc-number">0.2.</span> <span class="toc-text">蓝牙高速（HS）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E4%BD%8E%E8%83%BD%E9%87%8F%EF%BC%88BLE%EF%BC%89"><span class="toc-number">0.3.</span> <span class="toc-text">蓝牙低能量（BLE）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">蓝牙架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HW%E5%B1%82%EF%BC%9A%E6%9C%AC%E8%B4%A8%E8%93%9D%E7%89%99%E8%8A%AF%E7%89%87%E5%B1%82%EF%BC%8C%E5%8C%85%E5%90%AB"><span class="toc-number">1.1.</span> <span class="toc-text">1.HW层：本质蓝牙芯片层，包含</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BC%A0%E8%BE%93%E5%B1%82%EF%BC%9A%E6%AD%A4%E9%83%A8%E5%88%86%E5%9C%A8%E7%A1%AC%E4%BB%B6%E6%8E%A5%E5%8F%A3UART-x2F-USB-x2F-SDIO%E5%AE%9E%E7%8E%B0HOST%E5%92%8C%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E4%BA%A4%E4%BA%92%EF%BC%8C%E5%90%8C%E6%97%B6%E6%9C%89%E5%87%A0%E4%B8%AA%E5%AD%90%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">2.传输层：此部分在硬件接口UART&#x2F;USB&#x2F;SDIO实现HOST和控制器的交互，同时有几个子协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HOST%E5%B1%82-%E6%AD%A4%E5%B1%82%E6%98%AF%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-number">1.3.</span> <span class="toc-text">3.HOST层,此层是协议栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E5%AE%89%E5%85%A8"><span class="toc-number">2.</span> <span class="toc-text">蓝牙安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.1.</span> <span class="toc-text">蓝牙基本的安全服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%9B%9B%E7%A7%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">蓝牙设备可以实现四种不同的安全模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E9%83%A8%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text">数据加密部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MITM"><span class="toc-number">2.4.</span> <span class="toc-text">MITM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSP-%E5%85%AD%E4%B8%AA%E9%98%B6%E6%AE%B5-%EF%BC%9A"><span class="toc-number">2.5.</span> <span class="toc-text">SSP(六个阶段)：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%93%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">抓包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E9%9C%80%E7%A1%AC%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">所需硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E9%9C%80%E8%BD%AF%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">所需软件</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2026/01/12/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2026-01-12T11:48:33.582Z" title="Created 2026-01-12 19:48:33">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑"><img src="/2022/08/01/audio-clip/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python 实现简单的音频剪辑"/></a><div class="content"><a class="title" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑">python 实现简单的音频剪辑</a><time datetime="2022-08-01T01:59:45.000Z" title="Created 2022-08-01 09:59:45">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现"><img src="/2022/07/19/IoT-Vulnerability/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT漏洞复现"/></a><div class="content"><a class="title" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现">IoT漏洞复现</a><time datetime="2022-07-19T08:27:13.000Z" title="Created 2022-07-19 16:27:13">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

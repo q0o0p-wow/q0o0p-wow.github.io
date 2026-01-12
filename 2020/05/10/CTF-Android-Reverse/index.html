@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Android逆向题 | q0o0p</title><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="环境搭建   环境 作用    jdk java开发环境   sdk 软件开发工具包   NDK 允许使用C,C++原生代码   AndroidKiller 反编译得到的java代码   jeb 查看反编译源代码   IDA 反汇编    apk目录介绍   文件或目录 作用    META-INF&#x2F; 描述apk包信息的目录，主要存放了签名信息，配置信息，service注册信息。MANI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android逆向题">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="环境搭建   环境 作用    jdk java开发环境   sdk 软件开发工具包   NDK 允许使用C,C++原生代码   AndroidKiller 反编译得到的java代码   jeb 查看反编译源代码   IDA 反汇编    apk目录介绍   文件或目录 作用    META-INF&#x2F; 描述apk包信息的目录，主要存放了签名信息，配置信息，service注册信息。MANI">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/undefined">
+<meta property="article:published_time" content="2020-05-10T15:23:23.000Z">
+<meta property="article:modified_time" content="2021-04-19T03:06:08.948Z">
+<meta property="article:author" content="q0o0p">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/undefined"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android逆向题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-19 11:06:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2020/05/10/CTF-Android-Reverse/undefined')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Android逆向题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-05-10T15:23:23.000Z" title="Created 2020-05-10 23:23:23">2020-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-04-19T03:06:08.948Z" title="Updated 2021-04-19 11:06:08">2021-04-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>8min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Android逆向题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><table>
+<thead>
+<tr>
+<th>环境</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jdk</td>
+<td>java开发环境</td>
+</tr>
+<tr>
+<td>sdk</td>
+<td>软件开发工具包</td>
+</tr>
+<tr>
+<td>NDK</td>
+<td>允许使用C,C++原生代码</td>
+</tr>
+<tr>
+<td>AndroidKiller</td>
+<td>反编译得到的java代码</td>
+</tr>
+<tr>
+<td>jeb</td>
+<td>查看反编译源代码</td>
+</tr>
+<tr>
+<td>IDA</td>
+<td>反汇编</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="apk目录介绍"><a href="#apk目录介绍" class="headerlink" title="apk目录介绍"></a>apk目录介绍</h2><table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>META-INF&#x2F;</td>
+<td>描述apk包信息的目录，主要存放了签名信息，配置信息，service注册信息。MANIFEST.MF:该文件包含了该Jar包的版本、创建人和类搜索路径等信息，当然如果是可执行Jar包，会包含Main-Class属性，表明Main方法入口</td>
+</tr>
+<tr>
+<td>res&#x2F;</td>
+<td>存放apk资源文件的目录，比如图片、图标、字符串、样式、颜色</td>
+</tr>
+<tr>
+<td>assets&#x2F;</td>
+<td>存放需要打包到apk的静态资源文件(图片,JSON配置文件,二进制数据文件,HTML5离线资源文件)，但和res&#x2F;raw有差异,assets目录支持任意深度的子目录,不会生成资源ID</td>
+</tr>
+<tr>
+<td>resources.arsc</td>
+<td>资源索引，包含不同语言环境中res目录下所有资源的类型、名称与ID所对应的信息</td>
+</tr>
+<tr>
+<td>lib&#x2F;</td>
+<td>存放so文件，越来越多的应用由C&#x2F;C++编写核心代码，以SO文件的形式供上层JAVA代码调用，以保证安全性，这个目录是逆向解密关注的重点</td>
+</tr>
+<tr>
+<td>classes.dex(一个或数个)</td>
+<td>Android程序运行在Dalvik虚拟机上，而dex就是Dalvik虚拟机的可执行文件, 相当于Windows平台中的exe文件，通过反编译dex，可以获得apk源码（这个说法不很准确，但方便理解）</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml</td>
+<td>清单文件，包含了App大量的的配置信息，比如包名、应用需要拥有的权限（打电话&#x2F;录音&#x2F;网络通信等等）、以及所有的界面和程序组件的信息,无法解压apk时直接打开，因为清单文件在apk打包过程中被编译成了二进制格式文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="需要使用的工具"><a href="#需要使用的工具" class="headerlink" title="需要使用的工具"></a>需要使用的工具</h2><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ApkTool</td>
+<td>解析resources.arsc，AndroidManifest.xml等文件，反编译dex文件为smali源码</td>
+</tr>
+<tr>
+<td>Dex2jar</td>
+<td>将dex文件转化为jar文件</td>
+</tr>
+<tr>
+<td>Jd-gui</td>
+<td>反编译jar，查看java源码</td>
+</tr>
+<tr>
+<td>IDA</td>
+<td>动态调试so文件</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="apkHelper"><a href="#apkHelper" class="headerlink" title="apkHelper"></a>apkHelper</h2><p><a href="https://github.com/PeterBuerer/apkHelper">https://github.com/PeterBuerer/apkHelper</a></p>
+<p>获取软件包名称和版本信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apkHelper summary /path/to/the/file.apk</span><br></pre></td></tr></table></figure>
+<p>签署apk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apkHelper sign --keystore /path/to/file.keystore --keypass [keypass] --storepass [storepass] [theApk] [keystoreAlias]</span><br></pre></td></tr></table></figure>
+<p>Zipalign apk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apkHelper zipalign [theUnalignedApk] [nameForAlignedApk]</span><br></pre></td></tr></table></figure>
+<p>如果未提供[nameForAlignedApk]，则对齐的apk将另存为[theUnalignedApk] -zipaligned.apk。</p>
+<p>例如，myApp.apk将被命名为myApp-zipaligned.apk。</p>
+<hr>
+<h2 id="apktool"><a href="#apktool" class="headerlink" title="apktool"></a>apktool</h2><p> 反编译工具apktool 可以将classes.dex文件反编译成一堆的smali文件。</p>
+<h3 id="smali文件"><a href="#smali文件" class="headerlink" title="smali文件"></a>smali文件</h3><p>smali语法类似于汇编语言的语法， 涉及寄存器的直接操作， 可以直接阅读， 但羞涩难懂， 尤其是在代码混淆之后</p>
+<h4 id="smail文件打开方法"><a href="#smail文件打开方法" class="headerlink" title="smail文件打开方法"></a>smail文件打开方法</h4><p>有两种方法<br>1、 打开Sublime Text添加插件<br>Preferences -&gt; Browse Packages然后将会打开Finder显示Sublime Text的Packages目录，你可以在这里新建一个文件夹，命名为Smali，然后将下载的<a href="https://github.com/ShaneWilton/sublime-smali/archive/master.zip">smali.tmlanguage</a>文件复杂到新建的Smali文件夹中，重启Sublime Text，再次打开smali文件的时候，已经可以高亮显示了。</p>
+<p>2、 在studio中搜索Smalidea进行插件下载（要翻墙）<br>smali反编译和导入<br>调试的步骤大概如下：</p>
+<ul>
+<li>通过apktool工具反编译目标Apk获取smali文件</li>
+<li>修改xml中android:debuggable&#x3D;”true”。</li>
+<li>导入smali文件至Android studio ,在相应位置打好断点后，启动调试进程。</li>
+</ul>
+<hr>
+<h2 id="dex2jar"><a href="#dex2jar" class="headerlink" title="dex2jar"></a>dex2jar</h2><p>有人做了一个专门的工具 dex2jar 将classes.dex 转化为jar 文件， 通过 jd-gui 阅读。<br>但dex2jar 并不健全， 反编译出的java文件大部分都有编译错误。可以简单的阅读和分析， 但若是涉及到很细致的内容， 则还是需要依赖smali。</p>
+<hr>
+<h2 id="jeb"><a href="#jeb" class="headerlink" title="jeb"></a>jeb</h2><p>用于逆向工程或审计APK文件<br>常用快捷键<br>(1)重命名(n)<br>(2)跟踪(Enter, 双击)<br>(3)返回(Esc)<br>(4)前进(Ctrl + Enter)<br>(5)帮助(H)<br>(6)条目信息(I)<br>(7)交叉引用(X)，源码交叉引用(Ctrl + X)<br>(8)注释(；or C)<br>(9)改变进制数(B)<br>(10)反编译(Tab)</p>
+<hr>
+<h2 id="IDA"><a href="#IDA" class="headerlink" title="IDA"></a>IDA</h2><p>IDA动态调试so文件</p>
+<h3 id="IDA常用快捷键"><a href="#IDA常用快捷键" class="headerlink" title="IDA常用快捷键"></a>IDA常用快捷键</h3><p>F5: 插件转C&#x2F;C++伪代码</p>
+<h3 id="模拟器动态调试步骤"><a href="#模拟器动态调试步骤" class="headerlink" title="模拟器动态调试步骤"></a>模拟器动态调试步骤</h3><ol>
+<li>将文件android_server push到模拟器的 &#x2F;data&#x2F;local&#x2F;tmp目录下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F:\AndroidTools\IDA7.4\dbgsrv&gt;adb push ./android_server /data/local/tmp</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="00x01-easyjni"><a href="#00x01-easyjni" class="headerlink" title="00x01 easyjni"></a>00x01 easyjni</h2><p>使用jeb查看MainActivity中的内容<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/11.png"></p>
+<p>这里进行了两次处理，首先传入a这个类中，处理过一次，然后传到ncheck。发现ncheck是我们so文件中的函数。而a这个类是java代码。<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/12.png"></p>
+<p>对a类反编译，并分析:上面为密码表。<br>输入的字符经过变形的base64加密 然后传进了so 里面的方法。<br>提取出其密码表，尝试使用python写一个。<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/13.png"><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/14.png"></p>
+<p>apk解压后的文件夹–&gt;lib–&gt;so文件–&gt;拖入IDA–&gt;关键字ncheck(Ctrl+F5搜索ncheck,找到这个函数，进而F5，可以看到伪代码。)<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/15.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">signed</span> <span class="type">int</span> __fastcall <span class="title">Java_com_a_easyjni_MainActivity_ncheck</span><span class="params">(<span class="type">int</span> a1, <span class="type">int</span> a2, <span class="type">int</span> a3)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> v3; <span class="comment">// r8</span></span><br><span class="line">  <span class="type">int</span> v4; <span class="comment">// r5</span></span><br><span class="line">  <span class="type">int</span> v5; <span class="comment">// r8</span></span><br><span class="line">  <span class="type">const</span> <span class="type">char</span> *v6; <span class="comment">// r6</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">char</span> *v8; <span class="comment">// r2</span></span><br><span class="line">  <span class="type">char</span> v9; <span class="comment">// r1</span></span><br><span class="line">  <span class="type">int</span> v10; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">bool</span> v11; <span class="comment">// nf</span></span><br><span class="line">  <span class="type">unsigned</span> __int8 v12; <span class="comment">// vf</span></span><br><span class="line">  <span class="type">int</span> v13; <span class="comment">// r1</span></span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> result; <span class="comment">// r0</span></span><br><span class="line">  <span class="type">char</span> s1[<span class="number">32</span>]; <span class="comment">// [sp+3h] [bp-35h]</span></span><br><span class="line">  <span class="type">char</span> v16; <span class="comment">// [sp+23h] [bp-15h]</span></span><br><span class="line">  <span class="type">int</span> v17; <span class="comment">// [sp+28h] [bp-10h]</span></span><br><span class="line"></span><br><span class="line">  v17 = v3;</span><br><span class="line">  v4 = a1;</span><br><span class="line">  v5 = a3;</span><br><span class="line">  v6 = (<span class="type">const</span> <span class="type">char</span> *)(*(<span class="built_in">int</span> (__fastcall **)(<span class="type">int</span>, <span class="type">int</span>, _DWORD))(*(_DWORD *)a1 + <span class="number">676</span>))(a1, a3, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">if</span> ( <span class="built_in">strlen</span>(v6) == <span class="number">32</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v7 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//第一个循环分析,逻辑是将前16位与后16位对调。</span></span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//v8保存了s1的起始位地址,s1[0]</span></span><br><span class="line">      v8 = &amp;s1[v7];</span><br><span class="line">      <span class="comment">//v6的v7+16位赋值给s1的v7位,s1[0]=v6[16]</span></span><br><span class="line">      s1[v7] = v6[v7 + <span class="number">16</span>];</span><br><span class="line">      <span class="comment">//v9保存v6的v7位置上的值,然后v7+1,v9=v6[0]，v7=1</span></span><br><span class="line">      v9 = v6[v7++];</span><br><span class="line">       <span class="comment">// 将v9 赋值给 s1[起始位+16]，s1[0+16]=v6[0]</span></span><br><span class="line">      v8[<span class="number">16</span>] = v9;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ( v7 != <span class="number">16</span> );</span><br><span class="line">    (*(<span class="built_in">void</span> (__fastcall **)(<span class="type">int</span>, <span class="type">int</span>, <span class="type">const</span> <span class="type">char</span> *))(*(_DWORD *)v4 + <span class="number">680</span>))(v4, v5, v6);</span><br><span class="line">    v10 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//__OFSUB__ 表示x-y是否溢出，溢出返回1，没有溢出返回0。</span></span><br><span class="line">      v12 = __OFSUB__(v10, <span class="number">30</span>);</span><br><span class="line">      v11 = v10 - <span class="number">30</span> &lt; <span class="number">0</span>;</span><br><span class="line">      <span class="comment">// v16 = s1[0]</span></span><br><span class="line">      v16 = s1[v10];</span><br><span class="line">       <span class="comment">// s1[0]=s1[1]</span></span><br><span class="line">      s1[v10] = s1[v10 + <span class="number">1</span>];</span><br><span class="line">      <span class="comment">// s1[1] = v16</span></span><br><span class="line">      s1[v10 + <span class="number">1</span>] = v16;</span><br><span class="line">      v10 += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> ( v11 ^ v12 );</span><br><span class="line">    v13 = <span class="built_in">memcmp</span>(s1, <span class="string">&quot;MbT3sQgX039i3g==AQOoMQFPskB1Bsc7&quot;</span>, <span class="number">0x20</span>u);</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> ( !v13 )</span><br><span class="line">      result = <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    (*(<span class="built_in">void</span> (__fastcall **)(<span class="type">int</span>, <span class="type">int</span>, <span class="type">const</span> <span class="type">char</span> *))(*(_DWORD *)v4 + <span class="number">680</span>))(v4, v5, v6);</span><br><span class="line">    result = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>猜测到v6为传入的字符串。</p>
+<p>第一个do…while，就是将前16位与后16位交换位置;<br>第二个do..while，V12是一个判断溢出，<strong>OFSUB</strong>(int a,int b)经过查询之后的作用是判断a-b是否会产生溢出，即a+(-b)是否溢出，-30补码为11100010,如果要产生溢出，那最小的补码为00100000，十进制就是16，前面那个也是16。并且在0到16期间也不可能减去30大于等于0，即V11永远为0。那么V11^V12的第一个跳出条件就是，当V10为16的时候。也能看出来作用就是两两交换位置。<br>“v13 &#x3D; memcmp(s1, “MbT3sQgX039i3g&#x3D;&#x3D;AQOoMQFPskB1Bsc7”, 0x20u)”这里，memcmp(String str1,String str2,int n)作用判断为判断str1与str2的前n位，而0x20就是32。</p>
+<hr>
+<p>看了一道网鼎杯Android逆向……得出一个结论(我就是一个five)</p>
+<h2 id="rev01"><a href="#rev01" class="headerlink" title="rev01"></a>rev01</h2><p>得到一个 rev01.zip 压缩包,里面有一个apk文件<br>进入:I:\Android\Android tools\apk tool 路径下,用apktool进行解压<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/1.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d [-s] -f F:\题目\rev01\app-release.apk -o I:\Android\Androidtools\<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<p>apktool解压后查看xml文件不会出现乱码</p>
+<p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/2.png"><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/3.png"></p>
+<p>感觉xml文件里没有要找的信息<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/4.png"></p>
+<p>想查看里面的class文件用dex2jar 解压dex文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d2j-dex2jar.bat F:\题目\app-release\classes.dex</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/5.png"></p>
+<p><img src="https://q0o0p.top/2020/05/10/Android-Reverse/6.png"></p>
+<p>使用jd-gui-1.6.6.jar 查看 classes.dex里面的class文件<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/7.png"></p>
+<p>在里面找到MaintActivity.class文件<br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/8.png"><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/9.png"><br><img src="https://q0o0p.top/2020/05/10/Android-Reverse/10.png"></p>
+<hr>
+<p>参考:<br>IDA:<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whycxb/p/9143896.html">https://www.cnblogs.com/whycxb/p/9143896.html</a><br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-886103-1-1.html">https://www.52pojie.cn/thread-886103-1-1.html</a><br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=1016307&amp;extra=page=1&filter=typeid&typeid=134">https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=1016307&amp;extra=page%3D1%26filter%3Dtypeid%26typeid%3D134</a><br><a target="_blank" rel="noopener" href="https://down.52pojie.cn/Tools/OllyDbg_Plugin/">https://down.52pojie.cn/Tools/OllyDbg_Plugin/</a><br>0X01:<br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1089083-1-1.html">https://www.52pojie.cn/thread-1089083-1-1.html</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/cookieXSS/article/details/106175001">https://blog.csdn.net/cookieXSS/article/details/106175001</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9843e80f5ac5">https://www.jianshu.com/p/9843e80f5ac5</a></p>
+<p>360脱壳<br><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903742857281550">https://juejin.cn/post/6844903742857281550</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/138c9de2c987">https://www.jianshu.com/p/138c9de2c987</a></p>
+<p>ARM 汇编基础教程番外篇——配置实验环境:<br><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-220907.htm">https://bbs.pediy.com/thread-220907.htm</a><br>ARM汇编基础教程——数据类型和寄存器:<br><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-220535.htm">https://bbs.pediy.com/thread-220535.htm</a><br>彩虹猫病毒分析:<br><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-262873.htm">https://bbs.pediy.com/thread-262873.htm</a><br>easy-java:<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41429081/article/details/90234730">https://blog.csdn.net/qq_41429081/article/details/90234730</a><br>easy-so:<br><a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1318827-1-1.html">https://www.52pojie.cn/thread-1318827-1-1.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/05/10/CTF-Android-Reverse/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/2020/05/10/CTF-Android-Reverse/undefined" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/05/18/mybatis-plus/"><img class="prev-cover" src="/2020/05/18/mybatis-plus/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Java Web(mybatis-plus)</div></div></a></div><div class="next-post pull-right"><a href="/2020/05/10/linux/"><img class="next-cover" src="/2020/05/10/linux/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Linux基础篇 + 2020 kali KDE桌面美化</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apk%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">apk目录介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E4%BD%BF%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">3.</span> <span class="toc-text">需要使用的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apkHelper"><span class="toc-number">4.</span> <span class="toc-text">apkHelper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#apktool"><span class="toc-number">5.</span> <span class="toc-text">apktool</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#smali%E6%96%87%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">smali文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#smail%E6%96%87%E4%BB%B6%E6%89%93%E5%BC%80%E6%96%B9%E6%B3%95"><span class="toc-number">5.1.1.</span> <span class="toc-text">smail文件打开方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dex2jar"><span class="toc-number">6.</span> <span class="toc-text">dex2jar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jeb"><span class="toc-number">7.</span> <span class="toc-text">jeb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDA"><span class="toc-number">8.</span> <span class="toc-text">IDA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IDA%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-number">8.1.</span> <span class="toc-text">IDA常用快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E5%99%A8%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E6%AD%A5%E9%AA%A4"><span class="toc-number">8.2.</span> <span class="toc-text">模拟器动态调试步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#00x01-easyjni"><span class="toc-number">9.</span> <span class="toc-text">00x01 easyjni</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rev01"><span class="toc-number">10.</span> <span class="toc-text">rev01</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2026/01/12/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2026-01-12T11:48:33.582Z" title="Created 2026-01-12 19:48:33">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑"><img src="/2022/08/01/audio-clip/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python 实现简单的音频剪辑"/></a><div class="content"><a class="title" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑">python 实现简单的音频剪辑</a><time datetime="2022-08-01T01:59:45.000Z" title="Created 2022-08-01 09:59:45">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现"><img src="/2022/07/19/IoT-Vulnerability/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT漏洞复现"/></a><div class="content"><a class="title" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现">IoT漏洞复现</a><time datetime="2022-07-19T08:27:13.000Z" title="Created 2022-07-19 16:27:13">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/2020/05/10/CTF-Android-Reverse/undefined')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

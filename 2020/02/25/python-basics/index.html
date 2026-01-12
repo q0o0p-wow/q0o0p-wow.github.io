@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>python基础用法 | q0o0p</title><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="单行读入不定个字符串(整数)，储存在列表中1a&#x3D;list(map(str,input().split()))#单行读入不定个整数，从0开始存入列表a中 先输入数字n,再输入n行数，每行一个数123456n&#x3D;int(input())for i in range(n):a&#x3D;int(input())或者n&#x3D;int(input()）a&#x3D;[int(input()) for i in range(n))]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基础用法">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="单行读入不定个字符串(整数)，储存在列表中1a&#x3D;list(map(str,input().split()))#单行读入不定个整数，从0开始存入列表a中 先输入数字n,再输入n行数，每行一个数123456n&#x3D;int(input())for i in range(n):a&#x3D;int(input())或者n&#x3D;int(input()）a&#x3D;[int(input()) for i in range(n))]">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/undefined">
+<meta property="article:published_time" content="2020-02-24T17:53:26.000Z">
+<meta property="article:modified_time" content="2021-06-12T00:57:11.139Z">
+<meta property="article:author" content="q0o0p">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/undefined"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'python基础用法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-06-12 08:57:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/2020/02/25/python-basics/undefined')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">python基础用法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-02-24T17:53:26.000Z" title="Created 2020-02-25 01:53:26">2020-02-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-06-12T00:57:11.139Z" title="Updated 2021-06-12 08:57:11">2021-06-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>10min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="python基础用法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>单行读入不定个字符串(整数)，储存在列表中<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">str</span>,<span class="built_in">input</span>().split()))<span class="comment">#单行读入不定个整数，从0开始存入列表a中</span></span><br></pre></td></tr></table></figure></li>
+<li>先输入数字n,再输入n行数，每行一个数<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">a=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">或者</span><br><span class="line">n=<span class="built_in">int</span>(<span class="built_in">input</span>()）</span><br><span class="line">a=[<span class="built_in">int</span>(<span class="built_in">input</span>()) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n))]</span><br></pre></td></tr></table></figure></li>
+<li>先输入数字n,再输入n行数，每行三个数，储存在三个列表中,用空格分隔<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n=<span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">x=[] y=[] z=[] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">a,b,c=<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split())</span><br><span class="line">x.append(a)</span><br><span class="line">y.append(b)</span><br><span class="line">z.append(c)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>创建类的对象：<br>对象名 &#x3D; 类名()</p>
+<p>访问类中的变量和方法：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对象名.类中的变量名 </span><br><span class="line">对象名.方法名([参数])</span><br></pre></td></tr></table></figure>
+
+<p>类的所有方法都必须至少有一个名为self的参数</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,...</span>): <span class="comment">#构造方法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">__del__</span>(<span class="params">self</span>):   <span class="comment">#析构方法</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类中定义的变量"><a href="#类中定义的变量" class="headerlink" title="类中定义的变量:"></a>类中定义的变量:</h3><h4 id="实例成员（实例属性）"><a href="#实例成员（实例属性）" class="headerlink" title="实例成员（实例属性）"></a>实例成员（实例属性）</h4><pre><code> 指在构造函数__init__()中定义的，定义和使用时必须以self作为前缀；
+</code></pre>
+<h4 id="类成员（类属性）"><a href="#类成员（类属性）" class="headerlink" title="类成员（类属性）"></a>类成员（类属性）</h4><pre><code> 类成员是在类中所有方法之外定义的数据成员。
+</code></pre>
+<p>在主程序中（或类的外部），实例成员属于实例（即对象），只能通过对象名访问；而类 成员属于类，可以通过类名或对象名访问。<br>在类的方法中可以调用类本身的其他方法，也可以访问类成员以及实例成员。</p>
+<ul>
+<li><p>实例方法<br>  定义：第一个参数必须是实例对象，该参数名一般约定为“self”，通过它来传递实例的属性和方法（也可以传类的属性和方法）；<br>  调用：只能由实例对象调用。</p>
+</li>
+<li><p>类方法<br>  定义：使用装饰器@classmethod。第一个参数必须是当前类对象，该参数名一般约定为“cls”，通过它来传递类的属性和方法（不能传实例的属性和方法）；<br>  调用：类对象或实例对象都可以调用。</p>
+</li>
+<li><p>静态方法<br>  定义：使用装饰器@staticmethod。参数随意，没有“self”和“cls”参数，但是方法体中不能使用类或实例的任何属性和方法；</p>
+</li>
+</ul>
+<p>在继承关系中，已有的、设计好的类称为父类 或基类，新设计的类称为子类或派生类。<br>    调用：类对象或实例对象都可以调用。<br>调用父类的方法，可以使用内置函数super()或通过“父类名.方法名()”的方 式来实现。<br>方法是特殊的函数。</p>
+<hr>
+<p>Python中的一切对象都可以称为对象，除了数字、字符串、列表、元组、字典、集合、range对象、zip对象等等，函数也是对象，类也是对象。<br>在主程序中（或类的外部），实例属性属于实例（对象），只能通过对象名访问；<br>而类属性属于类，可以通过类名或对象名访问。</p>
+<p>1.基本类的定义</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">类名</span>：</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">方法1</span>(<span class="params">self,参数列表）：</span></span><br><span class="line"><span class="params">        <span class="keyword">pass</span></span></span><br><span class="line"><span class="params">    <span class="keyword">def</span> 方法<span class="number">2</span>(<span class="params">self,参数列表）：</span></span></span><br><span class="line"><span class="params"><span class="params">        <span class="keyword">pass</span></span></span></span><br></pre></td></tr></table></figure>
+<p>2.当一个类定义完成之后，要使用这个类来创建对象</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建对象</span></span><br><span class="line">对象变量 = 类名（）</span><br><span class="line">对象变量.方法<span class="number">1</span>（）</span><br><span class="line">对象变量.方法<span class="number">2</span>（）</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span>:</span><br><span class="line">    <span class="comment">#定义基本属性</span></span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span>  <span class="comment">#类成员</span></span><br><span class="line">    age = <span class="number">0</span>    <span class="comment">#类成员</span></span><br><span class="line">    <span class="comment">#定义私有属性,私有属性在类外部无法直接进行访问</span></span><br><span class="line">    __weight = <span class="number">0</span></span><br><span class="line">    <span class="comment">#定义构造方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n,a,w</span>):</span><br><span class="line">        self.name = n  <span class="comment">#实例成员</span></span><br><span class="line">        self.age = a    <span class="comment">#实例成员</span></span><br><span class="line">        self.__weight = w</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):   <span class="comment">#实例方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s 说: 我 %d 岁了&quot;</span> %(self.name,self.age))</span><br><span class="line"> </span><br><span class="line">p = people(<span class="string">&#x27;jack&#x27;</span>,<span class="number">10</span>,<span class="number">120</span>) <span class="comment"># 实例化类</span></span><br><span class="line">p.speak()  <span class="comment">#调用speak方法</span></span><br><span class="line"><span class="comment">#运行结果</span></span><br><span class="line">jack 说: 我 <span class="number">10</span> 岁了</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,name,sound</span>):  <span class="comment">#构造方法第一个参数必须为 self</span></span><br><span class="line">        self.name = name    <span class="comment">#构造该类的属性（实例成员）</span></span><br><span class="line">        self.sound = sound</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">print_sound</span>(<span class="params">self</span>):  <span class="comment">#实例方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;&#123;0&#125;发出了&quot;&#123;1: ^4&#125;&quot;的声音。&#x27;</span>.<span class="built_in">format</span>(self.name,self.sound))</span><br><span class="line"></span><br><span class="line">cat = Animal(<span class="string">&#x27;小花&#x27;</span>,<span class="string">&#x27;喵喵&#x27;</span>) <span class="comment">#实例类Animal的一个对象cat，自动调用__init__()方法</span></span><br><span class="line">cat.print_sound()   <span class="comment">#cat调用自己的方法</span></span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line">小花发出了<span class="string">&quot; 喵喵 &quot;</span>的声音。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="类的专有方法"><a href="#类的专有方法" class="headerlink" title="类的专有方法"></a>类的专有方法</h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>init</strong> :</td>
+<td>构造函数，在生成对象时调用</td>
+</tr>
+<tr>
+<td><strong>del</strong> :</td>
+<td>析构函数，释放对象时使用</td>
+</tr>
+<tr>
+<td><strong>repr</strong> :</td>
+<td>打印，转换</td>
+</tr>
+<tr>
+<td><strong>setitem</strong> :</td>
+<td>按照索引赋值</td>
+</tr>
+<tr>
+<td><strong>getitem</strong>:</td>
+<td>按照索引获取值</td>
+</tr>
+<tr>
+<td><strong>len</strong>:</td>
+<td>获得长度</td>
+</tr>
+<tr>
+<td><strong>cmp</strong>:</td>
+<td>比较运算</td>
+</tr>
+<tr>
+<td><strong>call</strong>:</td>
+<td>函数调用</td>
+</tr>
+<tr>
+<td><strong>add</strong>:</td>
+<td>加运算</td>
+</tr>
+<tr>
+<td><strong>sub</strong>:</td>
+<td>减运算</td>
+</tr>
+<tr>
+<td><strong>mul</strong>:</td>
+<td>乘运算</td>
+</tr>
+<tr>
+<td><strong>truediv</strong>:</td>
+<td>除运算</td>
+</tr>
+<tr>
+<td><strong>mod</strong>:</td>
+<td>求余运算</td>
+</tr>
+<tr>
+<td><strong>pow</strong>:</td>
+<td>乘方</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>BaseException   所有异常的基类<br>SystemExit  解释器请求退出<br>KeyboardInterrupt   用户中断执行(通常是输入^C)<br>Exception   常规错误的基类<br>StopIteration   迭代器没有更多的值<br>GeneratorExit   生成器(generator)发生异常来通知退出<br>SystemExit  Python 解释器请求退出<br>StandardError   所有的内建标准异常的基类<br>ArithmeticError 所有数值计算错误的基类<br>FloatingPointError  浮点计算错误<br>OverflowError   数值运算超出最大限制<br>ZeroDivisionError   除(或取模)零 (所有数据类型)<br>AssertionError  断言语句失败<br>AttributeError  对象没有这个属性<br>EOFError    没有内建输入,到达EOF 标记<br>EnvironmentError    操作系统错误的基类<br>IOError 输入&#x2F;输出操作失败<br>OSError 操作系统错误<br>WindowsError    系统调用失败<br>ImportError 导入模块&#x2F;对象失败<br>KeyboardInterrupt   用户中断执行(通常是输入^C)<br>LookupError 无效数据查询的基类<br>IndexError  序列中没有没有此索引(index)<br>KeyError    映射中没有这个键<br>MemoryError 内存溢出错误(对于Python 解释器不是致命的)<br>NameError   未声明&#x2F;初始化对象 (没有属性)<br>UnboundLocalError   访问未初始化的本地变量<br>ReferenceError  弱引用(Weak reference)试图访问已经垃圾回收了的对象<br>RuntimeError    一般的运行时错误<br>NotImplementedError 尚未实现的方法<br>SyntaxError Python 语法错误<br>IndentationError    缩进错误<br>TabError    Tab 和空格混用<br>SystemError 一般的解释器系统错误<br>TypeError   对类型无效的操作<br>ValueError  传入无效的参数<br>UnicodeError    Unicode 相关的错误<br>UnicodeDecodeError  Unicode 解码时的错误<br>UnicodeEncodeError  Unicode 编码时错误<br>UnicodeTranslateError   Unicode 转换时错误<br>Warning 警告的基类<br>DeprecationWarning  关于被弃用的特征的警告<br>FutureWarning   关于构造将来语义会有改变的警告<br>OverflowWarning 旧的关于自动提升为长整型(long)的警告<br>PendingDeprecationWarning   关于特性将会被废弃的警告<br>RuntimeWarning  可疑的运行时行为(runtime behavior)的警告<br>SyntaxWarning   可疑的语法的警告<br>UserWarning 用户代码生成的警告</p>
+<p>关键字 关键字说明<br>try&#x2F;except  捕获异常并处理<br>pass    忽略异常<br>as  定义异常实例（except MyError as e）<br>else    如果try中的语句没有引发异常，则执行else中的语句<br>finally 无论是否出现异常，都执行的代码<br>raise       抛出&#x2F;引发异常</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">     &lt;语句&gt;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">except</span> (&lt;异常名<span class="number">1</span>&gt;, &lt;异常名<span class="number">2</span>&gt;, ...):</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;异常说明&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">     &lt;语句&gt;</span><br></pre></td></tr></table></figure>
+<p>区分优先级</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">except</span> &lt;异常名<span class="number">1</span>&gt;:</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;异常说明1&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">except</span> &lt;异常名<span class="number">2</span>&gt;:</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;异常说明2&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">except</span> &lt;异常名<span class="number">3</span>&gt;:</span><br><span class="line"> </span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&#x27;异常说明3&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>无论是否发生异常都将会执行最后的代码。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">     &lt;语句&gt;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line"> </span><br><span class="line">      &lt;语句&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">not_zero</span>(<span class="params">num</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&#x27;参数错误&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> num</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(e)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">not_zero(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h2><p>Button：一个简单的按钮，用来执行一个命令或别的操作。<br>Canvas：组织图形。这个部件可以用来绘制图表和图，创建图形编辑器，实现定制窗口部件。<br>Checkbutton：代表一个变量，它有两个不同的值。点击这个按钮将会在这两个值间切换。<br>Entry：文本输入域。<br>Frame：一个容器窗口部件。帧可以有边框和背景，当创建一个应用程序或dialog(对话）版面时，帧被用来组织其它的窗口部件。<br>Label：显示一个文本或图象。<br>Listbox：显示供选方案的一个列表。listbox能够被配置来得到radiobutton或checklist的行为。<br>Menu：菜单条。用来实现下拉和弹出式菜单。<br>Menubutton：菜单按钮。用来实现下拉式菜单。<br>Message：显示一文本。类似label窗口部件，但是能够自动地调整文本到给定的宽度或比率。<br>Radiobutton：代表一个变量，它可以有多个值中的一个。点击它将为这个变量设置值，并且清除与这同一变量相关的其它radiobutton。<br>Scale：允许你通过滑块来设置一数字值。<br>Scrollbar：为配合使用canvas, entry, listbox, and text窗口部件的标准滚动条。<br>Text：格式化文本显示。允许你用不同的样式和属性来显示和编辑文本。同时支持内嵌图象和窗口。<br>Toplevel：一个容器窗口部件，作为一个单独的、最上面的窗口显示。<br>messageBox：消息框，用于显示你应用程序的消息框。(Python2中为tkMessagebox)</p>
+<p>Dimension           控件大小；<br>Color               控件颜色；<br>Font                控件字体；<br>Anchor              锚点；<br>Relief              控件样式；<br>Bitmap              位图；<br>Cursor              光标；</p>
+<hr>
+<h3 id="Label部件"><a href="#Label部件" class="headerlink" title="Label部件"></a>Label部件</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk  <span class="comment"># 使用Tkinter前需要先导入</span></span><br><span class="line"><span class="comment"># 第1步，实例化object，建立窗口window</span></span><br><span class="line">window = tk.Tk()</span><br><span class="line"><span class="comment"># 第2步，给窗口的可视化起名字</span></span><br><span class="line">window.title(<span class="string">&#x27;Window&#x27;</span>)</span><br><span class="line"><span class="comment"># 第3步，设定窗口的大小(长 * 宽)</span></span><br><span class="line">window.geometry(<span class="string">&#x27;500x300&#x27;</span>)  <span class="comment"># 这里的乘是小x</span></span><br><span class="line"><span class="comment"># 第4步，在图形界面上设定标签</span></span><br><span class="line">l = tk.Label(window, text=<span class="string">&#x27;Tkinter&#x27;</span>, bg=<span class="string">&#x27;blue&#x27;</span>, font=(<span class="string">&#x27;Arial&#x27;</span>, <span class="number">12</span>), width=<span class="number">30</span>, height=<span class="number">2</span>)</span><br><span class="line"><span class="comment"># 说明： bg为背景，font为字体，width为长，height为高，这里的长和高是字符的长和高，比如height=2,就是标签有2个字符这么高</span></span><br><span class="line"><span class="comment"># 第5步，放置标签</span></span><br><span class="line">l.pack()    <span class="comment"># Label内容content区域放置位置，自动调节尺寸</span></span><br><span class="line"><span class="comment"># 放置lable的方法有：1）l.pack(); 2)l.place();</span></span><br><span class="line"><span class="comment"># 第6步，主窗口循环显示</span></span><br><span class="line">window.mainloop()</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Button（按钮）"><a href="#Button（按钮）" class="headerlink" title="Button（按钮）"></a>Button（按钮）</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span>*</span><br><span class="line"><span class="comment">#初始化Tk()</span></span><br><span class="line">myWindow = Tk()</span><br><span class="line"><span class="comment">#设置标题</span></span><br><span class="line">myWindow.title(<span class="string">&#x27;Python GUI Learning&#x27;</span>)</span><br><span class="line"><span class="comment">#创建两个按钮</span></span><br><span class="line">b1=Button(myWindow, text=<span class="string">&#x27;button1&#x27;</span>,bg=<span class="string">&quot;green&quot;</span>, relief=<span class="string">&#x27;raised&#x27;</span>, width=<span class="number">8</span>, height=<span class="number">2</span>)</span><br><span class="line">b1.grid(row=<span class="number">0</span>, column=<span class="number">0</span>, sticky=W, padx=<span class="number">25</span>,pady=<span class="number">25</span>)</span><br><span class="line">b2=Button(myWindow, text=<span class="string">&#x27;button2&#x27;</span>, font=(<span class="string">&#x27;Helvetica 10 bold&#x27;</span>),width=<span class="number">8</span>, height=<span class="number">2</span>)</span><br><span class="line">b2.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, sticky=W, padx=<span class="number">25</span>, pady=<span class="number">25</span>)</span><br><span class="line"><span class="comment">#进入消息循环</span></span><br><span class="line">myWindow.mainloop()</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="Entry窗口"><a href="#Entry窗口" class="headerlink" title="Entry窗口"></a>Entry窗口</h3><p>登录网页时，用户交互界面需要</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk  <span class="comment"># 使用Tkinter前需要先导入</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 第1步，实例化object，建立窗口window</span></span><br><span class="line">window = tk.Tk()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 第2步，给窗口的可视化起名字</span></span><br><span class="line">window.title(<span class="string">&#x27;Window&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 第3步，设定窗口的大小(长 * 宽)</span></span><br><span class="line">window.geometry(<span class="string">&#x27;500x300&#x27;</span>)  <span class="comment"># 这里的乘是小x</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 第4步，在图形界面上设定输入框控件entry并放置控件</span></span><br><span class="line">e1 = tk.Entry(window, show=<span class="string">&#x27;*&#x27;</span>, font=(<span class="string">&#x27;Arial&#x27;</span>, <span class="number">14</span>))   <span class="comment"># 显示成密文形式</span></span><br><span class="line">e2 = tk.Entry(window, show=<span class="literal">None</span>, font=(<span class="string">&#x27;Arial&#x27;</span>, <span class="number">14</span>))  <span class="comment"># 显示成明文形式</span></span><br><span class="line">e1.pack()</span><br><span class="line">e2.pack()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 第5步，主窗口循环显示</span></span><br><span class="line">window.mainloop()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文件内容替换"><a href="#文件内容替换" class="headerlink" title="文件内容替换"></a>文件内容替换</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./1.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">  content = file.read()</span><br><span class="line">  <span class="built_in">print</span>(file.read())</span><br><span class="line">  file.close()</span><br><span class="line"></span><br><span class="line">t = content.replace(<span class="string">&quot; &quot;</span>,<span class="string">&quot;\r\n&quot;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;./1.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f2:</span><br><span class="line">    f2.write(t)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61168074">https://zhuanlan.zhihu.com/p/61168074</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shwee/p/9427975.html">https://www.cnblogs.com/shwee/p/9427975.html</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/61168074">https://zhuanlan.zhihu.com/p/61168074</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2020/02/25/python-basics/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/2020/02/25/python-basics/undefined" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/02/29/applet/"><img class="prev-cover" src="/2020/02/29/applet/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">微信小程序开发</div></div></a></div><div class="next-post pull-right"><a href="/2020/02/15/ClassicWebsite/"><img class="next-cover" src="/2020/02/15/ClassicWebsite/undefined" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">良心网站</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">82</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">19</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">类中定义的变量:</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%88%90%E5%91%98%EF%BC%88%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">实例成员（实例属性）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E6%88%90%E5%91%98%EF%BC%88%E7%B1%BB%E5%B1%9E%E6%80%A7%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">类成员（类属性）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E4%B8%93%E6%9C%89%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">类的专有方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number"></span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GUI"><span class="toc-number"></span> <span class="toc-text">GUI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Label%E9%83%A8%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">Label部件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Button%EF%BC%88%E6%8C%89%E9%92%AE%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">Button（按钮）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Entry%E7%AA%97%E5%8F%A3"><span class="toc-number">3.</span> <span class="toc-text">Entry窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%9B%BF%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">文件内容替换</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2026/01/12/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2026-01-12T11:48:33.582Z" title="Created 2026-01-12 19:48:33">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑"><img src="/2022/08/01/audio-clip/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python 实现简单的音频剪辑"/></a><div class="content"><a class="title" href="/2022/08/01/audio-clip/" title="python 实现简单的音频剪辑">python 实现简单的音频剪辑</a><time datetime="2022-08-01T01:59:45.000Z" title="Created 2022-08-01 09:59:45">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现"><img src="/2022/07/19/IoT-Vulnerability/undefined" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT漏洞复现"/></a><div class="content"><a class="title" href="/2022/07/19/IoT-Vulnerability/" title="IoT漏洞复现">IoT漏洞复现</a><time datetime="2022-07-19T08:27:13.000Z" title="Created 2022-07-19 16:27:13">2022-07-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/2020/02/25/python-basics/undefined')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
