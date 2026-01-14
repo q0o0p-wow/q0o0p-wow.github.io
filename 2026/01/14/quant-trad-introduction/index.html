@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>量化交易常用指标 | q0o0p</title><meta name="keywords" content="quant"><meta name="author" content="q0o0p"><meta name="copyright" content="q0o0p"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="股价常用指标极差极差越高说明波动越明显。股价近期最高价的最大值和最小值的差值。1np.ptp() 成交量加权平均价格英文名VWAP(Volume-Weighted Average Price),是一个非常重要的经济学量，代表着金融资产的“平均”价格。 收益率简单收益率，相邻两个价格之间的变化率。对数收益率，指所有价格取对数后两两之间的价格差值。 波动率越高说明波动越明显。波动率是对价格的一种衡量。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="量化交易常用指标">
+<meta property="og:url" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2026/01/14/quant-trad-introduction/index.html">
+<meta property="og:site_name" content="q0o0p">
+<meta property="og:description" content="股价常用指标极差极差越高说明波动越明显。股价近期最高价的最大值和最小值的差值。1np.ptp() 成交量加权平均价格英文名VWAP(Volume-Weighted Average Price),是一个非常重要的经济学量，代表着金融资产的“平均”价格。 收益率简单收益率，相邻两个价格之间的变化率。对数收益率，指所有价格取对数后两两之间的价格差值。 波动率越高说明波动越明显。波动率是对价格的一种衡量。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/3.jpg">
+<meta property="article:published_time" content="2026-01-14T13:28:03.000Z">
+<meta property="article:modified_time" content="2026-01-14T14:19:20.378Z">
+<meta property="article:author" content="q0o0p">
+<meta property="article:tag" content="quant">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/q0o0p-wow/q0o0p-wow.github.io/img/3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2026/01/14/quant-trad-introduction/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '量化交易常用指标',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-14 22:19:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"> <link rel="stylesheet" href="/live2d-widget/waifu.css"> <link rel="stylesheet" href="/css/my.css"><meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">84</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">21</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">q0o0p</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">量化交易常用指标</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-01-14T13:28:03.000Z" title="Created 2026-01-14 21:28:03">2026-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-01-14T14:19:20.378Z" title="Updated 2026-01-14 22:19:20">2026-01-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/tools/">tools</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">221</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="量化交易常用指标"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="股价常用指标"><a href="#股价常用指标" class="headerlink" title="股价常用指标"></a>股价常用指标</h2><h3 id="极差"><a href="#极差" class="headerlink" title="极差"></a>极差</h3><p>极差越高说明波动越明显。<br>股价近期最高价的最大值和最小值的差值。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.ptp()</span><br></pre></td></tr></table></figure></p>
+<h3 id="成交量加权平均价格"><a href="#成交量加权平均价格" class="headerlink" title="成交量加权平均价格"></a>成交量加权平均价格</h3><p>英文名VWAP(Volume-Weighted Average Price),是一个非常重要的经济学量，代表着金融资产的“平均”价格。</p>
+<h3 id="收益率"><a href="#收益率" class="headerlink" title="收益率"></a>收益率</h3><p>简单收益率，相邻两个价格之间的变化率。<br>对数收益率，指所有价格取对数后两两之间的价格差值。</p>
+<h3 id="波动率"><a href="#波动率" class="headerlink" title="波动率"></a>波动率</h3><p>越高说明波动越明显。<br>波动率是对价格的一种衡量。</p>
+<h3 id="年波动率"><a href="#年波动率" class="headerlink" title="年波动率"></a>年波动率</h3><p>对数波动率的标准差除以其均值，再除以交易日倒数的平方根，通常交易日取250天。</p>
+<h3 id="月波动率"><a href="#月波动率" class="headerlink" title="月波动率"></a>月波动率</h3><p>对数收益率的标准差除以其均值，再乘以交易月的平方根，通常交易月取12月。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">q0o0p</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://github.com/q0o0p-wow/q0o0p-wow.github.io/2026/01/14/quant-trad-introduction/">https://github.com/q0o0p-wow/q0o0p-wow.github.io/2026/01/14/quant-trad-introduction/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/quant/">quant</a></div><div class="post_share"><div class="social-share" data-image="/img/3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/01/12/Book-Noise/"><img class="next-cover" src="/img/7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">噪声</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">q0o0p</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">84</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">21</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" href="https://github.com/q0o0p-wow/q0o0p-wow.github.io"><i class="q0o0p"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%82%A1%E4%BB%B7%E5%B8%B8%E7%94%A8%E6%8C%87%E6%A0%87"><span class="toc-number">1.</span> <span class="toc-text">股价常用指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%81%E5%B7%AE"><span class="toc-number">1.1.</span> <span class="toc-text">极差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E4%BA%A4%E9%87%8F%E5%8A%A0%E6%9D%83%E5%B9%B3%E5%9D%87%E4%BB%B7%E6%A0%BC"><span class="toc-number">1.2.</span> <span class="toc-text">成交量加权平均价格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B6%E7%9B%8A%E7%8E%87"><span class="toc-number">1.3.</span> <span class="toc-text">收益率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%8A%A8%E7%8E%87"><span class="toc-number">1.4.</span> <span class="toc-text">波动率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B4%E6%B3%A2%E5%8A%A8%E7%8E%87"><span class="toc-number">1.5.</span> <span class="toc-text">年波动率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%88%E6%B3%A2%E5%8A%A8%E7%8E%87"><span class="toc-number">1.6.</span> <span class="toc-text">月波动率</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/14/quant-trad-introduction/" title="量化交易常用指标"><img src="/img/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="量化交易常用指标"/></a><div class="content"><a class="title" href="/2026/01/14/quant-trad-introduction/" title="量化交易常用指标">量化交易常用指标</a><time datetime="2026-01-14T13:28:03.000Z" title="Created 2026-01-14 21:28:03">2026-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/12/Book-Noise/" title="噪声"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="噪声"/></a><div class="content"><a class="title" href="/2026/01/12/Book-Noise/" title="噪声">噪声</a><time datetime="2026-01-12T13:28:03.000Z" title="Created 2026-01-12 21:28:03">2026-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/18/tensorflow/" title="tensorflow 初使用"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tensorflow 初使用"/></a><div class="content"><a class="title" href="/2022/11/18/tensorflow/" title="tensorflow 初使用">tensorflow 初使用</a><time datetime="2022-11-18T06:12:52.000Z" title="Created 2022-11-18 14:12:52">2022-11-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/smart-television/" title="smart-television"><img src="/img/5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="smart-television"/></a><div class="content"><a class="title" href="/2022/10/14/smart-television/" title="smart-television">smart-television</a><time datetime="2022-10-14T07:31:32.000Z" title="Created 2022-10-14 15:31:32">2022-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/14/IoT-hardware/" title="IoT-hardware"><img src="/img/7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IoT-hardware"/></a><div class="content"><a class="title" href="/2022/10/14/IoT-hardware/" title="IoT-hardware">IoT-hardware</a><time datetime="2022-10-14T06:56:40.000Z" title="Created 2022-10-14 14:56:40">2022-10-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2026 By q0o0p</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script></div><script defer src="https://cdn.jsdelivr.net/combine/npm/jquery@latest/dist/jquery.min.js,gh/weilining/jsdelivr/jquery/circlemagic/circlemagic.min.js,gh/weilining/jsdelivr@latest/jquery/circlemagic/butterflycirclemagic.js"></script>
+- <script src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery.min.js"></script> - <script defer src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/jquery-ui.min.js"></script> - <script defer data-pjax src="https://cdn.jsdelivr.net/gh/Akilarlxh/live2d_demo_without_api@v1.1/assets/autoload.js"></script>
+<script src="/js/snow_small.js"></script> <script src="/js/fish.js"></script>
+<script src="/js/bubble.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
