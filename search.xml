@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>多因子模型</title>
+      <link href="/2026/01/17/Multi-factor-model/"/>
+      <url>/2026/01/17/Multi-factor-model/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>多因子融合策略</p><p>在实际投资中，很少有策略会只依赖一个因子。将多个因子组合运用，能取长补短，形成更稳健的策略。一些经典思路包括：<br>质量+价值（QARP）：寻找“高质量且价格合理”的公司，这能有效避免落入“价值陷阱”（即看似便宜但基本面持续恶化的公司）。<br>红利+质量：关注分红稳定且财务健康的公司，这能筛选出真正有能力持续回报股东的企业，而非仅仅股息率高的“价值陷阱”。<br>红利+低波：构建一个能提供稳定现金流且股价波动较小的组合，适合追求稳健收益和风险控制的投资者。</p><p>理解因子的周期性</p><p>没有任何一个因子能在所有市场环境下持续领先，它们的表现具有明显的周期性。<br>质量/盈利因子：在经济不确定或市场下跌时，其防御性凸显。<br>价值因子：通常在经济复苏、利率上行期表现更好。<br>动量因子：在市场趋势明确的单边市（无论是牛市还是熊市）中表现强劲，但在市场风格频繁切换的震荡市中容易失效。<br>红利/低波因子：在市场波动加大、不确定性高的环境中更受青睐。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> factor </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> quant </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>因子类型介绍</title>
       <link href="/2026/01/17/factor-type/"/>
       <url>/2026/01/17/factor-type/</url>
