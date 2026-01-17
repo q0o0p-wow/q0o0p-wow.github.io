@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>多因子模型</title>
+      <link href="/2026/01/17/Multi-factor-model/"/>
+      <url>/2026/01/17/Multi-factor-model/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>多因子融合策略</p><p>在实际投资中，很少有策略会只依赖一个因子。将多个因子组合运用，能取长补短，形成更稳健的策略。一些经典思路包括：<br>质量+价值（QARP）：寻找“高质量且价格合理”的公司，这能有效避免落入“价值陷阱”（即看似便宜但基本面持续恶化的公司）。<br>红利+质量：关注分红稳定且财务健康的公司，这能筛选出真正有能力持续回报股东的企业，而非仅仅股息率高的“价值陷阱”。<br>红利+低波：构建一个能提供稳定现金流且股价波动较小的组合，适合追求稳健收益和风险控制的投资者。</p><p>理解因子的周期性</p><p>没有任何一个因子能在所有市场环境下持续领先，它们的表现具有明显的周期性。<br>质量/盈利因子：在经济不确定或市场下跌时，其防御性凸显。<br>价值因子：通常在经济复苏、利率上行期表现更好。<br>动量因子：在市场趋势明确的单边市（无论是牛市还是熊市）中表现强劲，但在市场风格频繁切换的震荡市中容易失效。<br>红利/低波因子：在市场波动加大、不确定性高的环境中更受青睐。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>因子类型介绍</title>
+      <link href="/2026/01/17/factor-type/"/>
+      <url>/2026/01/17/factor-type/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>因子的有效性依赖于特定的宏观经济条件（如利率环境、投资者风险偏好）。随着某种策略被广泛知晓和应用，其超额收益可能会被逐渐摊薄，甚至短期失效。</p><h2 id="价值因子-Value"><a href="#价值因子-Value" class="headerlink" title="价值因子(Value)"></a>价值因子(Value)</h2><p>价值型投资，对宏观景气度变化敏感，通常在经济复苏、利率上行期表现突出。</p><ul><li><p>BM<br>账面市值比，衡量公司净资产相对于市场价值的比例，高BM（低市净率）代表股票可能被低估</p></li><li><p>HML<br>高减低账面市值比，做多高BM股票组合，做空低BM股票组合，以捕获“价值溢价”</p></li></ul><p>市净率（P/B）、市盈率（P/E）、市销率（P/S）、股息收益率（D/P）、每股净现金流/价格（CF/P）</p><h2 id="规模因子（小盘股投资）"><a href="#规模因子（小盘股投资）" class="headerlink" title="规模因子（小盘股投资）"></a>规模因子（小盘股投资）</h2><ul><li>SMB<br>小减大市值，做多小市值股票组合，做空大市值股票组合，以捕获“小盘股溢价”</li></ul><h2 id="质量因子-Quality"><a href="#质量因子-Quality" class="headerlink" title="质量因子(Quality)"></a>质量因子(Quality)</h2><p>高质量投资，在经济不确定或市场下跌时防御性凸显，但在投机性强的牛市中可能暂时落后。</p><ul><li><p>ROE<br>净资产收益率，衡量公司利用股东资本创造利润的效率，是评价企业质量的核心指标</p></li><li><p>ROA<br>总资产回报率<br>$ROA= \frac{总资产}{净利润} ×100%$  </p></li></ul><p>毛利率、盈利稳定性（如过去五年利润增长率的标准差）、杠杆率（如资产负债率）、会计质量（如应计利润）</p><h2 id="盈利因子"><a href="#盈利因子" class="headerlink" title="盈利因子"></a>盈利因子</h2><ul><li>RMW<br>强减弱盈利能力，做多高盈利（如运营利润率高）股票组合，做空低盈利股票组合，以捕获“盈利溢价”</li></ul><p>（常与质量因子重叠，但更直接）营业利润率、净利润率、资产周转率</p><h2 id="红利因子-Dividend"><a href="#红利因子-Dividend" class="headerlink" title="红利因子 (Dividend)"></a>红利因子 (Dividend)</h2><p>青睐稳定支付现金股息的“慷慨”公司，获取现金流和下行保护<br>股息率、分红支付率、分红稳定性（如连续现金分红年限）、股息增长率</p><h2 id="低波因子-Low-Volatility"><a href="#低波因子-Low-Volatility" class="headerlink" title="低波因子 (Low Volatility)"></a>低波因子 (Low Volatility)</h2><p>发现波动率低于市场的“稳健”股票，追求更好的风险调整后收益<br>收益率的年化波动率、贝塔（Beta）、最大回撤、下行波动率（只计算股价下跌时的波动</p><h2 id="动量因子-Momentum"><a href="#动量因子-Momentum" class="headerlink" title="动量因子 (Momentum)"></a>动量因子 (Momentum)</h2><p>在市场趋势明确的行情中表现强劲，但在市场风格频繁切换或震荡市中容易遭受打击。</p><p>过去一段时间（如3-12个月）的收益率、相对强度指标（RSI）</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>量化交易常用指标</title>
       <link href="/2026/01/14/quant-trad-introduction/"/>
       <url>/2026/01/14/quant-trad-introduction/</url>
